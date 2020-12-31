@@ -55,6 +55,7 @@
             android:rowCount="3">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_kaca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -89,6 +90,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_pigura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -123,7 +125,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_Kasir"
+                android:id="@+id/card_kasir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -158,6 +160,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -191,9 +194,8 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <androidx.cardview.widget.CardView
-                android:id="@+id/print"
+                android:id="@+id/card_print"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
@@ -228,7 +230,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/chart"
+                android:id="@+id/card_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
