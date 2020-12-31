@@ -3,14 +3,17 @@ package com.ahmadabuhasan.skripsi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.ahmadabuhasan.skripsi.data.ProductActivity;
@@ -125,7 +128,15 @@ public class DashboardActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-        builder.show();
+        //builder.show();
+        AlertDialog alert_show = builder.create();
+        alert_show.show();
+
+        Button button_positive = alert_show.getButton(DialogInterface.BUTTON_POSITIVE);
+        button_positive.setTextColor(Color.BLACK);
+
+        Button button_negative = alert_show.getButton(DialogInterface.BUTTON_NEGATIVE);
+        button_negative.setTextColor(Color.RED);
     }
 
     // navigating user to app settings
