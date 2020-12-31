@@ -8,4 +8,7 @@
     <string name="data">Data</string>
     <string name="print">Print</string>
     <string name="settings">Settings</string>
+
+    <string name="press_once_again_to_exit">Press once again to exit!</string>
+    <string name="error">Error</string>
 </resources>
