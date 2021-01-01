@@ -143,11 +143,12 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     public void onExport(String path) {
-        File file = new File(path);
+        String directory_path = path;
+        File file = new File(directory_path);
         if (!file.exists()) {
             file.mkdirs();
         }
-        new SQLiteToExcel(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, path).exportSingleTable("products", "products.xls", new SQLiteToExcel.ExportListener() {
+        new SQLiteToExcel(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, directory_path).exportSingleTable("products", "products.xls", new SQLiteToExcel.ExportListener() {
 
             @Override
             public void onStart() {
