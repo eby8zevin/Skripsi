@@ -382,7 +382,7 @@
                 tools:targetApi="O" />
 
             <TextView
-                android:id="@+id/txt_add_product"
+                android:id="@+id/tv_add_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
