@@ -1,9 +1,424 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".data.EditProductActivity">
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_name" />
+
+            <EditText
+                android:id="@+id/et_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_code" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/et_product_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_border"
+                    android:fontFamily="@font/sailec_regular"
+                    android:hint="@string/product_code"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColor="@color/cyan_blue"
+                    android:textSize="16sp"
+                    tools:targetApi="O" />
+
+                <ImageView
+                    android:id="@+id/img_scan_code"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/barcode"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_category" />
+
+            <EditText
+                android:id="@+id/et_product_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:focusable="false"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_category"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_buy" />
+
+            <EditText
+                android:id="@+id/et_buy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_buy"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_stock" />
+
+            <EditText
+                android:id="@+id/et_product_stock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_stock"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_price" />
+
+            <EditText
+                android:id="@+id/et_product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_price"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_total_qty" />
+
+            <EditText
+                android:id="@+id/et_product_total_qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_total_qty"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_disc_qty" />
+
+            <EditText
+                android:id="@+id/et_product_disc_qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_disc_qty"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_weight" />
+
+            <EditText
+                android:id="@+id/et_product_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_weight"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_weight_unit" />
+
+            <EditText
+                android:id="@+id/et_product_weight_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:focusable="false"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_weight_unit"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:ignore="TextFields"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_name" />
+
+            <EditText
+                android:id="@+id/et_product_last_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_last_update"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_information" />
+
+            <EditText
+                android:id="@+id/et_product_information"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="start"
+                android:hint="@string/product_information"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/product_supplier" />
+
+            <EditText
+                android:id="@+id/et_product_supplier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:focusable="false"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/product_supplier"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/cyan_blue"
+                android:textSize="16sp"
+                tools:targetApi="O" />
+
+            <TextView
+                android:id="@+id/tv_edit_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/edit_product"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <TextView
+                android:id="@+id/tv_update_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/update_product"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="ObsoleteLayoutParam" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
