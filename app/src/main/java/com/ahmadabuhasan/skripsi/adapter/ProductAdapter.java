@@ -1,5 +1,6 @@
 package com.ahmadabuhasan.skripsi.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmadabuhasan.skripsi.R;
@@ -37,11 +39,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         this.productData = productData1;
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this.context);
         final String product_id = this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_ID);
@@ -59,7 +63,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         textView2.setText(this.context.getString(R.string.price) + " : " + currency + this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE));
 
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
-            /* class com.app.smartpos.adapter.ProductAdapter.AnonymousClass1 */
 
             public void onClick(View v) {
                 new AlertDialog.Builder(ProductAdapter.this.context).setMessage(R.string.want_to_delete_product).setCancelable(false).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
@@ -91,11 +94,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView imageView_Delete;
         TextView textView_ProductName;
         TextView textView_Buy;
         TextView textView_Stock;
         TextView textView_Price;
+        ImageView imageView_Delete;
 
         public MyViewHolder(View itemView) {
             super(itemView);
