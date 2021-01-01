@@ -23,6 +23,20 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="product_code">Code</string>
+    <string name="product_category">Category</string>
+    <string name="product_buy">Buy</string>
+    <string name="product_stock">Stock</string>
+    <string name="product_price">Price</string>
+    <string name="product_total_qty">Total QTY</string>
+    <string name="product_disc_qty">Disc QTY</string>
+    <string name="product_weight">Weight</string>
+    <string name="product_weight_unit">Unit</string>
+    <string name="product_last_update">Last Update</string>
+    <string name="product_information">Information</string>
+    <string name="product_supplier">Supplier</string>
+    <string name="add_product">Add Product</string>
+
     <string name="all_product">All Product</string>
 
     <string name="no_product_found">No Product Found</string>
