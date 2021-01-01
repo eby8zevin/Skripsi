@@ -12,6 +12,8 @@
     <string name="press_once_again_to_exit">Press once again to exit!</string>
     <string name="error">Error</string>
 
+    <string name="search_here">Search Here. . . .</string>
+
     <string name="backup_completed_successfully">Backup Completed Successfully</string>
     <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>
     <string name="database_Import_completed">Database Import Completed</string>
