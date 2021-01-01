@@ -23,6 +23,13 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="all_product">All Product</string>
+    <string name="no_product_found">No Product Found</string>
+    <string name="export_data_to_excel">Export Data to Excel</string>
+    <string name="data_exporting_please_wait">Data Exporting. Please wait. . .</string>
+    <string name="data_successfully_exported">Data Successfully Exported</string>
+    <string name="data_export_fail">Data Export Fail</string>
+
     <string name="product_code">Code</string>
     <string name="product_category">Category</string>
     <string name="product_buy">Buy</string>
@@ -36,16 +43,8 @@
     <string name="product_information">Information</string>
     <string name="product_supplier">Supplier</string>
     <string name="add_product">Add Product</string>
-
-    <string name="all_product">All Product</string>
-
-    <string name="no_product_found">No Product Found</string>
-
-    <string name="export_data_to_excel">Export Data to Excel</string>
-
-    <string name="data_exporting_please_wait">Data Exporting. Please wait. . .</string>
-    <string name="data_successfully_exported">Data Successfully Exported</string>
-    <string name="data_export_fail">Data Export Fail</string>
+    <string name="edit_product">Edit Product</string>
+    <string name="update_product">Update Product</string>
 
     <string name="backup_completed_successfully">Backup Completed Successfully</string>
     <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>
