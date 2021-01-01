@@ -13,6 +13,25 @@
     <string name="error">Error</string>
 
     <string name="search_here">Search Here. . . .</string>
+    <string name="product_name">Product Name</string>
+    <string name="buy">Buy</string>
+    <string name="stock">Stock</string>
+    <string name="price">Price</string>
+    <string name="want_to_delete_product">Want to Delete Product ?</string>
+    <string name="product_deleted">Product Deleted</string>
+    <string name="failed">Failed</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="all_product">All Product</string>
+
+    <string name="no_product_found">No Product Found</string>
+
+    <string name="export_data_to_excel">Export Data to Excel</string>
+
+    <string name="data_exporting_please_wait">Data Exporting. Please wait. . .</string>
+    <string name="data_successfully_exported">Data Successfully Exported</string>
+    <string name="data_export_fail">Data Export Fail</string>
 
     <string name="backup_completed_successfully">Backup Completed Successfully</string>
     <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>

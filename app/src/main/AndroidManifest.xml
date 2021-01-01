@@ -27,9 +27,9 @@
         android:roundIcon="@mipmap/ic_me_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
-        <activity android:name=".data.ProductActivity">
-
-        </activity>
+        <activity android:name=".data.EditProductActivity"></activity>
+        <activity android:name=".data.AddProductActivity" />
+        <activity android:name=".data.ProductActivity" />
         <activity
             android:name=".DashboardActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
@@ -39,9 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

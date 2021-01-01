@@ -41,4 +41,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.github.GrenderG:Toasty:1.5.0'
     implementation 'com.karumi:dexter:6.2.2'
+    implementation 'com.github.hedzr:android-file-chooser:v1.2.0-final'
+    implementation 'com.github.hedzr:android-file-chooser:1.2.0-SNAPSHOT'
+    implementation 'com.ajts.androidmads.SQLite2Excel:library:1.0.4'
 }
