@@ -51,4 +51,7 @@
     <string name="database_Import_completed">Database Import Completed</string>
     <string name="unable_to_import_database_retry">Unable to import database. Retry</string>
 
+    <string name="qr_barcode_scanner">QR or Barcode Scanner</string>
+    <string name="camera_permission">Camera Permission Required</string>
+
 </resources>
