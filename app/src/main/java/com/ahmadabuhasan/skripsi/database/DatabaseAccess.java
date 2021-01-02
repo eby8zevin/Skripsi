@@ -1,5 +1,6 @@
 package com.ahmadabuhasan.skripsi.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -170,6 +171,29 @@ public class DatabaseAccess {
         cursor.close();
         this.database.close();
         return product_suppliers;
+    }
+
+    public boolean addProduct(String product_name, String product_code, String product_category, String product_buy, String product_stock, String product_price, String product_total_qty, String product_disc_qty, String product_weight, String weight_unit_id, String product_last_update, String product_information, String product_supplier) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.PRODUCT_NAME, product_name);
+        values.put(DatabaseOpenHelper.PRODUCT_CODE, product_code);
+        values.put(DatabaseOpenHelper.PRODUCT_CATEGORY, product_category);
+        values.put(DatabaseOpenHelper.PRODUCT_BUY, product_buy);
+        values.put(DatabaseOpenHelper.PRODUCT_STOCK, product_stock);
+        values.put(DatabaseOpenHelper.PRODUCT_PRICE, product_price);
+        values.put(DatabaseOpenHelper.PRODUCT_TOTAL_QTY, product_total_qty);
+        values.put(DatabaseOpenHelper.PRODUCT_DISC_QTY, product_disc_qty);
+        values.put(DatabaseOpenHelper.PRODUCT_WEIGHT, product_weight);
+        values.put(DatabaseOpenHelper.PRODUCT_WEIGHT_UNIT_ID, weight_unit_id);
+        values.put(DatabaseOpenHelper.PRODUCT_LAST_UPDATE, product_last_update);
+        values.put(DatabaseOpenHelper.PRODUCT_INFORMATION, product_information);
+        values.put(DatabaseOpenHelper.PRODUCT_SUPPLIER, product_supplier);
+        long check = this.database.insert("products", null, values);
+        this.database.close();
+        if (check == -1) {
+            return false;
+        }
+        return true;
     }
 
 }
