@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 01/01/2021
+ * Created by Ahmad Abu Hasan on 02/01/2021
  */
 
 public class DatabaseAccess {
@@ -119,6 +119,57 @@ public class DatabaseAccess {
         long delete = (long) this.database.delete("product_cart", "product_id=?", new String[]{product_id});
         this.database.close();
         return check == 1;
+    }
+
+    // AddProductActivity
+    public ArrayList<HashMap<String, String>> getProductCategory() {
+        ArrayList<HashMap<String, String>> product_category = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM product_category ORDER BY category_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.CATEGORY_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.CATEGORY_NAME, cursor.getString(1));
+                product_category.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product_category;
+    }
+
+    // AddProductActivity
+    public ArrayList<HashMap<String, String>> getWeightUnit() {
+        ArrayList<HashMap<String, String>> product_weight_unit = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM product_weight", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.WEIGHT_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.WEIGHT_UNIT, cursor.getString(1));
+                product_weight_unit.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product_weight_unit;
+    }
+
+    // AddProductActivity
+    public ArrayList<HashMap<String, String>> getProductSupplier() {
+        ArrayList<HashMap<String, String>> product_suppliers = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM suppliers", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.SUPPLIER_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.SUPPLIER_NAME, cursor.getString(1));
+                product_suppliers.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product_suppliers;
     }
 
 }
