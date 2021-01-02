@@ -9,4 +9,10 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="cyan_blue">#03AAF3</color>
+
+    <color name="colorPrimaryDark">#01BAEF</color>
+    <color name="textColorPrimaryDark">#757575</color>
+    <color name="textColorSecondaryLight">#666666</color>
+    <color name="windowBackground">#EEEEEE</color>
+
 </resources>

@@ -46,6 +46,9 @@
     <string name="edit_product">Edit Product</string>
     <string name="update_product">Update Product</string>
 
+    <string name="type_something_to_search">Type something to search</string>
+    <string name="cancel">Cancel</string>
+
     <string name="backup_completed_successfully">Backup Completed Successfully</string>
     <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>
     <string name="database_Import_completed">Database Import Completed</string>
@@ -53,5 +56,6 @@
 
     <string name="qr_barcode_scanner">QR or Barcode Scanner</string>
     <string name="camera_permission">Camera Permission Required</string>
+
 
 </resources>
