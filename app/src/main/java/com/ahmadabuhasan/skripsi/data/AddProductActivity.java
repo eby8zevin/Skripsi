@@ -32,7 +32,7 @@ import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.ajts.androidmads.library.ExcelToSQLite;
-import com.itextpdf.text.io.PagedChannelRandomAccessSource;
+//import com.itextpdf.text.io.PagedChannelRandomAccessSource;
 import com.obsez.android.lib.filechooser.ChooserDialog;
 
 import java.io.File;
@@ -348,7 +348,7 @@ public class AddProductActivity extends AppCompatActivity {
                                         if (databaseAccess.addProduct(product_name, product_code, product_category_id, product_buy, product_stock, product_price, product_total_qty, product_disc_qty, product_weight, product_weight_unit_id, product_last_update, product_information, product_supplier_id)) {
                                             Toasty.success(AddProductActivity.this, (int) R.string.product_successfully_added, Toasty.LENGTH_SHORT).show();
                                             Intent intent = new Intent(AddProductActivity.this, ProductActivity.class);
-                                            intent.addFlags(PagedChannelRandomAccessSource.DEFAULT_TOTAL_BUFSIZE);
+                                            //intent.addFlags(PagedChannelRandomAccessSource.DEFAULT_TOTAL_BUFSIZE);
                                             AddProductActivity.this.startActivity(intent);
                                             return;
                                         }
