@@ -43,6 +43,14 @@
     <string name="product_information">Information</string>
     <string name="product_supplier">Supplier</string>
     <string name="add_product">Add Product</string>
+    <string name="suppliers">Suppliers</string>
+    <string name="product_name_cannot_be_empty">Product name can\'t be empty!</string>
+    <string name="product_sell_price_cannot_be_empty">Product sell price can\'t be empty!</string>
+    <string name="product_stock_cannot_be_empty">Product stock can\'t be empty!</string>
+    <string name="product_successfully_added">Product Successfully Added</string>
+    <string name="product_category_cannot_be_empty">Product category can\'t be empty!</string>
+    <string name="product_weight_cannot_be_empty">Product weight can\'t be empty!</string>
+    <string name="product_supplier_cannot_be_empty">Product supplier can\'t be empty!</string>
     <string name="edit_product">Edit Product</string>
     <string name="update_product">Update Product</string>
 
