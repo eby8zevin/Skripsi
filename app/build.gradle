@@ -45,5 +45,5 @@ dependencies {
     implementation 'com.github.hedzr:android-file-chooser:1.2.0-SNAPSHOT'
     implementation 'com.ajts.androidmads.SQLite2Excel:library:1.0.4'
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
-    implementation group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13.2'
+
 }

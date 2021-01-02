@@ -51,6 +51,11 @@
     <string name="product_category_cannot_be_empty">Product category can\'t be empty!</string>
     <string name="product_weight_cannot_be_empty">Product weight can\'t be empty!</string>
     <string name="product_supplier_cannot_be_empty">Product supplier can\'t be empty!</string>
+    <string name="import_from_excel">Import From Excel</string>
+    <string name="no_file_found">No File Found</string>
+    <string name="data_importing_please_wait">Data importing. Please wait. . .</string>
+    <string name="data_successfully_imported">Data Successfully Imported</string>
+    <string name="data_import_fail">Data Import Fail</string>
     <string name="edit_product">Edit Product</string>
     <string name="update_product">Update Product</string>
 
