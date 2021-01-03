@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,7 +122,7 @@ public class DatabaseAccess {
         return check == 1;
     }
 
-    // AddProductActivity
+    // AddProductActivity + CategoriesActivity
     public ArrayList<HashMap<String, String>> getProductCategory() {
         ArrayList<HashMap<String, String>> product_category = new ArrayList<>();
         Cursor cursor = this.database.rawQuery("SELECT * FROM product_category ORDER BY category_id DESC", null);
@@ -319,5 +318,64 @@ public class DatabaseAccess {
         return shop_info;
     }
 
+    // ShopInformationActivity
+    public boolean updateShopInformation(String shop_name, String shop_contact, String shop_email, String shop_address, String shop_currency, String shop_tax) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.SHOP_NAME, shop_name);
+        values.put(DatabaseOpenHelper.SHOP_CONTACT, shop_contact);
+        values.put(DatabaseOpenHelper.SHOP_EMAIL, shop_email);
+        values.put(DatabaseOpenHelper.SHOP_ADDRESS, shop_address);
+        values.put(DatabaseOpenHelper.SHOP_CURRENCY, shop_currency);
+        values.put(DatabaseOpenHelper.SHOP_TAX, shop_tax);
+        long check = (long) this.database.update("shop", values, "shop_id=? ", new String[]{"1"});
+        this.database.close();
+        return check != -1;
+    }
+
+    // CategoriesActivity
+    public ArrayList<HashMap<String, String>> searchProductCategory(String s) {
+        ArrayList<HashMap<String, String>> product_category = new ArrayList<>();
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM product_category WHERE category_name LIKE '%" + s + "%' ORDER BY category_id DESC ", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.CATEGORY_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.CATEGORY_NAME, cursor.getString(1));
+                product_category.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product_category;
+    }
+
+    // CategoryAdapter
+    public boolean deleteCategory(String category_id) {
+        long check = (long) this.database.delete(DatabaseOpenHelper.PRODUCT_CATEGORY, "category_id=?", new String[]{category_id});
+        this.database.close();
+        return check == 1;
+    }
+
+    // EditCategoryActivity
+    public boolean updateCategory(String category_id, String category_name) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.CATEGORY_NAME, category_name);
+        long check = (long) this.database.update(DatabaseOpenHelper.PRODUCT_CATEGORY, values, "category_id=? ", new String[]{category_id});
+        this.database.close();
+        return check != -1;
+    }
+
+    // AddCategoryActivity
+    public boolean addCategory(String category_name) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.CATEGORY_NAME, category_name);
+        long check = this.database.insert(DatabaseOpenHelper.PRODUCT_CATEGORY, null, values);
+        this.database.close();
+        if (check == -1) {
+            return false;
+        }
+        return true;
+    }
 
 }
