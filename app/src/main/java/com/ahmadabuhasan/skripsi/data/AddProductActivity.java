@@ -85,6 +85,10 @@ public class AddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.add_product);
+
         this.editText_Name = findViewById(R.id.et_product_name);
         editText_Code = findViewById(R.id.et_product_code);
         this.imageView_ScanCode = findViewById(R.id.img_scan_code);
@@ -97,6 +101,7 @@ public class AddProductActivity extends AppCompatActivity {
         this.editText_Weight = findViewById(R.id.et_product_weight);
         this.editText_Weight_Unit = findViewById(R.id.et_product_weight_unit);
         this.editText_Last_Update = findViewById(R.id.et_product_last_update);
+        this.editText_Last_Update.setEnabled(false);
         this.editText_Information = findViewById(R.id.et_product_information);
         this.editText_Supplier = findViewById(R.id.et_product_supplier);
         this.textView_Add_Product = findViewById(R.id.tv_add_product);
@@ -113,22 +118,21 @@ public class AddProductActivity extends AppCompatActivity {
         this.supplierNames = new ArrayList();
 
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
 
-        final List<HashMap<String, String>> productCategory = databaseAccess.getProductCategory();
         databaseAccess.open();
+        final List<HashMap<String, String>> productCategory = databaseAccess.getProductCategory();
         for (int i = 0; i < productCategory.size(); i++) {
             this.categoryNames.add(productCategory.get(i).get(DatabaseOpenHelper.CATEGORY_NAME));
         }
 
-        final List<HashMap<String, String>> weightUnit = databaseAccess.getWeightUnit();
         databaseAccess.open();
+        final List<HashMap<String, String>> weightUnit = databaseAccess.getWeightUnit();
         for (int i1 = 0; i1 < weightUnit.size(); i1++) {
             this.weightUnitNames.add(weightUnit.get(i1).get(DatabaseOpenHelper.WEIGHT_UNIT));
         }
 
-        final List<HashMap<String, String>> productSupplier = databaseAccess.getProductSupplier();
         databaseAccess.open();
+        final List<HashMap<String, String>> productSupplier = databaseAccess.getProductSupplier();
         for (int i2 = 0; i2 < productSupplier.size(); i2++) {
             this.supplierNames.add(productSupplier.get(i2).get(DatabaseOpenHelper.SUPPLIER_NAME));
         }
@@ -247,7 +251,7 @@ public class AddProductActivity extends AppCompatActivity {
             }
         });
 
-        editText_Supplier.setOnClickListener(new View.OnClickListener() {
+        this.editText_Supplier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AddProductActivity.this.supplierAdapter = new ArrayAdapter<>(AddProductActivity.this, android.R.layout.simple_list_item_1);
@@ -396,7 +400,6 @@ public class AddProductActivity extends AppCompatActivity {
             Toast.makeText(this, (int) R.string.no_file_found, Toast.LENGTH_SHORT).show();
         } else {
             new ExcelToSQLite(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, false).importFromFile(path, new ExcelToSQLite.ImportListener() {
-
                 @Override
                 public void onStart() {
                     AddProductActivity.this.loading = new ProgressDialog(AddProductActivity.this);
@@ -430,7 +433,6 @@ public class AddProductActivity extends AppCompatActivity {
 
     public void fileChooser() {
         new ChooserDialog((Activity) this).displayPath(true).withFilter(false, false, "xls").withChosenListener(new ChooserDialog.Result() {
-
             @Override
             public void onChoosePath(String path, File pathFile) {
                 AddProductActivity.this.onImport(path);
