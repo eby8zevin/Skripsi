@@ -42,8 +42,9 @@
     <string name="product_last_update">Last Update</string>
     <string name="product_information">Information</string>
     <string name="product_supplier">Supplier</string>
-    <string name="add_product">Add Product</string>
     <string name="suppliers">Suppliers</string>
+    <string name="type_something_to_search">Type something to search</string>
+    <string name="cancel">Cancel</string>
     <string name="product_name_cannot_be_empty">Product name can\'t be empty!</string>
     <string name="product_sell_price_cannot_be_empty">Product sell price can\'t be empty!</string>
     <string name="product_stock_cannot_be_empty">Product stock can\'t be empty!</string>
@@ -56,11 +57,12 @@
     <string name="data_importing_please_wait">Data importing. Please wait. . .</string>
     <string name="data_successfully_imported">Data Successfully Imported</string>
     <string name="data_import_fail">Data Import Fail</string>
+    <string name="add_product">Add Product</string>
     <string name="edit_product">Edit Product</string>
     <string name="update_product">Update Product</string>
 
-    <string name="type_something_to_search">Type something to search</string>
-    <string name="cancel">Cancel</string>
+    <string name="product_details">Product Details</string>
+    <string name="update_successfully">Update Successfully</string>
 
     <string name="backup_completed_successfully">Backup Completed Successfully</string>
     <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>
@@ -69,6 +71,5 @@
 
     <string name="qr_barcode_scanner">QR or Barcode Scanner</string>
     <string name="camera_permission">Camera Permission Required</string>
-
 
 </resources>
