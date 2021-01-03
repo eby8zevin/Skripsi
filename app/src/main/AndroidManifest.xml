@@ -28,6 +28,8 @@
         android:roundIcon="@mipmap/ic_me_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
+        <activity android:name=".settings.shop.ShopInformationActivity" />
+        <activity android:name=".settings.SettingsActivity" />
         <activity android:name=".data.EditProductScannerViewActivity" />
         <activity android:name=".data.EditProductActivity" />
         <activity android:name=".data.ScannerViewActivity" />
