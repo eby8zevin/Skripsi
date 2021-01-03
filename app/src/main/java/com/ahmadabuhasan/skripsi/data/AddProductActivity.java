@@ -333,16 +333,16 @@ public class AddProductActivity extends AppCompatActivity {
                 }
                 if (!product_category_name.isEmpty()) {
                     if (!product_category_id.isEmpty()) {
-                        if (product_price.isEmpty()) {
-                            AddProductActivity.this.editText_Price.setError(AddProductActivity.this.getString(R.string.product_sell_price_cannot_be_empty));
-                            AddProductActivity.this.editText_Price.requestFocus();
+                        if (product_stock.isEmpty()) {
+                            AddProductActivity.this.editText_Stock.setError(AddProductActivity.this.getString(R.string.product_stock_cannot_be_empty));
+                            AddProductActivity.this.editText_Stock.requestFocus();
                             return;
                         }
                         if (!product_weight_unit_name.isEmpty()) {
                             if (!product_weight.isEmpty()) {
-                                if (product_stock.isEmpty()) {
-                                    AddProductActivity.this.editText_Stock.setError(AddProductActivity.this.getString(R.string.product_stock_cannot_be_empty));
-                                    AddProductActivity.this.editText_Stock.requestFocus();
+                                if (product_price.isEmpty()) {
+                                    AddProductActivity.this.editText_Price.setError(AddProductActivity.this.getString(R.string.product_price_cannot_be_empty));
+                                    AddProductActivity.this.editText_Price.requestFocus();
                                     return;
                                 }
                                 if (!product_supplier_name.isEmpty()) {
@@ -360,8 +360,8 @@ public class AddProductActivity extends AppCompatActivity {
                                         return;
                                     }
                                 }
-                                AddProductActivity.this.editText_Category.setError(AddProductActivity.this.getString(R.string.product_category_cannot_be_empty));
-                                AddProductActivity.this.editText_Category.requestFocus();
+                                AddProductActivity.this.editText_Supplier.setError(AddProductActivity.this.getString(R.string.product_supplier_cannot_be_empty));
+                                AddProductActivity.this.editText_Supplier.requestFocus();
                                 return;
                             }
                         }
@@ -370,8 +370,8 @@ public class AddProductActivity extends AppCompatActivity {
                         return;
                     }
                 }
-                AddProductActivity.this.editText_Supplier.setError(AddProductActivity.this.getString(R.string.product_supplier_cannot_be_empty));
-                AddProductActivity.this.editText_Supplier.requestFocus();
+                AddProductActivity.this.editText_Category.setError(AddProductActivity.this.getString(R.string.product_category_cannot_be_empty));
+                AddProductActivity.this.editText_Category.requestFocus();
             }
         });
     }
