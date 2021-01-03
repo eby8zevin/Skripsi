@@ -11,6 +11,10 @@ import android.view.View;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.settings.shop.ShopInformationActivity;
 
+/*
+ * Created by Ahmad Abu Hasan on 03/01/2021
+ */
+
 public class SettingsActivity extends AppCompatActivity {
 
     CardView cardView_ShopInfo;
