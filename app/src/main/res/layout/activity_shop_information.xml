@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/shop_name" />
+
+            <EditText
+                android:id="@+id/et_shop_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/shop_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/shop_contact_number" />
+
+            <EditText
+                android:id="@+id/et_shop_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/shop_contact_number"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/shop_email" />
+
+            <EditText
+                android:id="@+id/et_shop_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/shop_email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/shop_address" />
+
+            <EditText
+                android:id="@+id/et_shop_address"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="start"
+                android:hint="@string/shop_address"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/currency_symbol" />
+
+            <EditText
+                android:id="@+id/et_shop_currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/shop_currency"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLength="4"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/tax_in_percentage" />
+
+            <EditText
+                android:id="@+id/et_tax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/tax"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:maxLength="4"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_shop_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/edit"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="ObsoleteLayoutParam" />
+
+            <TextView
+                android:id="@+id/tv_shop_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/update_information"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="ObsoleteLayoutParam" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
