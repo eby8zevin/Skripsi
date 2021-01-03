@@ -88,4 +88,22 @@
     <string name="edit">Edit</string>
     <string name="update_information">Update Information</string>
 
+    <string name="shop_name_cannot_be_empty">Shop name can\'t be empty</string>
+    <string name="shop_contact_cannot_be_empty">Shop contact can\'t be empty</string>
+    <string name="enter_valid_email">Enter Valid Email</string>
+    <string name="shop_address_cannot_be_empty">Shop address can\'t be empty</string>
+    <string name="shop_currency_cannot_be_empty">Shop currency can\'t be empty</string>
+    <string name="shop_information_updated_successfully">Shop Information Updated Successfully</string>
+
+    <string name="no_data_found">No Data Found</string>
+    <string name="category_name">Category Name</string>
+    <string name="want_to_delete_category">Want to delete category ?</string>
+    <string name="category_deleted">Category Deleted</string>
+    <string name="add_category">Add Category</string>
+    <string name="category_added_successfully">Category Added Successfully</string>
+    <string name="update_category">Update Category</string>
+    <string name="edit_category">Edit Category</string>
+    <string name="enter_category_name">Enter Category Name</string>
+    <string name="category_updated">Category Updated</string>
+
 </resources>
