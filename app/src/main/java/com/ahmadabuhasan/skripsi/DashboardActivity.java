@@ -3,7 +3,6 @@ package com.ahmadabuhasan.skripsi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.ahmadabuhasan.skripsi.data.ProductActivity;
+import com.ahmadabuhasan.skripsi.settings.SettingsActivity;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -30,7 +30,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 01/01/2021
+ * Created by Ahmad Abu Hasan on 03/01/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -57,6 +57,7 @@ public class DashboardActivity extends AppCompatActivity {
         this.cardView_settings = findViewById(R.id.card_settings);
 
         this.cardView_data.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ProductActivity.class)));
+        this.cardView_settings.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
 
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermission();
