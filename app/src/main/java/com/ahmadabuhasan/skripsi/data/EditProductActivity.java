@@ -5,7 +5,6 @@ import androidx.core.internal.view.SupportMenu;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -69,8 +68,6 @@ public class EditProductActivity extends AppCompatActivity {
     EditText editText_Supplier;
 
     ImageView imageView_ScanCode;
-
-    ProgressDialog loading;
 
     TextView textView_Edit_Product;
     TextView textView_Update_Product;
@@ -175,8 +172,8 @@ public class EditProductActivity extends AppCompatActivity {
             this.categoryNames.add(productCategory.get(i).get(DatabaseOpenHelper.CATEGORY_NAME));
             i++;
             databaseAccess = databaseAccess1;
-            product_information = product_information;
-            product_category_id = product_category_id;
+            //product_information = product_information;
+            //product_category_id = product_category_id;
         }
 
         databaseAccess.open();
@@ -420,18 +417,18 @@ public class EditProductActivity extends AppCompatActivity {
                 } else if (product_category_id.isEmpty()) {
                     EditProductActivity.this.editText_Category.setError(EditProductActivity.this.getString(R.string.product_category_cannot_be_empty));
                     EditProductActivity.this.editText_Category.requestFocus();
-                } else if (product_price.isEmpty()) {
-                    EditProductActivity.this.editText_Price.setError(EditProductActivity.this.getString(R.string.product_sell_price_cannot_be_empty));
-                    EditProductActivity.this.editText_Price.requestFocus();
                 } else if (product_stock.isEmpty()) {
                     EditProductActivity.this.editText_Stock.setError(EditProductActivity.this.getString(R.string.product_stock_cannot_be_empty));
                     EditProductActivity.this.editText_Stock.requestFocus();
-                } else if (product_supplier_id.isEmpty()) {
-                    EditProductActivity.this.editText_Supplier.setError(EditProductActivity.this.getString(R.string.product_supplier_cannot_be_empty));
-                    EditProductActivity.this.editText_Supplier.requestFocus();
+                } else if (product_price.isEmpty()) {
+                    EditProductActivity.this.editText_Price.setError(EditProductActivity.this.getString(R.string.product_price_cannot_be_empty));
+                    EditProductActivity.this.editText_Price.requestFocus();
                 } else if (product_weight.isEmpty()) {
                     EditProductActivity.this.editText_Weight.setError(EditProductActivity.this.getString(R.string.product_weight_cannot_be_empty));
                     EditProductActivity.this.editText_Weight.requestFocus();
+                } else if (product_supplier_id.isEmpty()) {
+                    EditProductActivity.this.editText_Supplier.setError(EditProductActivity.this.getString(R.string.product_supplier_cannot_be_empty));
+                    EditProductActivity.this.editText_Supplier.requestFocus();
                 } else {
                     DatabaseAccess databaseAccess = DatabaseAccess.getInstance(EditProductActivity.this);
                     databaseAccess.open();
