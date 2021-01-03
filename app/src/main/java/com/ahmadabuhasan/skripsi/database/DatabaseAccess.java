@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -296,5 +297,27 @@ public class DatabaseAccess {
         }
         return true;
     }
+
+    // ShopInformationActivity
+    public ArrayList<HashMap<String, String>> getShopInformation() {
+        ArrayList<HashMap<String, String>> shop_info = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM shop", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.SHOP_NAME, cursor.getString(1));
+                map.put(DatabaseOpenHelper.SHOP_CONTACT, cursor.getString(2));
+                map.put(DatabaseOpenHelper.SHOP_EMAIL, cursor.getString(3));
+                map.put(DatabaseOpenHelper.SHOP_ADDRESS, cursor.getString(4));
+                map.put(DatabaseOpenHelper.SHOP_CURRENCY, cursor.getString(5));
+                map.put(DatabaseOpenHelper.SHOP_TAX, cursor.getString(6));
+                shop_info.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return shop_info;
+    }
+
 
 }
