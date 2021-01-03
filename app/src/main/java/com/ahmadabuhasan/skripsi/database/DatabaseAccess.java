@@ -173,6 +173,7 @@ public class DatabaseAccess {
         return product_suppliers;
     }
 
+    // AddProductActivity
     public boolean addProduct(String product_name, String product_code, String product_category, String product_buy, String product_stock, String product_price, String product_total_qty, String product_disc_qty, String product_weight, String weight_unit_id, String product_last_update, String product_information, String product_supplier) {
         ContentValues values = new ContentValues();
         values.put(DatabaseOpenHelper.PRODUCT_NAME, product_name);
@@ -196,4 +197,104 @@ public class DatabaseAccess {
         return true;
     }
 
+    // EditProductActivity
+    public ArrayList<HashMap<String, String>> getProductsInfo(String product_id) {
+        ArrayList<HashMap<String, String>> product = new ArrayList<>();
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.PRODUCT_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.PRODUCT_NAME, cursor.getString(1));
+                map.put(DatabaseOpenHelper.PRODUCT_CODE, cursor.getString(2));
+                map.put(DatabaseOpenHelper.PRODUCT_CATEGORY, cursor.getString(3));
+                map.put(DatabaseOpenHelper.PRODUCT_BUY, cursor.getString(4));
+                map.put(DatabaseOpenHelper.PRODUCT_STOCK, cursor.getString(5));
+                map.put(DatabaseOpenHelper.PRODUCT_PRICE, cursor.getString(6));
+                map.put(DatabaseOpenHelper.PRODUCT_TOTAL_QTY, cursor.getString(7));
+                map.put(DatabaseOpenHelper.PRODUCT_DISC_QTY, cursor.getString(8));
+                map.put(DatabaseOpenHelper.PRODUCT_WEIGHT, cursor.getString(9));
+                map.put(DatabaseOpenHelper.PRODUCT_WEIGHT_UNIT_ID, cursor.getString(10));
+                map.put(DatabaseOpenHelper.PRODUCT_LAST_UPDATE, cursor.getString(11));
+                map.put(DatabaseOpenHelper.PRODUCT_INFORMATION, cursor.getString(12));
+                map.put(DatabaseOpenHelper.PRODUCT_SUPPLIER, cursor.getString(13));
+                product.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product;
+    }
+
+    // EditProductActivity
+    public String getCategoryName(String category_id) {
+        String product_category = "n/a";
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM product_category WHERE category_id=" + category_id + "", null);
+        if (cursor.moveToFirst()) {
+            do {
+                product_category = cursor.getString(1);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product_category;
+    }
+
+    // EditProductActivity
+    public String getWeightUnitName(String weight_unit_id) {
+        String weight_unit_name = "n/a";
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM product_weight WHERE weight_id=" + weight_unit_id + "", null);
+        if (cursor.moveToFirst()) {
+            do {
+                weight_unit_name = cursor.getString(1);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return weight_unit_name;
+    }
+
+    // EditProductActivity
+    public String getSupplierName(String suppliers_id) {
+        String supplier_name = "n/a";
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM suppliers WHERE supplier_id=" + suppliers_id + "", null);
+        if (cursor.moveToFirst()) {
+            do {
+                supplier_name = cursor.getString(1);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return supplier_name;
+    }
+
+    // EditProductActivity
+    public boolean updateProduct(String product_name, String product_code, String product_category, String product_buy, String product_stock, String product_price, String product_total_qty, String product_disc_qty, String product_weight, String weight_unit_id, String product_last_update, String product_information, String product_supplier, String product_id) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.PRODUCT_NAME, product_name);
+        values.put(DatabaseOpenHelper.PRODUCT_CODE, product_code);
+        values.put(DatabaseOpenHelper.PRODUCT_CATEGORY, product_category);
+        values.put(DatabaseOpenHelper.PRODUCT_BUY, product_buy);
+        values.put(DatabaseOpenHelper.PRODUCT_STOCK, product_stock);
+        values.put(DatabaseOpenHelper.PRODUCT_PRICE, product_price);
+        values.put(DatabaseOpenHelper.PRODUCT_TOTAL_QTY, product_total_qty);
+        values.put(DatabaseOpenHelper.PRODUCT_DISC_QTY, product_disc_qty);
+        values.put(DatabaseOpenHelper.PRODUCT_WEIGHT, product_weight);
+        values.put(DatabaseOpenHelper.PRODUCT_WEIGHT_UNIT_ID, weight_unit_id);
+        values.put(DatabaseOpenHelper.PRODUCT_LAST_UPDATE, product_last_update);
+        values.put(DatabaseOpenHelper.PRODUCT_INFORMATION, product_information);
+        values.put(DatabaseOpenHelper.PRODUCT_SUPPLIER, product_supplier);
+        SQLiteDatabase sQLiteDatabase = this.database;
+        String[] strArr = {product_id};
+        this.database.close();
+        if (((long) sQLiteDatabase.update("products", values, "product_id=?", strArr)) == -1) {
+            return false;
+        }
+        return true;
+    }
+    
 }
