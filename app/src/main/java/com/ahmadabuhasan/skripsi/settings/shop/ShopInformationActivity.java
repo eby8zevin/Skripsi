@@ -37,6 +37,8 @@ public class ShopInformationActivity extends AppCompatActivity {
     TextView textView_Edit;
     TextView textView_Update;
 
+    int info = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +55,19 @@ public class ShopInformationActivity extends AppCompatActivity {
         this.editText_Currency = findViewById(R.id.et_shop_currency);
         this.editText_Tax = findViewById(R.id.et_shop_tax);
 
-        textView_Edit = findViewById(R.id.tv_shop_edit);
-        textView_Update = findViewById(R.id.tv_shop_update);
+        this.textView_Edit = findViewById(R.id.tv_shop_edit);
+        this.textView_Update = findViewById(R.id.tv_shop_update);
 
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         List<HashMap<String, String>> shopData = databaseAccess.getShopInformation();
+
         this.editText_ShopName.setText(shopData.get(0).get(DatabaseOpenHelper.SHOP_NAME));
         this.editText_Contact.setText(shopData.get(0).get(DatabaseOpenHelper.SHOP_CONTACT));
         this.editText_Email.setText(shopData.get(0).get(DatabaseOpenHelper.SHOP_EMAIL));
         this.editText_Address.setText(shopData.get(0).get(DatabaseOpenHelper.SHOP_ADDRESS));
-        this.editText_Currency.setText(shopData.get(0).get(DatabaseOpenHelper.SHOP_TAX));
+        this.editText_Currency.setText(shopData.get(0).get(DatabaseOpenHelper.SHOP_CURRENCY));
+        this.editText_Tax.setText(shopData.get(0).get(DatabaseOpenHelper.SHOP_TAX));
 
         this.editText_ShopName.setEnabled(false);
         this.editText_Contact.setEnabled(false);
