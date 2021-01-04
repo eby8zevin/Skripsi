@@ -18,7 +18,7 @@ import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 04/01/2021
  */
 
 public class EditCategoryActivity extends AppCompatActivity {
@@ -38,7 +38,7 @@ public class EditCategoryActivity extends AppCompatActivity {
 
         this.editText_Category = findViewById(R.id.et_category_name);
         this.textView_Edit = findViewById(R.id.tv_edit_category);
-        this.textView_Update = findViewById(R.id.tv_update_product);
+        this.textView_Update = findViewById(R.id.tv_update_category);
 
         final String category_id = getIntent().getExtras().getString(DatabaseOpenHelper.CATEGORY_ID);
         this.editText_Category.setText(getIntent().getExtras().getString(DatabaseOpenHelper.CATEGORY_NAME));
@@ -77,10 +77,12 @@ public class EditCategoryActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() != android.R.id.home) {
-            return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, CategoriesActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            return true;
         }
-        finish();
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 }
