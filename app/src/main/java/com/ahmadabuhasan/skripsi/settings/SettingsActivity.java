@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ahmadabuhasan.skripsi.R;
+import com.ahmadabuhasan.skripsi.settings.categories.CategoriesActivity;
 import com.ahmadabuhasan.skripsi.settings.shop.ShopInformationActivity;
 
 /*
@@ -40,12 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         this.cardView_ShopInfo.setOnClickListener(v -> SettingsActivity.this.startActivity(new Intent(SettingsActivity.this, ShopInformationActivity.class)));
 
-        this.cardView_Category.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        this.cardView_Category.setOnClickListener(v -> SettingsActivity.this.startActivity(new Intent(SettingsActivity.this, CategoriesActivity.class)));
 
         this.cardView_PaymentMethod.setOnClickListener(new View.OnClickListener() {
             @Override
