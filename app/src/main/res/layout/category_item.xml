@@ -33,13 +33,14 @@
 
                 <ImageView
                     android:layout_width="60dp"
-                    android:layout_height="0dp"
+                    android:layout_height="80dp"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
                     android:contentDescription="@string/app_name"
                     android:padding="10dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/category" />
+                    app:srcCompat="@drawable/category"
+                    tools:ignore="InefficientWeight" />
 
             </LinearLayout>
 
