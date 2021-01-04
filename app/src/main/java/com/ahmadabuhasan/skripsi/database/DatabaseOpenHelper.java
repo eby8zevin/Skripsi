@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 01/01/2021
+ * Created by Ahmad Abu Hasan on 04/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -146,7 +146,9 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_PRODUCTS);
         db.execSQL(CREATE_CATEGORY);
         db.execSQL(CREATE_WEIGHT);
-        db.execSQL(CREATE_SHOP);
+        //db.execSQL(CREATE_SHOP);
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SHOP + "(shop_id INTEGER PRIMARY KEY, shop_name TEXT, shop_contact TEXT, shop_email TEXT, shop_address TEXT, shop_currency TEXT, tax TEXT)");
+        db.execSQL("INSERT INTO " + TABLE_SHOP + "(shop_id, shop_name, shop_contact, shop_email, shop_address, shop_currency, tax) VALUES (1, 'Skripsi', '0123456789', 'skripsi@ahmadabuhasan.com', 'Pasuruan City', 'Rp', '0')");
         db.execSQL(CREATE_SUPPLIERS);
     }
 
