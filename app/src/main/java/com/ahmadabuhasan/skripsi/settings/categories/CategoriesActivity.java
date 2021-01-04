@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.adapter.CategoryAdapter;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
+import com.ahmadabuhasan.skripsi.settings.SettingsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
@@ -101,10 +102,12 @@ public class CategoriesActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() != android.R.id.home) {
-            return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            return true;
         }
-        finish();
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 }
