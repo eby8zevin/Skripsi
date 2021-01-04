@@ -8,12 +8,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.settings.categories.CategoriesActivity;
 import com.ahmadabuhasan.skripsi.settings.shop.ShopInformationActivity;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 04/01/2021
  */
 
 public class SettingsActivity extends AppCompatActivity {
@@ -56,14 +57,15 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() != android.R.id.home) {
-            return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, DashboardActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            return true;
         }
-        finish();
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 }
