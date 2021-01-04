@@ -59,6 +59,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
+            app:backgroundTint="@color/colorPrimary"
             app:fabSize="auto"
             app:srcCompat="@drawable/ic_add"
             app:tint="@color/white"
