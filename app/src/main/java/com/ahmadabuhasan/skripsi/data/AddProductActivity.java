@@ -43,7 +43,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 05/01/2021
  */
 
 public class AddProductActivity extends AppCompatActivity {
@@ -384,7 +384,9 @@ public class AddProductActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
-            finish();
+            Intent intent = new Intent(this, ProductActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
             return true;
         } else if (itemId != R.id.menu_import) {
             return super.onOptionsItemSelected(item);
