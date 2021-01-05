@@ -28,6 +28,9 @@
         android:roundIcon="@mipmap/ic_me_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
+        <activity android:name=".settings.weight_unit.EditWeightActivity" />
+        <activity android:name=".settings.weight_unit.AddWeightActivity" />
+        <activity android:name=".settings.weight_unit.WeightActivity" />
         <activity android:name=".settings.categories.EditCategoryActivity" />
         <activity android:name=".settings.categories.AddCategoryActivity" />
         <activity android:name=".settings.categories.CategoriesActivity" />

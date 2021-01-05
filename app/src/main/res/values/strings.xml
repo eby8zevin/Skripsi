@@ -106,4 +106,16 @@
     <string name="enter_category_name">Enter Category Name</string>
     <string name="category_updated">Category Updated</string>
 
+    <string name="weight_unit">Weight Unit</string>
+    <string name="want_to_delete_weight_unit">Want to delete weight unit ?</string>
+    <string name="weight_deleted">Weight Unit Deleted</string>
+    <string name="weight_unit_name">Weight Unit Name</string>
+    <string name="add_weight_unit">Add Weight Unit</string>
+    <string name="enter_weight_unit_name">Enter Weight Unit Name</string>
+    <string name="weight_unit_updated">Weight Unit Updated</string>
+    <string name="weight_unit_added_successfully">Weight Unit Added Successfully</string>
+    <string name="update_weight_unit">Update Weight Unit</string>
+    <string name="edit_weight_unit">Edit Weight Unit</string>
+
+
 </resources>
