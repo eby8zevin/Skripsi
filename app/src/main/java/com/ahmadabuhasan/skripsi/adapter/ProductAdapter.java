@@ -26,7 +26,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 01/01/2021
+ * Created by Ahmad Abu Hasan on 05/01/2021
  */
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
@@ -52,9 +52,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         databaseAccess.open();
         String currency = databaseAccess.getCurrency();
-        databaseAccess.open();
 
-        holder.textView_ProductName.setText(this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_ID));
+        databaseAccess.open();
+        holder.textView_ProductName.setText(this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_NAME));
         TextView textView = holder.textView_Buy;
         textView.setText(this.context.getString(R.string.buy) + " : " + currency + this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_BUY));
         TextView textView1 = holder.textView_Stock;
