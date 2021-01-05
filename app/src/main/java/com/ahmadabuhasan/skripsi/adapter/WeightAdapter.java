@@ -50,7 +50,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.MyViewHold
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(WeightAdapter.this.context).setMessage(R.string.want_to_delete_weight)
+                new AlertDialog.Builder(WeightAdapter.this.context).setMessage(R.string.want_to_delete_weight_unit)
                         .setCancelable(false)
                         .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
