@@ -34,7 +34,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 05/01/2021
  */
 
 public class EditProductActivity extends AppCompatActivity {
@@ -147,6 +147,7 @@ public class EditProductActivity extends AppCompatActivity {
         editText_Code.setText(product_code);
         databaseAccess.open();
         this.editText_Category.setText(databaseAccess.getCategoryName(product_category_id));
+        //this.editText_Category.setText(product_category_id);
         this.editText_Buy.setText(product_buy);
         this.editText_Stock.setText(product_stock);
         this.editText_Price.setText(product_price);
@@ -155,10 +156,12 @@ public class EditProductActivity extends AppCompatActivity {
         this.editText_Weight.setText(product_weight);
         databaseAccess.open();
         this.editText_Weight_Unit.setText(databaseAccess.getWeightUnitName(product_weight_unit_id));
+        //this.editText_Weight_Unit.setText(product_weight_unit_id);
         this.editText_Last_Update.setText(product_last_update);
         this.editText_Information.setText(product_information);
         databaseAccess.open();
         this.editText_Supplier.setText(databaseAccess.getSupplierName(product_supplier_id));
+        //this.editText_Supplier.setText(product_supplier_id);
 
         this.selectedCategoryID = product_category_id;
         this.selectedWeightUnitID = product_weight_unit_id;
@@ -446,10 +449,12 @@ public class EditProductActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() != android.R.id.home) {
-            return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, ProductActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            return true;
         }
-        finish();
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 }
