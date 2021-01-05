@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 05/01/2021
  */
 
 public class DatabaseAccess {
@@ -139,7 +139,7 @@ public class DatabaseAccess {
         return product_category;
     }
 
-    // AddProductActivity
+    // AddProductActivity + WeightActivity
     public ArrayList<HashMap<String, String>> getWeightUnit() {
         ArrayList<HashMap<String, String>> product_weight_unit = new ArrayList<>();
         Cursor cursor = this.database.rawQuery("SELECT * FROM product_weight", null);
@@ -352,7 +352,7 @@ public class DatabaseAccess {
 
     // CategoryAdapter
     public boolean deleteCategory(String category_id) {
-        long check = (long) this.database.delete(DatabaseOpenHelper.PRODUCT_CATEGORY, "category_id=?", new String[]{category_id});
+        long check = (long) this.database.delete(DatabaseOpenHelper.TABLE_CATEGORY, "category_id=?", new String[]{category_id});
         this.database.close();
         return check == 1;
     }
@@ -361,7 +361,7 @@ public class DatabaseAccess {
     public boolean updateCategory(String category_id, String category_name) {
         ContentValues values = new ContentValues();
         values.put(DatabaseOpenHelper.CATEGORY_NAME, category_name);
-        long check = (long) this.database.update(DatabaseOpenHelper.PRODUCT_CATEGORY, values, "category_id=? ", new String[]{category_id});
+        long check = (long) this.database.update(DatabaseOpenHelper.TABLE_CATEGORY, values, "category_id=? ", new String[]{category_id});
         this.database.close();
         return check != -1;
     }
@@ -370,12 +370,58 @@ public class DatabaseAccess {
     public boolean addCategory(String category_name) {
         ContentValues values = new ContentValues();
         values.put(DatabaseOpenHelper.CATEGORY_NAME, category_name);
-        long check = this.database.insert(DatabaseOpenHelper.PRODUCT_CATEGORY, null, values);
+        long check = this.database.insert(DatabaseOpenHelper.TABLE_CATEGORY, null, values);
         this.database.close();
         if (check == -1) {
             return false;
         }
         return true;
+    }
+
+    // WeightActivity
+    public ArrayList<HashMap<String, String>> searchProductWeight(String s) {
+        ArrayList<HashMap<String, String>> product_weight_unit = new ArrayList<>();
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM product_weight WHERE weight_unit LIKE '%" + s + "%' ORDER BY weight_id DESC ", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.WEIGHT_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.WEIGHT_UNIT, cursor.getString(1));
+                product_weight_unit.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product_weight_unit;
+    }
+
+    // WeightAdapter
+    public boolean deleteWeight(String weight_id) {
+        long check = (long) this.database.delete(DatabaseOpenHelper.TABLE_WEIGHT, "weight_id=?", new String[]{weight_id});
+        this.database.close();
+        return check == 1;
+    }
+
+    // AddWeightActivity
+    public boolean addWeightUnit(String unit_name) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.WEIGHT_UNIT, unit_name);
+        long check = this.database.insert(DatabaseOpenHelper.TABLE_WEIGHT, null, values);
+        this.database.close();
+        if (check == -1) {
+            return false;
+        }
+        return true;
+    }
+
+    // EditWeightActivity
+    public boolean updateWeight(String unit_id, String unit_name) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.WEIGHT_UNIT, unit_name);
+        long check = (long) this.database.update(DatabaseOpenHelper.TABLE_WEIGHT, values, "weight_id=? ", new String[]{unit_id});
+        this.database.close();
+        return check != -1;
     }
 
 }
