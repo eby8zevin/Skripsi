@@ -106,7 +106,7 @@ public class DatabaseAccess {
         Cursor cursor = this.database.rawQuery("SELECT * FROM shop", null);
         if (cursor.moveToFirst()) {
             do {
-                currency = cursor.getString(6);
+                currency = cursor.getString(5);
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -117,7 +117,7 @@ public class DatabaseAccess {
     // ProductAdapter
     public boolean deleteProduct(String product_id) {
         long check = (long) this.database.delete("products", "product_id=?", new String[]{product_id});
-        long delete = (long) this.database.delete("product_cart", "product_id=?", new String[]{product_id});
+        //long delete = (long) this.database.delete("product_cart", "product_id=?", new String[]{product_id});
         this.database.close();
         return check == 1;
     }
