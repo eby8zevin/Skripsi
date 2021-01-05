@@ -12,6 +12,7 @@ import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.settings.categories.CategoriesActivity;
 import com.ahmadabuhasan.skripsi.settings.shop.ShopInformationActivity;
+import com.ahmadabuhasan.skripsi.settings.weight_unit.WeightActivity;
 
 /*
  * Created by Ahmad Abu Hasan on 04/01/2021
@@ -21,6 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     CardView cardView_ShopInfo;
     CardView cardView_Category;
+    CardView cardView_WeightUnit;
     CardView cardView_PaymentMethod;
     CardView cardView_Backup;
 
@@ -35,6 +37,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         this.cardView_ShopInfo = findViewById(R.id.card_shop_info);
         this.cardView_Category = findViewById(R.id.card_category);
+        this.cardView_WeightUnit = findViewById(R.id.card_weight_unit);
         this.cardView_PaymentMethod = findViewById(R.id.card_payment_method);
         this.cardView_Backup = findViewById(R.id.card_backup);
 
@@ -43,6 +46,8 @@ public class SettingsActivity extends AppCompatActivity {
         this.cardView_ShopInfo.setOnClickListener(v -> SettingsActivity.this.startActivity(new Intent(SettingsActivity.this, ShopInformationActivity.class)));
 
         this.cardView_Category.setOnClickListener(v -> SettingsActivity.this.startActivity(new Intent(SettingsActivity.this, CategoriesActivity.class)));
+
+        this.cardView_WeightUnit.setOnClickListener(v -> SettingsActivity.this.startActivity(new Intent(SettingsActivity.this, WeightActivity.class)));
 
         this.cardView_PaymentMethod.setOnClickListener(new View.OnClickListener() {
             @Override
