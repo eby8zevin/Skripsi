@@ -63,6 +63,7 @@
             app:srcCompat="@drawable/ic_add"
             app:tint="@color/white"
             tools:ignore="ContentDescription" />
+
     </LinearLayout>
 
 </RelativeLayout>
