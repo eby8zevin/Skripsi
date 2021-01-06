@@ -424,4 +424,53 @@ public class DatabaseAccess {
         return check != -1;
     }
 
+    // CustomersActivity
+    public ArrayList<HashMap<String, String>> getCustomers() {
+        ArrayList<HashMap<String, String>> customer = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM customers ORDER BY customer_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.CUSTOMER_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.CUSTOMER_NAME, cursor.getString(1));
+                map.put(DatabaseOpenHelper.CUSTOMER_CALL, cursor.getString(2));
+                map.put(DatabaseOpenHelper.CUSTOMER_EMAIL, cursor.getString(3));
+                map.put(DatabaseOpenHelper.CUSTOMER_ADDRESS, cursor.getString(4));
+                customer.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return customer;
+    }
+
+    // CustomersActivity
+    public ArrayList<HashMap<String, String>> searchCustomers(String s) {
+        ArrayList<HashMap<String, String>> customer = new ArrayList<>();
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM customers WHERE customer_name LIKE '%" + s + "%' ORDER BY customer_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.CUSTOMER_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.CUSTOMER_NAME, cursor.getString(1));
+                map.put(DatabaseOpenHelper.CUSTOMER_CALL, cursor.getString(2));
+                map.put(DatabaseOpenHelper.CUSTOMER_EMAIL, cursor.getString(3));
+                map.put(DatabaseOpenHelper.CUSTOMER_ADDRESS, cursor.getString(4));
+                customer.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return customer;
+    }
+
+    // CustomerAdapter
+    public boolean deleteCustomer(String customer_id) {
+        long check = (long) this.database.delete("customers", "customer_id=?", new String[]{customer_id});
+        this.database.close();
+        return check == 1;
+    }
+
+
 }
