@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -470,6 +471,56 @@ public class DatabaseAccess {
         long check = (long) this.database.delete("customers", "customer_id=?", new String[]{customer_id});
         this.database.close();
         return check == 1;
+    }
+
+    // SuppliersActivity
+    public ArrayList<HashMap<String, String>> getSuppliers() {
+        ArrayList<HashMap<String, String>> supplier = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM suppliers ORDER BY supplier_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.SUPPLIER_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.SUPPLIER_NAME, cursor.getString(1));
+                map.put(DatabaseOpenHelper.SUPPLIER_ADDRESS, cursor.getString(2));
+                map.put(DatabaseOpenHelper.SUPPLIER_CONTACT, cursor.getString(3));
+                map.put(DatabaseOpenHelper.SUPPLIER_FAX, cursor.getString(4));
+                map.put(DatabaseOpenHelper.SUPPLIER_SALES, cursor.getString(5));
+                map.put(DatabaseOpenHelper.SUPPLIER_HP, cursor.getString(6));
+                map.put(DatabaseOpenHelper.SUPPLIER_ACCOUNT, cursor.getString(7));
+                map.put(DatabaseOpenHelper.SUPPLIER_INFORMATION, cursor.getString(8));
+                map.put(DatabaseOpenHelper.SUPPLIER_LAST_UPDATE, cursor.getString(9));
+                supplier.add(map);
+            } while (cursor.moveToNext());
+        }
+        this.database.close();
+        return supplier;
+    }
+
+    // SuppliersActivity
+    public ArrayList<HashMap<String, String>> searchSuppliers(String s) {
+        ArrayList<HashMap<String, String>> customer = new ArrayList<>();
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM suppliers WHERE supplier_name LIKE '%" + s + "%' ORDER BY supplier_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.SUPPLIER_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.SUPPLIER_NAME, cursor.getString(1));
+                map.put(DatabaseOpenHelper.SUPPLIER_ADDRESS, cursor.getString(2));
+                map.put(DatabaseOpenHelper.SUPPLIER_CONTACT, cursor.getString(3));
+                map.put(DatabaseOpenHelper.SUPPLIER_FAX, cursor.getString(4));
+                map.put(DatabaseOpenHelper.SUPPLIER_SALES, cursor.getString(5));
+                map.put(DatabaseOpenHelper.SUPPLIER_HP, cursor.getString(6));
+                map.put(DatabaseOpenHelper.SUPPLIER_ACCOUNT, cursor.getString(7));
+                map.put(DatabaseOpenHelper.SUPPLIER_INFORMATION, cursor.getString(8));
+                map.put(DatabaseOpenHelper.SUPPLIER_LAST_UPDATE, cursor.getString(9));
+                customer.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return customer;
     }
 
 
