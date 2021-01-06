@@ -118,5 +118,9 @@
     <string name="update_weight_unit">Update Weight Unit</string>
     <string name="edit_weight_unit">Edit Weight Unit</string>
 
+    <string name="all_customer">All Customer</string>
+    <string name="no_customer_found">No Customer Found!</string>
+    <string name="want_to_delete_customer">Want to Delete Customer ?</string>
+    <string name="customer_deleted">Customer Deleted</string>
 
 </resources>
