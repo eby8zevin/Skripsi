@@ -26,7 +26,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/01/2021
+ * Created by Ahmad Abu Hasan on 06/01/2021
  */
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
@@ -63,10 +63,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         textView2.setText(this.context.getString(R.string.price) + " : " + currency + this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE));
 
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 new AlertDialog.Builder(ProductAdapter.this.context).setMessage(R.string.want_to_delete_product).setCancelable(false).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
                     public void onClick(DialogInterface dialog, int which) {
                         databaseAccess.open();
                         if (databaseAccess.deleteProduct(product_id)) {
@@ -79,7 +77,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                         dialog.cancel();
                     }
                 }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
