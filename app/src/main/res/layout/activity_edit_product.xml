@@ -417,7 +417,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:ignore="ObsoleteLayoutParam" />
-
         </LinearLayout>
 
     </ScrollView>
