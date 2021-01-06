@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 04/01/2021
+ * Created by Ahmad Abu Hasan on 06/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -28,11 +28,19 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "skripsi.db";
 
     // Table Name
+    public static final String TABLE_CUSTOMER = "customers";
     public static final String TABLE_PRODUCT = "products";
     public static final String TABLE_CATEGORY = "product_category";
     public static final String TABLE_WEIGHT = "product_weight";
     public static final String TABLE_SHOP = "shop";
     public static final String TABLE_SUPPLIER = "suppliers";
+
+    // Column customers
+    public static final String CUSTOMER_ID = "customer_id";
+    public static final String CUSTOMER_NAME = "customer_name";
+    public static final String CUSTOMER_CALL = "customer_call";
+    public static final String CUSTOMER_EMAIL = "customer_email";
+    public static final String CUSTOMER_ADDRESS = "customer_address";
 
     // Column products
     public static final String PRODUCT_ID = "product_id";
@@ -85,6 +93,15 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     }
 
     // Table Create Statement
+    // customers
+    private static final String CREATE_CUSTOMERS = "CREATE TABLE " + TABLE_CUSTOMER +
+            "(" + CUSTOMER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + CUSTOMER_NAME + " TEXT,"
+            + CUSTOMER_CALL + " TEXT,"
+            + CUSTOMER_EMAIL + " TEXT,"
+            + CUSTOMER_ADDRESS + " TEXT"
+            + ")";
+
     // products
     private static final String CREATE_PRODUCTS = "CREATE TABLE " + TABLE_PRODUCT +
             "(" + PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -143,6 +160,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // script sql
+        db.execSQL(CREATE_CUSTOMERS);
         db.execSQL(CREATE_PRODUCTS);
         db.execSQL(CREATE_CATEGORY);
         db.execSQL(CREATE_WEIGHT);
@@ -154,6 +172,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT);
