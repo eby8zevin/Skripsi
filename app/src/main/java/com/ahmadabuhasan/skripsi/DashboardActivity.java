@@ -30,7 +30,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 06/01/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -41,6 +41,8 @@ public class DashboardActivity extends AppCompatActivity {
     CardView cardView_pigura;
     CardView cardView_kasir;
     CardView cardView_data;
+    CardView cardView_customers;
+    CardView cardView_suppliers;
     CardView cardView_print;
     CardView cardView_settings;
 
@@ -53,6 +55,8 @@ public class DashboardActivity extends AppCompatActivity {
         this.cardView_pigura = findViewById(R.id.card_pigura);
         this.cardView_kasir = findViewById(R.id.card_kasir);
         this.cardView_data = findViewById(R.id.card_data);
+        this.cardView_customers = findViewById(R.id.card_customers);
+        this.cardView_suppliers = findViewById(R.id.card_suppliers);
         this.cardView_print = findViewById(R.id.card_print);
         this.cardView_settings = findViewById(R.id.card_settings);
 
@@ -68,7 +72,7 @@ public class DashboardActivity extends AppCompatActivity {
         if (back_pressed + 2000 > System.currentTimeMillis()) {
             finishAffinity();
         } else {
-            Toasty.info((Context) this, (int) R.string.press_once_again_to_exit, 0).show();
+            Toasty.info((Context) this, (int) R.string.press_once_again_to_exit, Toasty.LENGTH_SHORT).show();
         }
         back_pressed = System.currentTimeMillis();
     }
