@@ -125,5 +125,14 @@
 
     <string name="all_suppliers">All Suppliers</string>
     <string name="no_suppliers_found">No Suppliers Found!</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="address">Address</string>
+    <string name="contact">Contact</string>
+    <string name="hp">HP</string>
+    <string name="account">Rekening</string>
+
+    <string name="want_to_delete_supplier">Want to Delete Supplier ?</string>
+    <string name="supplier_deleted">Supplier Deleted</string>
+
 
 </resources>
