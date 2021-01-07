@@ -128,11 +128,17 @@
     <string name="supplier_name">Supplier Name</string>
     <string name="address">Address</string>
     <string name="contact">Contact</string>
+    <string name="fax">Fax</string>
+    <string name="sales">Sales</string>
     <string name="hp">HP</string>
     <string name="account">Rekening</string>
+    <string name="information">Information</string>
+    <string name="last_update">Last Update</string>
 
     <string name="want_to_delete_supplier">Want to Delete Supplier ?</string>
     <string name="supplier_deleted">Supplier Deleted</string>
+
+    <string name="add_supplier">Add Supplier</string>
 
 
 </resources>
