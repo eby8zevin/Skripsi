@@ -549,5 +549,22 @@ public class DatabaseAccess {
         return true;
     }
 
+    // EditSuppliersActivity
+    public boolean updateSuppliers(String suppliers_id, String suppliers_name, String suppliers_address, String suppliers_contact, String suppliers_fax, String suppliers_sales, String suppliers_hp, String suppliers_account, String suppliers_information, String suppliers_last_update) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.SUPPLIER_NAME, suppliers_name);
+        values.put(DatabaseOpenHelper.SUPPLIER_ADDRESS, suppliers_address);
+        values.put(DatabaseOpenHelper.SUPPLIER_CONTACT, suppliers_contact);
+        values.put(DatabaseOpenHelper.SUPPLIER_FAX, suppliers_fax);
+        values.put(DatabaseOpenHelper.SUPPLIER_SALES, suppliers_sales);
+        values.put(DatabaseOpenHelper.SUPPLIER_HP, suppliers_hp);
+        values.put(DatabaseOpenHelper.SUPPLIER_ACCOUNT, suppliers_account);
+        values.put(DatabaseOpenHelper.SUPPLIER_INFORMATION, suppliers_information);
+        values.put(DatabaseOpenHelper.SUPPLIER_LAST_UPDATE, suppliers_last_update);
+        long check = (long) this.database.update("suppliers", values, "supplier_id=?", new String[]{suppliers_id});
+        this.database.close();
+        return check != -1;
+    }
+
 
 }
