@@ -24,7 +24,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 07/01/2021
  */
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
@@ -93,7 +93,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View view) {
             Intent i = new Intent(CategoryAdapter.this.context, EditCategoryActivity.class);
             i.putExtra(DatabaseOpenHelper.CATEGORY_ID, (String) ((HashMap) CategoryAdapter.this.categoryData.get(getAdapterPosition())).get(DatabaseOpenHelper.CATEGORY_ID));
             i.putExtra(DatabaseOpenHelper.CATEGORY_NAME, (String) ((HashMap) CategoryAdapter.this.categoryData.get(getAdapterPosition())).get(DatabaseOpenHelper.CATEGORY_NAME));
