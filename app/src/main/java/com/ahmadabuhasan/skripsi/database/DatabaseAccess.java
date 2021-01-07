@@ -5,13 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 05/01/2021
+ * Created by Ahmad Abu Hasan on 07/01/2021
  */
 
 public class DatabaseAccess {
@@ -521,6 +520,13 @@ public class DatabaseAccess {
         cursor.close();
         this.database.close();
         return customer;
+    }
+
+    // SupplierAdapter
+    public boolean deleteSupplier(String customer_id) {
+        long check = (long) this.database.delete("suppliers", "supplier_id=?", new String[]{customer_id});
+        this.database.close();
+        return check == 1;
     }
 
 
