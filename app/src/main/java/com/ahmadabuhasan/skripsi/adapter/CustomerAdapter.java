@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmadabuhasan.skripsi.R;
@@ -25,7 +26,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 06/01/2021
+ * Created by Ahmad Abu Hasan on 07/01/2021
  */
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyViewHolder> {
@@ -33,11 +34,12 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
     private Context context;
     private List<HashMap<String, String>> customerData;
 
-    public CustomerAdapter(Context context2, List<HashMap<String, String>> customerData2) {
-        this.context = context2;
-        this.customerData = customerData2;
+    public CustomerAdapter(Context context1, List<HashMap<String, String>> customerData1) {
+        this.context = context1;
+        this.customerData = customerData1;
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.customer_item, parent, false));
@@ -106,7 +108,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.MyView
             itemView.setOnClickListener(this);
         }
 
-        public void onClick(View v) {
+        public void onClick(View view) {
             Intent i = new Intent(CustomerAdapter.this.context, EditCustomersActivity.class);
             i.putExtra(DatabaseOpenHelper.CUSTOMER_ID, (String) ((HashMap) CustomerAdapter.this.customerData.get(getAdapterPosition())).get(DatabaseOpenHelper.CUSTOMER_ID));
             i.putExtra(DatabaseOpenHelper.CUSTOMER_NAME, (String) ((HashMap) CustomerAdapter.this.customerData.get(getAdapterPosition())).get(DatabaseOpenHelper.CUSTOMER_NAME));
