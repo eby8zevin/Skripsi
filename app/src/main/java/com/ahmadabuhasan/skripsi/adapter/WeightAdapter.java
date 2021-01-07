@@ -24,7 +24,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/01/2021
+ * Created by Ahmad Abu Hasan on 07/01/2021
  */
 
 public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.MyViewHolder> {
@@ -93,7 +93,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.MyViewHold
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View view) {
             Intent i = new Intent(WeightAdapter.this.context, EditWeightActivity.class);
             i.putExtra(DatabaseOpenHelper.WEIGHT_ID, (String) ((HashMap) WeightAdapter.this.weightData.get(getAdapterPosition())).get(DatabaseOpenHelper.WEIGHT_ID));
             i.putExtra(DatabaseOpenHelper.WEIGHT_UNIT, (String) ((HashMap) WeightAdapter.this.weightData.get(getAdapterPosition())).get(DatabaseOpenHelper.WEIGHT_UNIT));
