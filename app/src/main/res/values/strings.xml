@@ -139,6 +139,16 @@
     <string name="supplier_deleted">Supplier Deleted</string>
 
     <string name="add_supplier">Add Supplier</string>
+    <string name="add_suppliers">Add Suppliers</string>
+    <string name="enter_suppliers_name">Enter Suppliers Name</string>
+    <string name="enter_suppliers_address">Enter Suppliers Address</string>
+    <string name="enter_suppliers_contact">Enter Suppliers Contact</string>
+    <string name="enter_suppliers_hp">Enter Suppliers HP</string>
+    <string name="enter_suppliers_account">Enter Suppliers Rekening</string>
+    <string name="suppliers_successfully_added">Suppliers Successfully Added</string>
+    <string name="edit_supplier">Edit Supplier</string>
+    <string name="update_supplier">Update Supplier</string>
+    <string name="edit_suppliers">Edit Suppliers</string>
 
 
 </resources>
