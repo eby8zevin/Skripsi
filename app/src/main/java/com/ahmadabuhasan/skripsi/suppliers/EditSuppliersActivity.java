@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ahmadabuhasan.skripsi.R;
+import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
+//import com.itextpdf.text.io.PagedChannelRandomAccessSource;
+
+import es.dmoral.toasty.Toasty;
 
 /*
  * Created by Ahmad Abu Hasan on 07/01/2021
@@ -84,13 +88,66 @@ public class EditSuppliersActivity extends AppCompatActivity {
         this.editText_Information.setEnabled(false);
         this.editText_LastUpdate.setEnabled(false);
         this.textView_Update.setVisibility(View.INVISIBLE);
-        this.textView_Update.setOnClickListener(new View.OnClickListener() {
+
+        this.textView_Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                EditSuppliersActivity.this.editText_Name.setEnabled(true);
+                EditSuppliersActivity.this.editText_Address.setEnabled(true);
+                EditSuppliersActivity.this.editText_Contact.setEnabled(true);
+                EditSuppliersActivity.this.editText_Fax.setEnabled(true);
+                EditSuppliersActivity.this.editText_Sales.setEnabled(true);
+                EditSuppliersActivity.this.editText_Hp.setEnabled(true);
+                EditSuppliersActivity.this.editText_Account.setEnabled(true);
+                EditSuppliersActivity.this.editText_Information.setEnabled(true);
+                //EditSuppliersActivity.this.editText_LastUpdate.setEnabled(false);
+                EditSuppliersActivity.this.textView_Edit.setVisibility(View.GONE);
+                EditSuppliersActivity.this.textView_Update.setVisibility(View.VISIBLE);
             }
         });
 
+        this.textView_Update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String suppliers_name = EditSuppliersActivity.this.editText_Name.getText().toString().trim();
+                String suppliers_address = EditSuppliersActivity.this.editText_Address.getText().toString().trim();
+                String suppliers_contact = EditSuppliersActivity.this.editText_Contact.getText().toString().trim();
+                String suppliers_fax = EditSuppliersActivity.this.editText_Fax.getText().toString().trim();
+                String suppliers_sales = EditSuppliersActivity.this.editText_Sales.getText().toString().trim();
+                String suppliers_hp = EditSuppliersActivity.this.editText_Hp.getText().toString().trim();
+                String suppliers_account = EditSuppliersActivity.this.editText_Account.getText().toString().trim();
+                String suppliers_information = EditSuppliersActivity.this.editText_Information.getText().toString().trim();
+                String suppliers_last_update = EditSuppliersActivity.this.editText_LastUpdate.getText().toString().trim();
+
+                if (suppliers_name.isEmpty()) {
+                    EditSuppliersActivity.this.editText_Name.setError(EditSuppliersActivity.this.getString(R.string.enter_suppliers_name));
+                    EditSuppliersActivity.this.editText_Name.requestFocus();
+                } else if (suppliers_address.isEmpty()) {
+                    EditSuppliersActivity.this.editText_Address.setError(EditSuppliersActivity.this.getString(R.string.enter_suppliers_address));
+                    EditSuppliersActivity.this.editText_Address.requestFocus();
+                } else if (suppliers_contact.isEmpty()) {
+                    EditSuppliersActivity.this.editText_Contact.setError(EditSuppliersActivity.this.getString(R.string.enter_suppliers_contact));
+                    EditSuppliersActivity.this.editText_Contact.requestFocus();
+                } else if (suppliers_hp.isEmpty()) {
+                    EditSuppliersActivity.this.editText_Hp.setError(EditSuppliersActivity.this.getString(R.string.enter_suppliers_hp));
+                    EditSuppliersActivity.this.editText_Hp.requestFocus();
+                } else if (suppliers_account.isEmpty()) {
+                    EditSuppliersActivity.this.editText_Account.setError(EditSuppliersActivity.this.getString(R.string.enter_suppliers_account));
+                    EditSuppliersActivity.this.editText_Account.requestFocus();
+                } else {
+                    DatabaseAccess databaseAccess = DatabaseAccess.getInstance(EditSuppliersActivity.this);
+                    databaseAccess.open();
+                    if (databaseAccess.updateSuppliers(get_supplier_id, suppliers_name, suppliers_address, suppliers_contact, suppliers_fax, suppliers_sales, suppliers_hp, suppliers_account, suppliers_information, suppliers_last_update)) {
+                        Toasty.success(EditSuppliersActivity.this, (int) R.string.update_successfully, Toasty.LENGTH_SHORT).show();
+                        Intent intent = new Intent(EditSuppliersActivity.this, SuppliersActivity.class);
+                        //intent.addFlags(PagedChannelRandomAccessSource.DEFAULT_TOTAL_BUFSIZE);
+                        EditSuppliersActivity.this.startActivity(intent);
+                        return;
+                    }
+                    Toasty.error(EditSuppliersActivity.this, (int) R.string.failed, Toasty.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
