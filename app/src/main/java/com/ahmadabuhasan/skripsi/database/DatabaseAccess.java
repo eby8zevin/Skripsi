@@ -290,7 +290,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.PRODUCT_SUPPLIER, product_supplier);
         SQLiteDatabase sQLiteDatabase = this.database;
         String[] strArr = {product_id};
-        this.database.close();
+        this.database.isOpen();
         if (((long) sQLiteDatabase.update("products", values, "product_id=?", strArr)) == -1) {
             return false;
         }
