@@ -34,7 +34,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class EditProductActivity extends AppCompatActivity {
@@ -125,6 +125,7 @@ public class EditProductActivity extends AppCompatActivity {
         this.categoryNames = new ArrayList();
         this.supplierNames = new ArrayList();
         this.weightUnitNames = new ArrayList();
+
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         List<HashMap<String, String>> productData = databaseAccess.getProductsInfo(this.productID);
@@ -175,8 +176,6 @@ public class EditProductActivity extends AppCompatActivity {
             this.categoryNames.add(productCategory.get(i).get(DatabaseOpenHelper.CATEGORY_NAME));
             i++;
             databaseAccess = databaseAccess1;
-            //product_information = product_information;
-            //product_category_id = product_category_id;
         }
 
         databaseAccess.open();
@@ -299,7 +298,6 @@ public class EditProductActivity extends AppCompatActivity {
                         }
                         EditProductActivity.this.selectedWeightUnitID = weight_unit_id;
                         Log.d(DatabaseOpenHelper.WEIGHT_UNIT, EditProductActivity.this.selectedWeightUnitID);
-
                     }
                 });
             }
@@ -363,6 +361,8 @@ public class EditProductActivity extends AppCompatActivity {
         this.textView_Edit_Product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getSupportActionBar().setTitle(R.string.edit_product);
+
                 EditProductActivity.this.editText_Name.setEnabled(true);
                 EditProductActivity.editText_Code.setEnabled(true);
                 EditProductActivity.this.imageView_ScanCode.setEnabled(true);
@@ -374,7 +374,7 @@ public class EditProductActivity extends AppCompatActivity {
                 EditProductActivity.this.editText_Disc_Qty.setEnabled(true);
                 EditProductActivity.this.editText_Weight.setEnabled(true);
                 EditProductActivity.this.editText_Weight_Unit.setEnabled(true);
-                EditProductActivity.this.editText_Last_Update.setEnabled(true);
+                EditProductActivity.this.editText_Last_Update.setEnabled(false);
                 EditProductActivity.this.editText_Information.setEnabled(true);
                 EditProductActivity.this.editText_Supplier.setEnabled(true);
 
@@ -451,8 +451,9 @@ public class EditProductActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Intent intent = new Intent(this, ProductActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
