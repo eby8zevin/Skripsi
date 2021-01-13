@@ -24,7 +24,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 07/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.MyViewHolder> {
