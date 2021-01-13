@@ -26,7 +26,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class WeightActivity extends AppCompatActivity {
@@ -52,11 +52,11 @@ public class WeightActivity extends AppCompatActivity {
 
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.recyclerView.setHasFixedSize(true);
+
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         List<HashMap<String, String>> weightData = databaseAccess.getWeightUnit();
         Log.d("data", "" + weightData.size());
-
         if (weightData.size() <= 0) {
             Toasty.info(this, (int) R.string.no_data_found, Toasty.LENGTH_SHORT).show();
             this.imgNoProduct.setImageResource(R.drawable.no_data);
@@ -104,8 +104,9 @@ public class WeightActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Intent intent = new Intent(this, SettingsActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
