@@ -17,7 +17,7 @@ import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 07/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class EditSuppliersActivity extends AppCompatActivity {
@@ -151,12 +151,10 @@ public class EditSuppliersActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, SuppliersActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            return true;
+        if (item.getItemId() != android.R.id.home) {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+        finish();
+        return true;
     }
 }
