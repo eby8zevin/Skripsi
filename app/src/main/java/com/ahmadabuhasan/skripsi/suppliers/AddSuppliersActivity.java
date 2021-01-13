@@ -29,7 +29,7 @@ import java.io.File;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 07/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class AddSuppliersActivity extends AppCompatActivity {
@@ -66,6 +66,7 @@ public class AddSuppliersActivity extends AppCompatActivity {
         this.editText_Account = findViewById(R.id.et_supplier_account);
         this.editText_Information = findViewById(R.id.et_supplier_information);
         this.editText_LastUpdate = findViewById(R.id.et_supplier_last_update);
+        this.editText_LastUpdate.setEnabled(false);
 
         this.textView_Add = findViewById(R.id.tv_add_supplier);
 
@@ -122,8 +123,9 @@ public class AddSuppliersActivity extends AppCompatActivity {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
             Intent intent = new Intent(this, SuppliersActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
             return true;
         } else if (itemId != R.id.menu_import_supplier) {
             return super.onOptionsItemSelected(item);
@@ -135,7 +137,6 @@ public class AddSuppliersActivity extends AppCompatActivity {
 
     public void fileChooser() {
         new ChooserDialog((Activity) this).displayPath(true).withFilter(false, false, "xls").withChosenListener(new ChooserDialog.Result() {
-
             @Override
             public void onChoosePath(String path, File pathFile) {
                 AddSuppliersActivity.this.onImport(path);
@@ -155,7 +156,6 @@ public class AddSuppliersActivity extends AppCompatActivity {
             Toast.makeText(this, (int) R.string.no_file_found, Toast.LENGTH_SHORT).show();
         } else {
             new ExcelToSQLite(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, false).importFromFile(directory_path, new ExcelToSQLite.ImportListener() {
-
                 @Override
                 public void onStart() {
                     AddSuppliersActivity.this.loading = new ProgressDialog(AddSuppliersActivity.this);
