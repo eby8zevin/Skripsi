@@ -15,7 +15,7 @@ import com.ahmadabuhasan.skripsi.settings.shop.ShopInformationActivity;
 import com.ahmadabuhasan.skripsi.settings.weight_unit.WeightActivity;
 
 /*
- * Created by Ahmad Abu Hasan on 04/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class SettingsActivity extends AppCompatActivity {
@@ -67,8 +67,9 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Intent intent = new Intent(this, DashboardActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
