@@ -34,7 +34,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class ProductActivity extends AppCompatActivity {
@@ -59,6 +59,7 @@ public class ProductActivity extends AppCompatActivity {
         this.editText_Search = findViewById(R.id.et_search);
         this.recyclerView = findViewById(R.id.product_recyclerview);
         this.imgNoProduct = findViewById(R.id.image_no_product);
+
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.recyclerView.setHasFixedSize(true);
 
@@ -123,8 +124,9 @@ public class ProductActivity extends AppCompatActivity {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
             Intent intent = new Intent(this, DashboardActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
             return true;
         } else if (itemId != R.id.menu_export) {
             return super.onOptionsItemSelected(item);
