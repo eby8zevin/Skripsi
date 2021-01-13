@@ -34,7 +34,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 08/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class SuppliersActivity extends AppCompatActivity {
@@ -66,7 +66,6 @@ public class SuppliersActivity extends AppCompatActivity {
         databaseAccess.open();
         List<HashMap<String, String>> suppliersData = databaseAccess.getSuppliers();
         Log.d("data", "" + suppliersData.size());
-
         if (suppliersData.size() <= 0) {
             Toasty.info(this, (int) R.string.no_suppliers_found, Toasty.LENGTH_SHORT).show();
             this.imgNoProduct.setImageResource(R.drawable.no_data);
@@ -120,8 +119,9 @@ public class SuppliersActivity extends AppCompatActivity {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
             Intent intent = new Intent(this, DashboardActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
             return true;
         } else if (itemId != R.id.menu_export_supplier) {
             return super.onOptionsItemSelected(item);
@@ -133,7 +133,6 @@ public class SuppliersActivity extends AppCompatActivity {
 
     public void folderChooser() {
         new ChooserDialog((Activity) this).displayPath(true).withFilter(true, false, new String[0]).withChosenListener(new ChooserDialog.Result() {
-
             @Override
             public void onChoosePath(String path, File pathFile) {
                 SuppliersActivity.this.onExport(path);
@@ -149,7 +148,6 @@ public class SuppliersActivity extends AppCompatActivity {
             file.mkdirs();
         }
         new SQLiteToExcel(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, directory_path).exportSingleTable("suppliers", "suppliers.xls", new SQLiteToExcel.ExportListener() {
-
             @Override
             public void onStart() {
                 SuppliersActivity.this.loading = new ProgressDialog(SuppliersActivity.this);
