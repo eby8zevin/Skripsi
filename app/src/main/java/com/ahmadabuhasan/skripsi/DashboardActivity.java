@@ -3,6 +3,7 @@ package com.ahmadabuhasan.skripsi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -31,7 +33,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 07/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -80,23 +82,23 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     /*
-     * Requesting multiple permissions (storage and location) at once
+     * Requesting multiple permissions (camera and storage) at once
      * This uses multiple permission model from dexter
      * On permanent denial opens settings dialog
      */
     private void requestPermission() {
         Dexter.withContext(this)
                 .withPermissions(
-                        "android.permission.CAMERA",
-                        "android.permission.WRITE_EXTERNAL_STORAGE",
-                        "android.permission.READ_EXTERNAL_STORAGE")
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         if (report.areAllPermissionsGranted()) {
-                            Toast.makeText(getApplicationContext(), "All permissions are granted!", Toast.LENGTH_SHORT).show();
-                        }
-                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            //Toast.makeText(getApplicationContext(), "All permissions are granted!", Toast.LENGTH_SHORT).show();
+                            Log.d("Dexter", "All permissions are granted!");
+                        } else if (report.isAnyPermissionPermanentlyDenied()) {
                             showSettingsDialog();
                         }
                     }
