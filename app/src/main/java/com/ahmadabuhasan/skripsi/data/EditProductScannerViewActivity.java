@@ -20,7 +20,7 @@ import es.dmoral.toasty.Toasty;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class EditProductScannerViewActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -36,9 +36,11 @@ public class EditProductScannerViewActivity extends AppCompatActivity implements
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.qr_barcode_scanner);
+
         if (this.currentApiVersion >= 23) {
             requestCameraPermission();
         }
+
         ZXingScannerView zXingScannerView = new ZXingScannerView(this);
         this.scannerView = zXingScannerView;
         setContentView(zXingScannerView);
@@ -68,28 +70,30 @@ public class EditProductScannerViewActivity extends AppCompatActivity implements
     }
 
     private void requestCameraPermission() {
-        Dexter.withActivity(this).withPermission("android.permission.CAMERA").withListener(new PermissionListener() {
-            @Override
-            public void onPermissionGranted(PermissionGrantedResponse response) {
-                EditProductScannerViewActivity.this.scannerView = new ZXingScannerView(EditProductScannerViewActivity.this);
-                EditProductScannerViewActivity editProductScannerViewActivity = EditProductScannerViewActivity.this;
-                editProductScannerViewActivity.setContentView(editProductScannerViewActivity.scannerView);
-                EditProductScannerViewActivity.this.scannerView.startCamera();
-                EditProductScannerViewActivity.this.scannerView.setResultHandler(EditProductScannerViewActivity.this);
-            }
+        Dexter.withActivity(this)
+                .withPermission("android.permission.CAMERA")
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        EditProductScannerViewActivity.this.scannerView = new ZXingScannerView(EditProductScannerViewActivity.this);
+                        EditProductScannerViewActivity editProductScannerViewActivity = EditProductScannerViewActivity.this;
+                        editProductScannerViewActivity.setContentView(editProductScannerViewActivity.scannerView);
+                        EditProductScannerViewActivity.this.scannerView.startCamera();
+                        EditProductScannerViewActivity.this.scannerView.setResultHandler(EditProductScannerViewActivity.this);
+                    }
 
-            @Override
-            public void onPermissionDenied(PermissionDeniedResponse response) {
-                if (response.isPermanentlyDenied()) {
-                    Toasty.info(EditProductScannerViewActivity.this, (int) R.string.camera_permission, Toasty.LENGTH_SHORT).show();
-                }
-            }
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        if (response.isPermanentlyDenied()) {
+                            Toasty.info(EditProductScannerViewActivity.this, (int) R.string.camera_permission, Toasty.LENGTH_SHORT).show();
+                        }
+                    }
 
-            @Override
-            public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                token.continuePermissionRequest();
-            }
-        }).check();
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
