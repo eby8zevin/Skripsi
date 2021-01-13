@@ -22,7 +22,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 03/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class ShopInformationActivity extends AppCompatActivity {
@@ -36,8 +36,6 @@ public class ShopInformationActivity extends AppCompatActivity {
 
     TextView textView_Edit;
     TextView textView_Update;
-
-    int info = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +73,8 @@ public class ShopInformationActivity extends AppCompatActivity {
         this.editText_Address.setEnabled(false);
         this.editText_Currency.setEnabled(false);
         this.editText_Tax.setEnabled(false);
-
         this.textView_Update.setVisibility(View.GONE);
+
         this.textView_Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
