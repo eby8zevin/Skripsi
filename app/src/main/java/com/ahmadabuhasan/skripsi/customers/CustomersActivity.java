@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.adapter.CustomerAdapter;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
@@ -33,7 +34,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 06/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class CustomersActivity extends AppCompatActivity {
@@ -65,7 +66,6 @@ public class CustomersActivity extends AppCompatActivity {
         databaseAccess.open();
         List<HashMap<String, String>> customerData = databaseAccess.getCustomers();
         Log.d("data", "" + customerData.size());
-
         if (customerData.size() <= 0) {
             Toasty.info(this, (int) R.string.no_customer_found, Toasty.LENGTH_SHORT).show();
             this.imgNoProduct.setImageResource(R.drawable.no_data);
@@ -121,10 +121,13 @@ public class CustomersActivity extends AppCompatActivity {
             folderChooser();
             return true;
         } else if (id != android.R.id.home) {
-            return super.onOptionsItemSelected(item);
-        } else {
+            Intent intent = new Intent(this, DashboardActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
             finish();
             return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
