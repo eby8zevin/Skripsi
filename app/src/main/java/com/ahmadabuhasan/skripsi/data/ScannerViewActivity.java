@@ -19,13 +19,12 @@ import es.dmoral.toasty.Toasty;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /*
- * Created by Ahmad Abu Hasan on 02/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class ScannerViewActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     int currentApiVersion = Build.VERSION.SDK_INT;
-
     public ZXingScannerView scannerView;
 
     @Override
@@ -40,6 +39,7 @@ public class ScannerViewActivity extends AppCompatActivity implements ZXingScann
         if (this.currentApiVersion >= 23) {
             requestCameraPermission();
         }
+
         ZXingScannerView zXingScannerView = new ZXingScannerView(this);
         scannerView = zXingScannerView;
         setContentView(zXingScannerView);
@@ -69,6 +69,7 @@ public class ScannerViewActivity extends AppCompatActivity implements ZXingScann
         Dexter.withContext(ScannerViewActivity.this)
                 .withPermission("android.permission.CAMERA")
                 .withListener(new PermissionListener() {
+                    @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         ScannerViewActivity.this.scannerView = new ZXingScannerView(ScannerViewActivity.this);
                         ScannerViewActivity scannerViewActivity = ScannerViewActivity.this;
@@ -77,6 +78,7 @@ public class ScannerViewActivity extends AppCompatActivity implements ZXingScann
                         ScannerViewActivity.this.scannerView.setResultHandler(ScannerViewActivity.this);
                     }
 
+                    @Override
                     public void onPermissionDenied(PermissionDeniedResponse response) {
                         if (response.isPermanentlyDenied()) {
                             Toasty.info(ScannerViewActivity.this, R.string.camera_permission, Toasty.LENGTH_LONG).show();
@@ -87,7 +89,6 @@ public class ScannerViewActivity extends AppCompatActivity implements ZXingScann
                     public void onPermissionRationaleShouldBeShown(com.karumi.dexter.listener.PermissionRequest permissionRequest, PermissionToken permissionToken) {
                         permissionToken.continuePermissionRequest();
                     }
-
                 }).check();
     }
 
