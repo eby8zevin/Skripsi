@@ -47,6 +47,7 @@
     <string name="type_something_to_search">Type something to search</string>
     <string name="cancel">Cancel</string>
     <string name="product_name_cannot_be_empty">Product name can\'t be empty!</string>
+    <string name="product_buy_cannot_be_empty">Product buy can\'t be empty!</string>
     <string name="product_stock_cannot_be_empty">Product stock can\'t be empty!</string>
     <string name="product_price_cannot_be_empty">Product price can\'t be empty!</string>
     <string name="product_successfully_added">Product Successfully Added</string>

@@ -28,12 +28,6 @@
         android:roundIcon="@mipmap/ic_me_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Skripsi">
-        <activity android:name=".suppliers.EditSuppliersActivity" />
-        <activity android:name=".suppliers.AddSuppliersActivity" />
-        <activity android:name=".suppliers.SuppliersActivity" />
-        <activity android:name=".customers.EditCustomersActivity" />
-        <activity android:name=".customers.AddCustomersActivity" />
-        <activity android:name=".customers.CustomersActivity" />
         <activity android:name=".settings.weight_unit.EditWeightActivity" />
         <activity android:name=".settings.weight_unit.AddWeightActivity" />
         <activity android:name=".settings.weight_unit.WeightActivity" />
@@ -42,6 +36,12 @@
         <activity android:name=".settings.categories.CategoriesActivity" />
         <activity android:name=".settings.shop.ShopInformationActivity" />
         <activity android:name=".settings.SettingsActivity" />
+        <activity android:name=".suppliers.EditSuppliersActivity" />
+        <activity android:name=".suppliers.AddSuppliersActivity" />
+        <activity android:name=".suppliers.SuppliersActivity" />
+        <activity android:name=".customers.EditCustomersActivity" />
+        <activity android:name=".customers.AddCustomersActivity" />
+        <activity android:name=".customers.CustomersActivity" />
         <activity android:name=".data.EditProductScannerViewActivity" />
         <activity android:name=".data.EditProductActivity" />
         <activity android:name=".data.ScannerViewActivity" />
