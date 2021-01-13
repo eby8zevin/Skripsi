@@ -18,7 +18,7 @@ import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class EditCategoryActivity extends AppCompatActivity {
@@ -42,8 +42,10 @@ public class EditCategoryActivity extends AppCompatActivity {
 
         final String category_id = getIntent().getExtras().getString(DatabaseOpenHelper.CATEGORY_ID);
         this.editText_Category.setText(getIntent().getExtras().getString(DatabaseOpenHelper.CATEGORY_NAME));
+
         this.editText_Category.setEnabled(false);
         this.textView_Update.setVisibility(View.INVISIBLE);
+
         this.textView_Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,12 +79,10 @@ public class EditCategoryActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, CategoriesActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            return true;
+        if (item.getItemId() != android.R.id.home) {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+        finish();
+        return true;
     }
 }
