@@ -26,7 +26,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 07/01/2021
+ * Created by Ahmad Abu Hasan on 13/01/2021
  */
 
 public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.MyViewHolder> {
@@ -49,6 +49,7 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.MyView
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final String supplier_id = this.supplierData.get(position).get(DatabaseOpenHelper.SUPPLIER_ID);
         final String hp = this.supplierData.get(position).get(DatabaseOpenHelper.SUPPLIER_HP);
+
         holder.textView_Name.setText(this.supplierData.get(position).get(DatabaseOpenHelper.SUPPLIER_NAME));
         holder.textView_Address.setText(this.supplierData.get(position).get(DatabaseOpenHelper.SUPPLIER_ADDRESS));
         holder.textView_Contact.setText(this.supplierData.get(position).get(DatabaseOpenHelper.SUPPLIER_CONTACT));
