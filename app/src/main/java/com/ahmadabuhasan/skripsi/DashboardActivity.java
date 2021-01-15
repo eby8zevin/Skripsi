@@ -14,10 +14,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.ahmadabuhasan.skripsi.data.ProductActivity;
+import com.ahmadabuhasan.skripsi.kasir.PosActivity;
 import com.ahmadabuhasan.skripsi.settings.SettingsActivity;
 import com.ahmadabuhasan.skripsi.suppliers.SuppliersActivity;
 import com.karumi.dexter.Dexter;
@@ -33,7 +35,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 16/01/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -63,6 +65,7 @@ public class DashboardActivity extends AppCompatActivity {
         this.cardView_print = findViewById(R.id.card_print);
         this.cardView_settings = findViewById(R.id.card_settings);
 
+        this.cardView_kasir.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, PosActivity.class)));
         this.cardView_data.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ProductActivity.class)));
         this.cardView_suppliers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SuppliersActivity.class)));
         this.cardView_settings.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
