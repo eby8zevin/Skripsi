@@ -103,7 +103,7 @@
                             android:background="@color/colorPrimary"
                             android:fontFamily="@font/sailec_regular"
                             android:text="@string/add_to_cart"
-                            android:textColor="#fff"
+                            android:textColor="#FFF"
                             android:textStyle="bold" />
 
                     </com.balysv.materialripple.MaterialRippleLayout>
