@@ -18,4 +18,6 @@
     <color name="textColorSecondaryLight">#666666</color>
     <color name="windowBackground">#EEEEEE</color>
 
+    <color name="grey_5">#f2f2f2</color>
+
 </resources>

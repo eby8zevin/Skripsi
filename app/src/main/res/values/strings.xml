@@ -151,5 +151,12 @@
     <string name="update_supplier">Update Supplier</string>
     <string name="edit_suppliers">Edit Suppliers</string>
 
+    <string name="reset">Reset</string>
+    <string name="ten">10</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="stock_is_low_please_update_stock">Stock is low. Please update stock</string>
+    <string name="product_added_to_cart">Product added to cart</string>
+    <string name="product_already_added_to_cart">Product Already Added to Cart</string>
+    <string name="product_added_to_cart_failed_try_again">Product added to cart failed! Try again</string>
 
 </resources>

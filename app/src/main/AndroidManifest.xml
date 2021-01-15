@@ -27,7 +27,10 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_me_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Skripsi">
+        android:theme="@style/Skripsi">
+        <activity
+            android:name=".kasir.PosActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
         <activity android:name=".settings.weight_unit.EditWeightActivity" />
         <activity android:name=".settings.weight_unit.AddWeightActivity" />
         <activity android:name=".settings.weight_unit.WeightActivity" />
