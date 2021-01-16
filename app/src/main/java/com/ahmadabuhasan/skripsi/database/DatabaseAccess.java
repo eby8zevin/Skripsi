@@ -496,6 +496,21 @@ public class DatabaseAccess {
         return true;
     }
 
+    // EditCustomersActivity
+    public boolean updateCustomer(String customer_id, String customer_name, String customer_address, String customer_hp, String customer_wa, String customer_account, String customer_information, String customer_last_update) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.CUSTOMER_NAME, customer_name);
+        values.put(DatabaseOpenHelper.CUSTOMER_ADDRESS, customer_address);
+        values.put(DatabaseOpenHelper.CUSTOMER_HP, customer_hp);
+        values.put(DatabaseOpenHelper.CUSTOMER_WA, customer_wa);
+        values.put(DatabaseOpenHelper.CUSTOMER_ACCOUNT, customer_account);
+        values.put(DatabaseOpenHelper.CUSTOMER_INFORMATION, customer_information);
+        values.put(DatabaseOpenHelper.CUSTOMER_LAST_UPDATE, customer_last_update);
+        long check = (long) this.database.update("customers", values, " customer_id=? ", new String[]{customer_id});
+        this.database.close();
+        return check != -1;
+    }
+
     // SuppliersActivity
     public ArrayList<HashMap<String, String>> getSuppliers() {
         ArrayList<HashMap<String, String>> supplier = new ArrayList<>();
