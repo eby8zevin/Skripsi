@@ -131,9 +131,11 @@
     <string name="enter_customer_name">Enter Customer Name</string>
     <string name="enter_customer_address">Enter Customer Address</string>
     <string name="enter_customer_hp">Enter Customer HP</string>
+    <string name="copy">Copy</string>
     <string name="enter_customer_wa">Enter Customer WA</string>
     <string name="customer_successfully_added">Customer Successfully Added</string>
-
+    <string name="update_customer">Update Customer</string>
+    <string name="edit_customer">Edit Customer</string>
 
     <string name="all_suppliers">All Suppliers</string>
     <string name="no_suppliers_found">No Suppliers Found!</string>
