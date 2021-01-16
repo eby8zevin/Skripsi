@@ -214,7 +214,7 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/baseline_shopping_cart_24"
+                        android:src="@drawable/customer"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -249,7 +249,7 @@
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/baseline_topic_24"
+                        android:src="@drawable/supplier"
                         tools:ignore="ContentDescription" />
 
                     <TextView
