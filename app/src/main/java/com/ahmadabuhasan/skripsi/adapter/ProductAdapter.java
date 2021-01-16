@@ -20,13 +20,14 @@ import com.ahmadabuhasan.skripsi.data.EditProductActivity;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 16/01/2021
  */
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
@@ -56,11 +57,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         databaseAccess.open();
         holder.textView_ProductName.setText(this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_NAME));
         TextView textView = holder.textView_Buy;
-        textView.setText(this.context.getString(R.string.buy) + " : " + currency + this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_BUY));
+        textView.setText(this.context.getString(R.string.buy) + " : " + currency + NumberFormat.getInstance().format(this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_BUY)));
         TextView textView1 = holder.textView_Stock;
         textView1.setText(this.context.getString(R.string.stock) + " : " + this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_STOCK));
         TextView textView2 = holder.textView_Price;
-        textView2.setText(this.context.getString(R.string.price) + " : " + currency + this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE));
+        textView2.setText(this.context.getString(R.string.price) + " : " + currency + NumberFormat.getInstance().format(this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE)));
 
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
