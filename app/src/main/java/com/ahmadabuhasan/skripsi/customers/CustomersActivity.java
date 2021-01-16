@@ -34,7 +34,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 16/01/2021
  */
 
 public class CustomersActivity extends AppCompatActivity {
@@ -116,18 +116,18 @@ public class CustomersActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.menu_export_customer) {
-            folderChooser();
-            return true;
-        } else if (id != android.R.id.home) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
             Intent intent = new Intent(this, DashboardActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
             return true;
-        } else {
+        } else if (itemId != R.id.menu_export_customer) {
             return super.onOptionsItemSelected(item);
+        } else {
+            folderChooser();
+            return true;
         }
     }
 
