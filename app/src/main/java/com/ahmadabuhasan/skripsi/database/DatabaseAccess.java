@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 07/01/2021
+ * Created by Ahmad Abu Hasan on 16/01/2021
  */
 
 public class DatabaseAccess {
@@ -433,9 +433,12 @@ public class DatabaseAccess {
                 HashMap<String, String> map = new HashMap<>();
                 map.put(DatabaseOpenHelper.CUSTOMER_ID, cursor.getString(0));
                 map.put(DatabaseOpenHelper.CUSTOMER_NAME, cursor.getString(1));
-                map.put(DatabaseOpenHelper.CUSTOMER_CALL, cursor.getString(2));
-                map.put(DatabaseOpenHelper.CUSTOMER_EMAIL, cursor.getString(3));
-                map.put(DatabaseOpenHelper.CUSTOMER_ADDRESS, cursor.getString(4));
+                map.put(DatabaseOpenHelper.CUSTOMER_ADDRESS, cursor.getString(2));
+                map.put(DatabaseOpenHelper.CUSTOMER_HP, cursor.getString(3));
+                map.put(DatabaseOpenHelper.CUSTOMER_WA, cursor.getString(4));
+                map.put(DatabaseOpenHelper.CUSTOMER_ACCOUNT, cursor.getString(5));
+                map.put(DatabaseOpenHelper.CUSTOMER_INFORMATION, cursor.getString(6));
+                map.put(DatabaseOpenHelper.CUSTOMER_LAST_UPDATE, cursor.getString(7));
                 customer.add(map);
             } while (cursor.moveToNext());
         }
@@ -454,9 +457,12 @@ public class DatabaseAccess {
                 HashMap<String, String> map = new HashMap<>();
                 map.put(DatabaseOpenHelper.CUSTOMER_ID, cursor.getString(0));
                 map.put(DatabaseOpenHelper.CUSTOMER_NAME, cursor.getString(1));
-                map.put(DatabaseOpenHelper.CUSTOMER_CALL, cursor.getString(2));
-                map.put(DatabaseOpenHelper.CUSTOMER_EMAIL, cursor.getString(3));
-                map.put(DatabaseOpenHelper.CUSTOMER_ADDRESS, cursor.getString(4));
+                map.put(DatabaseOpenHelper.CUSTOMER_ADDRESS, cursor.getString(2));
+                map.put(DatabaseOpenHelper.CUSTOMER_HP, cursor.getString(3));
+                map.put(DatabaseOpenHelper.CUSTOMER_WA, cursor.getString(4));
+                map.put(DatabaseOpenHelper.CUSTOMER_ACCOUNT, cursor.getString(5));
+                map.put(DatabaseOpenHelper.CUSTOMER_INFORMATION, cursor.getString(6));
+                map.put(DatabaseOpenHelper.CUSTOMER_LAST_UPDATE, cursor.getString(7));
                 customer.add(map);
             } while (cursor.moveToNext());
         }
@@ -470,6 +476,24 @@ public class DatabaseAccess {
         long check = (long) this.database.delete("customers", "customer_id=?", new String[]{customer_id});
         this.database.close();
         return check == 1;
+    }
+
+    // AddCustomersActivity
+    public boolean addCustomer(String customer_name, String customer_address, String customer_hp, String customer_wa, String customer_account, String customer_information, String customer_last_update) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.CUSTOMER_NAME, customer_name);
+        values.put(DatabaseOpenHelper.CUSTOMER_ADDRESS, customer_address);
+        values.put(DatabaseOpenHelper.CUSTOMER_HP, customer_hp);
+        values.put(DatabaseOpenHelper.CUSTOMER_WA, customer_wa);
+        values.put(DatabaseOpenHelper.CUSTOMER_ACCOUNT, customer_account);
+        values.put(DatabaseOpenHelper.CUSTOMER_INFORMATION, customer_information);
+        values.put(DatabaseOpenHelper.CUSTOMER_LAST_UPDATE, customer_last_update);
+        long check = this.database.insert("customers", null, values);
+        this.database.close();
+        if (check == -1) {
+            return false;
+        }
+        return true;
     }
 
     // SuppliersActivity
