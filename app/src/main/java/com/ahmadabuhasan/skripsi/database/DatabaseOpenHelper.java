@@ -166,7 +166,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // script sql
-        //db.execSQL(CREATE_CUSTOMERS);
+        db.execSQL(CREATE_CUSTOMERS);
         db.execSQL(CREATE_PRODUCTS);
         db.execSQL(CREATE_CATEGORY);
         db.execSQL(CREATE_WEIGHT);
@@ -178,7 +178,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT);
