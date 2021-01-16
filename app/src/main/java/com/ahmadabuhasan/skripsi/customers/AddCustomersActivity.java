@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class AddCustomersActivity extends AppCompatActivity {
 
     ProgressDialog loading;
 
+    ImageView imageView_Copy;
     TextView textView_AddCustomer;
 
     @Override
@@ -64,6 +66,14 @@ public class AddCustomersActivity extends AppCompatActivity {
         this.editText_LastUpdate = findViewById(R.id.et_customer_last_update);
         this.editText_LastUpdate.setEnabled(false);
         this.textView_AddCustomer = findViewById(R.id.tv_add_customer);
+        this.imageView_Copy = findViewById(R.id.copy_hp);
+
+        this.imageView_Copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText_Wa.setText(editText_Hp.getText().toString());
+            }
+        });
 
         this.textView_AddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
