@@ -123,6 +123,17 @@
     <string name="no_customer_found">No Customer Found!</string>
     <string name="want_to_delete_customer">Want to Delete Customer ?</string>
     <string name="customer_deleted">Customer Deleted</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="customer_address">Address</string>
+    <string name="customer_hp">HP </string>
+    <string name="customer_wa">WA </string>
+    <string name="add_customer">Add Customer</string>
+    <string name="enter_customer_name">Enter Customer Name</string>
+    <string name="enter_customer_address">Enter Customer Address</string>
+    <string name="enter_customer_hp">Enter Customer HP</string>
+    <string name="enter_customer_wa">Enter Customer WA</string>
+    <string name="customer_successfully_added">Customer Successfully Added</string>
+
 
     <string name="all_suppliers">All Suppliers</string>
     <string name="no_suppliers_found">No Suppliers Found!</string>
