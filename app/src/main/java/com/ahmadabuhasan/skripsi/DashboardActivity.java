@@ -1,8 +1,5 @@
 package com.ahmadabuhasan.skripsi;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,10 +11,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import com.ahmadabuhasan.skripsi.customers.CustomersActivity;
 import com.ahmadabuhasan.skripsi.data.ProductActivity;
 import com.ahmadabuhasan.skripsi.kasir.PosActivity;
 import com.ahmadabuhasan.skripsi.settings.SettingsActivity;
@@ -67,6 +67,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         this.cardView_kasir.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, PosActivity.class)));
         this.cardView_data.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ProductActivity.class)));
+        this.cardView_customers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, CustomersActivity.class)));
         this.cardView_suppliers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SuppliersActivity.class)));
         this.cardView_settings.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
 
