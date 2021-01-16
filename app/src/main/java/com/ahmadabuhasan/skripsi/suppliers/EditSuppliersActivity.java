@@ -1,6 +1,7 @@
 package com.ahmadabuhasan.skripsi.suppliers;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.internal.view.SupportMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 16/01/2021
  */
 
 public class EditSuppliersActivity extends AppCompatActivity {
@@ -101,6 +102,16 @@ public class EditSuppliersActivity extends AppCompatActivity {
                 EditSuppliersActivity.this.editText_Account.setEnabled(true);
                 EditSuppliersActivity.this.editText_Information.setEnabled(true);
                 //EditSuppliersActivity.this.editText_LastUpdate.setEnabled(false);
+                EditSuppliersActivity.this.editText_Name.setTextColor(SupportMenu.CATEGORY_MASK);
+                EditSuppliersActivity.this.editText_Address.setTextColor(SupportMenu.CATEGORY_MASK);
+                EditSuppliersActivity.this.editText_Contact.setTextColor(SupportMenu.CATEGORY_MASK);
+                EditSuppliersActivity.this.editText_Fax.setTextColor(SupportMenu.CATEGORY_MASK);
+                EditSuppliersActivity.this.editText_Sales.setTextColor(SupportMenu.CATEGORY_MASK);
+                EditSuppliersActivity.this.editText_Hp.setTextColor(SupportMenu.CATEGORY_MASK);
+                EditSuppliersActivity.this.editText_Account.setTextColor(SupportMenu.CATEGORY_MASK);
+                EditSuppliersActivity.this.editText_Information.setTextColor(SupportMenu.CATEGORY_MASK);
+                EditSuppliersActivity.this.editText_LastUpdate.setTextColor(SupportMenu.CATEGORY_MASK);
+
                 EditSuppliersActivity.this.textView_Edit.setVisibility(View.GONE);
                 EditSuppliersActivity.this.textView_Update.setVisibility(View.VISIBLE);
             }
