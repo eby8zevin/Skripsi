@@ -99,29 +99,29 @@ public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.My
         holder.button_AddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getStock <= 0) {
-                    Toasty.warning(PosProductAdapter.this.context, (int) R.string.stock_is_low_please_update_stock, Toasty.LENGTH_SHORT).show();
-                    return;
-                }
-                Log.d("product_id", product_id);
-                databaseAccess.open();
-                int check = databaseAccess.addToCart(product_id, product_buy, 1, product_stock, product_price);
-                databaseAccess.open();
-                int count = databaseAccess.getCartItemCount();
-                if (count == 0) {
-                    PosActivity.textView_Count.setVisibility(View.INVISIBLE);
-                } else {
-                    PosActivity.textView_Count.setVisibility(View.VISIBLE);
-                    PosActivity.textView_Count.setText(String.valueOf(count));
-                }
-                if (check == 1) {
-                    Toasty.success(PosProductAdapter.this.context, (int) R.string.product_added_to_cart, Toasty.LENGTH_SHORT).show();
-                    PosProductAdapter.this.player.start();
-                } else if (check == 2) {
-                    Toasty.info(PosProductAdapter.this.context, (int) R.string.product_already_added_to_cart, Toasty.LENGTH_SHORT).show();
-                } else {
-                    Toasty.error(PosProductAdapter.this.context, (int) R.string.product_added_to_cart_failed_try_again, Toasty.LENGTH_SHORT).show();
-                }
+//                if (getStock <= 0) {
+//                    Toasty.warning(PosProductAdapter.this.context, (int) R.string.stock_is_low_please_update_stock, Toasty.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                Log.d("product_id", product_id);
+//                databaseAccess.open();
+//                int check = databaseAccess.addToCart(product_id, product_buy, 1, product_stock, product_price);
+//                databaseAccess.open();
+//                int count = databaseAccess.getCartItemCount();
+//                if (count == 0) {
+//                    PosActivity.textView_Count.setVisibility(View.INVISIBLE);
+//                } else {
+//                    PosActivity.textView_Count.setVisibility(View.VISIBLE);
+//                    PosActivity.textView_Count.setText(String.valueOf(count));
+//                }
+//                if (check == 1) {
+//                    Toasty.success(PosProductAdapter.this.context, (int) R.string.product_added_to_cart, Toasty.LENGTH_SHORT).show();
+//                    PosProductAdapter.this.player.start();
+//                } else if (check == 2) {
+//                    Toasty.info(PosProductAdapter.this.context, (int) R.string.product_already_added_to_cart, Toasty.LENGTH_SHORT).show();
+//                } else {
+//                    Toasty.error(PosProductAdapter.this.context, (int) R.string.product_added_to_cart_failed_try_again, Toasty.LENGTH_SHORT).show();
+//                }
             }
         });
     }
