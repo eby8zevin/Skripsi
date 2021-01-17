@@ -64,21 +64,21 @@
                         app:fontFamily="@font/sailec_regular" />
 
                     <TextView
-                        android:id="@+id/tv_buy"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="@string/buy"
-                        app:fontFamily="@font/sailec_regular" />
-
-                    <TextView
                         android:id="@+id/tv_stock"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="2dp"
                         android:text="@string/stock"
+                        app:fontFamily="@font/sailec_regular" />
+
+                    <TextView
+                        android:id="@+id/tv_weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="@string/weight"
                         app:fontFamily="@font/sailec_regular" />
 
                     <TextView
@@ -96,7 +96,7 @@
                         android:layout_height="wrap_content">
 
                         <Button
-                            android:id="@+id/btn_add_cart"
+                            android:id="@+id/btn_add_to_cart"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
