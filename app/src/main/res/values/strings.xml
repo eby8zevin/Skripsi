@@ -172,5 +172,4 @@
     <string name="product_added_to_cart">Product added to cart</string>
     <string name="product_already_added_to_cart">Product Already Added to Cart</string>
     <string name="product_added_to_cart_failed_try_again">Product added to cart failed! Try again</string>
-
 </resources>
