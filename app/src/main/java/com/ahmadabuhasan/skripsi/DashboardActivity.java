@@ -35,7 +35,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 16/01/2021
+ * Created by Ahmad Abu Hasan on 17/01/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -55,6 +55,8 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        getSupportActionBar().hide();
 
         this.cardView_kaca = findViewById(R.id.card_kaca);
         this.cardView_pigura = findViewById(R.id.card_pigura);
