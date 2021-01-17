@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 16/01/2021
+ * Created by Ahmad Abu Hasan on 17/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -31,6 +31,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String TABLE_CUSTOMER = "customers";
     public static final String TABLE_PRODUCT = "products";
     public static final String TABLE_CATEGORY = "product_category";
+    public static final String TABLE_PRODUCT_CART = "product_cart";
     public static final String TABLE_WEIGHT = "product_weight";
     public static final String TABLE_SHOP = "shop";
     public static final String TABLE_SUPPLIER = "suppliers";
@@ -64,6 +65,15 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     // Column product_category
     public static final String CATEGORY_ID = "category_id";
     public static final String CATEGORY_NAME = "category_name";
+
+    // Column product_cart
+    public static final String PRODUCT_CART_ID = "cart_id";
+    public static final String CART_PRODUCT_ID = "product_id";
+    public static final String CART_PRODUCT_WEIGHT = "product_weight";
+    public static final String CART_PRODUCT_WEIGHT_UNIT = "product_weight_unit";
+    public static final String CART_PRODUCT_PRICE = "product_price";
+    public static final String CART_PRODUCT_QTY = "product_qty";
+    public static final String CART_PRODUCT_STOCK = "product_stock";
 
     // Column product_weight
     public static final String WEIGHT_ID = "weight_id";
@@ -132,6 +142,17 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             + CATEGORY_NAME + " TEXT"
             + ")";
 
+    // product_cart
+    private static final String CREATE_PRODUCT_CART = "CREATE TABLE " + TABLE_PRODUCT_CART +
+            "(" + PRODUCT_CART_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + CART_PRODUCT_ID + " TEXT,"
+            + CART_PRODUCT_WEIGHT + " TEXT,"
+            + CART_PRODUCT_WEIGHT_UNIT + " TEXT,"
+            + CART_PRODUCT_PRICE + " TEXT,"
+            + CART_PRODUCT_QTY + " TEXT,"
+            + CART_PRODUCT_STOCK + " TEXT"
+            + ")";
+
     // weight
     private static final String CREATE_WEIGHT = "CREATE TABLE " + TABLE_WEIGHT +
             "(" + WEIGHT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -169,6 +190,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_CUSTOMERS);
         db.execSQL(CREATE_PRODUCTS);
         db.execSQL(CREATE_CATEGORY);
+        db.execSQL(CREATE_PRODUCT_CART);
         db.execSQL(CREATE_WEIGHT);
         //db.execSQL(CREATE_SHOP);
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SHOP + "(shop_id INTEGER PRIMARY KEY, shop_name TEXT, shop_contact TEXT, shop_email TEXT, shop_address TEXT, shop_currency TEXT, tax TEXT)");
@@ -181,6 +203,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT_CART);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOP);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SUPPLIER);
