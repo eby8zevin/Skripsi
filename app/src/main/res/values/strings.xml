@@ -18,6 +18,7 @@
     <string name="buy">Buy</string>
     <string name="stock">Stock</string>
     <string name="price">Price</string>
+    <string name="weight">Weight</string>
     <string name="want_to_delete_product">Want to Delete Product ?</string>
     <string name="product_deleted">Product Deleted</string>
     <string name="failed">Failed</string>
