@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="android:windowContentOverlay">@null</item>
         <item name="colorPrimary">@color/cyan_blue</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -17,7 +17,7 @@
 
     <style name="RippleStyleWhite">
         <item name="mrl_rippleAlpha">0.2</item>
-        <item name="mrl_rippleColor">#80ffffff</item>
+        <item name="mrl_rippleColor">#80FFFFFF</item>
         <item name="mrl_rippleHover">true</item>
         <item name="mrl_rippleOverlay">true</item>
     </style>
