@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 18/01/2021
+ * Created by Ahmad Abu Hasan on 19/01/2021
  */
 
 public class DatabaseAccess {
@@ -43,7 +43,7 @@ public class DatabaseAccess {
         }
     }
 
-    // ProductActivity
+    // ProductActivity + PosActivity
     public ArrayList<HashMap<String, String>> getProducts() {
         ArrayList<HashMap<String, String>> product = new ArrayList<>();
         Cursor cursor = this.database.rawQuery("SELECT * FROM products ORDER BY product_id DESC", null);
@@ -72,7 +72,7 @@ public class DatabaseAccess {
         return product;
     }
 
-    // ProductActivity
+    // ProductActivity + PosActivity
     public ArrayList<HashMap<String, String>> getSearchProducts(String string) {
         ArrayList<HashMap<String, String>> product = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.database;
@@ -124,7 +124,7 @@ public class DatabaseAccess {
         return check == 1;
     }
 
-    // AddProductActivity + CategoriesActivity
+    // AddProductActivity + CategoriesActivity + PosActivity
     public ArrayList<HashMap<String, String>> getProductCategory() {
         ArrayList<HashMap<String, String>> product_category = new ArrayList<>();
         Cursor cursor = this.database.rawQuery("SELECT * FROM product_category ORDER BY category_id DESC", null);
@@ -628,7 +628,7 @@ public class DatabaseAccess {
         return 1;
     }
 
-    // PosProductAdapter
+    // PosProductAdapter + PosActivity
     public int getCartItemCount() {
         Cursor cursor = this.database.rawQuery("SELECT * FROM product_cart", null);
         int itemCount = cursor.getCount();
@@ -713,6 +713,28 @@ public class DatabaseAccess {
         ContentValues values = new ContentValues();
         values.put(DatabaseOpenHelper.CART_PRODUCT_QTY, qty);
         long update = (long) this.database.update("product_cart", values, "cart_id=?", new String[]{id});
+    }
+
+    // ProductCart
+    public ArrayList<HashMap<String, String>> getCartProduct() {
+        ArrayList<HashMap<String, String>> product = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM product_cart", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.PRODUCT_CART_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.CART_PRODUCT_ID, cursor.getString(1));
+                map.put(DatabaseOpenHelper.CART_PRODUCT_WEIGHT, cursor.getString(2));
+                map.put(DatabaseOpenHelper.CART_PRODUCT_WEIGHT_UNIT, cursor.getString(3));
+                map.put(DatabaseOpenHelper.CART_PRODUCT_PRICE, cursor.getString(4));
+                map.put(DatabaseOpenHelper.CART_PRODUCT_QTY, cursor.getString(5));
+                map.put(DatabaseOpenHelper.CART_PRODUCT_STOCK, cursor.getString(6));
+                product.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product;
     }
 
 
