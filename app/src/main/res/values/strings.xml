@@ -186,5 +186,15 @@
     <string name="available_stock">Available Stock</string>
 
     <string name="product_cart">Product Cart</string>
+    <string name="payment">Payment</string>
+    <string name="submit">Submit</string>
+    <string name="walk_in_customer">Walk In Customer</string>
+    <string name="pick_up">PICK UP</string>
+    <string name="cash">CASH</string>
+    <string name="sub_total">Sub Total</string>
+    <string name="total_tax">Total Tax</string>
+    <string name="discount">Discount</string>
+    <string name="zero_zero">00</string>
+    <string name="zero_zero_zero">0.00</string>
 
 </resources>
