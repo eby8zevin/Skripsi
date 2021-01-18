@@ -6,11 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.github.mikephil.charting.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 17/01/2021
+ * Created by Ahmad Abu Hasan on 18/01/2021
  */
 
 public class DatabaseAccess {
@@ -639,7 +641,7 @@ public class DatabaseAccess {
     public ArrayList<HashMap<String, String>> getTabProducts(String category_id) {
         ArrayList<HashMap<String, String>> product = new ArrayList<>();
         SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM products WHERE product_category = '" + category_id + "' ORDER BY product_id DESC", (String[]) null);
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM products WHERE product_category = '" + category_id + "' ORDER BY product_id DESC", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -663,6 +665,54 @@ public class DatabaseAccess {
         cursor.close();
         this.database.close();
         return product;
+    }
+
+    // CartAdapter
+    public String getProductName(String product_id) {
+        String product_name = "n/a";
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", (String[]) null);
+        if (cursor.moveToFirst()) {
+            do {
+                product_name = cursor.getString(1);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return product_name;
+    }
+
+    // CartAdapter
+    public double getTotalPrice() {
+        double total_price = Utils.DOUBLE_EPSILON;
+        Cursor cursor = this.database.rawQuery("SELECT * FROM product_cart", (String[]) null);
+        if (cursor.moveToFirst()) {
+            do {
+                double price = Double.parseDouble(cursor.getString(4));
+                double parseInt = (double) Integer.parseInt(cursor.getString(5));
+                Double.isNaN(parseInt);
+                total_price += parseInt * price;
+            } while (cursor.moveToNext());
+        } else {
+            total_price = Utils.DOUBLE_EPSILON;
+        }
+        cursor.close();
+        this.database.close();
+        return total_price;
+    }
+
+    // CartAdapter
+    public boolean deleteProductFromCart(String id) {
+        long check = (long) this.database.delete("product_cart", "cart_id=?", new String[]{id});
+        this.database.close();
+        return check == 1;
+    }
+
+    // CartAdapter
+    public void updateProductQty(String id, String qty) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.CART_PRODUCT_QTY, qty);
+        long update = (long) this.database.update("product_cart", values, "cart_id=?", new String[]{id});
     }
 
 
