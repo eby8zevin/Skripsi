@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.github.mikephil.charting.utils.Utils;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -426,7 +428,7 @@ public class DatabaseAccess {
         return check != -1;
     }
 
-    // CustomersActivity
+    // CustomersActivity + ProductCart
     public ArrayList<HashMap<String, String>> getCustomers() {
         ArrayList<HashMap<String, String>> customer = new ArrayList<>();
         Cursor cursor = this.database.rawQuery("SELECT * FROM customers ORDER BY customer_id DESC", null);
@@ -737,5 +739,43 @@ public class DatabaseAccess {
         return product;
     }
 
+    // ProductCart
+    public ArrayList<HashMap<String, String>> getOrderType() {
+        ArrayList<HashMap<String, String>> order_type = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM order_type ORDER BY order_type_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.ORDER_TYPE_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.ORDER_TYPE_NAME, cursor.getString(1));
+                order_type.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return order_type;
+    }
+
+    // ProductCart
+    public ArrayList<HashMap<String, String>> getPaymentMethod() {
+        ArrayList<HashMap<String, String>> payment_method = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM payment_method ORDER BY payment_method_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.PAYMENT_METHOD_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.PAYMENT_METHOD_NAME, cursor.getString(1));
+                payment_method.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return payment_method;
+    }
+
+    // ProductCart
+    public void insertOrder(String s, JSONObject jsonObject) {
+
+    }
 
 }
