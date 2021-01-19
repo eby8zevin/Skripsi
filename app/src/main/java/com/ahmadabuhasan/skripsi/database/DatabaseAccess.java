@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.github.mikephil.charting.utils.Utils;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -774,8 +775,34 @@ public class DatabaseAccess {
     }
 
     // ProductCart
-    public void insertOrder(String s, JSONObject jsonObject) {
+    public void insertOrder(String paramString, JSONObject paramJSONObject) {
+        ContentValues contentValues = new ContentValues();
+        try {
+            String list_date = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DATE);
+            String list_time = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TIME);
+            String list_type = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TYPE);
+            String list_payment_method = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD);
+            String list_customer_name = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME);
+            String list_tax = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TAX);
+            String list_discount = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DISCOUNT);
 
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, paramString);
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_DATE, list_date);
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_TIME, list_time);
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_TYPE, list_type);
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, list_payment_method);
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, list_customer_name);
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_TAX, list_tax);
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, list_discount);
+            contentValues.put(DatabaseOpenHelper.ORDER_LIST_STATUS, "Pending");
+
+            this.database.insert("order_list", null, contentValues);
+            this.database.delete("product_cart", null, null);
+
+        } catch (JSONException jSONException) {
+            jSONException.printStackTrace();
+        }
     }
+
 
 }
