@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -84,6 +83,7 @@ public class ProductCart extends AppCompatActivity {
         this.textView_no_product = findViewById(R.id.tv_no_product);
         this.textView_total_price = findViewById(R.id.tv_total_price);
         this.button_SubmitOrder = findViewById(R.id.btn_submit_order);
+        this.linearLayout = findViewById(R.id.linear_layout);
 
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.recyclerView.setHasFixedSize(true);
@@ -204,10 +204,10 @@ public class ProductCart extends AppCompatActivity {
                 View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.select_customer);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) ProductCart.this.customerAdapter);
+                dialog_list.setAdapter(ProductCart.this.customerAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -258,10 +258,10 @@ public class ProductCart extends AppCompatActivity {
                 View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.select_order_type);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) ProductCart.this.orderTypeAdapter);
+                dialog_list.setAdapter(ProductCart.this.orderTypeAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -312,10 +312,10 @@ public class ProductCart extends AppCompatActivity {
                 View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.select_payment_method);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) ProductCart.this.paymentMethodAdapter);
+                dialog_list.setAdapter(ProductCart.this.paymentMethodAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
