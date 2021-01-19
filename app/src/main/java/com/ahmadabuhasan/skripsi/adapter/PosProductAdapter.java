@@ -22,13 +22,15 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.ahmadabuhasan.skripsi.kasir.PosActivity;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 17/01/2021
+ * Created by Ahmad Abu Hasan on 19/01/2021
  */
 
 public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.MyViewHolder> {
@@ -55,6 +57,7 @@ public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.My
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final int getStock;
         final DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this.context);
+
         databaseAccess.open();
         String currency = databaseAccess.getCurrency();
 
@@ -80,11 +83,13 @@ public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.My
             holder.textView_Stock.setTextColor(SupportMenu.CATEGORY_MASK);
         }
 
+        Double price = Double.parseDouble(product_price);
+
         holder.textView_ProductName.setText(name);
         TextView textView2 = holder.textView_Weight;
         textView2.setText(product_weight + " " + weight_unit_name);
         TextView textView3 = holder.textView_Price;
-        textView3.setText(currency + product_price);
+        textView3.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(price));
 
         holder.cardView_Product.setOnClickListener(new View.OnClickListener() {
             @Override
