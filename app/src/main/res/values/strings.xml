@@ -197,4 +197,10 @@
     <string name="zero_zero">00</string>
     <string name="zero_zero_zero">0.00</string>
 
+    <string name="discount_cant_be_greater_than_total_price">Discount can\'t_be greater than total price</string>
+    <string name="select_customer">SELECT CUSTOMER</string>
+    <string name="select_order_type">SELECT ORDER TYPE</string>
+    <string name="select_payment_method">SELECT PAYMENT METHOD</string>
+    <string name="order_done_successful">Order Done Successful</string>
+
 </resources>
