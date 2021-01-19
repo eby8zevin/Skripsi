@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 17/01/2021
+ * Created by Ahmad Abu Hasan on 19/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -29,9 +29,13 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     // Table Name
     public static final String TABLE_CUSTOMER = "customers";
+    public static final String TABLE_ORDER_DETAILS = "order_details";
+    public static final String TABLE_ORDER_LIST = "order_list";
+    public static final String TABLE_ORDER_TYPE = "order_type";
+    public static final String TABLE_PAYMENT_METHOD = "payment_method";
     public static final String TABLE_PRODUCT = "products";
-    public static final String TABLE_CATEGORY = "product_category";
     public static final String TABLE_PRODUCT_CART = "product_cart";
+    public static final String TABLE_CATEGORY = "product_category";
     public static final String TABLE_WEIGHT = "product_weight";
     public static final String TABLE_SHOP = "shop";
     public static final String TABLE_SUPPLIER = "suppliers";
@@ -45,6 +49,36 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String CUSTOMER_ACCOUNT = "customer_account";
     public static final String CUSTOMER_INFORMATION = "customer_information";
     public static final String CUSTOMER_LAST_UPDATE = "customer_last_update";
+
+    // Column order_details
+    public static final String ORDER_DETAILS_ID = "";
+    public static final String ORDER_DETAILS_INVOICE_ID = "";
+    public static final String ORDER_DETAILS_PRODUCT_NAME = "";
+    public static final String ORDER_DETAILS_PRODUCT_WEIGHT = "";
+    public static final String ORDER_DETAILS_PRODUCT_QTY = "";
+    public static final String ORDER_DETAILS_PRODUCT_PRICE = "";
+    public static final String ORDER_DETAILS_ORDER_DATE = "";
+    public static final String ORDER_DETAILS_ORDER_STATUS = "";
+
+    // Column order_list
+    public static final String ORDER_LIST_ID = "order_id";
+    public static final String ORDER_LIST_INVOICE_ID = "invoice_id";
+    public static final String ORDER_LIST_DATE = "order_date";
+    public static final String ORDER_LIST_TIME = "order_time";
+    public static final String ORDER_LIST_TYPE = "order_type";
+    public static final String ORDER_LIST_PAYMENT_METHOD = "order_payment_method";
+    public static final String ORDER_LIST_CUSTOMER_NAME = "customer_name";
+    public static final String ORDER_LIST_TAX = "tax";
+    public static final String ORDER_LIST_DISCOUNT = "discount";
+    public static final String ORDER_LIST_STATUS = "order_status";
+
+    // Column order_type
+    public static final String ORDER_TYPE_ID = "order_type_id";
+    public static final String ORDER_TYPE_NAME = "order_type_name";
+
+    // Column payment_method
+    public static final String PAYMENT_METHOD_ID = "payment_method_id";
+    public static final String PAYMENT_METHOD_NAME = "payment_method_name";
 
     // Column products
     public static final String PRODUCT_ID = "product_id";
@@ -62,10 +96,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String PRODUCT_INFORMATION = "product_information";
     public static final String PRODUCT_SUPPLIER = "product_supplier";
 
-    // Column product_category
-    public static final String CATEGORY_ID = "category_id";
-    public static final String CATEGORY_NAME = "category_name";
-
     // Column product_cart
     public static final String PRODUCT_CART_ID = "cart_id";
     public static final String CART_PRODUCT_ID = "product_id";
@@ -74,6 +104,10 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String CART_PRODUCT_PRICE = "product_price";
     public static final String CART_PRODUCT_QTY = "product_qty";
     public static final String CART_PRODUCT_STOCK = "product_stock";
+
+    // Column product_category
+    public static final String CATEGORY_ID = "category_id";
+    public static final String CATEGORY_NAME = "category_name";
 
     // Column product_weight
     public static final String WEIGHT_ID = "weight_id";
@@ -88,7 +122,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String SHOP_CURRENCY = "shop_currency";
     public static final String SHOP_TAX = "tax";
 
-    // Column Suppliers
+    // Column suppliers
     public static final String SUPPLIER_ID = "supplier_id";
     public static final String SUPPLIER_NAME = "supplier_name";
     public static final String SUPPLIER_ADDRESS = "supplier_address";
@@ -118,6 +152,18 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             + CUSTOMER_LAST_UPDATE + " TEXT"
             + ")";
 
+    // order_type
+    private static final String CREATE_ORDER_TYPE = "CREATE TABLE " + TABLE_ORDER_TYPE +
+            "(" + ORDER_TYPE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ORDER_TYPE_NAME + " TEXT"
+            + ")";
+
+    // payment_method
+    private static final String CREATE_PAYMENT_METHOD = "CREATE TABLE " + TABLE_PAYMENT_METHOD +
+            "(" + PAYMENT_METHOD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + PAYMENT_METHOD_NAME + " TEXT"
+            + ")";
+
     // products
     private static final String CREATE_PRODUCTS = "CREATE TABLE " + TABLE_PRODUCT +
             "(" + PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -136,12 +182,6 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             + PRODUCT_SUPPLIER + " TEXT"
             + ")";
 
-    // category
-    private static final String CREATE_CATEGORY = "CREATE TABLE " + TABLE_CATEGORY +
-            "(" + CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + CATEGORY_NAME + " TEXT"
-            + ")";
-
     // product_cart
     private static final String CREATE_PRODUCT_CART = "CREATE TABLE " + TABLE_PRODUCT_CART +
             "(" + PRODUCT_CART_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -153,7 +193,13 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             + CART_PRODUCT_STOCK + " TEXT"
             + ")";
 
-    // weight
+    // product_category
+    private static final String CREATE_CATEGORY = "CREATE TABLE " + TABLE_CATEGORY +
+            "(" + CATEGORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + CATEGORY_NAME + " TEXT"
+            + ")";
+
+    // product_weight
     private static final String CREATE_WEIGHT = "CREATE TABLE " + TABLE_WEIGHT +
             "(" + WEIGHT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + WEIGHT_UNIT + " TEXT"
@@ -188,9 +234,11 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // script sql
         db.execSQL(CREATE_CUSTOMERS);
+        db.execSQL(CREATE_ORDER_TYPE);
+        db.execSQL(CREATE_PAYMENT_METHOD);
         db.execSQL(CREATE_PRODUCTS);
-        db.execSQL(CREATE_CATEGORY);
         db.execSQL(CREATE_PRODUCT_CART);
+        db.execSQL(CREATE_CATEGORY);
         db.execSQL(CREATE_WEIGHT);
         //db.execSQL(CREATE_SHOP);
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SHOP + "(shop_id INTEGER PRIMARY KEY, shop_name TEXT, shop_contact TEXT, shop_email TEXT, shop_address TEXT, shop_currency TEXT, tax TEXT)");
@@ -201,9 +249,11 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_TYPE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT_METHOD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT_CART);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEIGHT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOP);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SUPPLIER);
