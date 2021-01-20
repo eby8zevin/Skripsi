@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
@@ -36,6 +37,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,7 +48,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 19/01/2021
+ * Created by Ahmad Abu Hasan on 21/01/2021
  */
 
 public class ProductCart extends AppCompatActivity {
@@ -148,13 +150,16 @@ public class ProductCart extends AppCompatActivity {
         final double total_cost = CartAdapter.total_price.doubleValue();
         StringBuilder sb = new StringBuilder();
         sb.append(shop_currency);
-        sb.append(this.decimalFormat.format(total_cost));
+        sb.append(" ");
+        sb.append(NumberFormat.getInstance(Locale.getDefault()).format(total_cost));
         dialog_text_sub_total.setText(sb.toString());
         final double calculated_tax = (total_cost * getTax) / 100.0d;
-        dialog_text_total_tax.setText(shop_currency + this.decimalFormat.format(calculated_tax));
+        dialog_text_total_tax.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_tax));
         double calculated_total_cost = (total_cost + calculated_tax) - Utils.DOUBLE_EPSILON;
-        dialog_text_total_cost.setText(shop_currency + this.decimalFormat.format(calculated_total_cost));
+        dialog_text_total_cost.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_total_cost));
 
+        dialog_et_discount.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
+        //dialog_et_discount.setKeyListener(DigitsKeyListener.getInstance("0123456789.,"));
         dialog_et_discount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -174,12 +179,12 @@ public class ProductCart extends AppCompatActivity {
                     }
                     dialog_btn_submit.setVisibility(View.VISIBLE);
                     TextView textView = dialog_text_total_cost;
-                    textView.setText(shop_currency + ProductCart.this.decimalFormat.format((total_cost + calculated_tax) - discount));
+                    textView.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format((total_cost + calculated_tax) - discount));
                     return;
                 }
                 double calculated_total_cost = (total_cost + calculated_tax) - Utils.DOUBLE_EPSILON;
                 TextView textView2 = dialog_text_total_cost;
-                textView2.setText(shop_currency + ProductCart.this.decimalFormat.format(calculated_total_cost));
+                textView2.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_total_cost));
             }
 
             @Override
@@ -377,7 +382,7 @@ public class ProductCart extends AppCompatActivity {
 
     public void proceedOrder(String type, String payment_method, String customer_name, double calculated_tax, String discount) {
         JSONException e;
-        String str = DatabaseOpenHelper.PRODUCT_ID;
+        String productId = DatabaseOpenHelper.PRODUCT_ID;
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         if (databaseAccess.getCartItemCount() > 0) {
@@ -406,14 +411,14 @@ public class ProductCart extends AppCompatActivity {
                         int i = 0;
                         while (i < lines.size()) {
                             databaseAccess.open();
-                            String product_id = lines.get(i).get(str);
+                            String product_id = lines.get(i).get(productId);
                             String product_name = databaseAccess.getProductName(product_id);
                             databaseAccess.open();
                             String weight_unit = databaseAccess.getWeightUnitName(lines.get(i).get(DatabaseOpenHelper.CART_PRODUCT_WEIGHT_UNIT));
                             databaseAccess.open();
                             JSONObject objp = new JSONObject();
                             try {
-                                objp.put(str, product_id);
+                                objp.put(productId, product_id);
                                 objp.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
                                 objp.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, lines.get(i).get(DatabaseOpenHelper.CART_PRODUCT_WEIGHT) + " " + weight_unit);
                                 objp.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, lines.get(i).get(DatabaseOpenHelper.CART_PRODUCT_QTY));
@@ -422,9 +427,6 @@ public class ProductCart extends AppCompatActivity {
                                 objp.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, currentDate);
                                 array.put(objp);
                                 i++;
-                                databaseAccess = databaseAccess;
-                                timeStamp = timeStamp;
-                                str = str;
                             } catch (JSONException e2) {
                                 e = e2;
                                 e.printStackTrace();
