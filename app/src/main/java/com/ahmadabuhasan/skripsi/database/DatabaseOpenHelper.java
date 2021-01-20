@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 19/01/2021
+ * Created by Ahmad Abu Hasan on 20/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -51,14 +51,14 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String CUSTOMER_LAST_UPDATE = "customer_last_update";
 
     // Column order_details
-    public static final String ORDER_DETAILS_ID = "";
-    public static final String ORDER_DETAILS_INVOICE_ID = "";
-    public static final String ORDER_DETAILS_PRODUCT_NAME = "";
-    public static final String ORDER_DETAILS_PRODUCT_WEIGHT = "";
-    public static final String ORDER_DETAILS_PRODUCT_QTY = "";
-    public static final String ORDER_DETAILS_PRODUCT_PRICE = "";
-    public static final String ORDER_DETAILS_ORDER_DATE = "";
-    public static final String ORDER_DETAILS_ORDER_STATUS = "";
+    public static final String ORDER_DETAILS_ID = "order_details_id";
+    public static final String ORDER_DETAILS_INVOICE_ID = "invoice_id";
+    public static final String ORDER_DETAILS_PRODUCT_NAME = "product_name";
+    public static final String ORDER_DETAILS_PRODUCT_WEIGHT = "product_weight";
+    public static final String ORDER_DETAILS_PRODUCT_QTY = "product_qty";
+    public static final String ORDER_DETAILS_PRODUCT_PRICE = "product_price";
+    public static final String ORDER_DETAILS_ORDER_DATE = "product_order_data";
+    public static final String ORDER_DETAILS_ORDER_STATUS = "order_status";
 
     // Column order_list
     public static final String ORDER_LIST_ID = "order_id";
@@ -152,6 +152,32 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             + CUSTOMER_LAST_UPDATE + " TEXT"
             + ")";
 
+    // order_details
+    private static final String CREATE_ORDER_DETAILS = "CREATE TABLE " + TABLE_ORDER_DETAILS +
+            "(" + ORDER_DETAILS_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ORDER_DETAILS_INVOICE_ID + " TEXT,"
+            + ORDER_DETAILS_PRODUCT_NAME + " TEXT,"
+            + ORDER_DETAILS_PRODUCT_WEIGHT + " TEXT,"
+            + ORDER_DETAILS_PRODUCT_QTY + " TEXT,"
+            + ORDER_DETAILS_PRODUCT_PRICE + " TEXT,"
+            + ORDER_DETAILS_ORDER_DATE + " TEXT,"
+            + ORDER_DETAILS_ORDER_STATUS + " TEXT"
+            + ")";
+
+    // order_list
+    private static final String CREATE_ORDER_LIST = "CREATE TABLE " + TABLE_ORDER_LIST +
+            "(" + ORDER_LIST_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + ORDER_LIST_INVOICE_ID + " TEXT,"
+            + ORDER_LIST_DATE + " TEXT,"
+            + ORDER_LIST_TIME + " TEXT,"
+            + ORDER_LIST_TYPE + " TEXT,"
+            + ORDER_LIST_PAYMENT_METHOD + " TEXT,"
+            + ORDER_LIST_CUSTOMER_NAME + " TEXT,"
+            + ORDER_LIST_TAX + " TEXT,"
+            + ORDER_LIST_DISCOUNT + " TEXT,"
+            + ORDER_LIST_STATUS + " TEXT"
+            + ")";
+
     // order_type
     private static final String CREATE_ORDER_TYPE = "CREATE TABLE " + TABLE_ORDER_TYPE +
             "(" + ORDER_TYPE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -234,6 +260,8 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // script sql
         db.execSQL(CREATE_CUSTOMERS);
+        db.execSQL(CREATE_ORDER_DETAILS);
+        db.execSQL(CREATE_ORDER_LIST);
         db.execSQL(CREATE_ORDER_TYPE);
         db.execSQL(CREATE_PAYMENT_METHOD);
         db.execSQL(CREATE_PRODUCTS);
@@ -249,6 +277,8 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_DETAILS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_LIST);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_TYPE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT_METHOD);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PRODUCT);
