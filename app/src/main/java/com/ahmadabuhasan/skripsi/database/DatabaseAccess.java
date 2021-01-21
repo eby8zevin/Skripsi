@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 
 import com.github.mikephil.charting.utils.Utils;
 
@@ -779,313 +778,179 @@ public class DatabaseAccess {
     // ProductCart
     public void insertOrder(String paramString, JSONObject paramJSONObject) {
 
-        DatabaseAccess databaseAccess = this;
+        JSONException jsonException;
+        JSONArray jsonArray;
+        JSONObject jsonObject;
 
-        JSONException e;
-        JSONArray result; 
-        JSONArray jSONArray;
-        JSONObject jo;
-        JSONObject jSONObject = obj;
-        
-        int i;
-        int i2;
-        int updated_stock;
+        ContentValues contentValues = new ContentValues();
+        ContentValues contentValues1 = new ContentValues();
+        ContentValues contentValues2 = new ContentValues();
 
-        String str3 = "Pending";
-        String str4 = DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS;
-        String str5 = DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE;
-        //String str6 = DatabaseOpenHelper.Constant.PRODUCT_IMAGE;
-        String str7 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE;
-        String str8 = DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID;
-        String str9 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY;
-        String str11 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT;
-        String str13 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME;
-        DatabaseOpenHelper.
-        String str10 = DatabaseOpenHelper.ORDER_LIST_DISCOUNT;  
-        String str12 = DatabaseOpenHelper.ORDER_LIST_TAX;
-        String str14 = DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME;
-        String str15 = DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD;
-        JSONArray jSONArray2 = str5;
-        str5 = DatabaseOpenHelper.ORDER_LIST_TYPE;
-        ContentValues contentValues4 = str6;
-        str6 = DatabaseOpenHelper.ORDER_LIST_TIME;
-        String str16 = str7;
-        str7 = DatabaseOpenHelper.ORDER_LIST_DATE;
-        
-        ContentValues values;
-        ContentValues values3;
-        ContentValues values4 = new ContentValues();
-        ContentValues values22;
-        ContentValues values23;
-        ContentValues values24 = new ContentValues();
-        ContentValues values32 = new ContentValues();
-        
-        ContentValues contentValues;
-        ContentValues contentValues2;
-        ContentValues contentValues3;
-        
-        String customer_name;
-        String values2;
-        String str;
-        String str2 = paramString; //order_id;
-        String str17 = str9;
-        
         try {
-            String order_date = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DATE);
-            String order_time = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TIME);
-            String order_type = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TYPE);
-            String order_payment_method = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD);
-            String customer_name = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME);
-            String tax = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TAX);
-            String discount = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DISCOUNT);
-            values = values4;
+            String order_date = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DATE);
+            String order_time = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TIME);
+            String order_type = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TYPE);
+            String order_payment_method = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD);
+            String customer_name = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME);
+            String tax = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TAX);
+            String discount = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DISCOUNT);
+
+            //ContentValues contentValues = new ContentValues();
             try {
-                values.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, paramString);
-                str2 = order_date;
-                values.put(DatabaseOpenHelper.ORDER_LIST_DATE, order_date);
-                values.put(DatabaseOpenHelper.ORDER_LIST_TIME, order_time);
-                values.put(DatabaseOpenHelper.ORDER_LIST_TYPE, order_type);
-                str5 = order_payment_method;
-                values.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, order_payment_method);
-                values.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, customer_name);
-                values.put(DatabaseOpenHelper.ORDER_LIST_TAX, tax);
-                values.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, discount);
-                values.put(DatabaseOpenHelper.ORDER_LIST_STATUS, str3);
-                values2 = str2;
-                databaseAccess.database.insert("order_list", null, values);
-                databaseAccess.database.delete("product_cart", null, null);
-            } catch (JSONException e2) {
-                e = e2;
-                e.printStackTrace();
-                result = jSONObject.getJSONArray("lines");
-                i = 0;
-                while (i < result.length()) {
-                    jo = result.getJSONObject(i);
-                    str6 = jo.getString(str13);
-                    str7 = jo.getString(str11);
-                    str12 = str17;
-                    str14 = jo.getString(str12);
-                    str15 = str16;
-                    str17 = jo.getString(str15);
-                    contentValues = contentValues4;
-                    str16 = jo.getString(contentValues);
-                    contentValues4 = values;
-                    jSONArray = jSONArray2;
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, paramString);
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_DATE, order_date);
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TIME, order_time);
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TYPE, order_type);
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, order_payment_method);
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, customer_name);
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TAX, tax);
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, discount);
+                contentValues.put(DatabaseOpenHelper.ORDER_LIST_STATUS, "Pending");
+
+                this.database.insert("order_list", null, contentValues);
+                this.database.delete("product_cart", null, null);
+            } catch (JSONException jsonException1) {
+                jsonException = jsonException1;
+                jsonException.printStackTrace();
+                jsonArray = paramJSONObject.getJSONArray("lines");
+                int i = 0;
+                while (i < jsonArray.length()) {
+                    jsonObject = jsonArray.getJSONObject(i);
+                    String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
+                    String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
+                    String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
+                    String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
+                    String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
+
+                    jsonArray = new JSONArray();
                     try {
-                        values2 = jo.getString(jSONArray);
-                        jSONArray2 = result;
-                        result = jo.getString(DatabaseOpenHelper.PRODUCT_ID);
-                        i2 = i;
-                        str2 = jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                        updated_stock = Integer.parseInt(str2) - Integer.parseInt(str14);
-                        contentValues2 = values24;
-                        values22 = contentValues2;
+                        jsonArray = new JSONArray();
+                        String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
+                        String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
+                        int i1 = 0;
+                        int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
+
+                        //ContentValues contentValues1 = new ContentValues();
                         try {
-                            values22.put(str8, paramString);
-                            values22.put(str13, str6);
-                            values22.put(str11, str7);
-                            values22.put(str12, str14);
-                            str2 = str17;
-                            values22.put(str15, str2);
-                            str17 = str2;
-                            str2 = str16;
-                            values22.put(contentValues, str2);
-                            str16 = str2;
-                            str2 = values2;
-                            values22.put(jSONArray, str2);
-                            values22.put(str4, str3);
-                            values2 = str2;
-                            contentValues3 = contentValues;
-                            customer_name = str3;
-                            values3 = values32;
+                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
+                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
+                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
+                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
+                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
+                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
+                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
+
+                            //ContentValues contentValues2 = new ContentValues();
                             try {
-                                values3.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(updated_stock));
-                                str = str4;
-                                databaseAccess.database.insert("order_details", null, values22);
-                                values23 = values22;
+                                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
+                                this.database.insert("order_details", null, contentValues1);
+                                contentValues1 = new ContentValues();
                                 try {
-                                    databaseAccess.database.update("products", values3, "product_id=?", new String[]{result});
-                                    i = i2 + 1;
-                                    jSONObject = obj;
-                                    str17 = str12;
-                                    str16 = str15;
-                                    result = jSONArray2;
-                                    str4 = str;
-                                    values24 = values23;
-                                    values32 = values3;
-                                    jSONArray2 = jSONArray;
-                                    values = contentValues4;
-                                    contentValues4 = contentValues3;
-                                    str3 = customer_name;
-                                } catch (JSONException e3) {
-                                    e = e3;
+                                    this.database.update("products", contentValues2, "product_id=?", new String[]{product_id});
+                                    i = i1 + 1;
+                                    jsonObject = paramJSONObject;
+                                    jsonArray = new JSONArray();
+                                    contentValues2 = new ContentValues();
+                                } catch (JSONException jsonException2) {
+                                    jsonException = jsonException2;
                                 }
-                            } catch (JSONException e4) {
-                                e = e4;
-                                values23 = values22;
+                            } catch (JSONException jsonException3) {
+                                jsonException = jsonException3;
                             }
-                        } catch (JSONException e5) {
-                            e = e5;
-                            values23 = values22;
-                            values3 = values32;
+                        } catch (JSONException jsonException4) {
+                            jsonException = jsonException4;
                         }
-                    } catch (JSONException e6) {
-                        e = e6;
-                        values23 = values24;
-                        values3 = values32;
+                    } catch (JSONException jsonException5) {
+                        jsonException = jsonException5;
                     }
                 }
-                jSONArray2 = result;
-                i2 = i;
-                contentValues4 = values;
-                values23 = values24;
-                values3 = values32;
-                databaseAccess.database.close();
+                database.close();
             }
-        } catch (JSONException e7) {
-            e = e7;
-            values = values4;
-            e.printStackTrace();
-            result = jSONObject.getJSONArray("lines");
-            i = 0;
-            while (i < result.length()) {
-                jo = result.getJSONObject(i);
-                str6 = jo.getString(str13);
-                str7 = jo.getString(str11);
-                str12 = str17;
-                str14 = jo.getString(str12);
-                str15 = str16;
-                str17 = jo.getString(str15);
-                contentValues = contentValues4;
-                str16 = jo.getString(contentValues);
-                contentValues4 = values;
-                jSONArray = jSONArray2;
-                values2 = jo.getString(jSONArray);
-                jSONArray2 = result;
-                result = jo.getString(DatabaseOpenHelper.PRODUCT_ID);
-                i2 = i;
-                str2 = jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                updated_stock = Integer.parseInt(str2) - Integer.parseInt(str14);
-                contentValues2 = values24;
-                values22 = contentValues2;
-                values22.put(str8, paramString);
-                values22.put(str13, str6);
-                values22.put(str11, str7);
-                values22.put(str12, str14);
-                str2 = str17;
-                values22.put(str15, str2);
-                str17 = str2;
-                str2 = str16;
-                values22.put(contentValues, str2);
-                str16 = str2;
-                str2 = values2;
-                values22.put(jSONArray, str2);
-                values22.put(str4, str3);
-                values2 = str2;
-                contentValues3 = contentValues;
-                customer_name = str3;
-                values3 = values32;
-                values3.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(updated_stock));
-                str = str4;
-                databaseAccess.database.insert("order_details", null, values22);
-                values23 = values22;
-                databaseAccess.database.update("products", values3, "product_id=?", new String[]{result});
-                i = i2 + 1;
-                jSONObject = obj;
-                str17 = str12;
-                str16 = str15;
-                result = jSONArray2;
-                str4 = str;
-                values24 = values23;
-                values32 = values3;
-                jSONArray2 = jSONArray;
-                values = contentValues4;
-                contentValues4 = contentValues3;
-                str3 = customer_name;
+        } catch (JSONException jsonException6) {
+            jsonException = jsonException6;
+            jsonException.printStackTrace();
+
+            jsonArray = paramJSONObject.getJSONArray("lines");
+            int i = 0;
+            while (i < jsonArray.length()) {
+                jsonObject = jsonArray.getJSONObject(i);
+                String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
+                String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
+                String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
+                String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
+                String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
+
+                String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
+                int i1 = i;
+                String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
+                int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
+
+                //ContentValues contentValues1 = new ContentValues();
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
+
+                //ContentValues contentValues2 = new ContentValues();
+                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
+                database.insert("order_details", null, contentValues1);
+                database.update("products", contentValues2, "product_id=?", new String[]{product_id});
+                i = i1 + 1;
+                jsonObject = paramJSONObject;
             }
-            jSONArray2 = result;
-            i2 = i;
-            contentValues4 = values;
-            values23 = values24;
-            values3 = values32;
-            databaseAccess.database.close();
+            database.close();
         }
         try {
-            result = jSONObject.getJSONArray("lines");
-            i = 0;
-            while (i < result.length()) {
-                jo = result.getJSONObject(i);
-                str6 = jo.getString(str13);
-                str7 = jo.getString(str11);
-                str12 = str17;
-                str14 = jo.getString(str12);
-                str15 = str16;
-                str17 = jo.getString(str15);
-                contentValues = contentValues4;
-                str16 = jo.getString(contentValues);
-                contentValues4 = values;
-                jSONArray = jSONArray2;
-                values2 = jo.getString(jSONArray);
-                jSONArray2 = result;
-                result = jo.getString(DatabaseOpenHelper.PRODUCT_ID);
-                i2 = i;
-                str2 = jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                updated_stock = Integer.parseInt(str2) - Integer.parseInt(str14);
-                contentValues2 = values24;
-                values22 = contentValues2;
-                values22.put(str8, paramString);
-                values22.put(str13, str6);
-                values22.put(str11, str7);
-                values22.put(str12, str14);
-                str2 = str17;
-                values22.put(str15, str2);
-                str17 = str2;
-                str2 = str16;
-                values22.put(contentValues, str2);
-                str16 = str2;
-                str2 = values2;
-                values22.put(jSONArray, str2);
-                values22.put(str4, str3);
-                values2 = str2;
-                contentValues3 = contentValues;
-                customer_name = str3;
-                values3 = values32;
-                values3.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(updated_stock));
-                str = str4;
-                databaseAccess.database.insert("order_details", null, values22);
-                values23 = values22;
-                databaseAccess.database.update("products", values3, "product_id=?", new String[]{result});
-                i = i2 + 1;
-                jSONObject = obj;
-                str17 = str12;
-                str16 = str15;
-                result = jSONArray2;
-                str4 = str;
-                values24 = values23;
-                values32 = values3;
-                jSONArray2 = jSONArray;
-                values = contentValues4;
-                contentValues4 = contentValues3;
-                str3 = customer_name;
-            }
-            jSONArray2 = result;
-            i2 = i;
-            contentValues4 = values;
-            values23 = values24;
-            values3 = values32;
-        } catch (JSONException e8) {
-            e = e8;
-            contentValues4 = values;
-            values23 = values24;
-            values3 = values32;
-            e.printStackTrace();
-            databaseAccess.database.close();
-        }
-        databaseAccess.database.close();
+            jsonObject = new JSONObject();
+            jsonArray = paramJSONObject.getJSONArray("lines");
+            int i = 0;
+            while (i < jsonArray.length()) {
+                jsonObject = jsonArray.getJSONObject(i);
+                String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
+                String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
+                String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
+                String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
+                String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
 
+                String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
+                int i1 = i;
+                String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
+                int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
+
+                //ContentValues contentValues1 = new ContentValues();
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
+                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
+
+                //ContentValues contentValues2 = new ContentValues();
+                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
+                database.insert("order_details", null, contentValues1);
+                database.update("products", contentValues2, "product_id=?", new String[]{product_id});
+                i = i1 + 1;
+                jsonObject = paramJSONObject;
+                jsonArray = new JSONArray();
+                contentValues1 = new ContentValues();
+                contentValues2 = new ContentValues();
+            }
+            jsonArray = new JSONArray();
+            contentValues1 = new ContentValues();
+            contentValues2 = new ContentValues();
+            int i2 = i;
+        } catch (JSONException jsonException7) {
+            jsonException = jsonException7;
+            jsonException.printStackTrace();
+            database.close();
+        }
+        database.close();
     }
 
 
-    
 }
 
