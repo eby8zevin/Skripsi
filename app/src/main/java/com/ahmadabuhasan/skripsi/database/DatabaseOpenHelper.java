@@ -260,7 +260,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // script sql
         db.execSQL(CREATE_CUSTOMERS);
-        //db.execSQL(CREATE_ORDER_DETAILS);
+        db.execSQL(CREATE_ORDER_DETAILS);
         db.execSQL(CREATE_ORDER_LIST);
         db.execSQL(CREATE_ORDER_TYPE);
         db.execSQL(CREATE_PAYMENT_METHOD);
@@ -277,7 +277,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
-        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_DETAILS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_LIST);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_TYPE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT_METHOD);
