@@ -794,7 +794,7 @@ public class DatabaseAccess {
         String str3 = "Pending";
         String str4 = DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS;
         String str5 = DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE;
-        String str6 = DatabaseOpenHelper.Constant.PRODUCT_IMAGE;
+        //String str6 = DatabaseOpenHelper.Constant.PRODUCT_IMAGE;
         String str7 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE;
         String str8 = DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID;
         String str9 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY;
@@ -874,14 +874,14 @@ public class DatabaseAccess {
                     try {
                         values2 = jo.getString(jSONArray);
                         jSONArray2 = result;
-                        result = jo.getString(Constant.PRODUCT_ID);
+                        result = jo.getString(DatabaseOpenHelper.PRODUCT_ID);
                         i2 = i;
-                        str2 = jo.getString("stock");
+                        str2 = jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
                         updated_stock = Integer.parseInt(str2) - Integer.parseInt(str14);
                         contentValues2 = values24;
                         values22 = contentValues2;
                         try {
-                            values22.put(str8, order_id);
+                            values22.put(str8, paramString);
                             values22.put(str13, str6);
                             values22.put(str11, str7);
                             values22.put(str12, str14);
@@ -899,7 +899,7 @@ public class DatabaseAccess {
                             customer_name = str3;
                             values3 = values32;
                             try {
-                                values3.put("product_stock", Integer.valueOf(updated_stock));
+                                values3.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(updated_stock));
                                 str = str4;
                                 databaseAccess.database.insert("order_details", null, values22);
                                 values23 = values22;
@@ -962,13 +962,13 @@ public class DatabaseAccess {
                 jSONArray = jSONArray2;
                 values2 = jo.getString(jSONArray);
                 jSONArray2 = result;
-                result = jo.getString(Constant.PRODUCT_ID);
+                result = jo.getString(DatabaseOpenHelper.PRODUCT_ID);
                 i2 = i;
-                str2 = jo.getString("stock");
+                str2 = jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
                 updated_stock = Integer.parseInt(str2) - Integer.parseInt(str14);
                 contentValues2 = values24;
                 values22 = contentValues2;
-                values22.put(str8, order_id);
+                values22.put(str8, paramString);
                 values22.put(str13, str6);
                 values22.put(str11, str7);
                 values22.put(str12, str14);
@@ -985,7 +985,7 @@ public class DatabaseAccess {
                 contentValues3 = contentValues;
                 customer_name = str3;
                 values3 = values32;
-                values3.put("product_stock", Integer.valueOf(updated_stock));
+                values3.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(updated_stock));
                 str = str4;
                 databaseAccess.database.insert("order_details", null, values22);
                 values23 = values22;
@@ -1027,13 +1027,13 @@ public class DatabaseAccess {
                 jSONArray = jSONArray2;
                 values2 = jo.getString(jSONArray);
                 jSONArray2 = result;
-                result = jo.getString(Constant.PRODUCT_ID);
+                result = jo.getString(DatabaseOpenHelper.PRODUCT_ID);
                 i2 = i;
-                str2 = jo.getString("stock");
+                str2 = jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
                 updated_stock = Integer.parseInt(str2) - Integer.parseInt(str14);
                 contentValues2 = values24;
                 values22 = contentValues2;
-                values22.put(str8, order_id);
+                values22.put(str8, paramString);
                 values22.put(str13, str6);
                 values22.put(str11, str7);
                 values22.put(str12, str14);
@@ -1050,7 +1050,7 @@ public class DatabaseAccess {
                 contentValues3 = contentValues;
                 customer_name = str3;
                 values3 = values32;
-                values3.put("product_stock", Integer.valueOf(updated_stock));
+                values3.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(updated_stock));
                 str = str4;
                 databaseAccess.database.insert("order_details", null, values22);
                 values23 = values22;
