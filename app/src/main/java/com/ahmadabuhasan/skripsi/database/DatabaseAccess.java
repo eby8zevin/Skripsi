@@ -900,8 +900,8 @@ public class DatabaseAccess {
                                     databaseAccess.database.update("products", values3, "product_id=?", new String[]{result});
                                     i = i2 + 1;
                                     jSONObject = obj;
-                                    str17 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY;qty
-                                    str16 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE;price
+                                    str17 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY;
+                                    str16 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE;
                                     result = jSONArray2;
                                     str4 = str;
                                     values24 = values23;
@@ -944,9 +944,9 @@ public class DatabaseAccess {
             while (i < result.length()) {
                 jo = result.getJSONObject(i);
                 str6 = jo.getString(str13);
-                str7 = jo.getString(str11);
+                str7 = jo.getString(ORDER_DETAILS_PRODUCT_WEIGHT);
                 str12 = str17;
-                str14 = jo.getString(str12);
+                str14 = jo.getString(ORDER_DETAILS_PRODUCT_QTY);
                 str15 = str16;
                 str17 = jo.getString(str15);
                 contentValues = contentValues4;
@@ -961,9 +961,9 @@ public class DatabaseAccess {
                 updated_stock = Integer.parseInt(str2) - Integer.parseInt(str14);
                 contentValues2 = values24;
                 values22 = contentValues2;
-                values22.put(str8, order_id);
-                values22.put(str13, str6);
-                values22.put(str11, str7);
+                values22.put(ORDER_DETAILS_INVOICE_ID, order_id);
+                values22.put(ORDER_DETAILS_PRODUCT_NAME, str6);
+                values22.put(ORDER_DETAILS_PRODUCT_WEIGHT, str7);
                 values22.put(str12, str14);
                 str2 = str17;
                 values22.put(str15, str2);
