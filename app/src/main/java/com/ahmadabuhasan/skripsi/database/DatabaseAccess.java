@@ -877,16 +877,16 @@ public class DatabaseAccess {
                             values22.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, order_id);
                             values22.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, str6);
                             values22.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, str7);
-                            values22.put(str12, str14);
+                            values22.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, str14);
                             str2 = str17;
-                            values22.put(str15, str2);
+                            values22.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, str2);
                             str17 = str2;
                             str2 = str16;
                             values22.put(contentValues, str2);
                             str16 = str2;
                             str2 = values2;
                             values22.put(jSONArray, str2);
-                            values22.put(str4, str3);
+                            values22.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
                             values2 = str2;
                             contentValues3 = contentValues;
                             customer_name = str3;
@@ -900,8 +900,8 @@ public class DatabaseAccess {
                                     databaseAccess.database.update("products", values3, "product_id=?", new String[]{result});
                                     i = i2 + 1;
                                     jSONObject = obj;
-                                    str17 = str12;
-                                    str16 = str15;
+                                    str17 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY;qty
+                                    str16 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE;price
                                     result = jSONArray2;
                                     str4 = str;
                                     values24 = values23;
