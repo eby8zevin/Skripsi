@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 20/01/2021
+ * Created by Ahmad Abu Hasan on 21/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -57,7 +57,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String ORDER_DETAILS_PRODUCT_WEIGHT = "product_weight";
     public static final String ORDER_DETAILS_PRODUCT_QTY = "product_qty";
     public static final String ORDER_DETAILS_PRODUCT_PRICE = "product_price";
-    public static final String ORDER_DETAILS_ORDER_DATE = "product_order_data";
+    public static final String ORDER_DETAILS_ORDER_DATE = "product_order_date";
     public static final String ORDER_DETAILS_ORDER_STATUS = "order_status";
 
     // Column order_list
@@ -260,7 +260,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // script sql
         db.execSQL(CREATE_CUSTOMERS);
-        db.execSQL(CREATE_ORDER_DETAILS);
+        //db.execSQL(CREATE_ORDER_DETAILS);
         db.execSQL(CREATE_ORDER_LIST);
         db.execSQL(CREATE_ORDER_TYPE);
         db.execSQL(CREATE_PAYMENT_METHOD);
@@ -277,7 +277,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_DETAILS);
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_LIST);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_TYPE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENT_METHOD);
