@@ -822,27 +822,28 @@ public class DatabaseAccess {
         ContentValues values24 = new ContentValues();
         ContentValues values32 = new ContentValues();
         String str17 = str9;
+        DatabaseOpenHelper.
         try {
-            String order_date = jSONObject.getString(str7);
-            String order_time = jSONObject.getString(str6);
-            String order_type = jSONObject.getString(str5);
-            String order_payment_method = jSONObject.getString(str15);
-            customer_name = jSONObject.getString(str14);
-            String tax = jSONObject.getString(str12);
-            String discount = jSONObject.getString(str10);
+            String order_date = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DATE);
+            String order_time = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TIME);
+            String order_type = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TYPE);
+            String order_payment_method = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD);
+            String customer_name = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME);
+            String tax = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TAX);
+            String discount = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DISCOUNT);
             values = values4;
             try {
-                values.put(str8, str2);
+                values.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, paramString);
                 str2 = order_date;
-                values.put(str7, str2);
-                values.put(str6, order_time);
-                values.put(str5, order_type);
+                values.put(DatabaseOpenHelper.ORDER_LIST_DATE, order_date);
+                values.put(DatabaseOpenHelper.ORDER_LIST_TIME, order_time);
+                values.put(DatabaseOpenHelper.ORDER_LIST_TYPE, order_type);
                 str5 = order_payment_method;
-                values.put(str15, str5);
-                values.put(str14, customer_name);
-                values.put(str12, tax);
-                values.put(str10, discount);
-                values.put(str4, str3);
+                values.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, order_payment_method);
+                values.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, customer_name);
+                values.put(DatabaseOpenHelper.ORDER_LIST_TAX, tax);
+                values.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, discount);
+                values.put(DatabaseOpenHelper.ORDER_LIST_STATUS, "Pending");
                 values2 = str2;
                 databaseAccess.database.insert("order_list", null, values);
                 databaseAccess.database.delete("product_cart", null, null);
