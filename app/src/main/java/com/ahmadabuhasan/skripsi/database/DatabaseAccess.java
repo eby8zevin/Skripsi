@@ -779,70 +779,78 @@ public class DatabaseAccess {
     // ProductCart
     public void insertOrder(String paramString, JSONObject paramJSONObject) {
 
-        String customer_name;
-        ContentValues values;
-        String values2;
+        DatabaseAccess databaseAccess = this;
+
         JSONException e;
-        JSONArray result;
-        int i;
-        JSONObject jo;
-        ContentValues contentValues;
+        JSONArray result; 
         JSONArray jSONArray;
+        JSONObject jo;
+        JSONObject jSONObject = obj;
+        
+        int i;
         int i2;
         int updated_stock;
-        ContentValues contentValues2;
-        ContentValues values22;
-        ContentValues contentValues3;
-        ContentValues values3;
-        String str;
-        ContentValues values23;
-        DatabaseAccess databaseAccess = this;
-        String str2 = order_id;
-        JSONObject jSONObject = obj;
-        String str3 = Constant.PENDING;
-        String str4 = Constant.ORDER_STATUS;
-        String str5 = Constant.PRODUCT_ORDER_DATE;
-        String str6 = Constant.PRODUCT_IMAGE;
-        String str7 = Constant.PRODUCT_PRICE;
-        String str8 = Constant.INVOICE_ID;
-        String str9 = Constant.PRODUCT_QTY;
-        String str10 = Constant.DISCOUNT;
-        String str11 = Constant.PRODUCT_WEIGHT;
-        String str12 = Constant.TAX;
-        String str13 = Constant.PRODUCT_NAME;
-        String str14 = Constant.CUSTOMER_NAME;
-        String str15 = Constant.ORDER_PAYMENT_METHOD;
+
+        String str3 = "Pending";
+        String str4 = DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS;
+        String str5 = DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE;
+        String str6 = DatabaseOpenHelper.Constant.PRODUCT_IMAGE;
+        String str7 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE;
+        String str8 = DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID;
+        String str9 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY;
+        String str11 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT;
+        String str13 = DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME;
+        DatabaseOpenHelper.
+        String str10 = DatabaseOpenHelper.ORDER_LIST_DISCOUNT;  
+        String str12 = DatabaseOpenHelper.ORDER_LIST_TAX;
+        String str14 = DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME;
+        String str15 = DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD;
         JSONArray jSONArray2 = str5;
-        str5 = Constant.ORDER_TYPE;
+        str5 = DatabaseOpenHelper.ORDER_LIST_TYPE;
         ContentValues contentValues4 = str6;
-        str6 = Constant.ORDER_TIME;
+        str6 = DatabaseOpenHelper.ORDER_LIST_TIME;
         String str16 = str7;
-        str7 = Constant.ORDER_DATE;
+        str7 = DatabaseOpenHelper.ORDER_LIST_DATE;
+        
+        ContentValues values;
+        ContentValues values3;
         ContentValues values4 = new ContentValues();
+        ContentValues values22;
+        ContentValues values23;
         ContentValues values24 = new ContentValues();
         ContentValues values32 = new ContentValues();
+        
+        ContentValues contentValues;
+        ContentValues contentValues2;
+        ContentValues contentValues3;
+        
+        String customer_name;
+        String values2;
+        String str;
+        String str2 = paramString; //order_id;
         String str17 = str9;
+        
         try {
-            String order_date = jSONObject.getString(str7);
-            String order_time = jSONObject.getString(str6);
-            String order_type = jSONObject.getString(str5);
-            String order_payment_method = jSONObject.getString(str15);
-            customer_name = jSONObject.getString(str14);
-            String tax = jSONObject.getString(str12);
-            String discount = jSONObject.getString(str10);
+            String order_date = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DATE);
+            String order_time = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TIME);
+            String order_type = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TYPE);
+            String order_payment_method = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD);
+            String customer_name = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME);
+            String tax = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TAX);
+            String discount = jSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DISCOUNT);
             values = values4;
             try {
-                values.put(str8, str2);
+                values.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, paramString);
                 str2 = order_date;
-                values.put(str7, str2);
-                values.put(str6, order_time);
-                values.put(str5, order_type);
+                values.put(DatabaseOpenHelper.ORDER_LIST_DATE, order_date);
+                values.put(DatabaseOpenHelper.ORDER_LIST_TIME, order_time);
+                values.put(DatabaseOpenHelper.ORDER_LIST_TYPE, order_type);
                 str5 = order_payment_method;
-                values.put(str15, str5);
-                values.put(str14, customer_name);
-                values.put(str12, tax);
-                values.put(str10, discount);
-                values.put(str4, str3);
+                values.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, order_payment_method);
+                values.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, customer_name);
+                values.put(DatabaseOpenHelper.ORDER_LIST_TAX, tax);
+                values.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, discount);
+                values.put(DatabaseOpenHelper.ORDER_LIST_STATUS, str3);
                 values2 = str2;
                 databaseAccess.database.insert("order_list", null, values);
                 databaseAccess.database.delete("product_cart", null, null);
