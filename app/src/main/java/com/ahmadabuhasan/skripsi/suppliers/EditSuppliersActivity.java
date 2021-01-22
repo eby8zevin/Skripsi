@@ -3,6 +3,7 @@ package com.ahmadabuhasan.skripsi.suppliers;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.internal.view.SupportMenu;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,10 +16,13 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 //import com.itextpdf.text.io.PagedChannelRandomAccessSource;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 16/01/2021
+ * Created by Ahmad Abu Hasan on 22/01/2021
  */
 
 public class EditSuppliersActivity extends AppCompatActivity {
@@ -35,6 +39,10 @@ public class EditSuppliersActivity extends AppCompatActivity {
 
     TextView textView_Edit;
     TextView textView_Update;
+
+    Calendar calendar;
+    SimpleDateFormat simpleDateFormat;
+    private String datetime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,8 +126,13 @@ public class EditSuppliersActivity extends AppCompatActivity {
         });
 
         this.textView_Update.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                datetime = simpleDateFormat.format(calendar.getTime());
+
                 String suppliers_name = EditSuppliersActivity.this.editText_Name.getText().toString().trim();
                 String suppliers_address = EditSuppliersActivity.this.editText_Address.getText().toString().trim();
                 String suppliers_contact = EditSuppliersActivity.this.editText_Contact.getText().toString().trim();
@@ -128,7 +141,8 @@ public class EditSuppliersActivity extends AppCompatActivity {
                 String suppliers_hp = EditSuppliersActivity.this.editText_Hp.getText().toString().trim();
                 String suppliers_account = EditSuppliersActivity.this.editText_Account.getText().toString().trim();
                 String suppliers_information = EditSuppliersActivity.this.editText_Information.getText().toString().trim();
-                String suppliers_last_update = EditSuppliersActivity.this.editText_LastUpdate.getText().toString().trim();
+                String suppliers_last_update = EditSuppliersActivity.this.datetime;
+                //String suppliers_last_update = EditSuppliersActivity.this.editText_LastUpdate.getText().toString().trim();
 
                 if (suppliers_name.isEmpty()) {
                     EditSuppliersActivity.this.editText_Name.setError(EditSuppliersActivity.this.getString(R.string.enter_suppliers_name));
