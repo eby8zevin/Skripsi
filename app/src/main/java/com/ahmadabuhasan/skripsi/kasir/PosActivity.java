@@ -30,7 +30,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 17/01/2021
+ * Created by Ahmad Abu Hasan on 22/01/2021
  */
 
 public class PosActivity extends AppCompatActivity {
@@ -73,7 +73,7 @@ public class PosActivity extends AppCompatActivity {
         this.imgNoProduct = findViewById(R.id.image_no_product);
         this.textView_NoProducts = findViewById(R.id.tv_no_products);
         this.textView_Reset = findViewById(R.id.tv_reset);
-        recyclerView = findViewById(R.id.data_recyclerview);
+        this.recyclerView = findViewById(R.id.data_recyclerview);
         RecyclerView categoryRecyclerView = findViewById(R.id.category_recyclerview);
 
         final DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
@@ -81,8 +81,8 @@ public class PosActivity extends AppCompatActivity {
         this.imgNoProduct.setVisibility(View.GONE);
         this.textView_NoProducts.setVisibility(View.GONE);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        recyclerView.setHasFixedSize(true);
+        this.recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+        this.recyclerView.setHasFixedSize(true);
 
         if ((getResources().getConfiguration().screenLayout & 15) == 3) {
             this.spanCount = 4;
