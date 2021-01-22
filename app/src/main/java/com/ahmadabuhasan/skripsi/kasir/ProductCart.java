@@ -48,7 +48,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 21/01/2021
+ * Created by Ahmad Abu Hasan on 23/01/2021
  */
 
 public class ProductCart extends AppCompatActivity {
@@ -189,7 +189,30 @@ public class ProductCart extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                /*dialog_et_discount.removeTextChangedListener(this);
+                https://gist.github.com/Manit123001/7d8aac48e4e7e46e5697555cbccc7138
 
+                try {
+                    String originalString = s.toString();
+
+                    Long longval;
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replaceAll(",", "");
+                    }
+                    longval = Long.parseLong(originalString);
+
+                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+                    formatter.applyPattern("#,###,###,###");
+                    String formattedString = formatter.format(longval);
+
+                    //setting text after format to EditText
+                    dialog_et_discount.setText(formattedString);
+                    dialog_et_discount.setSelection(dialog_et_discount.getText().length());
+                } catch (NumberFormatException nfe) {
+                    nfe.printStackTrace();
+                }
+
+                dialog_et_discount.addTextChangedListener(this);*/
             }
         });
 
