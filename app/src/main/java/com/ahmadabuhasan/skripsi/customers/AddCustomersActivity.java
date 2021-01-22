@@ -2,6 +2,7 @@ package com.ahmadabuhasan.skripsi.customers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -26,11 +27,13 @@ import com.obsez.android.lib.filechooser.ChooserDialog;
 //import com.itextpdf.text.io.PagedChannelRandomAccessSource;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 16/01/2021
+ * Created by Ahmad Abu Hasan on 22/01/2021
  */
 
 public class AddCustomersActivity extends AppCompatActivity {
@@ -44,9 +47,12 @@ public class AddCustomersActivity extends AppCompatActivity {
     EditText editText_LastUpdate;
 
     ProgressDialog loading;
-
     ImageView imageView_Copy;
     TextView textView_AddCustomer;
+
+    Calendar calendar;
+    SimpleDateFormat simpleDateFormat;
+    private String datetime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,15 +82,21 @@ public class AddCustomersActivity extends AppCompatActivity {
         });
 
         this.textView_AddCustomer.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                datetime = simpleDateFormat.format(calendar.getTime());
+
                 String customer_name = AddCustomersActivity.this.editText_CustomerName.getText().toString().trim();
                 String customer_address = AddCustomersActivity.this.editText_Address.getText().toString().trim();
                 String customer_hp = AddCustomersActivity.this.editText_Hp.getText().toString().trim();
                 String customer_wa = AddCustomersActivity.this.editText_Wa.getText().toString().trim();
                 String customer_account = AddCustomersActivity.this.editText_Account.getText().toString().trim();
                 String customer_information = AddCustomersActivity.this.editText_Information.getText().toString().trim();
-                String customer_last_update = AddCustomersActivity.this.editText_LastUpdate.getText().toString().trim();
+                String customer_last_update = AddCustomersActivity.this.datetime;
+                //String customer_last_update = AddCustomersActivity.this.editText_LastUpdate.getText().toString().trim();
 
                 if (customer_name.isEmpty()) {
                     AddCustomersActivity.this.editText_CustomerName.setError(AddCustomersActivity.this.getString(R.string.enter_customer_name));
