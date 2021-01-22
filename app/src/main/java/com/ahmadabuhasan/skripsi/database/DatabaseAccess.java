@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 21/01/2021
+ * Created by Ahmad Abu Hasan on 22/01/2021
  */
 
 public class DatabaseAccess {
@@ -131,7 +131,7 @@ public class DatabaseAccess {
     // AddProductActivity + CategoriesActivity + PosActivity
     public ArrayList<HashMap<String, String>> getProductCategory() {
         ArrayList<HashMap<String, String>> product_category = new ArrayList<>();
-        Cursor cursor = this.database.rawQuery("SELECT * FROM product_category ORDER BY category_id DESC", null);
+        Cursor cursor = this.database.rawQuery("SELECT * FROM product_category ORDER BY category_id DESC", (String[]) null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -776,356 +776,125 @@ public class DatabaseAccess {
     }
 
     // ProductCart
-    /*   public void insertOrder(String paramString, JSONObject paramJSONObject) {
-
-        JSONException jsonException;
-        JSONArray jsonArray;
-        JSONObject jsonObject;
-
-        ContentValues contentValues = new ContentValues();
-        ContentValues contentValues1 = new ContentValues();
-        ContentValues contentValues2 = new ContentValues();
-
+    public void insertOrder(String order_id, JSONObject obj) {
+        ContentValues values;
+        JSONException e;
+        JSONArray result;
+        int i;
+        String product_order_date;
+        String product_id;
+        int updated_stock;
+        JSONException e2;
+        String str = DatabaseOpenHelper.PENDING;
+        String str2 = DatabaseOpenHelper.ORDER_STATUS;
+        String str3 = DatabaseOpenHelper.PRODUCT_ORDER_DATE;
+        String str4 = DatabaseOpenHelper.PRODUCT_IMAGE;
+        String str5 = DatabaseOpenHelper.PRODUCT_PRICE;
+        ContentValues values2 = new ContentValues();
+        ContentValues values22 = new ContentValues();
+        ContentValues values3 = new ContentValues();
+        String str6 = DatabaseOpenHelper.PRODUCT_QTY;
         try {
-            String order_date = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DATE);
-            String order_time = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TIME);
-            String order_type = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TYPE);
-            String order_payment_method = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD);
-            String customer_name = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME);
-            String tax = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TAX);
-            String discount = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DISCOUNT);
-
-            //ContentValues contentValues = new ContentValues();
+            String order_date = obj.getString(DatabaseOpenHelper.ORDER_DATE);
+            String order_time = obj.getString(DatabaseOpenHelper.ORDER_TIME);
+            String order_type = obj.getString(DatabaseOpenHelper.ORDER_TYPE);
+            String order_payment_method = obj.getString(DatabaseOpenHelper.ORDER_PAYMENT_METHOD);
+            String customer_name = obj.getString(DatabaseOpenHelper.CUSTOMER_NAME);
+            String tax = obj.getString(DatabaseOpenHelper.TAX);
+            String discount = obj.getString(DatabaseOpenHelper.DISCOUNT);
+            values = values2;
             try {
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, paramString);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_DATE, order_date);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TIME, order_time);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TYPE, order_type);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, order_payment_method);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, customer_name);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TAX, tax);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, discount);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_STATUS, "Pending");
-
-                this.database.insert("order_list", null, contentValues);
+                values.put(DatabaseOpenHelper.INVOICE_ID, order_id);
+                values.put(DatabaseOpenHelper.ORDER_DATE, order_date);
+                values.put(DatabaseOpenHelper.ORDER_TIME, order_time);
+                values.put(DatabaseOpenHelper.ORDER_TYPE, order_type);
+                values.put(DatabaseOpenHelper.ORDER_PAYMENT_METHOD, order_payment_method);
+                values.put(DatabaseOpenHelper.CUSTOMER_NAME, customer_name);
+                values.put(DatabaseOpenHelper.TAX, tax);
+                values.put(DatabaseOpenHelper.DISCOUNT, discount);
+                values.put(str2, str);
+                this.database.insert("order_list", null, values);
                 this.database.delete("product_cart", null, null);
-            } catch (JSONException jsonException1) {
-                jsonException = jsonException1;
-                jsonException.printStackTrace();
-                jsonArray = paramJSONObject.getJSONArray("lines");
-                int i = 0;
-                while (i < jsonArray.length()) {
-                    jsonObject = jsonArray.getJSONObject(i);
-                    String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
-                    String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
-                    String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
-                    String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
-                    String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
-
-                    jsonArray = new JSONArray();
-                    try {
-                        jsonArray = new JSONArray();
-                        String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
-                        String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                        int i1 = 0;
-                        int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
-
-                        //ContentValues contentValues1 = new ContentValues();
-                        try {
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
-
-                            //ContentValues contentValues2 = new ContentValues();
-                            try {
-                                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
-                                this.database.insert("order_details", null, contentValues1);
-                                contentValues1 = new ContentValues();
-                                try {
-                                    this.database.update("products", contentValues2, "product_id=?", new String[]{product_id});
-                                    i = i1 + 1;
-                                    jsonObject = paramJSONObject;
-                                    jsonArray = new JSONArray();
-                                    contentValues2 = new ContentValues();
-                                } catch (JSONException jsonException2) {
-                                    jsonException = jsonException2;
-                                }
-                            } catch (JSONException jsonException3) {
-                                jsonException = jsonException3;
-                            }
-                        } catch (JSONException jsonException4) {
-                            jsonException = jsonException4;
-                        }
-                    } catch (JSONException jsonException5) {
-                        jsonException = jsonException5;
-                    }
+            } catch (JSONException e3) {
+                e2 = e3;
+            }
+        } catch (JSONException e4) {
+            e2 = e4;
+            values = values2;
+            e2.printStackTrace();
+            result = obj.getJSONArray("lines");
+            i = 0;
+            while (i < result.length()) {
+            }
+            this.database.close();
+        }
+        try {
+            result = obj.getJSONArray("lines");
+            i = 0;
+            while (i < result.length()) {
+                JSONObject jo = result.getJSONObject(i);
+                String product_name = jo.getString(DatabaseOpenHelper.PRODUCT_NAME);
+                String product_weight = jo.getString(DatabaseOpenHelper.PRODUCT_WEIGHT);
+                String product_qty = jo.getString(str6);
+                String product_price = jo.getString(str5);
+                String product_image = jo.getString(str4);
+                try {
+                    product_order_date = jo.getString(str3);
+                    product_id = jo.getString(DatabaseOpenHelper.PRODUCT_ID);
+                    updated_stock = Integer.parseInt(jo.getString("stock")) - Integer.parseInt(product_qty);
+                } catch (JSONException e5) {
+                    e = e5;
+                    e.printStackTrace();
+                    this.database.close();
                 }
-                database.close();
-            }
-        } catch (JSONException jsonException6) {
-            jsonException = jsonException6;
-            jsonException.printStackTrace();
-
-            jsonArray = paramJSONObject.getJSONArray("lines");
-            int i = 0;
-            while (i < jsonArray.length()) {
-                jsonObject = jsonArray.getJSONObject(i);
-                String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
-                String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
-                String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
-                String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
-                String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
-
-                String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
-                int i1 = i;
-                String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
-
-                //ContentValues contentValues1 = new ContentValues();
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
-
-                //ContentValues contentValues2 = new ContentValues();
-                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
-                database.insert("order_details", null, contentValues1);
-                database.update("products", contentValues2, "product_id=?", new String[]{product_id});
-                i = i1 + 1;
-                jsonObject = paramJSONObject;
-            }
-            database.close();
-        }
-        try {
-            jsonObject = new JSONObject();
-            jsonArray = paramJSONObject.getJSONArray("lines");
-            int i = 0;
-            while (i < jsonArray.length()) {
-                jsonObject = jsonArray.getJSONObject(i);
-                String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
-                String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
-                String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
-                String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
-                String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
-
-                String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
-                int i1 = i;
-                String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
-
-                //ContentValues contentValues1 = new ContentValues();
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
-
-                //ContentValues contentValues2 = new ContentValues();
-                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
-                database.insert("order_details", null, contentValues1);
-                database.update("products", contentValues2, "product_id=?", new String[]{product_id});
-                i = i1 + 1;
-                jsonObject = paramJSONObject;
-                jsonArray = new JSONArray();
-                contentValues1 = new ContentValues();
-                contentValues2 = new ContentValues();
-            }
-            jsonArray = new JSONArray();
-            contentValues1 = new ContentValues();
-            contentValues2 = new ContentValues();
-            int i2 = i;
-        } catch (JSONException jsonException7) {
-            jsonException = jsonException7;
-            jsonException.printStackTrace();
-            database.close();
-        }
-        database.close();
-    }*/
-
-    public void insertOrder(String paramString, JSONObject paramJSONObject) {
-
-        JSONException jsonException;
-        JSONArray jsonArray;
-        JSONObject jsonObject;
-
-        ContentValues contentValues = new ContentValues();
-        ContentValues contentValues1 = new ContentValues();
-        ContentValues contentValues2 = new ContentValues();
-
-        try {
-            String order_date = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DATE);
-            String order_time = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TIME);
-            String order_type = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TYPE);
-            String order_payment_method = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD);
-            String customer_name = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME);
-            String tax = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_TAX);
-            String discount = paramJSONObject.getString(DatabaseOpenHelper.ORDER_LIST_DISCOUNT);
-
-            //ContentValues contentValues = new ContentValues();
-            try {
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, paramString);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_DATE, order_date);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TIME, order_time);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TYPE, order_type);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, order_payment_method);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, customer_name);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_TAX, tax);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, discount);
-                contentValues.put(DatabaseOpenHelper.ORDER_LIST_STATUS, "Pending");
-
-                this.database.insert("order_list", null, contentValues);
-                this.database.delete("product_cart", null, null);
-            } catch (JSONException jsonException1) {
-                jsonException = jsonException1;
-                jsonException.printStackTrace();
-                jsonArray = paramJSONObject.getJSONArray("lines");
-                int i = 0;
-                while (i < jsonArray.length()) {
-                    jsonObject = jsonArray.getJSONObject(i);
-                    String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
-                    String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
-                    String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
-                    String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
-                    String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
-
-                    jsonArray = new JSONArray();
-                    try {
-                        jsonArray = new JSONArray();
-                        String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
-                        String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                        int i1 = 0;
-                        int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
-
-                        //ContentValues contentValues1 = new ContentValues();
-                        try {
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
-                            contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
-
-                            //ContentValues contentValues2 = new ContentValues();
-                            try {
-                                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
-                                this.database.insert("order_details", null, contentValues1);
-                                contentValues1 = new ContentValues();
-                                try {
-                                    this.database.update("products", contentValues2, "product_id=?", new String[]{product_id});
-                                    i = i1 + 1;
-                                    jsonObject = paramJSONObject;
-                                    jsonArray = new JSONArray();
-                                    contentValues2 = new ContentValues();
-                                } catch (JSONException jsonException2) {
-                                    jsonException = jsonException2;
-                                }
-                            } catch (JSONException jsonException3) {
-                                jsonException = jsonException3;
-                            }
-                        } catch (JSONException jsonException4) {
-                            jsonException = jsonException4;
-                        }
-                    } catch (JSONException jsonException5) {
-                        jsonException = jsonException5;
-                    }
+                try {
+                    values22.put(DatabaseOpenHelper.INVOICE_ID, order_id);
+                    values22.put(DatabaseOpenHelper.PRODUCT_NAME, product_name);
+                    values22.put(DatabaseOpenHelper.PRODUCT_WEIGHT, product_weight);
+                    values22.put(str6, product_qty);
+                    values22.put(str5, product_price);
+                    values22.put(str4, product_image);
+                    values22.put(str3, product_order_date);
+                    values22.put(str2, str);
+                } catch (JSONException e6) {
+                    e = e6;
+                    e.printStackTrace();
+                    this.database.close();
                 }
-                database.close();
+                try {
+                    values3.put("product_stock", Integer.valueOf(updated_stock));
+                    this.database.insert("order_details", null, values22);
+                    try {
+                        this.database.update("products", values3, "product_id=?", new String[]{product_id});
+                        i++;
+                        str6 = str6;
+                        str5 = str5;
+                        result = result;
+                        str2 = str2;
+                        values22 = values22;
+                        values3 = values3;
+                        str3 = str3;
+                        values = values;
+                        str4 = str4;
+                        str = str;
+                    } catch (JSONException e7) {
+                        e = e7;
+                        e.printStackTrace();
+                        this.database.close();
+                    }
+                } catch (JSONException e8) {
+                    e = e8;
+                    e.printStackTrace();
+                    this.database.close();
+                }
             }
-        } catch (JSONException jsonException6) {
-            jsonException = jsonException6;
-            jsonException.printStackTrace();
-
-            jsonArray = paramJSONObject.getJSONArray("lines");
-            int i = 0;
-            while (i < jsonArray.length()) {
-                jsonObject = jsonArray.getJSONObject(i);
-                String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
-                String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
-                String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
-                String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
-                String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
-
-                String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
-                int i1 = i;
-                String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
-
-                //ContentValues contentValues1 = new ContentValues();
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
-
-                //ContentValues contentValues2 = new ContentValues();
-                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
-                database.insert("order_details", null, contentValues1);
-                database.update("products", contentValues2, "product_id=?", new String[]{product_id});
-                i = i1 + 1;
-                jsonObject = paramJSONObject;
-            }
-            database.close();
+        } catch (JSONException e9) {
+            e = e9;
+            e.printStackTrace();
+            this.database.close();
         }
-        try {
-            jsonObject = new JSONObject();
-            jsonArray = paramJSONObject.getJSONArray("lines");
-            int i = 0;
-            while (i < jsonArray.length()) {
-                jsonObject = jsonArray.getJSONObject(i);
-                String product_name = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME);
-                String product_weight = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT);
-                String product_qty = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
-                String product_price = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
-                String product_order_date = jsonObject.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
-
-                String product_id = jsonObject.getString(DatabaseOpenHelper.PRODUCT_ID);
-                int i1 = i;
-                String stock = jsonObject.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK);
-                int update_stock = Integer.parseInt(stock) - Integer.parseInt(product_qty);
-
-                //ContentValues contentValues1 = new ContentValues();
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_INVOICE_ID, paramString);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, product_name);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, product_weight);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, product_qty);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, product_price);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
-                contentValues1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, "Pending");
-
-                //ContentValues contentValues2 = new ContentValues();
-                contentValues2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(update_stock));
-                database.insert("order_details", null, contentValues1);
-                database.update("products", contentValues2, "product_id=?", new String[]{product_id});
-                i = i1 + 1;
-                jsonObject = paramJSONObject;
-                jsonArray = new JSONArray();
-                contentValues1 = new ContentValues();
-                contentValues2 = new ContentValues();
-            }
-            jsonArray = new JSONArray();
-            contentValues1 = new ContentValues();
-            contentValues2 = new ContentValues();
-            int i2 = i;
-        } catch (JSONException jsonException7) {
-            jsonException = jsonException7;
-            jsonException.printStackTrace();
-            database.close();
-        }
-        database.close();
+        this.database.close();
     }
-
 
 
 }
