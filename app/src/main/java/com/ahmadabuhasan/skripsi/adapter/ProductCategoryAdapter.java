@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /*
- * Created by Ahmad Abu Hasan on 17/01/2021
+ * Created by Ahmad Abu Hasan on 22/01/2021
  */
 
 public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategoryAdapter.MyViewHolder> {
@@ -54,7 +54,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
         final String category_id = this.categoryData.get(position).get(DatabaseOpenHelper.CATEGORY_ID);
         holder.textView_CategoryName.setText(this.categoryData.get(position).get(DatabaseOpenHelper.CATEGORY_NAME));
 
-        holder.textView_CategoryName.setOnClickListener(new View.OnClickListener() {
+        holder.cardCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ProductCategoryAdapter.this.mediaPlayer.start();
