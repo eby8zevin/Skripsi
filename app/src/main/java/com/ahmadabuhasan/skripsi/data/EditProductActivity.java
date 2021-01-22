@@ -27,14 +27,16 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 //import com.itextpdf.text.io.PagedChannelRandomAccessSource;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 22/01/2021
  */
 
 public class EditProductActivity extends AppCompatActivity {
@@ -68,9 +70,12 @@ public class EditProductActivity extends AppCompatActivity {
     EditText editText_Supplier;
 
     ImageView imageView_ScanCode;
-
     TextView textView_Edit_Product;
     TextView textView_Update_Product;
+
+    Calendar calendar;
+    SimpleDateFormat simpleDateFormat;
+    private String datetime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -398,8 +403,13 @@ public class EditProductActivity extends AppCompatActivity {
         });
 
         this.textView_Update_Product.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                datetime = simpleDateFormat.format(calendar.getTime());
+
                 String product_name = EditProductActivity.this.editText_Name.getText().toString();
                 String product_code = EditProductActivity.editText_Code.getText().toString();
                 String product_category_id = EditProductActivity.this.selectedCategoryID;
@@ -410,7 +420,8 @@ public class EditProductActivity extends AppCompatActivity {
                 String product_disc_qty = EditProductActivity.this.editText_Disc_Qty.getText().toString();
                 String product_weight = EditProductActivity.this.editText_Weight.getText().toString();
                 String product_weight_unit_id = EditProductActivity.this.selectedWeightUnitID;
-                String product_last_update = EditProductActivity.this.editText_Last_Update.getText().toString();
+                String product_last_update = EditProductActivity.this.datetime;
+                //String product_last_update = EditProductActivity.this.editText_Last_Update.getText().toString();
                 String product_information = EditProductActivity.this.editText_Information.getText().toString();
                 String product_supplier_id = EditProductActivity.this.selectedSupplierID;
 
