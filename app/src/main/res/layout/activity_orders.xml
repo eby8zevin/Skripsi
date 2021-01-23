@@ -1,9 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".print.OrdersActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/et_search_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_border"
+        android:drawableEnd="@drawable/ic_search"
+        android:ems="10"
+        android:fontFamily="@font/sailec_regular"
+        android:hint="@string/search_here"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:padding="10dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="?android:attr/selectableItemBackground" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables,UselessParent">
+
+                <ImageView
+                    android:id="@+id/image_no_product"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="50dp"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/txt_no_products"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sailec_regular"
+                    android:gravity="center"
+                    android:text="@string/no_order_found"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
