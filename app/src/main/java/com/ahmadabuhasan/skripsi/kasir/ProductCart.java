@@ -25,11 +25,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.adapter.CartAdapter;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
+import com.ahmadabuhasan.skripsi.print.OrdersActivity;
 import com.github.mikephil.charting.utils.Utils;
 
 import org.json.JSONArray;
@@ -488,7 +488,7 @@ public class ProductCart extends AppCompatActivity {
         databaseAccess.open();
         databaseAccess.insertOrder(timeStamp, obj);
         Toasty.success(this, (int) R.string.order_done_successful, Toasty.LENGTH_SHORT).show();
-        startActivity(new Intent(this, DashboardActivity.class)); //order_activity
+        startActivity(new Intent(this, OrdersActivity.class));
         finish();
     }
 
