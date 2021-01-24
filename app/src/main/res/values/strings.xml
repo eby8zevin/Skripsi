@@ -121,6 +121,82 @@
     <string name="camera_permission">Camera Permission Required</string>
     <!--    Data-->
 
+    <!--    Print-->
+    <string name="no_order_found">No Order Found</string>
+    <string name="order_status">Order Status</string>
+    <string name="order_history">Order History</string>
+    <string name="order_id">Order ID:</string>
+    <string name="payment_method">Payment Method:</string>
+    <string name="order_type">Order Type:</string>
+    <string name="date">Date:</string>
+    <string name="change_order_status">Change Order Status</string>
+    <string name="please_change_order_status_to_complete_or_cancel">Please change order status to Complete or Cancel</string>
+    <string name="order_completed">Order Completed</string>
+    <string name="cancel_order">Cancel Order</string>
+    <string name="order_updated">Order Updated</string>
+
+    <string name="generate_pdf_receipt">PDF Receipt</string>
+    <string name="print_thermal">Print Receipt Via Thermal Printer</string>
+    <string name="order_details">Order Details</string>
+
+    <string name="qty">Qty</string>
+    <string name="total_cost">Total Cost</string>
+    <string name="quantity">Quantity:</string>
+    <string name="weight_order_details">Weight:</string>
+    <!--    Print-->
+
+    <!--    Shop-->
+    <string name="action_settings">Settings</string>
+    <string name="shop_information">Shop Information</string>
+    <string name="categories">Categories</string>
+    <string name="payment_methods">Payment Methods</string>
+    <string name="data_backup">Data Backup</string>
+
+    <string name="shop_name">Shop Name</string>
+    <string name="shop_contact_number">Shop Contact Number</string>
+    <string name="shop_email">Shop Email</string>
+    <string name="shop_address">Shop Address</string>
+    <string name="currency_symbol">Currency Symbol</string>
+    <string name="shop_currency">Shop Currency</string>
+    <string name="tax_in_percentage">Tax in percentage (%)</string>
+    <string name="tax">Tax</string>
+    <string name="edit">Edit</string>
+    <string name="update_information">Update Information</string>
+
+    <string name="shop_name_cannot_be_empty">Shop name can\'t be empty</string>
+    <string name="shop_contact_cannot_be_empty">Shop contact can\'t be empty</string>
+    <string name="enter_valid_email">Enter Valid Email</string>
+    <string name="shop_address_cannot_be_empty">Shop address can\'t be empty</string>
+    <string name="shop_currency_cannot_be_empty">Shop currency can\'t be empty</string>
+    <string name="shop_information_updated_successfully">Shop Information Updated Successfully</string>
+    <!--    Shop-->
+
+    <!--    Category-->
+    <string name="no_data_found">No Data Found</string>
+    <string name="category_name">Category Name</string>
+    <string name="want_to_delete_category">Want to delete category ?</string>
+    <string name="category_deleted">Category Deleted</string>
+    <string name="add_category">Add Category</string>
+    <string name="category_added_successfully">Category Added Successfully</string>
+    <string name="update_category">Update Category</string>
+    <string name="edit_category">Edit Category</string>
+    <string name="enter_category_name">Enter Category Name</string>
+    <string name="category_updated">Category Updated</string>
+    <!--    Category-->
+
+    <!--    Weight-->
+    <string name="weight_unit">Weight Unit</string>
+    <string name="want_to_delete_weight_unit">Want to delete weight unit ?</string>
+    <string name="weight_deleted">Weight Unit Deleted</string>
+    <string name="weight_unit_name">Weight Unit Name</string>
+    <string name="add_weight_unit">Add Weight Unit</string>
+    <string name="enter_weight_unit_name">Enter Weight Unit Name</string>
+    <string name="weight_unit_updated">Weight Unit Updated</string>
+    <string name="weight_unit_added_successfully">Weight Unit Added Successfully</string>
+    <string name="update_weight_unit">Update Weight Unit</string>
+    <string name="edit_weight_unit">Edit Weight Unit</string>
+    <!--    Weight-->
+
     <!--    Customers-->
     <string name="all_customer">All Customer</string>
     <string name="no_customer_found">No Customer Found!</string>
@@ -169,80 +245,5 @@
     <string name="update_supplier">Update Supplier</string>
     <string name="edit_suppliers">Edit Suppliers</string>
     <!--    Suppliers-->
-
-    <!--    Shop-->
-    <string name="shop_information">Shop Information</string>
-    <string name="categories">Categories</string>
-    <string name="payment_methods">Payment Methods</string>
-    <string name="data_backup">Data Backup</string>
-    <string name="action_settings">Settings</string>
-    <string name="shop_name">Shop Name</string>
-    <string name="shop_contact_number">Shop Contact Number</string>
-    <string name="shop_email">Shop Email</string>
-    <string name="shop_address">Shop Address</string>
-    <string name="currency_symbol">Currency Symbol</string>
-    <string name="shop_currency">Shop Currency</string>
-    <string name="tax_in_percentage">Tax in percentage (%)</string>
-    <string name="tax">Tax</string>
-    <string name="edit">Edit</string>
-    <string name="update_information">Update Information</string>
-
-    <string name="shop_name_cannot_be_empty">Shop name can\'t be empty</string>
-    <string name="shop_contact_cannot_be_empty">Shop contact can\'t be empty</string>
-    <string name="enter_valid_email">Enter Valid Email</string>
-    <string name="shop_address_cannot_be_empty">Shop address can\'t be empty</string>
-    <string name="shop_currency_cannot_be_empty">Shop currency can\'t be empty</string>
-    <string name="shop_information_updated_successfully">Shop Information Updated Successfully</string>
-    <!--    Shop-->
-
-    <!--    Category-->
-    <string name="no_data_found">No Data Found</string>
-    <string name="category_name">Category Name</string>
-    <string name="want_to_delete_category">Want to delete category ?</string>
-    <string name="category_deleted">Category Deleted</string>
-    <string name="add_category">Add Category</string>
-    <string name="category_added_successfully">Category Added Successfully</string>
-    <string name="update_category">Update Category</string>
-    <string name="edit_category">Edit Category</string>
-    <string name="enter_category_name">Enter Category Name</string>
-    <string name="category_updated">Category Updated</string>
-    <!--    Category-->
-
-    <!--    Weight-->
-    <string name="weight_unit">Weight Unit</string>
-    <string name="want_to_delete_weight_unit">Want to delete weight unit ?</string>
-    <string name="weight_deleted">Weight Unit Deleted</string>
-    <string name="weight_unit_name">Weight Unit Name</string>
-    <string name="add_weight_unit">Add Weight Unit</string>
-    <string name="enter_weight_unit_name">Enter Weight Unit Name</string>
-    <string name="weight_unit_updated">Weight Unit Updated</string>
-    <string name="weight_unit_added_successfully">Weight Unit Added Successfully</string>
-    <string name="update_weight_unit">Update Weight Unit</string>
-    <string name="edit_weight_unit">Edit Weight Unit</string>
-    <!--    Weight-->
-
-    <!--    Print-->
-    <string name="no_order_found">No Order Found</string>
-    <string name="order_status">Order Status</string>
-    <string name="order_history">Order History</string>
-    <string name="order_id">Order ID:</string>
-    <string name="payment_method">Payment Method:</string>
-    <string name="order_type">Order Type:</string>
-    <string name="date">Date:</string>
-    <string name="change_order_status">Change Order Status</string>
-    <string name="please_change_order_status_to_complete_or_cancel">Please change order status to Complete or Cancel</string>
-    <string name="order_completed">Order Completed</string>
-    <string name="cancel_order">Cancel Order</string>
-    <string name="order_updated">Order Updated</string>
-
-    <string name="generate_pdf_receipt">PDF Receipt</string>
-    <string name="print_thermal">Print Receipt Via Thermal Printer</string>
-    <string name="order_details">Order Details</string>
-
-    <string name="qty">Qty</string>
-    <string name="total_cost">Total Cost</string>
-    <string name="quantity">Quantity:</string>
-    <string name="weight_order_details">Weight:</string>
-    <!--    Print-->
 
 </resources>
