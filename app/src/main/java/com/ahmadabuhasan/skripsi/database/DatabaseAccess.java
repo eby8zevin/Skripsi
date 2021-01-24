@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 24/01/2021
+ * Created by Ahmad Abu Hasan on 25/01/2021
  */
 
 public class DatabaseAccess {
@@ -785,6 +785,7 @@ public class DatabaseAccess {
 
         int i;
         int updated_stock;
+        //double updated_stock;
 
         String pending = "Pending";
 
@@ -858,6 +859,7 @@ public class DatabaseAccess {
                 values1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, pending);
 
                 values2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(updated_stock));
+                //values2.put(DatabaseOpenHelper.PRODUCT_STOCK, Double.valueOf(updated_stock));
 
                 this.database.insert("order_details", null, values1);
                 this.database.update("products", values2, "product_id=?", new String[]{product_id});

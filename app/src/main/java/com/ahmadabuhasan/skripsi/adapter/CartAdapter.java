@@ -69,7 +69,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         String weight_unit_id = this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_WEIGHT_UNIT);
         final String price = this.cart_product.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE);
         String qty = this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_QTY);
-        final int getStock = Integer.parseInt(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
+        //final int getStock = Integer.parseInt(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
+        final double getStock = Double.parseDouble(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
 
         databaseAccess.open();
         String weight_unit_name = databaseAccess.getWeightUnitName(weight_unit_id);
