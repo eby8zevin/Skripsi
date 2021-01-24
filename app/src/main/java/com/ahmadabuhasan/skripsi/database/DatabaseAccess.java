@@ -931,5 +931,45 @@ public class DatabaseAccess {
         return orderList;
     }
 
+    // OrderDetailsActivity
+    public ArrayList<HashMap<String, String>> getOrderDetailsList(String order_id) {
+        ArrayList<HashMap<String, String>> orderDetailsList = new ArrayList<>();
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_details WHERE invoice_id='" + order_id + "' ORDER BY order_details_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, cursor.getString(2));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, cursor.getString(3));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, cursor.getString(4));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, cursor.getString(5));
+                orderDetailsList.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return orderDetailsList;
+    }
+
+    // OrderDetailsActivity
+    public double totalOrderPrice(String invoice_id) {
+        double total_price = Utils.DOUBLE_EPSILON;
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_details WHERE invoice_id='" + invoice_id + "'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                double price = Double.parseDouble(cursor.getString(5));
+                double parseInt = (double) Integer.parseInt(cursor.getString(4));
+                Double.isNaN(parseInt);
+                total_price += parseInt * price;
+            } while (cursor.moveToNext());
+        } else {
+            total_price = Utils.DOUBLE_EPSILON;
+        }
+        cursor.close();
+        this.database.close();
+        return total_price;
+    }
+
 
 }
