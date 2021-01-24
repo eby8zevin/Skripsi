@@ -3,6 +3,8 @@
     <style name="Skripsi" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="android:windowContentOverlay">@null</item>
+        <!--        Keyboard Hidden-->
+        <item name="android:windowSoftInputMode">stateHidden</item>
         <item name="colorPrimary">@color/cyan_blue</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/white</item>
