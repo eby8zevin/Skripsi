@@ -224,7 +224,7 @@
     <!--    Print-->
     <string name="no_order_found">No Order Found</string>
     <string name="order_status">Order Status</string>
-
+    <string name="order_history">Order History</string>
     <string name="order_id">Order ID:</string>
     <string name="payment_method">Payment Method:</string>
     <string name="order_type">Order Type:</string>
@@ -235,6 +235,14 @@
     <string name="cancel_order">Cancel Order</string>
     <string name="order_updated">Order Updated</string>
 
-    <string name="order_history">Order History</string>
+    <string name="generate_pdf_receipt">PDF Receipt</string>
+    <string name="print_thermal">Print Receipt Via Thermal Printer</string>
+    <string name="order_details">Order Details</string>
+
+    <string name="qty">Qty</string>
+    <string name="total_cost">Total Cost</string>
+    <string name="quantity">Quantity:</string>
+    <string name="weight_order_details">Weight:</string>
+    <!--    Print-->
 
 </resources>
