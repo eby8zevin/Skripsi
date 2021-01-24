@@ -94,7 +94,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                                     Toasty.success(OrderAdapter.this.context, (int) R.string.order_updated, Toasty.LENGTH_SHORT).show();
                                     holder.textView_OrderStatus.setText("COMPLETED");
                                     holder.textView_OrderStatus.setBackgroundColor(Color.parseColor("#43A047"));
-                                    holder.textView_OrderStatus.setTextColor(-1);
+                                    holder.textView_OrderStatus.setTextColor(Color.WHITE);
                                     holder.imageView_Status.setVisibility(View.GONE);
                                 } else {
                                     Toast.makeText(OrderAdapter.this.context, (int) R.string.failed, Toast.LENGTH_SHORT).show();
@@ -110,7 +110,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                             Toasty.error(OrderAdapter.this.context, (int) R.string.order_updated, Toasty.LENGTH_SHORT).show();
                             holder.textView_OrderStatus.setText("CANCEL");
                             holder.textView_OrderStatus.setBackgroundColor(Color.parseColor("#E53935"));
-                            holder.textView_OrderStatus.setTextColor(-1);
+                            holder.textView_OrderStatus.setTextColor(Color.WHITE);
                             holder.imageView_Status.setVisibility(View.GONE);
                         } else {
                             Toast.makeText(OrderAdapter.this.context, (int) R.string.failed, Toast.LENGTH_SHORT).show();
