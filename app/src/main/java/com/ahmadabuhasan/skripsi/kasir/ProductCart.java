@@ -48,7 +48,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 23/01/2021
+ * Created by Ahmad Abu Hasan on 24/01/2021
  */
 
 public class ProductCart extends AppCompatActivity {
@@ -415,9 +415,12 @@ public class ProductCart extends AppCompatActivity {
                 Toasty.error(this, (int) R.string.no_product_found, Toasty.LENGTH_SHORT).show();
                 return;
             }
-            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+            /*String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
             String currentTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date());
-            String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();
+            String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();*/
+            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
+            String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(new Date());
+            String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date());
             Log.d("Time", timeStamp);
             JSONObject obj = new JSONObject();
             try {
@@ -483,7 +486,8 @@ public class ProductCart extends AppCompatActivity {
     }
 
     private void saveOrderInOfflineDb(JSONObject obj) {
-        String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();
+        /* String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();*/
+        String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date());
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         databaseAccess.insertOrder(timeStamp, obj);
