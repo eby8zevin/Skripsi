@@ -54,13 +54,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
         holder.textView_CustomerName.setText(this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME));
         TextView textView = holder.textView_OrderId;
-        textView.setText(this.context.getString(R.string.order_id) + invoice_id);
+        textView.setText(this.context.getString(R.string.order_id) + " " + invoice_id);
 
         TextView textView1 = holder.textView_PaymentMethod;
-        textView1.setText(this.context.getString(R.string.payment_method) + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD));
+        textView1.setText(this.context.getString(R.string.payment_method) + " " + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD));
 
         TextView textView2 = holder.textView_OrderType;
-        textView2.setText(this.context.getString(R.string.order_type) + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_TYPE));
+        textView2.setText(this.context.getString(R.string.order_type) + " " + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_TYPE));
 
         TextView textView3 = holder.textView_Date;
         textView3.setText(this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_TIME) + " " + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_DATE));
