@@ -194,7 +194,6 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_print"
                 android:layout_width="wrap_content"
