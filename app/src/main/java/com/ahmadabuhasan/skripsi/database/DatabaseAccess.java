@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 22/01/2021
+ * Created by Ahmad Abu Hasan on 24/01/2021
  */
 
 public class DatabaseAccess {
@@ -871,7 +871,65 @@ public class DatabaseAccess {
         this.database.close();
     }
 
-    //
-    // Todo...
+    // OrderAdapter
+    public boolean updateOrder(String invoiceId, String orderStatus) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, orderStatus);
+        contentValues.put(DatabaseOpenHelper.ORDER_LIST_STATUS, orderStatus);
+        this.database.update("order_details", contentValues, "invoice_id=?", new String[]{invoiceId});
+        long l = this.database.update("order_list", contentValues, "invoice_id=?", new String[]{invoiceId});
+        this.database.close();
+        return (l == 1L);
+    }
+
+    // OrdersActivity
+    public ArrayList<HashMap<String, String>> getOrderList() {
+        ArrayList<HashMap<String, String>> orderList = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM order_list ORDER BY order_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, cursor.getString(1));
+                map.put(DatabaseOpenHelper.ORDER_LIST_DATE, cursor.getString(2));
+                map.put(DatabaseOpenHelper.ORDER_LIST_TIME, cursor.getString(3));
+                map.put(DatabaseOpenHelper.ORDER_LIST_TYPE, cursor.getString(4));
+                map.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, cursor.getString(5));
+                map.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, cursor.getString(6));
+                map.put(DatabaseOpenHelper.ORDER_LIST_TAX, cursor.getString(7));
+                map.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, cursor.getString(8));
+                map.put(DatabaseOpenHelper.ORDER_LIST_STATUS, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.ORDER_LIST_STATUS)));
+                orderList.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return orderList;
+    }
+
+    // OrdersActivity
+    public ArrayList<HashMap<String, String>> searchOrderList(String s) {
+        ArrayList<HashMap<String, String>> orderList = new ArrayList<>();
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_list WHERE customer_name LIKE '%" + s + "%' OR invoice_id LIKE '%" + s + "%' OR order_date LIKE '%" + s + "%'  OR order_status LIKE '%" + s + "%' ORDER BY order_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.ORDER_LIST_INVOICE_ID, cursor.getString(1));
+                map.put(DatabaseOpenHelper.ORDER_LIST_DATE, cursor.getString(2));
+                map.put(DatabaseOpenHelper.ORDER_LIST_TIME, cursor.getString(3));
+                map.put(DatabaseOpenHelper.ORDER_LIST_TYPE, cursor.getString(4));
+                map.put(DatabaseOpenHelper.ORDER_LIST_PAYMENT_METHOD, cursor.getString(5));
+                map.put(DatabaseOpenHelper.ORDER_LIST_CUSTOMER_NAME, cursor.getString(6));
+                map.put(DatabaseOpenHelper.ORDER_LIST_TAX, cursor.getString(7));
+                map.put(DatabaseOpenHelper.ORDER_LIST_DISCOUNT, cursor.getString(8));
+                map.put(DatabaseOpenHelper.ORDER_LIST_STATUS, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.ORDER_LIST_STATUS)));
+                orderList.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return orderList;
+    }
+
 
 }
