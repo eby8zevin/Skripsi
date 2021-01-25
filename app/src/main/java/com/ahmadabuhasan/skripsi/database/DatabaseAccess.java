@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.github.mikephil.charting.utils.Utils;
 
@@ -782,12 +783,10 @@ public class DatabaseAccess {
         JSONArray jsonArray;
 
         String product_id;
-
+        String pending = "Pending";
         int i;
         int updated_stock;
         //double updated_stock;
-
-        String pending = "Pending";
 
         ContentValues contentValues;
         ContentValues values = new ContentValues();
@@ -827,13 +826,14 @@ public class DatabaseAccess {
             }
             i = 0;
             while (i < jsonArray.length()) {
+                Log.d("insertOrder: ", order_id);
             }
             this.database.close();
         }
         try {
             jsonArray = jsonObject.getJSONArray("lines");
             product_id = "";
-            updated_stock = Integer.valueOf(0);
+            updated_stock = 0;
             i = 0;
             while (i < jsonArray.length()) {
                 JSONObject jo = jsonArray.getJSONObject(i);
@@ -858,7 +858,7 @@ public class DatabaseAccess {
                 values1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, product_order_date);
                 values1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, pending);
 
-                values2.put(DatabaseOpenHelper.PRODUCT_STOCK, Integer.valueOf(updated_stock));
+                values2.put(DatabaseOpenHelper.PRODUCT_STOCK, updated_stock);
                 //values2.put(DatabaseOpenHelper.PRODUCT_STOCK, Double.valueOf(updated_stock));
 
                 this.database.insert("order_details", null, values1);
@@ -960,8 +960,8 @@ public class DatabaseAccess {
         Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_details WHERE invoice_id='" + invoice_id + "'", null);
         if (cursor.moveToFirst()) {
             do {
-                double price = Double.parseDouble(cursor.getString(5));
                 double parseInt = (double) Integer.parseInt(cursor.getString(4));
+                double price = Double.parseDouble(cursor.getString(5));
                 Double.isNaN(parseInt);
                 total_price += parseInt * price;
             } while (cursor.moveToNext());
