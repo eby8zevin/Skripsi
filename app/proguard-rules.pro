@@ -20,4 +20,6 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+# Proguard for SQLite2XL
 -dontwarn org.apache.poi.**
+-keep public class org.apache.poi.** {*;}
