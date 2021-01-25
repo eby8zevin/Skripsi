@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".expense.AddExpenseActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/expense_name" />
+
+            <EditText
+                android:id="@+id/et_expense_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/expense_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/expense_note_if_any" />
+
+            <EditText
+                android:id="@+id/et_expense_note"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="start"
+                android:hint="@string/expense_note"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/expense_amount" />
+
+            <EditText
+                android:id="@+id/et_expense_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/expense_amount"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/expense_date" />
+
+            <EditText
+                android:id="@+id/et_expense_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:focusable="false"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/expense_date"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/expense_time" />
+
+            <EditText
+                android:id="@+id/et_expense_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:focusable="false"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/expense_time"
+                android:importantForAutofill="no"
+                android:inputType="none|number|datetime|time"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_add_expense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/add_expense"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="ObsoleteLayoutParam" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
