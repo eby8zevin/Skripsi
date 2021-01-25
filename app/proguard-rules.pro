@@ -22,6 +22,3 @@
 
 # Proguard for SQLite2XL
 -dontwarn org.apache.poi.**
--keep public class org.apache.poi.** {*;}
--keep class org.sqlite.** { *; }
--keep class org.sqlite.database.** { *; }
