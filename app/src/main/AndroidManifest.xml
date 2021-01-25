@@ -28,6 +28,9 @@
         android:roundIcon="@mipmap/ic_me_round"
         android:supportsRtl="true"
         android:theme="@style/Skripsi">
+        <activity android:name=".expense.EditExpenseActivity" />
+        <activity android:name=".expense.AddExpenseActivity" />
+        <activity android:name=".expense.ExpenseActivity" />
         <activity android:name=".suppliers.EditSuppliersActivity" />
         <activity android:name=".suppliers.AddSuppliersActivity" />
         <activity android:name=".suppliers.SuppliersActivity" />

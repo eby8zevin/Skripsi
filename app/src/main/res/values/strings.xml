@@ -246,4 +246,13 @@
     <string name="edit_suppliers">Edit Suppliers</string>
     <!--    Suppliers-->
 
+    <!--    Expense-->
+    <string name="expense_name">Expense Name</string>
+    <string name="expense_note_if_any">Expense Note (if any)</string>
+    <string name="expense_note">Expense Note</string>
+    <string name="expense_amount">Expense Amount</string>
+    <string name="expense_date">Expense Date</string>
+    <string name="expense_time">Expense Time</string>
+    <string name="add_expense">Add Expense</string>
+
 </resources>
