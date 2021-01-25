@@ -37,7 +37,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 24/01/2021
+ * Created by Ahmad Abu Hasan on 25/01/2021
  */
 
 public class EditProductActivity extends AppCompatActivity {
@@ -409,8 +409,8 @@ public class EditProductActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Locale locale = new Locale("id", "ID");
                 calendar = Calendar.getInstance();
-                //simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy     HH:mm", locale);
+                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                //simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy     HH:mm", locale);
                 datetime = simpleDateFormat.format(calendar.getTime());
 
                 String product_name = EditProductActivity.this.editText_Name.getText().toString();
