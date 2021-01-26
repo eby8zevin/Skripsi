@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
- * Created by Ahmad Abu Hasan on 25/01/2021
+ * Created by Ahmad Abu Hasan on 26/01/2021
  */
 
 public class DatabaseAccess {
@@ -107,7 +107,7 @@ public class DatabaseAccess {
         return product;
     }
 
-    // ProductAdapter
+    // ProductAdapter + PosProductAdapter + CartAdapter + OrderDetailsAdapter + ExpenseAdapter
     public String getCurrency() {
         String currency = "n/a";
         Cursor cursor = this.database.rawQuery("SELECT * FROM shop", null);
@@ -207,8 +207,8 @@ public class DatabaseAccess {
     // EditProductActivity
     public ArrayList<HashMap<String, String>> getProductsInfo(String product_id) {
         ArrayList<HashMap<String, String>> product = new ArrayList<>();
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -237,8 +237,8 @@ public class DatabaseAccess {
     // EditProductActivity
     public String getCategoryName(String category_id) {
         String product_category = "n/a";
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM product_category WHERE category_id=" + category_id + "", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM product_category WHERE category_id=" + category_id + "", null);
         if (cursor.moveToFirst()) {
             do {
                 product_category = cursor.getString(1);
@@ -252,8 +252,8 @@ public class DatabaseAccess {
     // EditProductActivity
     public String getWeightUnitName(String weight_unit_id) {
         String weight_unit_name = "n/a";
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM product_weight WHERE weight_id=" + weight_unit_id + "", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM product_weight WHERE weight_id=" + weight_unit_id + "", null);
         if (cursor.moveToFirst()) {
             do {
                 weight_unit_name = cursor.getString(1);
@@ -267,8 +267,8 @@ public class DatabaseAccess {
     // EditProductActivity
     public String getSupplierName(String suppliers_id) {
         String supplier_name = "n/a";
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM suppliers WHERE supplier_id=" + suppliers_id + "", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM suppliers WHERE supplier_id=" + suppliers_id + "", null);
         if (cursor.moveToFirst()) {
             do {
                 supplier_name = cursor.getString(1);
@@ -342,8 +342,8 @@ public class DatabaseAccess {
     // CategoriesActivity
     public ArrayList<HashMap<String, String>> searchProductCategory(String s) {
         ArrayList<HashMap<String, String>> product_category = new ArrayList<>();
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM product_category WHERE category_name LIKE '%" + s + "%' ORDER BY category_id DESC ", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM product_category WHERE category_name LIKE '%" + s + "%' ORDER BY category_id DESC ", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -388,8 +388,8 @@ public class DatabaseAccess {
     // WeightActivity
     public ArrayList<HashMap<String, String>> searchProductWeight(String s) {
         ArrayList<HashMap<String, String>> product_weight_unit = new ArrayList<>();
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM product_weight WHERE weight_unit LIKE '%" + s + "%' ORDER BY weight_id DESC ", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM product_weight WHERE weight_unit LIKE '%" + s + "%' ORDER BY weight_id DESC ", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -457,8 +457,8 @@ public class DatabaseAccess {
     // CustomersActivity
     public ArrayList<HashMap<String, String>> searchCustomers(String s) {
         ArrayList<HashMap<String, String>> customer = new ArrayList<>();
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM customers WHERE customer_name LIKE '%" + s + "%' ORDER BY customer_id DESC", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM customers WHERE customer_name LIKE '%" + s + "%' ORDER BY customer_id DESC", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -545,8 +545,8 @@ public class DatabaseAccess {
     // SuppliersActivity
     public ArrayList<HashMap<String, String>> searchSuppliers(String s) {
         ArrayList<HashMap<String, String>> customer = new ArrayList<>();
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM suppliers WHERE supplier_name LIKE '%" + s + "%' ORDER BY supplier_id DESC", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM suppliers WHERE supplier_name LIKE '%" + s + "%' ORDER BY supplier_id DESC", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -614,8 +614,8 @@ public class DatabaseAccess {
 
     // PosProductAdapter
     public int addToCart(String product_id, String weight, String weight_unit, String price, int qty, String stock) {
-        SQLiteDatabase sQLiteDatabase = this.database;
-        if (sQLiteDatabase.rawQuery("SELECT * FROM product_cart WHERE product_id='" + product_id + "'", null).getCount() >= 1) {
+        SQLiteDatabase sqLiteDatabase = this.database;
+        if (sqLiteDatabase.rawQuery("SELECT * FROM product_cart WHERE product_id='" + product_id + "'", null).getCount() >= 1) {
             return 2;
         }
         ContentValues values = new ContentValues();
@@ -645,8 +645,8 @@ public class DatabaseAccess {
     // ProductCategoryAdapter
     public ArrayList<HashMap<String, String>> getTabProducts(String category_id) {
         ArrayList<HashMap<String, String>> product = new ArrayList<>();
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM products WHERE product_category = '" + category_id + "' ORDER BY product_id DESC", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM products WHERE product_category = '" + category_id + "' ORDER BY product_id DESC", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -675,8 +675,8 @@ public class DatabaseAccess {
     // CartAdapter
     public String getProductName(String product_id) {
         String product_name = "n/a";
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", (String[]) null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", (String[]) null);
         if (cursor.moveToFirst()) {
             do {
                 product_name = cursor.getString(1);
@@ -911,8 +911,8 @@ public class DatabaseAccess {
     // OrdersActivity
     public ArrayList<HashMap<String, String>> searchOrderList(String s) {
         ArrayList<HashMap<String, String>> orderList = new ArrayList<>();
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_list WHERE customer_name LIKE '%" + s + "%' OR invoice_id LIKE '%" + s + "%' OR order_date LIKE '%" + s + "%'  OR order_status LIKE '%" + s + "%' ORDER BY order_id DESC", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_list WHERE customer_name LIKE '%" + s + "%' OR invoice_id LIKE '%" + s + "%' OR order_date LIKE '%" + s + "%'  OR order_status LIKE '%" + s + "%' ORDER BY order_id DESC", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -936,8 +936,8 @@ public class DatabaseAccess {
     // OrderDetailsActivity
     public ArrayList<HashMap<String, String>> getOrderDetailsList(String order_id) {
         ArrayList<HashMap<String, String>> orderDetailsList = new ArrayList<>();
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_details WHERE invoice_id='" + order_id + "' ORDER BY order_details_id DESC", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_details WHERE invoice_id='" + order_id + "' ORDER BY order_details_id DESC", null);
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> map = new HashMap<>();
@@ -956,8 +956,8 @@ public class DatabaseAccess {
     // OrderDetailsActivity
     public double totalOrderPrice(String invoice_id) {
         double total_price = Utils.DOUBLE_EPSILON;
-        SQLiteDatabase sQLiteDatabase = this.database;
-        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_details WHERE invoice_id='" + invoice_id + "'", null);
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_details WHERE invoice_id='" + invoice_id + "'", null);
         if (cursor.moveToFirst()) {
             do {
                 double parseInt = (double) Integer.parseInt(cursor.getString(4));
@@ -971,6 +971,72 @@ public class DatabaseAccess {
         cursor.close();
         this.database.close();
         return total_price;
+    }
+
+    // ExpenseAdapter
+    public boolean deleteExpense(String expense_id) {
+        long check = (long) this.database.delete("expense", "expense_id=?", new String[]{expense_id});
+        this.database.close();
+        return check == 1;
+    }
+
+    // ExpenseActivity
+    public ArrayList<HashMap<String, String>> getAllExpense() {
+        ArrayList<HashMap<String, String>> expense = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM expense ORDER BY expense_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.EXPENSE_ID, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_ID)));
+                map.put(DatabaseOpenHelper.EXPENSE_NAME, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_NAME)));
+                map.put(DatabaseOpenHelper.EXPENSE_NOTE, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_NOTE)));
+                map.put(DatabaseOpenHelper.EXPENSE_AMOUNT, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_AMOUNT)));
+                map.put(DatabaseOpenHelper.EXPENSE_DATE, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_DATE)));
+                map.put(DatabaseOpenHelper.EXPENSE_TIME, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_TIME)));
+                expense.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return expense;
+    }
+
+    // ExpenseActivity
+    public ArrayList<HashMap<String, String>> searchExpense(String s) {
+        ArrayList<HashMap<String, String>> expense = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM expense WHERE expense_name LIKE '%" + s + "%' OR expense_note LIKE '%" + s + "%' ORDER BY expense_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.EXPENSE_ID, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_ID)));
+                map.put(DatabaseOpenHelper.EXPENSE_NAME, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_NAME)));
+                map.put(DatabaseOpenHelper.EXPENSE_NOTE, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_NOTE)));
+                map.put(DatabaseOpenHelper.EXPENSE_AMOUNT, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_AMOUNT)));
+                map.put(DatabaseOpenHelper.EXPENSE_DATE, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_DATE)));
+                map.put(DatabaseOpenHelper.EXPENSE_TIME, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_TIME)));
+                expense.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return expense;
+    }
+
+    // AddExpenseActivity
+    public boolean addExpense(String expense_name, String expense_amount, String expense_note, String date, String time) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.EXPENSE_NAME, expense_name);
+        values.put(DatabaseOpenHelper.EXPENSE_AMOUNT, expense_amount);
+        values.put(DatabaseOpenHelper.EXPENSE_NOTE, expense_note);
+        values.put(DatabaseOpenHelper.EXPENSE_DATE, date);
+        values.put(DatabaseOpenHelper.EXPENSE_TIME, time);
+        long check = this.database.insert("expense", null, values);
+        this.database.close();
+        if (check == -1) {
+            return false;
+        }
+        return true;
     }
 
 
