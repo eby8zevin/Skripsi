@@ -103,7 +103,6 @@ public class ExpenseActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
