@@ -1039,5 +1039,18 @@ public class DatabaseAccess {
         return true;
     }
 
+    // EditExpenseActivity
+    public boolean updateExpense(String expense_id, String expense_name, String expense_amount, String expense_note, String date, String time) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.EXPENSE_NAME, expense_name);
+        values.put(DatabaseOpenHelper.EXPENSE_AMOUNT, expense_amount);
+        values.put(DatabaseOpenHelper.EXPENSE_NOTE, expense_note);
+        values.put(DatabaseOpenHelper.EXPENSE_DATE, date);
+        values.put(DatabaseOpenHelper.EXPENSE_TIME, time);
+        long check = (long) this.database.update("expense", values, "expense_id=?", new String[]{expense_id});
+        this.database.close();
+        return check != -1;
+    }
+
 
 }
