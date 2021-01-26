@@ -256,5 +256,15 @@
     <string name="add_expense">Add Expense</string>
     <string name="all_expense">All Expense</string>
 
+    <string name="expense_date_time">Date Time</string>
+    <string name="expense_note_space">Note </string>
+    <string name="note">Note:</string>
+    <string name="want_to_delete_expense">Want to Delete Expense ?</string>
+    <string name="expense_deleted">Expense Deleted</string>
+
+    <string name="expense_name_cannot_be_empty">Expense name can\'t be empty</string>
+    <string name="expense_amount_cannot_be_empty">Expense amount can\'t be empty</string>
+    <string name="expense_successfully_added">Expense Successfully Added</string>
+
 
 </resources>
