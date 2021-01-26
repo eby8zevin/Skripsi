@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 21/01/2021
+ * Created by Ahmad Abu Hasan on 26/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -29,6 +29,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     // Table Name
     public static final String TABLE_CUSTOMER = "customers";
+    public static final String TABLE_EXPENSE = "expense";
     public static final String TABLE_ORDER_DETAILS = "order_details";
     public static final String TABLE_ORDER_LIST = "order_list";
     public static final String TABLE_ORDER_TYPE = "order_type";
@@ -49,6 +50,14 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String CUSTOMER_ACCOUNT = "customer_account";
     public static final String CUSTOMER_INFORMATION = "customer_information";
     public static final String CUSTOMER_LAST_UPDATE = "customer_last_update";
+
+    // Column expense
+    public static final String EXPENSE_ID = "expense_id";
+    public static final String EXPENSE_NAME = "expense_name";
+    public static final String EXPENSE_NOTE = "expense_note";
+    public static final String EXPENSE_AMOUNT = "expense_amount";
+    public static final String EXPENSE_DATE = "expense_date";
+    public static final String EXPENSE_TIME = "expense_time";
 
     // Column order_details
     public static final String ORDER_DETAILS_ID = "order_details_id";
@@ -150,6 +159,16 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             + CUSTOMER_ACCOUNT + " TEXT,"
             + CUSTOMER_INFORMATION + " TEXT,"
             + CUSTOMER_LAST_UPDATE + " TEXT"
+            + ")";
+
+    // expense
+    private static final String CREATE_EXPENSE = "CREATE TABLE " + TABLE_EXPENSE +
+            "(" + EXPENSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + EXPENSE_NAME + "TEXT,"
+            + EXPENSE_NOTE + " TEXT,"
+            + EXPENSE_AMOUNT + " TEXT,"
+            + EXPENSE_DATE + " TEXT,"
+            + EXPENSE_TIME + " TEXT"
             + ")";
 
     // order_details
@@ -260,6 +279,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // script sql
         db.execSQL(CREATE_CUSTOMERS);
+        db.execSQL(CREATE_EXPENSE);
         db.execSQL(CREATE_ORDER_DETAILS);
         db.execSQL(CREATE_ORDER_LIST);
         db.execSQL(CREATE_ORDER_TYPE);
@@ -277,6 +297,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXPENSE);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_DETAILS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_LIST);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDER_TYPE);
