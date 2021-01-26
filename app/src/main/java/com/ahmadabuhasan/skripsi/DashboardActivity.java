@@ -19,8 +19,10 @@ import androidx.cardview.widget.CardView;
 
 import com.ahmadabuhasan.skripsi.customers.CustomersActivity;
 import com.ahmadabuhasan.skripsi.data.ProductActivity;
+import com.ahmadabuhasan.skripsi.expense.ExpenseActivity;
 import com.ahmadabuhasan.skripsi.kasir.PosActivity;
 import com.ahmadabuhasan.skripsi.print.OrdersActivity;
+import com.ahmadabuhasan.skripsi.report.ReportActivity;
 import com.ahmadabuhasan.skripsi.settings.SettingsActivity;
 import com.ahmadabuhasan.skripsi.suppliers.SuppliersActivity;
 import com.google.android.gms.ads.AdRequest;
@@ -41,7 +43,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 23/01/2021
+ * Created by Ahmad Abu Hasan on 26/01/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -55,6 +57,8 @@ public class DashboardActivity extends AppCompatActivity {
     CardView cardView_data;
     CardView cardView_print;
     CardView cardView_settings;
+    CardView cardView_expense;
+    CardView cardView_report;
     CardView cardView_customers;
     CardView cardView_suppliers;
 
@@ -71,6 +75,8 @@ public class DashboardActivity extends AppCompatActivity {
         this.cardView_data = findViewById(R.id.card_data);
         this.cardView_print = findViewById(R.id.card_print);
         this.cardView_settings = findViewById(R.id.card_settings);
+        this.cardView_expense = findViewById(R.id.card_expense);
+        this.cardView_report = findViewById(R.id.card_report);
         this.cardView_customers = findViewById(R.id.card_customers);
         this.cardView_suppliers = findViewById(R.id.card_suppliers);
 
@@ -97,6 +103,8 @@ public class DashboardActivity extends AppCompatActivity {
         this.cardView_data.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ProductActivity.class)));
         this.cardView_print.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, OrdersActivity.class)));
         this.cardView_settings.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
+        this.cardView_expense.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ExpenseActivity.class)));
+        this.cardView_report.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ReportActivity.class)));
         this.cardView_customers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, CustomersActivity.class)));
         this.cardView_suppliers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SuppliersActivity.class)));
     }
