@@ -13,6 +13,7 @@ public class AddExpenseActivity extends AppCompatActivity {
     EditText editText_ExpenseAmount;
     EditText editText_Date;
     EditText editText_Time;
+    TextView textView_Add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class AddExpenseActivity extends AppCompatActivity {
         this.editText_ExpenseAmount= findViewById(R.id.et_expense_amount);
         this.editText_Date= findViewById(R.id.et_expense_date);
         this.editText_Time= findViewById(R.id.et_expense_time);
+        this.textView_Add = findViewById(R.id.tv_add_expense);
         
         String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
         String currentTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date());
