@@ -5,6 +5,9 @@
         <item name="android:windowContentOverlay">@null</item>
         <!-- Keyboard Hidden-->
         <item name="android:windowSoftInputMode">stateHidden</item>
+        <!-- expenseDateTimePicker-->
+        <item name="android:datePickerDialogTheme">@style/expenseDatePickerDialogTheme</item>
+        <item name="android:timePickerDialogTheme">@style/expenseTimePickerDialogTheme</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/cyan_blue</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
@@ -23,6 +26,26 @@
         <item name="mrl_rippleColor">#80FFFFFF</item>
         <item name="mrl_rippleHover">true</item>
         <item name="mrl_rippleOverlay">true</item>
+    </style>
+
+    <style name="expenseDatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <!-- button color -->
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:datePickerStyle">@style/expenseDatePickerStyle</item>
+        <!-- header date, month color && calendar text highlight color -->
+        <item name="android:textColorPrimaryInverse">@color/white</item>
+        <!-- header year color -->
+        <item name="android:textColorSecondaryInverse">@color/white</item>
+    </style>
+
+    <style name="expenseTimePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <!-- button color -->
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="expenseDatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <!-- header background color -->
+        <item name="android:headerBackground">@color/colorPrimary</item>
     </style>
 
 </resources>

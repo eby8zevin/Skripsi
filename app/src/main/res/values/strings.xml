@@ -7,9 +7,12 @@
     <string name="pigura">Pigura</string>
     <string name="kasir">Kasir</string>
     <string name="data">Data</string>
-    <string name="customers">Customers</string>
     <string name="print">Print</string>
     <string name="settings">Settings</string>
+    <string name="expense">Expense</string>
+    <string name="report">Report</string>
+    <string name="customers">Customers</string>
+    <string name="suppliers">Suppliers</string>
     <string name="press_once_again_to_exit">Press once again to exit!</string>
     <string name="error">Error</string>
 
@@ -89,7 +92,6 @@
     <string name="product_last_update">Last Update</string>
     <string name="product_information">Information</string>
     <string name="product_supplier">Supplier</string>
-    <string name="suppliers">Suppliers</string>
     <string name="type_something_to_search">Type something to search</string>
     <string name="cancel">Cancel</string>
     <string name="product_name_cannot_be_empty">Product name can\'t be empty!</string>
@@ -197,6 +199,29 @@
     <string name="edit_weight_unit">Edit Weight Unit</string>
     <!--    Weight-->
 
+    <!--    Expense-->
+    <string name="expense_name">Expense Name</string>
+    <string name="expense_note_if_any">Expense Note (if any)</string>
+    <string name="expense_note">Expense Note</string>
+    <string name="expense_amount">Expense Amount</string>
+    <string name="expense_date">Expense Date</string>
+    <string name="expense_time">Expense Time</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="all_expense">All Expense</string>
+
+    <string name="expense_date_time">Date Time</string>
+    <string name="expense_note_space">Note </string>
+    <string name="note">Note:</string>
+    <string name="want_to_delete_expense">Want to Delete Expense ?</string>
+    <string name="expense_deleted">Expense Deleted</string>
+
+    <string name="expense_name_cannot_be_empty">Expense name can\'t be empty</string>
+    <string name="expense_amount_cannot_be_empty">Expense amount can\'t be empty</string>
+    <string name="expense_successfully_added">Expense Successfully Added</string>
+
+    <string name="edit_expense">Edit Expense</string>
+    <!--    Expense-->
+
     <!--    Customers-->
     <string name="all_customer">All Customer</string>
     <string name="no_customer_found">No Customer Found!</string>
@@ -246,25 +271,10 @@
     <string name="edit_suppliers">Edit Suppliers</string>
     <!--    Suppliers-->
 
-    <!--    Expense-->
-    <string name="expense_name">Expense Name</string>
-    <string name="expense_note_if_any">Expense Note (if any)</string>
-    <string name="expense_note">Expense Note</string>
-    <string name="expense_amount">Expense Amount</string>
-    <string name="expense_date">Expense Date</string>
-    <string name="expense_time">Expense Time</string>
-    <string name="add_expense">Add Expense</string>
-    <string name="all_expense">All Expense</string>
-
-    <string name="expense_date_time">Date Time</string>
-    <string name="expense_note_space">Note </string>
-    <string name="note">Note:</string>
-    <string name="want_to_delete_expense">Want to Delete Expense ?</string>
-    <string name="expense_deleted">Expense Deleted</string>
-
-    <string name="expense_name_cannot_be_empty">Expense name can\'t be empty</string>
-    <string name="expense_amount_cannot_be_empty">Expense amount can\'t be empty</string>
-    <string name="expense_successfully_added">Expense Successfully Added</string>
+    <string name="all_sales_report">All Sales Report</string>
+    <string name="all_expense_report">All Expense Report</string>
+    <string name="monthly_sales_graph">Monthly Sales Graph</string>
+    <string name="monthly_expense_graph">Monthly Expense Graph</string>
 
 
 </resources>
