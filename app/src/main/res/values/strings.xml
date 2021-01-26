@@ -254,5 +254,7 @@
     <string name="expense_date">Expense Date</string>
     <string name="expense_time">Expense Time</string>
     <string name="add_expense">Add Expense</string>
+    <string name="all_expense">All Expense</string>
+
 
 </resources>
