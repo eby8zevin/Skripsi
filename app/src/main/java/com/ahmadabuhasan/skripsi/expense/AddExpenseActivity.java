@@ -127,7 +127,8 @@ public class AddExpenseActivity extends AppCompatActivity {
                 if (dayOfMonth < 10) {
                     fd = "0" + dayOfMonth;
                 }
-                AddExpenseActivity.this.date_time = year + "-" + fm + "-" + fd;
+                //AddExpenseActivity.this.date_time = year + "-" + fm + "-" + fd;
+                AddExpenseActivity.this.date_time = fd + "-" + fm + "-" + year;
                 AddExpenseActivity.this.editText_Date.setText(AddExpenseActivity.this.date_time);
             }
         }, this.mYear, this.mMonth, this.mDay).show();
