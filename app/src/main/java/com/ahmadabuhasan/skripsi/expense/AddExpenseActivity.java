@@ -35,4 +35,13 @@ public class AddExpenseActivity extends AppCompatActivity {
         this.editText_Time.setText(currentTime);
         
     }
+    
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() != android.R.id.home) {
+            return super.onOptionsItemSelected(item);
+        }
+        finish();
+        return true;
+    }
+
 }
