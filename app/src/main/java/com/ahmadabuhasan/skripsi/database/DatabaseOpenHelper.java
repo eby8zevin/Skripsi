@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 26/01/2021
+ * Created by Ahmad Abu Hasan on 27/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -164,7 +164,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     // expense
     private static final String CREATE_EXPENSE = "CREATE TABLE " + TABLE_EXPENSE +
             "(" + EXPENSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + EXPENSE_NAME + "TEXT,"
+            + EXPENSE_NAME + " TEXT,"
             + EXPENSE_NOTE + " TEXT,"
             + EXPENSE_AMOUNT + " TEXT,"
             + EXPENSE_DATE + " TEXT,"
