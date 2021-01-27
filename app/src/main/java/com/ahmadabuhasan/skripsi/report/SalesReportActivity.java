@@ -32,7 +32,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 27/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class SalesReportActivity extends AppCompatActivity {
@@ -86,9 +86,9 @@ public class SalesReportActivity extends AppCompatActivity {
             this.textView_NoSales.setVisibility(View.VISIBLE);
             this.textView_TotalPrice.setVisibility(View.GONE);
         } else {
-            SalesReportAdapter salesReportAdapter = new SalesReportAdapter(this, this.orderDetailsList);
-            this.orderDetailsAdapter = salesReportAdapter;
-            this.recyclerView.setAdapter(salesReportAdapter);
+            SalesReportAdapter salesReportAdapter1 = new SalesReportAdapter(this, this.orderDetailsList);
+            this.orderDetailsAdapter = salesReportAdapter1;
+            this.recyclerView.setAdapter(salesReportAdapter1);
         }
 
         databaseAccess.open();
@@ -131,14 +131,14 @@ public class SalesReportActivity extends AppCompatActivity {
             case R.id.menu_daily:
                 getReport(DatabaseOpenHelper.DAILY);
                 return true;
-            case R.id.menu_export_data:
-                folderChooser();
-                return true;
             case R.id.menu_monthly:
                 getReport(DatabaseOpenHelper.MONTHLY);
                 return true;
             case R.id.menu_yearly:
                 getReport(DatabaseOpenHelper.YEARLY);
+                return true;
+            case R.id.menu_export_data:
+                folderChooser();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -160,9 +160,9 @@ public class SalesReportActivity extends AppCompatActivity {
             this.textView_NoSales.setVisibility(View.VISIBLE);
             this.textView_TotalPrice.setVisibility(View.GONE);
         } else {
-            SalesReportAdapter salesReportAdapter = new SalesReportAdapter(this, this.orderDetailsList);
-            this.orderDetailsAdapter = salesReportAdapter;
-            this.recyclerView.setAdapter(salesReportAdapter);
+            SalesReportAdapter salesReportAdapter2 = new SalesReportAdapter(this, this.orderDetailsList);
+            this.orderDetailsAdapter = salesReportAdapter2;
+            this.recyclerView.setAdapter(salesReportAdapter2);
             this.recyclerView.setVisibility(View.VISIBLE);
             this.imageView_NoSales.setVisibility(View.GONE);
             this.textView_NoSales.setVisibility(View.GONE);
