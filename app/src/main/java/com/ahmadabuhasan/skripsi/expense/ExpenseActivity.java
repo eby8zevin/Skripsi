@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.adapter.ExpenseAdapter;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
@@ -25,7 +26,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 26/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class ExpenseActivity extends AppCompatActivity {
@@ -109,6 +110,7 @@ public class ExpenseActivity extends AppCompatActivity {
         if (item.getItemId() != android.R.id.home) {
             return super.onOptionsItemSelected(item);
         }
+        startActivity(new Intent(this, DashboardActivity.class));
         finish();
         return true;
     }
