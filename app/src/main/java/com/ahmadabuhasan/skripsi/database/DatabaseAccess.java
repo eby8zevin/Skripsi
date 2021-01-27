@@ -1234,7 +1234,7 @@ public class DatabaseAccess {
     }
 
     // ExpenseReportActivity
-    public ArrayList<HashMap<String, String>> getExpenseReport(String type) {
+    /*public ArrayList<HashMap<String, String>> getExpenseReport(String type) {
         ArrayList<HashMap<String, String>> orderDetailsList = new ArrayList<>();
         Cursor cursor = null;
         if (type.equals("all")) {
@@ -1247,10 +1247,44 @@ public class DatabaseAccess {
         } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
             String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
             SQLiteDatabase sqLiteDatabase1 = this.database;
-            cursor = sqLiteDatabase1.rawQuery("SELECT * FROM expense WHERE strftime('%m', expense_date) = '" + currentMonth + "' ", null);
+            cursor = sqLiteDatabase1.rawQuery("SELECT * FROM expense WHERE strftime('%m', expense_date)='" + currentMonth + "' ", null);
         } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
             String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%Y', expense_date) = '" + currentYear + "' ", null);
+            cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%Y', expense_date)='" + currentYear + "' ", null);
+        }
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.EXPENSE_ID, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_ID)));
+                map.put(DatabaseOpenHelper.EXPENSE_NAME, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_NAME)));
+                map.put(DatabaseOpenHelper.EXPENSE_NOTE, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_NOTE)));
+                map.put(DatabaseOpenHelper.EXPENSE_AMOUNT, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_AMOUNT)));
+                map.put(DatabaseOpenHelper.EXPENSE_DATE, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_DATE)));
+                map.put(DatabaseOpenHelper.EXPENSE_TIME, cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.EXPENSE_TIME)));
+                orderDetailsList.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return orderDetailsList;
+    }*/
+
+    public ArrayList<HashMap<String, String>> getExpenseReport(String type) {
+        ArrayList<HashMap<String, String>> orderDetailsList = new ArrayList<>();
+        Cursor cursor = null;
+        if (type.equals("all")) {
+            cursor = this.database.rawQuery("SELECT * FROM expense  ORDER BY expense_id DESC", null);
+        } else if (type.equals(DatabaseOpenHelper.DAILY)) {
+            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
+            SQLiteDatabase sQLiteDatabase = this.database;
+            cursor = sQLiteDatabase.rawQuery("SELECT * FROM expense WHERE   expense_date='" + currentDate + "' ORDER BY expense_id DESC", null);
+        } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
+            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%m', date(expense_date))='" + currentMonth + "' ", null);
+            Log.d("Monthly", currentMonth);
+        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
+            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%Y', expense_date)='" + currentYear + "' ", null);
         }
         if (cursor.moveToFirst()) {
             do {
