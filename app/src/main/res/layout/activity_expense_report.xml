@@ -3,26 +3,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:background="@color/grey_5"
     android:layout_height="match_parent"
+    android:background="@color/grey_5"
+    android:orientation="vertical"
     tools:context=".report.ExpenseReportActivity">
-    
-        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler" android:background="?android:attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="10dp"/>
-            
-            <LinearLayout android:gravity="right" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:textSize="24sp" android:textColor="#fff" android:gravity="right" android:id="@+id/txt_total_price" android:background="@color/colorAccent" android:padding="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10dp" android:text="@string/total_price" app:fontFamily="@font/sailec_regular"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="?android:attr/selectableItemBackground" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="vertical"
+                tools:ignore="RtlHardcoded">
+
+                <TextView
+                    android:id="@+id/tv_total_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorAccent"
+                    android:gravity="right"
+                    android:padding="5dp"
+                    android:text="@string/total_price"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/sailec_regular" />
+
             </LinearLayout>
-            
-            <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
-                <ImageView android:id="@+id/image_no_product" android:layout_width="300dp" android:layout_height="200dp" android:layout_marginTop="50dp"/>
-                <TextView android:textSize="24sp" android:textColor="@color/colorPrimary" android:gravity="center" android:id="@+id/txt_no_products" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/no_data_found" android:fontFamily="@font/sailec_regular"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/image_no_product"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="50dp"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/tv_no_products"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sailec_regular"
+                    android:gravity="center"
+                    android:text="@string/no_data_found"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="24sp" />
+
             </LinearLayout>
-            
+
         </LinearLayout>
-            
+
     </ScrollView>
 
 </LinearLayout>
