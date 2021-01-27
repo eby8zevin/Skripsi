@@ -21,6 +21,10 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     private final Context mContext;
 
+    public static final String DAILY = "DAILY";
+    public static final String MONTHLY = "MONTHLY";
+    public static final String YEARLY = "YEARLY";
+
     // Database Version
     public static final int DATABASE_VERSION = 1;
 
