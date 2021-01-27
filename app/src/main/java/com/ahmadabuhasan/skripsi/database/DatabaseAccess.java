@@ -13,11 +13,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 26/01/2021
+ * Created by Ahmad Abu Hasan on 27/01/2021
  */
 
 public class DatabaseAccess {
@@ -1050,6 +1053,154 @@ public class DatabaseAccess {
         long check = (long) this.database.update("expense", values, "expense_id=?", new String[]{expense_id});
         this.database.close();
         return check != -1;
+    }
+
+    // SalesReportActivity
+    public ArrayList<HashMap<String, String>> getAllSalesItems() {
+        ArrayList<HashMap<String, String>> orderDetailsList = new ArrayList<>();
+        Cursor cursor = this.database.rawQuery("SELECT * FROM order_details  WHERE order_status='Completed' ORDER BY order_details_id DESC", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, cursor.getString(2));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, cursor.getString(3));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, cursor.getString(4));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, cursor.getString(5));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, cursor.getString(6));
+                orderDetailsList.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return orderDetailsList;
+    }
+
+    // SalesReportActivity
+    public double getTotalOrderPrice(String type) {
+        Cursor cursor;
+        double total_price = Utils.DOUBLE_EPSILON;
+        if (type.equals(DatabaseOpenHelper.MONTHLY)) {
+            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%m', product_order_date) = '" + currentMonth + "' ", null);
+        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
+            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%Y', product_order_date) = '" + currentYear + "' ", null);
+        } else if (type.equals(DatabaseOpenHelper.DAILY)) {
+            //String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
+            SQLiteDatabase sQLiteDatabase = this.database;
+            cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND product_order_date='" + currentDate + "' ORDER BY order_details_id DESC", null);
+        } else {
+            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' ", null);
+        }
+        if (cursor.moveToFirst()) {
+            do {
+                double parseInt = (double) Integer.parseInt(cursor.getString(4));
+                double price = Double.parseDouble(cursor.getString(5));
+                Double.isNaN(parseInt);
+                total_price += parseInt * price;
+            } while (cursor.moveToNext());
+        } else {
+            total_price = Utils.DOUBLE_EPSILON;
+        }
+        cursor.close();
+        this.database.close();
+        return total_price;
+    }
+
+    // SalesReportActivity
+    public double getTotalTax(String type) {
+        Cursor cursor;
+        double total_tax = Utils.DOUBLE_EPSILON;
+        if (type.equals(DatabaseOpenHelper.MONTHLY)) {
+            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%m', order_date) = '" + currentMonth + "' ", null);
+        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
+            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%Y', order_date) = '" + currentYear + "' ", null);
+        } else if (type.equals(DatabaseOpenHelper.DAILY)) {
+            //String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
+            SQLiteDatabase sQLiteDatabase = this.database;
+            cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND order_date='" + currentDate + "' ORDER BY order_id DESC", null);
+        } else {
+            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' ", null);
+        }
+        if (cursor.moveToFirst()) {
+            do {
+                total_tax += Double.parseDouble(cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.ORDER_LIST_TAX)));
+            } while (cursor.moveToNext());
+        } else {
+            total_tax = Utils.DOUBLE_EPSILON;
+        }
+        cursor.close();
+        this.database.close();
+        return total_tax;
+    }
+
+    // SalesReportActivity
+    public double getTotalDiscount(String type) {
+        Cursor cursor;
+        double total_discount = Utils.DOUBLE_EPSILON;
+        if (type.equals(DatabaseOpenHelper.MONTHLY)) {
+            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%m', order_date) = '" + currentMonth + "' ", null);
+        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
+            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%Y', order_date) = '" + currentYear + "' ", null);
+        } else if (type.equals(DatabaseOpenHelper.DAILY)) {
+            //String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
+            SQLiteDatabase sQLiteDatabase = this.database;
+            cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND order_date='" + currentDate + "' ORDER BY order_id DESC", null);
+        } else {
+            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed'", null);
+        }
+        if (cursor.moveToFirst()) {
+            do {
+                total_discount += Double.parseDouble(cursor.getString(cursor.getColumnIndex(DatabaseOpenHelper.ORDER_LIST_DISCOUNT)));
+            } while (cursor.moveToNext());
+        } else {
+            total_discount = Utils.DOUBLE_EPSILON;
+        }
+        cursor.close();
+        this.database.close();
+        return total_discount;
+    }
+
+    // SalesReportActivity
+    public ArrayList<HashMap<String, String>> getSalesReport(String type) {
+        ArrayList<HashMap<String, String>> orderDetailsList = new ArrayList<>();
+        Cursor cursor = null;
+        if (type.equals("all")) {
+            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' ORDER BY order_details_id DESC", null);
+        } else if (type.equals(DatabaseOpenHelper.DAILY)) {
+            //String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
+            SQLiteDatabase sQLiteDatabase = this.database;
+            cursor = sQLiteDatabase.rawQuery("SELECT * FROM order_details  WHERE order_status='Completed' AND product_order_date='" + currentDate + "' ORDER BY order_Details_id DESC", null);
+        } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
+            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+            cursor = this.database.rawQuery("SELECT * FROM order_details  WHERE order_status='Completed' AND strftime('%m', product_order_date) = '" + currentMonth + "' ", null);
+        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
+            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+            Log.d("YEAR", currentYear);
+            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%Y', product_order_date) = '" + currentYear + "' ", null);
+        }
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME, cursor.getString(2));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT, cursor.getString(3));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY, cursor.getString(4));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE, cursor.getString(5));
+                map.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE, cursor.getString(6));
+                orderDetailsList.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return orderDetailsList;
     }
 
 
