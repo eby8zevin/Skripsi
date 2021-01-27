@@ -1,26 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".report.SalesGraphActivity">
-    
-       <TextView android:gravity="center" android:id="@+id/txt_select_year" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/year_2020" android:fontFamily="@font/sailec_regular"/>
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <com.github.mikephil.charting.charts.BarChart android:id="@+id/barchart" android:layout_width="match_parent" android:layout_height="400dp"/>
-            
-            <LinearLayout android:gravity="right" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-                <TextView android:textSize="16sp" android:textColor="#fff" android:gravity="center" android:id="@+id/txt_total_sales" android:background="@color/colorPrimary" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/total_sales" android:fontFamily="@font/sailec_regular"/>
-                <TextView android:textSize="16sp" android:textColor="#fff" android:gravity="center" android:id="@+id/txt_total_tax" android:background="@color/colorPrimary" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="@string/total_tax" android:fontFamily="@font/sailec_regular"/>
-                <TextView android:textSize="16sp" android:textColor="#fff" android:gravity="center" android:id="@+id/txt_discount" android:background="@color/colorPrimary" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="@string/discount" android:fontFamily="@font/sailec_regular"/>
-                <TextView android:textSize="16sp" android:textColor="#fff" android:gravity="center" android:id="@+id/txt_net_sales" android:background="@color/colorPrimary" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:layout_marginBottom="5dp" android:text="@string/net_sales" android:fontFamily="@font/sailec_regular"/>
+
+    <TextView
+        android:id="@+id/tv_select_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sailec_regular"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/year_2020" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/BarChart"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:orientation="vertical"
+                tools:ignore="RtlHardcoded">
+
+                <TextView
+                    android:id="@+id/tv_total_sales"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/sailec_regular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/total_sales"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_total_tax"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/sailec_regular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/total_tax"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_discount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/sailec_regular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/discount"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_net_sales"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/sailec_regular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/net_sales"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
             </LinearLayout>
-            
+
         </LinearLayout>
-        
+
     </ScrollView>
 
 </LinearLayout>
