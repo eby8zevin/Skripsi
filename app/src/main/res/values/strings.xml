@@ -276,5 +276,16 @@
     <string name="monthly_sales_graph">Monthly Sales Graph</string>
     <string name="monthly_expense_graph">Monthly Expense Graph</string>
 
+    <string name="sales_date">Date</string>
 
+    <string name="all_sales">All Sales</string>
+    <string name="total_sales">Total Sales :</string>
+    <string name="total_discount">Total Discount</string>
+    <string name="net_sales">Net Sales</string>
+    <string name="daily">Daily</string>
+    <string name="monthly">Monthly</string>
+    <string name="yearly">Yearly</string>
+    <string name="export_all_data_to_excel">Export All Data to Excel</string>
+
+    <string name="year_2020">Year 2020</string>
 </resources>
