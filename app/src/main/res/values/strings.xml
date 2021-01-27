@@ -287,5 +287,7 @@
     <string name="yearly">Yearly</string>
     <string name="export_all_data_to_excel">Export All Data to Excel</string>
 
+    <string name="total_expense">Total Expense</string>
+
     <string name="year_2020">Year 2020</string>
 </resources>
