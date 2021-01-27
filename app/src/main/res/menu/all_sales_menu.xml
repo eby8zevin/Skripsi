@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/ic_sales_report"
+        android:orderInCategory="100"
+        android:title="@string/report"
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_all_sales"
+                android:title="@string/all_sales" />
+
+            <item
+                android:id="@+id/menu_daily"
+                android:title="@string/daily" />
+
+            <item
+                android:id="@+id/menu_monthly"
+                android:title="@string/monthly" />
+
+            <item
+                android:id="@+id/menu_yearly"
+                android:title="@string/yearly" />
+
+            <item
+                android:id="@+id/menu_export_data"
+                android:title="@string/export_all_data_to_excel" />
+
+        </menu>
+
+    </item>
+
+</menu>
