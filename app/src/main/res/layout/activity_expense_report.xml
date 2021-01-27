@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler"
+                android:id="@+id/expense_report_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -40,8 +40,8 @@
                     android:background="@color/colorAccent"
                     android:gravity="right"
                     android:padding="5dp"
-                    android:text="@string/total_price"
-                    android:textColor="#fff"
+                    android:text="@string/total_expense"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     app:fontFamily="@font/sailec_regular" />
 
@@ -55,14 +55,14 @@
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
-                    android:id="@+id/image_no_product"
+                    android:id="@+id/image_no_expense"
                     android:layout_width="300dp"
                     android:layout_height="200dp"
                     android:layout_marginTop="50dp"
                     tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:id="@+id/tv_no_products"
+                    android:id="@+id/tv_no_expense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sailec_regular"
