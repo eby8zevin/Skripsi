@@ -14,7 +14,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 27/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -24,6 +24,8 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String DAILY = "DAILY";
     public static final String MONTHLY = "MONTHLY";
     public static final String YEARLY = "YEARLY";
+    public static final String COMPLETED = "Completed";
+    public static final String CANCEL = "Cancel";
 
     // Database Version
     public static final int DATABASE_VERSION = 1;
