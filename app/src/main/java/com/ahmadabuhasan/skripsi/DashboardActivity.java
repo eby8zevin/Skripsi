@@ -43,7 +43,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 26/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -84,8 +84,10 @@ public class DashboardActivity extends AppCompatActivity {
             requestPermission();
         }
 
-        MobileAds.initialize((Context) this, (OnInitializationCompleteListener) new OnInitializationCompleteListener() {
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
+
             }
         });
         this.adView = findViewById(R.id.adView);
