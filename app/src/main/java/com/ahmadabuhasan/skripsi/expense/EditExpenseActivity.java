@@ -161,8 +161,8 @@ public class EditExpenseActivity extends AppCompatActivity {
                 if (dayOfMonth < 10) {
                     fd = "0" + dayOfMonth;
                 }
-                //EditExpenseActivity.this.date_time = year + "-" + fm + "-" + fd;
-                EditExpenseActivity.this.date_time = fd + "-" + fm + "-" + year;
+                EditExpenseActivity.this.date_time = year + "-" + fm + "-" + fd;
+                //EditExpenseActivity.this.date_time = fd + "-" + fm + "-" + year;
                 EditExpenseActivity.this.editText_Date.setText(EditExpenseActivity.this.date_time);
             }
         }, this.mYear, this.mMonth, this.mDay).show();
