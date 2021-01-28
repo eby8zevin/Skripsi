@@ -34,7 +34,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 16/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class CustomersActivity extends AppCompatActivity {
@@ -116,14 +116,10 @@ public class CustomersActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == android.R.id.home) {
-            Intent intent = new Intent(this, DashboardActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
             return true;
-        } else if (itemId != R.id.menu_export_customer) {
+        } else if (item.getItemId() != R.id.menu_export_customer) {
             return super.onOptionsItemSelected(item);
         } else {
             folderChooser();
@@ -131,14 +127,23 @@ public class CustomersActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, DashboardActivity.class));
+        finish();
+        //super.onBackPressed();
+    }
+
     public void folderChooser() {
-        new ChooserDialog((Activity) this).displayPath(true).withFilter(true, false, new String[0]).withChosenListener(new ChooserDialog.Result() {
-            @Override
-            public void onChoosePath(String path, File pathFile) {
-                CustomersActivity.this.onExport(path);
-                Log.d("path", path);
-            }
-        }).build().show();
+        new ChooserDialog((Activity) this).displayPath(true).withFilter(true, false, new String[0])
+                .withChosenListener(new ChooserDialog.Result() {
+
+                    @Override
+                    public void onChoosePath(String path, File pathFile) {
+                        CustomersActivity.this.onExport(path);
+                        Log.d("path", path);
+                    }
+                }).build().show();
     }
 
     public void onExport(String path) {
@@ -147,32 +152,33 @@ public class CustomersActivity extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdirs();
         }
-        new SQLiteToExcel(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, directory_path).exportSingleTable("customers", "customers.xls", new SQLiteToExcel.ExportListener() {
+        new SQLiteToExcel(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, directory_path)
+                .exportSingleTable("customers", "customers.xls", new SQLiteToExcel.ExportListener() {
 
-            @Override
-            public void onStart() {
-                CustomersActivity.this.loading = new ProgressDialog(CustomersActivity.this);
-                CustomersActivity.this.loading.setMessage(CustomersActivity.this.getString(R.string.data_exporting_please_wait));
-                CustomersActivity.this.loading.setCancelable(false);
-                CustomersActivity.this.loading.show();
-            }
-
-            @Override
-            public void onCompleted(String filePath) {
-                new Handler().postDelayed(new Runnable() {
-                    public void run() {
-                        CustomersActivity.this.loading.dismiss();
-                        Toasty.success(CustomersActivity.this, (int) R.string.data_successfully_exported, Toasty.LENGTH_SHORT).show();
+                    @Override
+                    public void onStart() {
+                        CustomersActivity.this.loading = new ProgressDialog(CustomersActivity.this);
+                        CustomersActivity.this.loading.setMessage(CustomersActivity.this.getString(R.string.data_exporting_please_wait));
+                        CustomersActivity.this.loading.setCancelable(false);
+                        CustomersActivity.this.loading.show();
                     }
-                }, 5000);
-            }
 
-            @Override
-            public void onError(Exception e) {
-                CustomersActivity.this.loading.dismiss();
-                Toasty.error(CustomersActivity.this, (int) R.string.data_export_fail, Toasty.LENGTH_SHORT).show();
-                Log.d("Error", e.toString());
-            }
-        });
+                    @Override
+                    public void onCompleted(String filePath) {
+                        new Handler().postDelayed(new Runnable() {
+                            public void run() {
+                                CustomersActivity.this.loading.dismiss();
+                                Toasty.success(CustomersActivity.this, (int) R.string.data_successfully_exported, Toasty.LENGTH_SHORT).show();
+                            }
+                        }, 5000);
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        CustomersActivity.this.loading.dismiss();
+                        Toasty.error(CustomersActivity.this, (int) R.string.data_export_fail, Toasty.LENGTH_SHORT).show();
+                        Log.d("Error", e.toString());
+                    }
+                });
     }
 }
