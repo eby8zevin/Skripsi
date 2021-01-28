@@ -20,8 +20,10 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.ahmadabuhasan.skripsi.expense.EditExpenseActivity;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
@@ -55,8 +57,9 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.MyViewHo
         String currency = databaseAccess.getCurrency();
 
         holder.textView_Name.setText(this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_NAME));
+        double amount = Double.parseDouble(this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_AMOUNT));
         TextView textView = holder.textView_Amount;
-        textView.setText(currency + " " + this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_AMOUNT));
+        textView.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(amount));
 
         TextView textView1 = holder.textView_DateTime;
         textView1.setText(this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_DATE) + " " + this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_TIME));
