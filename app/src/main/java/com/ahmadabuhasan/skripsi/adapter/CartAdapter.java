@@ -26,7 +26,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 25/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -168,11 +168,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 textView1.setText("" + get_qty1);
                 DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
                 databaseAccess.open();
-                String str = cart_id;
-                databaseAccess.updateProductQty(str, "" + get_qty1);
+                String cartId = cart_id;
+                databaseAccess.updateProductQty(cartId, "" + get_qty1);
                 CartAdapter.total_price = Double.valueOf(CartAdapter.total_price.doubleValue() + Double.valueOf(price).doubleValue());
-                TextView textView3 = CartAdapter.this.textView_total_price;
-                textView3.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
+                TextView textView2 = CartAdapter.this.textView_total_price;
+                textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
             }
         });
     }
