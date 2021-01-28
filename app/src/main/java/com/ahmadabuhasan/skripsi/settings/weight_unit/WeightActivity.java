@@ -26,7 +26,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class WeightActivity extends AppCompatActivity {
@@ -103,12 +103,16 @@ public class WeightActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+            onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, SettingsActivity.class));
+        finish();
+        //super.onBackPressed();
     }
 }
