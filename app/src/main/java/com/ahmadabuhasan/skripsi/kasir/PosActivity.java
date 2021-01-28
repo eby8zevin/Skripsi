@@ -30,7 +30,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 22/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class PosActivity extends AppCompatActivity {
@@ -209,11 +209,10 @@ public class PosActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
-        } else if (itemId != R.id.menu_cart_button) {
+        } else if (item.getItemId() != R.id.menu_cart_button) {
             return super.onOptionsItemSelected(item);
         } else {
             startActivity(new Intent(this, ProductCart.class));
