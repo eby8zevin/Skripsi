@@ -1,17 +1,16 @@
 package com.ahmadabuhasan.skripsi.report;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.ahmadabuhasan.skripsi.R;
 
 /*
- * Created by Ahmad Abu Hasan on 27/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class ReportActivity extends AppCompatActivity {
