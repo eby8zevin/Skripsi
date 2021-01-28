@@ -33,7 +33,7 @@ import java.util.Calendar;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 22/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class AddCustomersActivity extends AppCompatActivity {
@@ -132,14 +132,10 @@ public class AddCustomersActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == android.R.id.home) {
-            Intent intent = new Intent(this, CustomersActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
             return true;
-        } else if (itemId != R.id.menu_import) {
+        } else if (item.getItemId() != R.id.menu_import) {
             return super.onOptionsItemSelected(item);
         } else {
             fileChooser();
@@ -147,13 +143,22 @@ public class AddCustomersActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, CustomersActivity.class));
+        finish();
+        //super.onBackPressed();
+    }
+
     public void fileChooser() {
-        new ChooserDialog((Activity) this).displayPath(true).withFilter(false, false, "xls").withChosenListener(new ChooserDialog.Result() {
-            @Override
-            public void onChoosePath(String path, File pathFile) {
-                AddCustomersActivity.this.onImport(path);
-            }
-        }).withOnCancelListener(new DialogInterface.OnCancelListener() {
+        new ChooserDialog((Activity) this).displayPath(true).withFilter(false, false, "xls")
+                .withChosenListener(new ChooserDialog.Result() {
+
+                    @Override
+                    public void onChoosePath(String path, File pathFile) {
+                        AddCustomersActivity.this.onImport(path);
+                    }
+                }).withOnCancelListener(new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
                 Log.d("CANCEL", "CANCEL");
                 dialog.cancel();
@@ -167,34 +172,36 @@ public class AddCustomersActivity extends AppCompatActivity {
         if (!new File(directory_path).exists()) {
             Toast.makeText(this, (int) R.string.no_file_found, Toast.LENGTH_SHORT).show();
         } else {
-            new ExcelToSQLite(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, false).importFromFile(directory_path, new ExcelToSQLite.ImportListener() {
-                @Override
-                public void onStart() {
-                    AddCustomersActivity.this.loading = new ProgressDialog(AddCustomersActivity.this);
-                    AddCustomersActivity.this.loading.setMessage(AddCustomersActivity.this.getString(R.string.data_importing_please_wait));
-                    AddCustomersActivity.this.loading.setCancelable(false);
-                    AddCustomersActivity.this.loading.show();
-                }
+            new ExcelToSQLite(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, false)
+                    .importFromFile(directory_path, new ExcelToSQLite.ImportListener() {
 
-                @Override
-                public void onCompleted(String dbName) {
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            AddCustomersActivity.this.loading.dismiss();
-                            Toasty.success(AddCustomersActivity.this, (int) R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
-                            AddCustomersActivity.this.startActivity(new Intent(AddCustomersActivity.this, DashboardActivity.class));
-                            AddCustomersActivity.this.finish();
+                        @Override
+                        public void onStart() {
+                            AddCustomersActivity.this.loading = new ProgressDialog(AddCustomersActivity.this);
+                            AddCustomersActivity.this.loading.setMessage(AddCustomersActivity.this.getString(R.string.data_importing_please_wait));
+                            AddCustomersActivity.this.loading.setCancelable(false);
+                            AddCustomersActivity.this.loading.show();
                         }
-                    }, 5000);
-                }
 
-                @Override
-                public void onError(Exception e) {
-                    AddCustomersActivity.this.loading.dismiss();
-                    Log.d("Error : ", "" + e.getMessage());
-                    Toasty.error(AddCustomersActivity.this, (int) R.string.data_import_fail, Toasty.LENGTH_SHORT).show();
-                }
-            });
+                        @Override
+                        public void onCompleted(String dbName) {
+                            new Handler().postDelayed(new Runnable() {
+                                public void run() {
+                                    AddCustomersActivity.this.loading.dismiss();
+                                    Toasty.success(AddCustomersActivity.this, (int) R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
+                                    AddCustomersActivity.this.startActivity(new Intent(AddCustomersActivity.this, DashboardActivity.class));
+                                    AddCustomersActivity.this.finish();
+                                }
+                            }, 5000);
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            AddCustomersActivity.this.loading.dismiss();
+                            Log.d("Error : ", "" + e.getMessage());
+                            Toasty.error(AddCustomersActivity.this, (int) R.string.data_import_fail, Toasty.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
 }
