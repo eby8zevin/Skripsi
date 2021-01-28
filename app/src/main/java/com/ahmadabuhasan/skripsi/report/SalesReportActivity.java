@@ -98,7 +98,6 @@ public class SalesReportActivity extends AppCompatActivity {
 
         databaseAccess.open();
         double sub_total = databaseAccess.getTotalOrderPrice("all");
-
         TextView textView = this.textView_TotalPrice;
         textView.setText(getString(R.string.total_sales) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(sub_total));
 
