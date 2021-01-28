@@ -16,7 +16,7 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class AddCategoryActivity extends AppCompatActivity {
