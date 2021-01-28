@@ -32,7 +32,7 @@ import java.util.Calendar;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 22/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class AddSuppliersActivity extends AppCompatActivity {
@@ -73,7 +73,6 @@ public class AddSuppliersActivity extends AppCompatActivity {
         this.editText_Information = findViewById(R.id.et_supplier_information);
         this.editText_LastUpdate = findViewById(R.id.et_supplier_last_update);
         this.editText_LastUpdate.setEnabled(false);
-
         this.textView_Add = findViewById(R.id.tv_add_supplier);
 
         this.textView_Add.setOnClickListener(new View.OnClickListener() {
@@ -132,14 +131,10 @@ public class AddSuppliersActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == android.R.id.home) {
-            Intent intent = new Intent(this, SuppliersActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
             return true;
-        } else if (itemId != R.id.menu_import_supplier) {
+        } else if (item.getItemId() != R.id.menu_import_supplier) {
             return super.onOptionsItemSelected(item);
         } else {
             fileChooser();
@@ -147,13 +142,22 @@ public class AddSuppliersActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, SuppliersActivity.class));
+        finish();
+        //super.onBackPressed();
+    }
+
     public void fileChooser() {
-        new ChooserDialog((Activity) this).displayPath(true).withFilter(false, false, "xls").withChosenListener(new ChooserDialog.Result() {
-            @Override
-            public void onChoosePath(String path, File pathFile) {
-                AddSuppliersActivity.this.onImport(path);
-            }
-        }).withOnCancelListener(new DialogInterface.OnCancelListener() {
+        new ChooserDialog((Activity) this).displayPath(true).withFilter(false, false, "xls")
+                .withChosenListener(new ChooserDialog.Result() {
+
+                    @Override
+                    public void onChoosePath(String path, File pathFile) {
+                        AddSuppliersActivity.this.onImport(path);
+                    }
+                }).withOnCancelListener(new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
                 Log.d("CANCEL", "CANCEL");
                 dialog.cancel();
@@ -167,34 +171,36 @@ public class AddSuppliersActivity extends AppCompatActivity {
         if (!new File(directory_path).exists()) {
             Toast.makeText(this, (int) R.string.no_file_found, Toast.LENGTH_SHORT).show();
         } else {
-            new ExcelToSQLite(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, false).importFromFile(directory_path, new ExcelToSQLite.ImportListener() {
-                @Override
-                public void onStart() {
-                    AddSuppliersActivity.this.loading = new ProgressDialog(AddSuppliersActivity.this);
-                    AddSuppliersActivity.this.loading.setMessage(AddSuppliersActivity.this.getString(R.string.data_importing_please_wait));
-                    AddSuppliersActivity.this.loading.setCancelable(false);
-                    AddSuppliersActivity.this.loading.show();
-                }
+            new ExcelToSQLite(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, false)
+                    .importFromFile(directory_path, new ExcelToSQLite.ImportListener() {
 
-                @Override
-                public void onCompleted(String dbName) {
-                    new Handler().postDelayed(new Runnable() {
-                        public void run() {
-                            AddSuppliersActivity.this.loading.dismiss();
-                            Toasty.success(AddSuppliersActivity.this, (int) R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
-                            AddSuppliersActivity.this.startActivity(new Intent(AddSuppliersActivity.this, DashboardActivity.class));
-                            AddSuppliersActivity.this.finish();
+                        @Override
+                        public void onStart() {
+                            AddSuppliersActivity.this.loading = new ProgressDialog(AddSuppliersActivity.this);
+                            AddSuppliersActivity.this.loading.setMessage(AddSuppliersActivity.this.getString(R.string.data_importing_please_wait));
+                            AddSuppliersActivity.this.loading.setCancelable(false);
+                            AddSuppliersActivity.this.loading.show();
                         }
-                    }, 5000);
-                }
 
-                @Override
-                public void onError(Exception e) {
-                    AddSuppliersActivity.this.loading.dismiss();
-                    Log.d("Error : ", "" + e.getMessage());
-                    Toasty.error(AddSuppliersActivity.this, (int) R.string.data_import_fail, Toasty.LENGTH_SHORT).show();
-                }
-            });
+                        @Override
+                        public void onCompleted(String dbName) {
+                            new Handler().postDelayed(new Runnable() {
+                                public void run() {
+                                    AddSuppliersActivity.this.loading.dismiss();
+                                    Toasty.success(AddSuppliersActivity.this, (int) R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
+                                    AddSuppliersActivity.this.startActivity(new Intent(AddSuppliersActivity.this, DashboardActivity.class));
+                                    AddSuppliersActivity.this.finish();
+                                }
+                            }, 5000);
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            AddSuppliersActivity.this.loading.dismiss();
+                            Log.d("Error : ", "" + e.getMessage());
+                            Toasty.error(AddSuppliersActivity.this, (int) R.string.data_import_fail, Toasty.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
 }
