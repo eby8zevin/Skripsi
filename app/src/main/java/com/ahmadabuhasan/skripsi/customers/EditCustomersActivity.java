@@ -23,7 +23,7 @@ import java.util.Calendar;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 22/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class EditCustomersActivity extends AppCompatActivity {
@@ -99,7 +99,6 @@ public class EditCustomersActivity extends AppCompatActivity {
         this.editText_LastUpdate.setEnabled(false);
         this.imageView_Copy.setEnabled(false);
         this.textView_Update.setVisibility(View.INVISIBLE);
-
 
         this.textView_Edit.setOnClickListener(new View.OnClickListener() {
             @Override
