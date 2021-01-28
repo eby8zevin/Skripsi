@@ -42,6 +42,10 @@
         <activity android:name=".expense.EditExpenseActivity" />
         <activity android:name=".expense.AddExpenseActivity" />
         <activity android:name=".expense.ExpenseActivity" />
+        <activity android:name=".settings.backup.BackupActivity" />
+        <activity android:name=".settings.payment_method.EditPaymentMethodActivity" />
+        <activity android:name=".settings.payment_method.AddPaymentMethodActivity" />
+        <activity android:name=".settings.payment_method.PaymentMethodActivity" />
         <activity android:name=".settings.weight_unit.EditWeightActivity" />
         <activity android:name=".settings.weight_unit.AddWeightActivity" />
         <activity android:name=".settings.weight_unit.WeightActivity" />
