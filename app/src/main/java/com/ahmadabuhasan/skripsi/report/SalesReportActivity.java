@@ -25,9 +25,11 @@ import com.obsez.android.lib.filechooser.ChooserDialog;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
@@ -98,20 +100,20 @@ public class SalesReportActivity extends AppCompatActivity {
         double sub_total = databaseAccess.getTotalOrderPrice("all");
 
         TextView textView = this.textView_TotalPrice;
-        textView.setText(getString(R.string.total_sales) + currency + this.decimalFormat.format(sub_total));
+        textView.setText(getString(R.string.total_sales) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(sub_total));
 
         databaseAccess.open();
         double get_tax = databaseAccess.getTotalTax("all");
         TextView textView2 = this.textView_TotalTax;
-        textView2.setText(getString(R.string.total_tax) + "(+) : " + currency + this.decimalFormat.format(get_tax));
+        textView2.setText(getString(R.string.total_tax) + " (+) : " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(get_tax));
 
         databaseAccess.open();
         double get_discount = databaseAccess.getTotalDiscount("all");
         TextView textView3 = this.textView_Discount;
-        textView3.setText(getString(R.string.total_discount) + "(-) : " + currency + this.decimalFormat.format(get_discount));
+        textView3.setText(getString(R.string.total_discount) + " (-) : " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(get_discount));
 
         TextView textView4 = this.textView_NetSales;
-        textView4.setText(getString(R.string.net_sales) + ": " + currency + this.decimalFormat.format((sub_total + get_tax) - get_discount));
+        textView4.setText(getString(R.string.net_sales) + ": " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format((sub_total + get_tax) - get_discount));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -175,31 +177,32 @@ public class SalesReportActivity extends AppCompatActivity {
         databaseAccess.open();
         double sub_total = databaseAccess.getTotalOrderPrice(type);
         TextView textView = this.textView_TotalPrice;
-        textView.setText(getString(R.string.total_sales) + currency + this.decimalFormat.format(sub_total));
+        textView.setText(getString(R.string.total_sales) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(sub_total));
 
         databaseAccess.open();
         double get_tax = databaseAccess.getTotalTax(type);
         TextView textView1 = this.textView_TotalTax;
-        textView1.setText(getString(R.string.total_tax) + "(+) : " + currency + this.decimalFormat.format(get_tax));
+        textView1.setText(getString(R.string.total_tax) + " (+) : " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(get_tax));
 
         databaseAccess.open();
         double get_discount = databaseAccess.getTotalDiscount(type);
         TextView textView2 = this.textView_Discount;
-        textView2.setText(getString(R.string.total_discount) + "(-) : " + currency + this.decimalFormat.format(get_discount));
+        textView2.setText(getString(R.string.total_discount) + " (-) : " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(get_discount));
 
         TextView textView3 = this.textView_NetSales;
-        textView3.setText(getString(R.string.net_sales) + ": " + currency + this.decimalFormat.format((sub_total + get_tax) - get_discount));
+        textView3.setText(getString(R.string.net_sales) + ": " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format((sub_total + get_tax) - get_discount));
     }
 
     public void folderChooser() {
-        new ChooserDialog((Activity) this).displayPath(true).withFilter(true, false, new String[0]).withChosenListener(new ChooserDialog.Result() {
+        new ChooserDialog((Activity) this).displayPath(true).withFilter(true, false, new String[0])
+                .withChosenListener(new ChooserDialog.Result() {
 
-            @Override
-            public void onChoosePath(String path, File pathFile) {
-                SalesReportActivity.this.onExport(path);
-                Log.d("path", path);
-            }
-        }).build().show();
+                    @Override
+                    public void onChoosePath(String path, File pathFile) {
+                        SalesReportActivity.this.onExport(path);
+                        Log.d("path", path);
+                    }
+                }).build().show();
     }
 
     public void onExport(String path) {
