@@ -13,7 +13,7 @@
         android:fontFamily="@font/sailec_regular"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@string/year_2020" />
+        android:text="@string/year_2021" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:orientation="vertical">
 
             <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/BarChart"
+                android:id="@+id/barChart"
                 android:layout_width="match_parent"
                 android:layout_height="400dp" />
 
@@ -62,7 +62,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/tv_discount"
+                    android:id="@+id/tv_total_discount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
