@@ -222,6 +222,33 @@
     <string name="edit_expense">Edit Expense</string>
     <!--    Expense-->
 
+    <!--    Report-->
+    <string name="all_sales_report">All Sales Report</string>
+    <string name="all_expense_report">All Expense Report</string>
+    <string name="monthly_sales_graph">Monthly Sales Graph</string>
+    <string name="monthly_expense_graph">Monthly Expense Graph</string>
+
+    <string name="sales_date">Date</string>
+
+    <string name="all_sales">All Sales</string>
+    <string name="total_sales">Total Sales :</string>
+    <string name="total_discount">Total Discount</string>
+    <string name="net_sales">Net Sales</string>
+    <string name="daily">Daily</string>
+    <string name="monthly">Monthly</string>
+    <string name="yearly">Yearly</string>
+    <string name="export_all_data_to_excel">Export All Data to Excel</string>
+
+    <string name="total_expense">Total Expense</string>
+
+    <string name="year_2021">Year 2021</string>
+    <string name="year">Year</string>
+    <string name="monthly_sales_report">Monthly Sales Report</string>
+
+    <string name="monthly_expense_in_graph">Monthly Expense in Graph</string>
+    <string name="monthly_expense_report">Monthly Expense Report</string>
+    <!--    Report-->
+
     <!--    Customers-->
     <string name="all_customer">All Customer</string>
     <string name="no_customer_found">No Customer Found!</string>
@@ -270,24 +297,4 @@
     <string name="update_supplier">Update Supplier</string>
     <string name="edit_suppliers">Edit Suppliers</string>
     <!--    Suppliers-->
-
-    <string name="all_sales_report">All Sales Report</string>
-    <string name="all_expense_report">All Expense Report</string>
-    <string name="monthly_sales_graph">Monthly Sales Graph</string>
-    <string name="monthly_expense_graph">Monthly Expense Graph</string>
-
-    <string name="sales_date">Date</string>
-
-    <string name="all_sales">All Sales</string>
-    <string name="total_sales">Total Sales :</string>
-    <string name="total_discount">Total Discount</string>
-    <string name="net_sales">Net Sales</string>
-    <string name="daily">Daily</string>
-    <string name="monthly">Monthly</string>
-    <string name="yearly">Yearly</string>
-    <string name="export_all_data_to_excel">Export All Data to Excel</string>
-
-    <string name="total_expense">Total Expense</string>
-
-    <string name="year_2020">Year 2020</string>
 </resources>
