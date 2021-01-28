@@ -26,7 +26,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 26/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.MyViewHolder> {
@@ -56,13 +56,13 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.MyViewHo
 
         holder.textView_Name.setText(this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_NAME));
         TextView textView = holder.textView_Amount;
-        textView.setText(currency + this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_AMOUNT));
+        textView.setText(currency + " " + this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_AMOUNT));
 
         TextView textView1 = holder.textView_DateTime;
         textView1.setText(this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_DATE) + " " + this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_TIME));
 
         TextView textView2 = holder.textView_Note;
-        textView2.setText(this.context.getString(R.string.note) + this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_NOTE));
+        textView2.setText(this.context.getString(R.string.note) + " " + this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_NOTE));
 
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
             @Override
