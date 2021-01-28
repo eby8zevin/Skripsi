@@ -27,7 +27,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 24/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
@@ -66,11 +66,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         textView3.setText(this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_TIME) + " " + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_LIST_DATE));
         holder.textView_OrderStatus.setText(orderStatus);
 
-        if (orderStatus.equals("COMPLETED")) {
+        if (orderStatus.equals(DatabaseOpenHelper.COMPLETED)) {
             holder.textView_OrderStatus.setBackgroundColor(Color.parseColor("#43A047"));
             holder.textView_OrderStatus.setTextColor(-1);
             holder.imageView_Status.setVisibility(View.GONE);
-        } else if (orderStatus.equals("CANCEL")) {
+        } else if (orderStatus.equals(DatabaseOpenHelper.CANCEL)) {
             holder.textView_OrderStatus.setBackgroundColor(Color.parseColor("#E53935"));
             holder.textView_OrderStatus.setTextColor(-1);
             holder.imageView_Status.setVisibility(View.GONE);
@@ -90,9 +90,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                             public void onClick(View v) {
                                 DatabaseAccess databaseAccess = DatabaseAccess.getInstance(OrderAdapter.this.context);
                                 databaseAccess.open();
-                                if (databaseAccess.updateOrder(invoice_id, "COMPLETED")) {
+                                if (databaseAccess.updateOrder(invoice_id, DatabaseOpenHelper.COMPLETED)) {
                                     Toasty.success(OrderAdapter.this.context, (int) R.string.order_updated, Toasty.LENGTH_SHORT).show();
-                                    holder.textView_OrderStatus.setText("COMPLETED");
+                                    holder.textView_OrderStatus.setText(DatabaseOpenHelper.COMPLETED);
                                     holder.textView_OrderStatus.setBackgroundColor(Color.parseColor("#43A047"));
                                     holder.textView_OrderStatus.setTextColor(Color.WHITE);
                                     holder.imageView_Status.setVisibility(View.GONE);
@@ -106,9 +106,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                     public void onClick(View v) {
                         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(OrderAdapter.this.context);
                         databaseAccess.open();
-                        if (databaseAccess.updateOrder(invoice_id, "CANCEL")) {
+                        if (databaseAccess.updateOrder(invoice_id, DatabaseOpenHelper.CANCEL)) {
                             Toasty.error(OrderAdapter.this.context, (int) R.string.order_updated, Toasty.LENGTH_SHORT).show();
-                            holder.textView_OrderStatus.setText("CANCEL");
+                            holder.textView_OrderStatus.setText(DatabaseOpenHelper.CANCEL);
                             holder.textView_OrderStatus.setBackgroundColor(Color.parseColor("#E53935"));
                             holder.textView_OrderStatus.setTextColor(Color.WHITE);
                             holder.imageView_Status.setVisibility(View.GONE);
