@@ -48,7 +48,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 24/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class ProductCart extends AppCompatActivity {
@@ -141,18 +141,20 @@ public class ProductCart extends AppCompatActivity {
         ImageButton dialog_img_order_type = dialogView.findViewById(R.id.img_order_type);
         final TextView dialog_order_payment_method = dialogView.findViewById(R.id.dialog_order_status);
         ImageButton dialog_img_order_payment_method = dialogView.findViewById(R.id.img_order_payment_method);
+
         TextView dialog_text_sub_total = dialogView.findViewById(R.id.dialog_text_sub_total);
         TextView dialog_text_total_tax = dialogView.findViewById(R.id.dialog_text_total_tax);
         final EditText dialog_et_discount = dialogView.findViewById(R.id.et_dialog_discount);
         final TextView dialog_text_total_cost = dialogView.findViewById(R.id.dialog_text_total_cost);
 
-        ((TextView) dialogView.findViewById(R.id.dialog_level_tax)).setText(getString(R.string.total_tax) + "( " + tax + "%) : ");
+        ((TextView) dialogView.findViewById(R.id.dialog_level_tax)).setText(getString(R.string.total_tax) + " (" + tax + "%) : ");
         final double total_cost = CartAdapter.total_price.doubleValue();
         StringBuilder sb = new StringBuilder();
         sb.append(shop_currency);
         sb.append(" ");
         sb.append(NumberFormat.getInstance(Locale.getDefault()).format(total_cost));
         dialog_text_sub_total.setText(sb.toString());
+
         final double calculated_tax = (total_cost * getTax) / 100.0d;
         dialog_text_total_tax.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_tax));
         double calculated_total_cost = (total_cost + calculated_tax) - Utils.DOUBLE_EPSILON;
@@ -415,12 +417,12 @@ public class ProductCart extends AppCompatActivity {
                 Toasty.error(this, (int) R.string.no_product_found, Toasty.LENGTH_SHORT).show();
                 return;
             }
-            /*String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-            String currentTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date());
+            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+            /*String currentTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date());
             String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();*/
-            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
+            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
             String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(new Date());
-            String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date());
+            String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date()); // NoInvoice
             Log.d("Time", timeStamp);
             JSONObject obj = new JSONObject();
             try {
@@ -438,10 +440,10 @@ public class ProductCart extends AppCompatActivity {
                         while (i < lines.size()) {
                             databaseAccess.open();
                             String product_id = lines.get(i).get(productId);
+                            databaseAccess.open();
                             String product_name = databaseAccess.getProductName(product_id);
                             databaseAccess.open();
                             String weight_unit = databaseAccess.getWeightUnitName(lines.get(i).get(DatabaseOpenHelper.CART_PRODUCT_WEIGHT_UNIT));
-                            databaseAccess.open();
                             JSONObject objp = new JSONObject();
                             try {
                                 objp.put(productId, product_id);
@@ -486,7 +488,7 @@ public class ProductCart extends AppCompatActivity {
     }
 
     private void saveOrderInOfflineDb(JSONObject obj) {
-        /* String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();*/
+        //String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();
         String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date());
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
