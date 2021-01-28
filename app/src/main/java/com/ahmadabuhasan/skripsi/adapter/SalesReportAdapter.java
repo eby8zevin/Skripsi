@@ -15,11 +15,13 @@ import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 27/01/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class SalesReportAdapter extends RecyclerView.Adapter<SalesReportAdapter.MyViewHolder> {
@@ -48,13 +50,13 @@ public class SalesReportAdapter extends RecyclerView.Adapter<SalesReportAdapter.
 
         holder.textView_Name.setText(this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME));
         TextView textView = holder.textView_Date;
-        textView.setText(this.context.getString(R.string.date) + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE));
+        textView.setText(this.context.getString(R.string.date) + " " + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE));
 
         TextView textView1 = holder.textView_Qty;
-        textView1.setText(this.context.getString(R.string.quantity) + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY));
+        textView1.setText(this.context.getString(R.string.quantity) + " " + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY));
 
         TextView textView2 = holder.textView_Weight;
-        textView2.setText(this.context.getString(R.string.weight) + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT));
+        textView2.setText(this.context.getString(R.string.weight_order_details) + " " + this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT));
 
         String unit_price = this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
         String qty = this.orderData.get(position).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
@@ -63,7 +65,7 @@ public class SalesReportAdapter extends RecyclerView.Adapter<SalesReportAdapter.
         Double.isNaN(parseInt);
 
         TextView textView3 = holder.textView_TotalCost;
-        textView3.setText(currency + unit_price + " x " + qty + " = " + currency + (parseInt * price));
+        textView3.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(price) + " x " + qty + " = " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(parseInt * price));
     }
 
     @Override
