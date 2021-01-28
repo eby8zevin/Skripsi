@@ -25,9 +25,11 @@ import com.obsez.android.lib.filechooser.ChooserDialog;
 
 import java.io.File;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
@@ -92,7 +94,7 @@ public class ExpenseReportActivity extends AppCompatActivity {
         databaseAccess.open();
         this.total_price = databaseAccess.getTotalExpense("all");
         TextView textView = this.textView_TotalPrice;
-        textView.setText(getString(R.string.total_expense) + currency + this.decimalFormat.format(this.total_price));
+        textView.setText(getString(R.string.total_expense) + ": " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.total_price));
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,18 +157,19 @@ public class ExpenseReportActivity extends AppCompatActivity {
         databaseAccess.open();
         this.total_price = databaseAccess.getTotalExpense(type);
         TextView textView = this.textView_TotalPrice;
-        textView.setText(getString(R.string.total_expense) + currency + this.decimalFormat.format(this.total_price));
+        textView.setText(getString(R.string.total_expense) + ": " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.total_price));
     }
 
     public void folderChooser() {
-        new ChooserDialog((Activity) this).displayPath(true).withFilter(true, false, new String[0]).withChosenListener(new ChooserDialog.Result() {
+        new ChooserDialog((Activity) this).displayPath(true).withFilter(true, false, new String[0])
+                .withChosenListener(new ChooserDialog.Result() {
 
-            @Override
-            public void onChoosePath(String path, File pathFile) {
-                ExpenseReportActivity.this.onExport(path);
-                Log.d("path", path);
-            }
-        }).build().show();
+                    @Override
+                    public void onChoosePath(String path, File pathFile) {
+                        ExpenseReportActivity.this.onExport(path);
+                        Log.d("path", path);
+                    }
+                }).build().show();
     }
 
     public void onExport(String path) {
