@@ -4,90 +4,358 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_smoke"
     android:orientation="vertical"
     tools:context=".settings.backup.BackupActivity">
-    
-    <ScrollView android:id="@+id/scrollView" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="25dp" android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
-        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
-            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent">
-                <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginLeft="15dp" android:layout_marginRight="7.5dp" android:layout_weight="1">
-                    <androidx.cardview.widget.CardView android:theme="@style/ThemeOverlay.AppCompat.Light" android:id="@+id/card_local_backup" android:background="#ffffff" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="5dp" android:foreground="?android:attr/selectableItemBackground" app:cardBackgroundColor="@android:color/white" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:layout_collapseMode="1">
-                        <RelativeLayout android:gravity="center" android:layout_width="match_parent" android:layout_height="match_parent">
-                            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="2">
-                                <ImageView android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="10dp" android:src="@drawable/data_backup"/>
-                                <TextView android:textSize="18sp" android:textColor="#bcbcbc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25dp" android:text="@string/database_backup" android:layout_weight="1" android:fontFamily="@font/sailec_regular"/>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="25dp"
+        tools:ignore="ObsoleteLayoutParam,RtlHardcoded,UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="7.5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_local_backup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/white"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:layout_collapseMode="parallax">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_margin="10dp"
+                                    android:src="@drawable/data_backup"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/sailec_regular"
+                                    android:text="@string/database_backup"
+                                    android:textColor="@color/light_gray"
+                                    android:textSize="18sp"
+                                    tools:ignore="InefficientWeight" />
+
                             </LinearLayout>
-                            
+
                         </RelativeLayout>
-                        
+
                     </androidx.cardview.widget.CardView>
-                    
+
                 </LinearLayout>
-                
+
             </LinearLayout>
-            
-            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent">
-                <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginLeft="15dp" android:layout_marginRight="7.5dp" android:layout_weight="1">
-                    <androidx.cardview.widget.CardView android:theme="@style/ThemeOverlay.AppCompat.Light" android:id="@+id/card_local_db_import" android:background="#ffffff" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="5dp" android:foreground="?android:attr/selectableItemBackground" app:cardBackgroundColor="@android:color/white" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:layout_collapseMode="1">
-                        <RelativeLayout android:gravity="center" android:layout_width="match_parent" android:layout_height="match_parent">
-                            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="2">
-                                <ImageView android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="10dp" android:src="@drawable/data_import"/>
-                                <TextView android:textSize="18sp" android:textColor="#bcbcbc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25dp" android:text="@string/database_import" android:layout_weight="1" android:fontFamily="@font/sailec_regular"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="7.5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_local_db_import"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/white"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:layout_collapseMode="parallax">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_margin="10dp"
+                                    android:src="@drawable/data_import"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/sailec_regular"
+                                    android:text="@string/database_import"
+                                    android:textColor="@color/light_gray"
+                                    android:textSize="18sp"
+                                    tools:ignore="InefficientWeight" />
+
                             </LinearLayout>
+
                         </RelativeLayout>
+
                     </androidx.cardview.widget.CardView>
+
                 </LinearLayout>
+
             </LinearLayout>
-            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent">
-                <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginLeft="15dp" android:layout_marginRight="7.5dp" android:layout_weight="1">
-                    <androidx.cardview.widget.CardView android:theme="@style/ThemeOverlay.AppCompat.Light" android:id="@+id/card_export_to_excel" android:background="#ffffff" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="5dp" android:foreground="?android:attr/selectableItemBackground" app:cardBackgroundColor="@android:color/white" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:layout_collapseMode="1">
-                        <RelativeLayout android:gravity="center" android:layout_width="match_parent" android:layout_height="match_parent">
-                            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="2">
-                                <ImageView android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="10dp" android:src="@drawable/xls"/>
-                                <TextView android:textSize="18sp" android:textColor="#bcbcbc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25dp" android:text="@string/export_all_data_to_excel" android:layout_weight="1" android:fontFamily="@font/sailec_regular"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="7.5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_export_to_excel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/white"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:layout_collapseMode="parallax">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_margin="10dp"
+                                    android:src="@drawable/xls"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/sailec_regular"
+                                    android:text="@string/export_all_data_to_excel"
+                                    android:textColor="@color/light_gray"
+                                    android:textSize="18sp"
+                                    tools:ignore="InefficientWeight" />
+
                             </LinearLayout>
-                            
+
                         </RelativeLayout>
-                        
+
                     </androidx.cardview.widget.CardView>
-                    
+
                 </LinearLayout>
-                
+
             </LinearLayout>
-            
-            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent">
-                <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0dp" android:layout_height="match_parent" android:layout_marginLeft="15dp" android:layout_marginRight="7.5dp" android:layout_weight="1">
-                    <androidx.cardview.widget.CardView android:theme="@style/ThemeOverlay.AppCompat.Light" android:id="@+id/card_backup_to_drive" android:background="#ffffff" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="5dp" android:foreground="?android:attr/selectableItemBackground" app:cardBackgroundColor="@android:color/white" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:layout_collapseMode="1">
-                        <RelativeLayout android:gravity="center" android:layout_width="match_parent" android:layout_height="match_parent">
-                            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="2">
-                                <ImageView android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="10dp" android:src="@drawable/google_drive"/>
-                                <TextView android:textSize="18sp" android:textColor="#bcbcbc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25dp" android:text="@string/backup_to_google_drive" android:layout_weight="1" android:fontFamily="@font/sailec_regular"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="7.5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_backup_to_drive"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/white"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="0dp"
+                        app:layout_collapseMode="parallax">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:weightSum="2"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="60dp"
+                                    android:layout_margin="10dp"
+                                    android:src="@drawable/google_drive"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/sailec_regular"
+                                    android:text="@string/backup_to_google_drive"
+                                    android:textColor="@color/light_gray"
+                                    android:textSize="18sp"
+                                    tools:ignore="InefficientWeight" />
+
                             </LinearLayout>
-                            
+
                         </RelativeLayout>
-                        
+
                     </androidx.cardview.widget.CardView>
-                    
+
                 </LinearLayout>
-                
+
             </LinearLayout>
-            
-            <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginLeft="15dp" android:layout_marginRight="7.5dp" android:layout_weight="1">
-                <androidx.cardview.widget.CardView android:theme="@style/ThemeOverlay.AppCompat.Light" android:id="@+id/card_import_from_drive" android:background="#ffffff" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="5dp" android:foreground="?android:attr/selectableItemBackground" app:cardBackgroundColor="@android:color/white" app:cardCornerRadius="10dp" app:cardElevation="0dp" app:layout_collapseMode="1">
-                    <RelativeLayout android:gravity="center" android:layout_width="match_parent" android:layout_height="match_parent">
-                        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="2">
-                            <ImageView android:layout_width="60dp" android:layout_height="60dp" android:layout_margin="10dp" android:src="@drawable/google_drive"/>
-                            <TextView android:textSize="18sp" android:textColor="#bcbcbc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25dp" android:text="@string/import_from_google_drive" android:layout_weight="1" android:fontFamily="@font/sailec_regular"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="7.5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_import_from_drive"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/white"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:layout_collapseMode="parallax">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            tools:ignore="UseCompoundDrawables">
+
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/google_drive"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/sailec_regular"
+                                android:text="@string/import_from_google_drive"
+                                android:textColor="@color/light_gray"
+                                android:textSize="18sp"
+                                tools:ignore="InefficientWeight" />
+
                         </LinearLayout>
-                        
+
                     </RelativeLayout>
-                    
+
                 </androidx.cardview.widget.CardView>
-                
+
             </LinearLayout>
-            
+
         </LinearLayout>
-        
+
     </ScrollView>
 
 </LinearLayout>
