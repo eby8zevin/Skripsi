@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".settings.payment_method.PaymentMethodActivity">
+    
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+        <EditText android:id="@+id/etxt_customer_search" android:background="@drawable/round_border" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/search_here" android:ems="10" android:drawableRight="@drawable/ic_search" android:inputType="textPersonName" android:fontFamily="@font/sailec_regular"/>
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_view" android:background="?android:attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp"/>
+        <ImageView android:id="@+id/image_no_product" android:layout_width="match_parent" android:layout_height="300dp" android:layout_marginTop="50dp"/>
+    </LinearLayout>
+    <LinearLayout android:gravity="right" android:orientation="horizontal" android:background="@null" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fab_add" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10dp" android:layout_weight="1" app:srcCompat="@drawable/ic_add"/>
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
