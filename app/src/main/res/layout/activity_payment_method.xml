@@ -4,15 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="16dp"
     tools:context=".settings.payment_method.PaymentMethodActivity">
-    
-    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
-        <EditText android:id="@+id/etxt_customer_search" android:background="@drawable/round_border" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="@string/search_here" android:ems="10" android:drawableRight="@drawable/ic_search" android:inputType="textPersonName" android:fontFamily="@font/sailec_regular"/>
-        <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_view" android:background="?android:attr/selectableItemBackground" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp"/>
-        <ImageView android:id="@+id/image_no_product" android:layout_width="match_parent" android:layout_height="300dp" android:layout_marginTop="50dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_payment_method_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_border"
+            android:drawableEnd="@drawable/ic_search"
+            android:ems="10"
+            android:fontFamily="@font/sailec_regular"
+            android:hint="@string/search_here"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/payment_method_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="?android:attr/selectableItemBackground" />
+
+        <ImageView
+            android:id="@+id/image_no_payment_method"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="50dp"
+            tools:ignore="ContentDescription" />
+
     </LinearLayout>
-    <LinearLayout android:gravity="right" android:orientation="horizontal" android:background="@null" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
-        <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fab_add" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10dp" android:layout_weight="1" app:srcCompat="@drawable/ic_add"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:gravity="right"
+        android:orientation="horizontal"
+        tools:ignore="RtlHardcoded">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="auto"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
+
     </LinearLayout>
 
 </RelativeLayout>
