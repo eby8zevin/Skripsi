@@ -301,11 +301,21 @@
     <string name="payment_method_name">Payment Method Name</string>
     <string name="add_payment_method">Add Payment Method</string>
 
+    <string name="update_payment_method">Update Payment Method</string>
+
     <string name="database_backup">Database Backup</string>
     <string name="database_import">Database Import</string>
     <string name="backup_to_google_drive">Backup to Google Drive</string>
     <string name="import_from_google_drive">Import from Google Drive</string>
 
-    <string name="update_payment_method">Update Payment Method</string>
+    <string name="enter_local_database_backup_name">Enter Local Database Backup Name</string>
+    <string name="unable_to_create_directory_retry">Unable to create directory. Retry</string>
+    <string name="database_restore">Database Restore:</string>
+    <string name="unable_to_restore_retry">Unable to restore. Retry</string>
+    <string name="backup_folder_not_present">Backup folder not present</string>
+
+    <string name="backup_successfully_loaded">Backup successfully loaded!</string>
+    <string name="failed_to_create_new_contents">Failed to create new contents.</string>
+
 
 </resources>
