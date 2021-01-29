@@ -297,4 +297,15 @@
     <string name="update_supplier">Update Supplier</string>
     <string name="edit_suppliers">Edit Suppliers</string>
     <!--    Suppliers-->
+
+    <string name="payment_method_name">Payment Method Name</string>
+    <string name="add_payment_method">Add Payment Method</string>
+
+    <string name="database_backup">Database Backup</string>
+    <string name="database_import">Database Import</string>
+    <string name="backup_to_google_drive">Backup to Google Drive</string>
+    <string name="import_from_google_drive">Import from Google Drive</string>
+
+    <string name="update_payment_method">Update Payment Method</string>
+
 </resources>
