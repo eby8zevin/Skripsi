@@ -1,20 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LineartLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".settings.payment_method.AddPaymentMethodActivity">
-    
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:padding="5dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="35dp" android:text="@string/payment_method_name" android:fontFamily="@font/sailec_regular"/>
-            <EditText android:textSize="16dp" android:textColor="@color/colorPrimary" android:id="@+id/etxt_payment_method_name" android:background="@drawable/round_border" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="22dp" android:layout_marginTop="5dp" android:layout_marginRight="35dp" android:hint="@string/payment_method_name" android:inputType="text" android:fontFamily="@font/sailec_regular"/>
-            <TextView android:textSize="16dp" android:textStyle="bold" android:textColor="#ffffff" android:gravity="center" android:id="@+id/txt_add_payment_method" android:background="@drawable/rounded_button" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginTop="32dp" android:layout_marginRight="40dp" android:layout_marginBottom="18dp" android:text="@string/add_payment_method" android:layout_alignParentBottom="true" android:fontFamily="@font/sailec_regular"/>
-        
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="35dp"
+                android:fontFamily="@font/sailec_regular"
+                android:padding="5dp"
+                android:text="@string/payment_method_name" />
+
+            <EditText
+                android:id="@+id/et_payment_method_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="35dp"
+                android:background="@drawable/round_border"
+                android:fontFamily="@font/sailec_regular"
+                android:hint="@string/payment_method_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_add_payment_method"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="18dp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/sailec_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/add_payment_method"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="ObsoleteLayoutParam" />
+
         </LinearLayout>
-        
+
     </ScrollView>
 
 </LinearLayout>
