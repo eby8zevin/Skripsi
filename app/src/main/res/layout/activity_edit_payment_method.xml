@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".settings.payment_method.EditPaymentMethodActivity">
+    
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:padding="5dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginRight="35dp" android:text="@string/payment_method_name" android:fontFamily="@font/sailec_regular"/>
+            <EditText android:textSize="16dp" android:textColor="@color/colorPrimary" android:id="@+id/etxt_payment_method_name" android:background="@drawable/round_border" android:padding="16dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="22dp" android:layout_marginTop="5dp" android:layout_marginRight="35dp" android:hint="@string/payment_method_name" android:inputType="text" android:fontFamily="@font/sailec_regular"/>
+            <TextView android:textSize="16dp" android:textStyle="bold" android:textColor="#ffffff" android:gravity="center" android:id="@+id/txt_edit" android:background="@drawable/rounded_button" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginTop="32dp" android:layout_marginRight="40dp" android:layout_marginBottom="18dp" android:text="@string/edit" android:layout_alignParentBottom="true" android:fontFamily="@font/sailec_regular"/>
+            <TextView android:textSize="16dp" android:textStyle="bold" android:textColor="#ffffff" android:gravity="center" android:id="@+id/txt_update_payment_method" android:background="@drawable/rounded_button" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="20dp" android:layout_marginTop="10dp" android:layout_marginRight="40dp" android:layout_marginBottom="18dp" android:text="@string/update_payment_method" android:layout_alignParentBottom="true" android:fontFamily="@font/sailec_regular"/>
+        
+        </LinearLayout>
+        
+    </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
