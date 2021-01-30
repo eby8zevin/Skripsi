@@ -19,7 +19,7 @@ import java.io.File;
 
 public class LocalBackup {
 
-    https://github.com/prof18/Database-Backup-Restore
+    //https://github.com/prof18/Database-Backup-Restore
     private BackupActivity activity;
 
     public LocalBackup(BackupActivity activity1) {
@@ -45,7 +45,7 @@ public class LocalBackup {
             builder.setView(input);
             builder.setPositiveButton("Save", (dialog, which) -> {
                 String m_Text = input.getText().toString();
-                String out = outFileName + m_Text ; //+ ".db"
+                String out = outFileName + m_Text; //+ ".db"
                 db.backup(out);
             });
             builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
