@@ -1375,6 +1375,4 @@ public class DatabaseAccess {
         return check != -1;
     }
     /*/SUPPLIERS*/
-
-
 }
