@@ -70,6 +70,7 @@ public class BackupActivity extends AppCompatActivity {
         this.cardView_BackupToDrive = findViewById(R.id.card_backup_to_drive);
         this.cardView_ImportFromDrive = findViewById(R.id.card_import_from_drive);
 
+        this.activity = this;
         this.localBackup = new LocalBackup(this);
         this.remoteBackup = new RemoteBackup(this);
         final DatabaseOpenHelper db = new DatabaseOpenHelper(getApplicationContext());
@@ -83,8 +84,8 @@ public class BackupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 BackupActivity.this.localBackup.performBackup(db, Environment.getExternalStorageDirectory() + File.separator + "Skripsi/");
                 //https://github.com/prof18/Database-Backup-Restore
-                String outFileName = Environment.getExternalStorageDirectory() + File.separator + getResources().getString(R.string.app_name) + File.separator;
-                localBackup.performBackup(db, outFileName);
+                //String outFileName = Environment.getExternalStorageDirectory() + File.separator + getResources().getString(R.string.app_name) + File.separator;
+                //localBackup.performBackup(db, outFileName);
             }
         });
 
@@ -93,7 +94,7 @@ public class BackupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 BackupActivity.this.localBackup.performRestore(new DatabaseOpenHelper(BackupActivity.this.getApplicationContext()));
                 //https://github.com/prof18/Database-Backup-Restore
-                localBackup.performRestore(db);
+                //localBackup.performRestore(db);
             }
         });
 
@@ -110,8 +111,8 @@ public class BackupActivity extends AppCompatActivity {
                 BackupActivity.this.isBackup = true;
                 BackupActivity.this.remoteBackup.connectToDrive(BackupActivity.this.isBackup);
                 //https://github.com/prof18/Database-Backup-Restore
-                isBackup = true;
-                remoteBackup.connectToDrive(isBackup);
+                //isBackup = true;
+                //remoteBackup.connectToDrive(isBackup);
             }
         });
 
@@ -121,8 +122,8 @@ public class BackupActivity extends AppCompatActivity {
                 BackupActivity.this.isBackup = false;
                 BackupActivity.this.remoteBackup.connectToDrive(BackupActivity.this.isBackup);
                 //https://github.com/prof18/Database-Backup-Restore
-                isBackup = false;
-                remoteBackup.connectToDrive(isBackup);
+                //isBackup = false;
+                //remoteBackup.connectToDrive(isBackup);
             }
         });
     }
@@ -234,5 +235,4 @@ public class BackupActivity extends AppCompatActivity {
 
         }
     }
-
 }
