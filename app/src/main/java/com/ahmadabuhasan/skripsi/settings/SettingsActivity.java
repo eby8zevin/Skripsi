@@ -1,5 +1,6 @@
 package com.ahmadabuhasan.skripsi.settings;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,12 +15,15 @@ import com.ahmadabuhasan.skripsi.settings.categories.CategoriesActivity;
 import com.ahmadabuhasan.skripsi.settings.payment_method.PaymentMethodActivity;
 import com.ahmadabuhasan.skripsi.settings.shop.ShopInformationActivity;
 import com.ahmadabuhasan.skripsi.settings.weight_unit.WeightActivity;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 /*
- * Created by Ahmad Abu Hasan on 29/01/2021
+ * Created by Ahmad Abu Hasan on 30/01/2021
  */
 
 public class SettingsActivity extends AppCompatActivity {
@@ -51,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+        new SettingsActivity().interstitialAdsShow(this);
 
         this.cardView_ShopInfo.setOnClickListener(v -> SettingsActivity.this.startActivity(new Intent(SettingsActivity.this, ShopInformationActivity.class)));
         this.cardView_Category.setOnClickListener(v -> SettingsActivity.this.startActivity(new Intent(SettingsActivity.this, CategoriesActivity.class)));
@@ -72,5 +77,19 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(new Intent(this, DashboardActivity.class));
         finish();
         //super.onBackPressed();
+    }
+
+    public void interstitialAdsShow(Context context) {
+        final InterstitialAd interstitialAd = new InterstitialAd(context);
+        interstitialAd.setAdUnitId(context.getString(R.string.AdMob_Interstitial_Ads_ID));
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                if (interstitialAd.isLoaded()) {
+                    interstitialAd.show();
+                }
+            }
+        });
     }
 }
