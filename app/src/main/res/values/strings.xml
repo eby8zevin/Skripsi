@@ -20,6 +20,11 @@
     <string name="AdMob_Banner_Ads_ID">ca-app-pub-3940256099942544/6300978111</string>
     <string name="AdMob_Interstitial_Ads_ID">ca-app-pub-3940256099942544/1033173712</string>
 
+    <string name="backup_completed_successfully">Backup Completed Successfully</string>
+    <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>
+    <string name="database_Import_completed">Database Import Completed</string>
+    <string name="unable_to_import_database_retry">Unable to import database. Retry</string>
+
     <!--    Kasir-->
     <string name="reset">Reset</string>
     <string name="ten">10</string>
@@ -58,7 +63,7 @@
     <string name="select_order_type">SELECT ORDER TYPE</string>
     <string name="select_payment_method">SELECT PAYMENT METHOD</string>
     <string name="order_done_successful">Order Done Successful</string>
-    <!--    Kasir-->
+    <!--    /Kasir-->
 
     <!--    Data-->
     <string name="search_here">Search Here. . . .</string>
@@ -114,14 +119,9 @@
     <string name="product_details">Product Details</string>
     <string name="update_successfully">Update Successfully</string>
 
-    <string name="backup_completed_successfully">Backup Completed Successfully</string>
-    <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>
-    <string name="database_Import_completed">Database Import Completed</string>
-    <string name="unable_to_import_database_retry">Unable to import database. Retry</string>
-
     <string name="qr_barcode_scanner">QR or Barcode Scanner</string>
     <string name="camera_permission">Camera Permission Required</string>
-    <!--    Data-->
+    <!--    /Data-->
 
     <!--    Print-->
     <string name="no_order_found">No Order Found</string>
@@ -145,7 +145,7 @@
     <string name="total_cost">Total Cost</string>
     <string name="quantity">Quantity:</string>
     <string name="weight_order_details">Weight:</string>
-    <!--    Print-->
+    <!--    /Print-->
 
     <!--    Shop-->
     <string name="action_settings">Settings</string>
@@ -171,7 +171,7 @@
     <string name="shop_address_cannot_be_empty">Shop address can\'t be empty</string>
     <string name="shop_currency_cannot_be_empty">Shop currency can\'t be empty</string>
     <string name="shop_information_updated_successfully">Shop Information Updated Successfully</string>
-    <!--    Shop-->
+    <!--    /Shop-->
 
     <!--    Category-->
     <string name="no_data_found">No Data Found</string>
@@ -184,7 +184,7 @@
     <string name="edit_category">Edit Category</string>
     <string name="enter_category_name">Enter Category Name</string>
     <string name="category_updated">Category Updated</string>
-    <!--    Category-->
+    <!--    /Category-->
 
     <!--    Weight-->
     <string name="weight_unit">Weight Unit</string>
@@ -197,7 +197,35 @@
     <string name="weight_unit_added_successfully">Weight Unit Added Successfully</string>
     <string name="update_weight_unit">Update Weight Unit</string>
     <string name="edit_weight_unit">Edit Weight Unit</string>
-    <!--    Weight-->
+    <!--    /Weight-->
+
+    <!--    PaymentMethod-->
+    <string name="all_payment_method">All Payment Method</string>
+    <string name="want_to_delete">Want to delete ?</string>
+    <string name="payment_method_deleted">Payment Method Deleted</string>
+    <string name="successfully_added">Successfully Added</string>
+    <string name="enter_payment_method_name">Enter Payment Method Name</string>
+    <string name="payment_method_name">Payment Method Name</string>
+    <string name="add_payment_method">Add Payment Method</string>
+    <string name="update_payment_method">Update Payment Method</string>
+    <string name="successfully_updated">Successfully Updated</string>
+    <!--    /PaymentMethod-->
+
+    <!--    Backup-->
+    <string name="database_backup">Database Backup</string>
+    <string name="database_import">Database Import</string>
+    <string name="backup_to_google_drive">Backup to Google Drive</string>
+    <string name="import_from_google_drive">Import from Google Drive</string>
+
+    <string name="enter_local_database_backup_name">Enter Local Database Backup Name</string>
+    <string name="unable_to_create_directory_retry">Unable to create directory. Retry</string>
+    <string name="database_restore">Database Restore:</string>
+    <string name="unable_to_restore_retry">Unable to restore. Retry</string>
+    <string name="backup_folder_not_present">Backup folder not present</string>
+
+    <string name="backup_successfully_loaded">Backup successfully loaded!</string>
+    <string name="failed_to_create_new_contents">Failed to create new contents.</string>
+    <!--    /Backup-->
 
     <!--    Expense-->
     <string name="expense_name">Expense Name</string>
@@ -220,7 +248,7 @@
     <string name="expense_successfully_added">Expense Successfully Added</string>
 
     <string name="edit_expense">Edit Expense</string>
-    <!--    Expense-->
+    <!--    /Expense-->
 
     <!--    Report-->
     <string name="all_sales_report">All Sales Report</string>
@@ -247,7 +275,7 @@
 
     <string name="monthly_expense_in_graph">Monthly Expense in Graph</string>
     <string name="monthly_expense_report">Monthly Expense Report</string>
-    <!--    Report-->
+    <!--    /Report-->
 
     <!--    Customers-->
     <string name="all_customer">All Customer</string>
@@ -267,7 +295,7 @@
     <string name="customer_successfully_added">Customer Successfully Added</string>
     <string name="update_customer">Update Customer</string>
     <string name="edit_customer">Edit Customer</string>
-    <!--    Customers-->
+    <!--    /Customers-->
 
     <!--    Suppliers-->
     <string name="all_suppliers">All Suppliers</string>
@@ -296,26 +324,5 @@
     <string name="edit_supplier">Edit Supplier</string>
     <string name="update_supplier">Update Supplier</string>
     <string name="edit_suppliers">Edit Suppliers</string>
-    <!--    Suppliers-->
-
-    <string name="payment_method_name">Payment Method Name</string>
-    <string name="add_payment_method">Add Payment Method</string>
-
-    <string name="update_payment_method">Update Payment Method</string>
-
-    <string name="database_backup">Database Backup</string>
-    <string name="database_import">Database Import</string>
-    <string name="backup_to_google_drive">Backup to Google Drive</string>
-    <string name="import_from_google_drive">Import from Google Drive</string>
-
-    <string name="enter_local_database_backup_name">Enter Local Database Backup Name</string>
-    <string name="unable_to_create_directory_retry">Unable to create directory. Retry</string>
-    <string name="database_restore">Database Restore:</string>
-    <string name="unable_to_restore_retry">Unable to restore. Retry</string>
-    <string name="backup_folder_not_present">Backup folder not present</string>
-
-    <string name="backup_successfully_loaded">Backup successfully loaded!</string>
-    <string name="failed_to_create_new_contents">Failed to create new contents.</string>
-
-
+    <!--    /Suppliers-->
 </resources>
