@@ -19,6 +19,7 @@ import java.io.File;
 
 public class LocalBackup {
 
+    https://github.com/prof18/Database-Backup-Restore
     private BackupActivity activity;
 
     public LocalBackup(BackupActivity activity1) {
@@ -30,37 +31,28 @@ public class LocalBackup {
 
         Permissions.verifyStoragePermissions(activity);
 
-        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + "Skripsi/");
+        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + activity.getResources().getString(R.string.app_name));
 
         boolean success = true;
         if (!folder.exists())
             success = folder.mkdirs();
         if (success) {
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(this.activity);
-            builder.setTitle("Backup");
-            final EditText input = new EditText(this.activity);
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setTitle("Backup Name");
+            final EditText input = new EditText(activity);
             input.setInputType(InputType.TYPE_CLASS_TEXT);
             builder.setView(input);
-            builder.setMessage(R.string.enter_local_database_backup_name)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String m_Text = input.getText().toString();
-                            String out = outFileName + m_Text;
-                            db.backup(out);
-                            dialog.cancel();
-                        }
-                    })
-                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    }).show();
+            builder.setPositiveButton("Save", (dialog, which) -> {
+                String m_Text = input.getText().toString();
+                String out = outFileName + m_Text ; //+ ".db"
+                db.backup(out);
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+            builder.show();
         } else
-            Toast.makeText(this.activity, (int) R.string.unable_to_create_directory_retry, Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Unable to create directory. Retry", Toast.LENGTH_SHORT).show();
     }
 
     //ask to the user what backup to restore
@@ -68,36 +60,32 @@ public class LocalBackup {
 
         Permissions.verifyStoragePermissions(activity);
 
-        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + "Skripsi/");
+        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + activity.getResources().getString(R.string.app_name));
         if (folder.exists()) {
 
             final File[] files = folder.listFiles();
 
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this.activity, android.R.layout.select_dialog_item);
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(activity, android.R.layout.select_dialog_item);
             for (File file : files)
                 arrayAdapter.add(file.getName());
 
-            AlertDialog.Builder builderSingle = new AlertDialog.Builder(this.activity);
-            builderSingle.setTitle(R.string.database_restore);
-            builderSingle.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    try {
-                        db.importDB(files[which].getPath());
-                    } catch (Exception e) {
-                        Toast.makeText(activity, (int) R.string.unable_to_restore_retry, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            AlertDialog.Builder builderSingle = new AlertDialog.Builder(activity);
+            builderSingle.setTitle("Restore:");
+            builderSingle.setNegativeButton(
+                    "cancel",
+                    (dialog, which) -> dialog.dismiss());
+            builderSingle.setAdapter(
+                    arrayAdapter,
+                    (dialog, which) -> {
+                        try {
+                            db.importDB(files[which].getPath());
+                        } catch (Exception e) {
+                            Toast.makeText(activity, "Unable to restore. Retry", Toast.LENGTH_SHORT).show();
+                        }
+                    });
             builderSingle.show();
         } else
-            Toast.makeText(this.activity, (int) R.string.backup_folder_not_present, Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Backup folder not present.\nDo a backup before a restore!", Toast.LENGTH_SHORT).show();
     }
 
 }
