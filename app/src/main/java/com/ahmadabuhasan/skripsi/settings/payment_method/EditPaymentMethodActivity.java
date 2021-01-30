@@ -1,18 +1,28 @@
 package com.ahmadabuhasan.skripsi.settings.payment_method;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.internal.view.SupportMenu;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ahmadabuhasan.skripsi.R;
+import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
+import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 //import com.itextpdf.text.io.PagedChannelRandomAccessSource;
+
+import es.dmoral.toasty.Toasty;
 
 /*
  * Created by Ahmad Abu Hasan on 30/01/2021
  */
 
 public class EditPaymentMethodActivity extends AppCompatActivity {
-    
+
     EditText editText_PaymentMethod;
     TextView textView_Edit;
     TextView textView_Update;
@@ -21,21 +31,21 @@ public class EditPaymentMethodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_payment_method);
-        
+
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.update_payment_method);
-        
+
         this.editText_PaymentMethod = findViewById(R.id.et_payment_method_name);
         this.textView_Edit = findViewById(R.id.tv_edit_payment_method);
         this.textView_Update = findViewById(R.id.tv_update_payment_method);
-        
+
         final String payment_method_id = getIntent().getExtras().getString(DatabaseOpenHelper.PAYMENT_METHOD_ID);
         this.editText_PaymentMethod.setText(getIntent().getExtras().getString(DatabaseOpenHelper.PAYMENT_METHOD_NAME));
-        
+
         this.editText_PaymentMethod.setEnabled(false);
         this.textView_Update.setVisibility(View.INVISIBLE);
-        
+
         this.textView_Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +54,7 @@ public class EditPaymentMethodActivity extends AppCompatActivity {
                 EditPaymentMethodActivity.this.editText_PaymentMethod.setTextColor(SupportMenu.CATEGORY_MASK);
             }
         });
-        
+
         this.textView_Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,7 +77,7 @@ public class EditPaymentMethodActivity extends AppCompatActivity {
             }
         });
     }
-    
+
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() != android.R.id.home) {
             return super.onOptionsItemSelected(item);
