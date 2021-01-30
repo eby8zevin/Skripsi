@@ -87,5 +87,4 @@ public class LocalBackup {
         } else
             Toast.makeText(activity, "Backup folder not present.\nDo a backup before a restore!", Toast.LENGTH_SHORT).show();
     }
-
 }
