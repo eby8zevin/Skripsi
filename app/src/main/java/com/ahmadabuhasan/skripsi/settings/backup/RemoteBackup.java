@@ -42,7 +42,7 @@ import static com.ahmadabuhasan.skripsi.settings.backup.BackupActivity.REQUEST_C
 
 public class RemoteBackup {
 
-    https://github.com/prof18/Database-Backup-Restore
+    //https://github.com/prof18/Database-Backup-Restore
     private static final String TAG = "Google Drive Activity";
 
     private DriveClient mDriveClient;
@@ -98,7 +98,7 @@ public class RemoteBackup {
 
     private Task<Void> createFileIntentSender(DriveContents driveContents) {
 
-        final String inFileName = activity.getDatabasePath(DATABASE_NAME).toString();
+        final String inFileName = activity.getDatabasePath(DatabaseOpenHelper.DATABASE_NAME).toString();
 
         try {
             File dbFile = new File(inFileName);
@@ -147,7 +147,7 @@ public class RemoteBackup {
     private void retrieveContents(DriveFile file) {
 
         //DB Path
-        final String inFileName = activity.getDatabasePath(DATABASE_NAME).toString();
+        final String inFileName = activity.getDatabasePath(DatabaseOpenHelper.DATABASE_NAME).toString();
 
         Task<DriveContents> openFileTask = mDriveResourceClient.openFile(file, DriveFile.MODE_READ_ONLY);
 
