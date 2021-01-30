@@ -34,7 +34,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 30/01/2021
  */
 
 public class ExpenseReportActivity extends AppCompatActivity {
@@ -80,7 +80,7 @@ public class ExpenseReportActivity extends AppCompatActivity {
             this.recyclerView.setVisibility(View.GONE);
             this.imageView_NoExpense.setVisibility(View.VISIBLE);
             this.imageView_NoExpense.setImageResource(R.drawable.not_found);
-            this.textView_TotalPrice.setVisibility(View.VISIBLE);
+            this.textView_NoExpense.setVisibility(View.VISIBLE);
             this.textView_TotalPrice.setVisibility(View.GONE);
         } else {
             ExpenseAdapter expenseAdapter1 = new ExpenseAdapter(this, this.expenseList);
