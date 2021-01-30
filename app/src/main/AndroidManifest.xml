@@ -21,13 +21,16 @@
 
     <application
         android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_me"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_me_round"
         android:supportsRtl="true"
-        android:theme="@style/Skripsi">
+        android:theme="@style/Skripsi"
+        tools:targetApi="p">
         <activity android:name=".suppliers.EditSuppliersActivity" />
         <activity android:name=".suppliers.AddSuppliersActivity" />
         <activity android:name=".suppliers.SuppliersActivity" />
@@ -74,6 +77,46 @@
         </activity>
         <activity android:name=".MainActivity" />
 
+        <activity
+            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <service
+            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+            android:exported="true"
+            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+            android:visibleToInstantApps="true"
+            tools:targetApi="o" />
+
+        <provider
+            android:name="com.google.android.gms.ads.MobileAdsInitProvider"
+            android:authorities="com.ahmadabuhasan.skripsi.mobileadsinitprovider"
+            android:exported="false"
+            android:initOrder="100" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ahmadabuhasan.skripsi.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/AdMob_Application_ID" />
@@ -81,5 +124,4 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
     </application>
-
 </manifest>

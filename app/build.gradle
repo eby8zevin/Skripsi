@@ -37,11 +37,18 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-base:17.1.0'
+    implementation 'com.google.android.gms:play-services-basement:17.1.1'
+    implementation 'com.google.android.gms:play-services-measurement-base:17.1.0'
+    implementation 'com.google.android.gms:play-services-measurement-sdk-api:17.1.0'
     implementation 'com.google.android.gms:play-services-drive:17.0.0'
-    implementation 'com.google.android.gms:play-services-ads:19.7.0'
+    implementation 'com.google.android.gms:play-services-ads:19.3.0'
+    implementation 'com.google.android.gms:play-services-ads-lite:19.3.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.0.0'
+    implementation 'com.google.android.gms:play-services-tasks:17.0.0'
 
-    implementation 'com.google.firebase:firebase-ads:19.7.0'
     implementation platform('com.google.firebase:firebase-bom:26.3.0')
     implementation 'com.google.firebase:firebase-analytics'
 
@@ -61,4 +68,5 @@ dependencies {
 
 }
 
+apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
