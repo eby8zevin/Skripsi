@@ -3,6 +3,7 @@ package com.ahmadabuhasan.skripsi.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.ahmadabuhasan.skripsi.R;
 
@@ -315,10 +316,10 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOP);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SUPPLIER);
 
-        onCreate(db);
+        //onCreate(db);
     }
 
-    public void backup(String outFileName) {
+    /*public void backup(String outFileName) {
         try {
             FileInputStream fis = new FileInputStream(new File(this.mContext.getDatabasePath(DATABASE_NAME).toString()));
             OutputStream output = new FileOutputStream(outFileName);
@@ -363,9 +364,9 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             Toasty.error(this.mContext, (int) R.string.unable_to_import_database_retry, Toasty.LENGTH_SHORT).show();
             e.printStackTrace();
         }
-    }
-    
-    https://github.com/prof18/Database-Backup-Restore
+    }*/
+
+    //https://github.com/prof18/Database-Backup-Restore
     public void backup(String outFileName) {
 
         //database path
