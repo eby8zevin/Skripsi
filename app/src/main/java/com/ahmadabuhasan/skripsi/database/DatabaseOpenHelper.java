@@ -29,7 +29,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String CANCEL = "Cancel";
 
     // Database Version
-    public static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 1;
 
     // Database Name
     public static final String DATABASE_NAME = "skripsi.db";
@@ -316,7 +316,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SHOP);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SUPPLIER);
 
-        //onCreate(db);
+        onCreate(db);
     }
 
     /*public void backup(String outFileName) {
@@ -431,5 +431,4 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
     }
-
 }
