@@ -318,15 +318,14 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /*public void backup(String outFileName) {
+    public void backup(String outFileName) {
         try {
             FileInputStream fis = new FileInputStream(new File(this.mContext.getDatabasePath(DATABASE_NAME).toString()));
             OutputStream output = new FileOutputStream(outFileName);
             byte[] buffer = new byte[1024];
             while (true) {
-                int read = fis.read(buffer);
-                int length = read;
-                if (read > 0) {
+                int length = fis.read(buffer);
+                if (length > 0) {
                     output.write(buffer, 0, length);
                 } else {
                     output.flush();
@@ -340,8 +339,33 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             Toasty.error(this.mContext, (int) R.string.unable_to_backup_database_retry, Toasty.LENGTH_SHORT).show();
             e.printStackTrace();
         }
-    }*/
+    }
 
+    public void importDB(String inFileName) {
+        String outFileName = this.mContext.getDatabasePath(DATABASE_NAME).toString();
+        try {
+            FileInputStream fis = new FileInputStream(new File(inFileName));
+            OutputStream output = new FileOutputStream(outFileName);
+            byte[] buffer = new byte[1024];
+            while (true) {
+                int length = fis.read(buffer);
+                if (length > 0) {
+                    output.write(buffer, 0, length);
+                } else {
+                    output.flush();
+                    output.close();
+                    fis.close();
+                    Toasty.success(this.mContext, (int) R.string.database_Import_completed, Toasty.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            Toasty.error(this.mContext, (int) R.string.unable_to_import_database_retry, Toasty.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+    
+    https://github.com/prof18/Database-Backup-Restore
     public void backup(String outFileName) {
 
         //database path
@@ -367,38 +391,13 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             output.close();
             fis.close();
 
-            Toasty.success(this.mContext, this.mContext.getString(R.string.backup_completed_successfully), Toasty.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Backup Completed", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
-            Toasty.error(this.mContext, (int) R.string.unable_to_backup_database_retry, Toasty.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Unable to backup database. Retry", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
-
-    /*public void importDB(String inFileName) {
-        String outFileName = this.mContext.getDatabasePath(DATABASE_NAME).toString();
-        try {
-            FileInputStream fis = new FileInputStream(new File(inFileName));
-            OutputStream output = new FileOutputStream(outFileName);
-            byte[] buffer = new byte[1024];
-            while (true) {
-                int read = fis.read(buffer);
-                int length = read;
-                if (read > 0) {
-                    output.write(buffer, 0, length);
-                } else {
-                    output.flush();
-                    output.close();
-                    fis.close();
-                    Toasty.success(this.mContext, (int) R.string.database_Import_completed, Toasty.LENGTH_SHORT).show();
-                    return;
-                }
-            }
-        } catch (Exception e) {
-            Toasty.error(this.mContext, (int) R.string.unable_to_import_database_retry, Toasty.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-    }*/
 
     public void importDB(String inFileName) {
 
@@ -424,10 +423,10 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             output.close();
             fis.close();
 
-            Toasty.success(this.mContext, (int) R.string.database_Import_completed, Toasty.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Import Completed", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
-            Toasty.error(this.mContext, (int) R.string.unable_to_import_database_retry, Toasty.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Unable to import database. Retry", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
