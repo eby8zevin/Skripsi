@@ -30,7 +30,7 @@ import es.dmoral.toasty.Toasty;
  */
 
 public class BackupActivity extends AppCompatActivity {
-
+    
     private static final String TAG = "Google Drive Activity";
 
     public static final int REQUEST_CODE_SIGN_IN = 0;
@@ -41,6 +41,9 @@ public class BackupActivity extends AppCompatActivity {
     //variable for decide if i need to do a backup or a restore.
     //True stands for backup, False for restore
     private boolean isBackup = true;
+
+    private MainActivity activity;
+
     private LocalBackup localBackup;
     private RemoteBackup remoteBackup;
 
@@ -66,9 +69,9 @@ public class BackupActivity extends AppCompatActivity {
         this.cardView_BackupToDrive = findViewById(R.id.card_backup_to_drive);
         this.cardView_ImportFromDrive = findViewById(R.id.card_import_from_drive);
 
-        final DatabaseOpenHelper db = new DatabaseOpenHelper(getApplicationContext());
-        this.remoteBackup = new RemoteBackup(this);
         this.localBackup = new LocalBackup(this);
+        this.remoteBackup = new RemoteBackup(this);
+        final DatabaseOpenHelper db = new DatabaseOpenHelper(getApplicationContext());
 
         if (Build.VERSION.SDK_INT >= 23) {
             Permissions.verifyStoragePermissions(this);
@@ -78,6 +81,9 @@ public class BackupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BackupActivity.this.localBackup.performBackup(db, Environment.getExternalStorageDirectory() + File.separator + "Skripsi/");
+                //https://github.com/prof18/Database-Backup-Restore
+                String outFileName = Environment.getExternalStorageDirectory() + File.separator + getResources().getString(R.string.app_name) + File.separator;
+                localBackup.performBackup(db, outFileName);
             }
         });
 
@@ -85,6 +91,8 @@ public class BackupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BackupActivity.this.localBackup.performRestore(new DatabaseOpenHelper(BackupActivity.this.getApplicationContext()));
+                //https://github.com/prof18/Database-Backup-Restore
+                localBackup.performRestore(db);
             }
         });
 
@@ -100,6 +108,9 @@ public class BackupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 BackupActivity.this.isBackup = true;
                 BackupActivity.this.remoteBackup.connectToDrive(BackupActivity.this.isBackup);
+                //https://github.com/prof18/Database-Backup-Restore
+                isBackup = true;
+                remoteBackup.connectToDrive(isBackup);
             }
         });
 
@@ -108,6 +119,9 @@ public class BackupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 BackupActivity.this.isBackup = false;
                 BackupActivity.this.remoteBackup.connectToDrive(BackupActivity.this.isBackup);
+                //https://github.com/prof18/Database-Backup-Restore
+                isBackup = false;
+                remoteBackup.connectToDrive(isBackup);
             }
         });
     }
@@ -169,23 +183,55 @@ public class BackupActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SIGN_IN) {
+        if (requestCode == 0) {
             Log.i(TAG, "Sign in request code");
-            if (resultCode == RESULT_OK) {
+            if (resultCode == -1) {
                 this.remoteBackup.connectToDrive(this.isBackup);
             }
-        } else if (requestCode == REQUEST_CODE_CREATION) {
-            if (resultCode == RESULT_OK) {
+        } else if (requestCode != 1) {
+            if (requestCode == 2 && resultCode == -1) {
                 Log.i(TAG, "Backup successfully saved.");
-                Toasty.success(this, (int) R.string.backup_successfully_loaded, Toasty.LENGTH_SHORT).show();
+                Toasty.success(this, (int) R.string.backup_successfully_loaded, 0).show();
             }
-        } else if (requestCode == REQUEST_CODE_OPENING) {
-            if (resultCode == RESULT_OK) {
-                this.remoteBackup.mOpenItemTaskSource.setResult((DriveId) data.getParcelableExtra(OpenFileActivityOptions.EXTRA_RESPONSE_DRIVE_ID));
-            }
+        } else if (resultCode == -1) {
+            this.remoteBackup.mOpenItemTaskSource.setResult((DriveId) data.getParcelableExtra("response_drive_id"));
         } else {
             this.remoteBackup.mOpenItemTaskSource.setException(new RuntimeException("Unable to open file"));
         }
     }
+    
+    https://github.com/prof18/Database-Backup-Restore
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        switch (requestCode) {
+
+            case REQUEST_CODE_SIGN_IN:
+                Log.i(TAG, "Sign in request code");
+                // Called after user is signed in.
+                if (resultCode == RESULT_OK) {
+                    remoteBackup.connectToDrive(isBackup);
+                }
+                break;
+
+            case REQUEST_CODE_CREATION:
+                // Called after a file is saved to Drive.
+                if (resultCode == RESULT_OK) {
+                    Log.i(TAG, "Backup successfully saved.");
+                    Toast.makeText(this, "Backup successufly loaded!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case REQUEST_CODE_OPENING:
+                if (resultCode == RESULT_OK) {
+                    DriveId driveId = data.getParcelableExtra(
+                            OpenFileActivityOptions.EXTRA_RESPONSE_DRIVE_ID);
+                    remoteBackup.mOpenItemTaskSource.setResult(driveId);
+                } else {
+                    remoteBackup.mOpenItemTaskSource.setException(new RuntimeException("Unable to open file"));
+                }
+                
+        }
+    }
+
 
 }
