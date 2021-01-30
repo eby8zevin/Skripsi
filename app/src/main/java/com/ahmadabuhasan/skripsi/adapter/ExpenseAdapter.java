@@ -28,7 +28,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 30/01/2021
  */
 
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.MyViewHolder> {
@@ -57,7 +57,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.MyViewHo
         String currency = databaseAccess.getCurrency();
 
         holder.textView_Name.setText(this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_NAME));
-        double amount = Double.parseDouble(this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_AMOUNT));
+        Double amount = Double.parseDouble(this.expenseData.get(position).get(DatabaseOpenHelper.EXPENSE_AMOUNT));
         TextView textView = holder.textView_Amount;
         textView.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(amount));
 
