@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 29/01/2021
+ * Created by Ahmad Abu Hasan on 30/01/2021
  */
 
 public class DatabaseAccess {
@@ -808,6 +808,54 @@ public class DatabaseAccess {
     }
     /*/WEIGHT*/
 
+    /*PAYMENT_METHOD*/
+    // PaymentMethodAdapter
+    public boolean deletePaymentMethod(String payment_method_id) {
+        long check = (long) this.database.delete("payment_method", "payment_method_id=?", new String[]{payment_method_id});
+        this.database.close();
+        return check == 1;
+    }
+
+    // PaymentMethodActivity
+    public ArrayList<HashMap<String, String>> searchPaymentMethod(String s) {
+        ArrayList<HashMap<String, String>> payment_method = new ArrayList<>();
+        SQLiteDatabase sQLiteDatabase = this.database;
+        Cursor cursor = sQLiteDatabase.rawQuery("SELECT * FROM payment_method WHERE payment_method_name LIKE '%" + s + "%' ORDER BY payment_method_id DESC ", null);
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> map = new HashMap<>();
+                map.put(DatabaseOpenHelper.PAYMENT_METHOD_ID, cursor.getString(0));
+                map.put(DatabaseOpenHelper.PAYMENT_METHOD_NAME, cursor.getString(1));
+                payment_method.add(map);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return payment_method;
+    }
+
+    // AddPaymentMethodActivity
+    public boolean addPaymentMethod(String payment_method_name) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.PAYMENT_METHOD_NAME, payment_method_name);
+        long check = this.database.insert("payment_method", null, values);
+        this.database.close();
+        if (check == -1) {
+            return false;
+        }
+        return true;
+    }
+
+    // EditPaymentMethodActivity
+    public boolean updatePaymentMethod(String payment_method_id, String payment_method_name) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.PAYMENT_METHOD_NAME, payment_method_name);
+        long check = (long) this.database.update("payment_method", values, "payment_method_id=? ", new String[]{payment_method_id});
+        this.database.close();
+        return check != -1;
+    }
+    /*/PAYMENT_METHOD*/
+
     /*EXPENSE*/
     // ExpenseAdapter
     public boolean deleteExpense(String expense_id) {
@@ -1327,5 +1375,6 @@ public class DatabaseAccess {
         return check != -1;
     }
     /*/SUPPLIERS*/
+
 
 }
