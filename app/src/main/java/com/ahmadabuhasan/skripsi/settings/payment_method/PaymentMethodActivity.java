@@ -1,17 +1,36 @@
 package com.ahmadabuhasan.skripsi.settings.payment_method;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.ahmadabuhasan.skripsi.R;
+import com.ahmadabuhasan.skripsi.adapter.PaymentMethodAdapter;
+import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
+import com.ahmadabuhasan.skripsi.settings.SettingsActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.HashMap;
+import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 /*
  * Created by Ahmad Abu Hasan on 30/01/2021
  */
 
 public class PaymentMethodActivity extends AppCompatActivity {
-    
+
     EditText editText_Search;
     FloatingActionButton floatingActionButton_fabAdd;
     ImageView imgNoPaymentMethod;
@@ -21,19 +40,19 @@ public class PaymentMethodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_method);
-        
+
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.all_payment_method);
-        
+
         this.editText_Search = findViewById(R.id.et_payment_method_search);
         this.floatingActionButton_fabAdd = findViewById(R.id.fab_add);
         this.imgNoPaymentMethod = findViewById(R.id.image_no_payment_method);
         this.recyclerView = findViewById(R.id.payment_method_recyclerview);
-        
+
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.recyclerView.setHasFixedSize(true);
-        
+
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         List<HashMap<String, String>> paymentMethodData = databaseAccess.getPaymentMethod();
@@ -45,14 +64,14 @@ public class PaymentMethodActivity extends AppCompatActivity {
             this.imgNoPaymentMethod.setVisibility(View.GONE);
             this.recyclerView.setAdapter(new PaymentMethodAdapter(this, paymentMethodData));
         }
-        
+
         this.floatingActionButton_fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                WeightActivity.this.startActivity(new Intent(PaymentMethodActivity.this, AddPaymentMethodActivity.class));
+                PaymentMethodActivity.this.startActivity(new Intent(PaymentMethodActivity.this, AddPaymentMethodActivity.class));
             }
         });
-        
+
         this.editText_Search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -73,7 +92,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
                 PaymentMethodActivity.this.recyclerView.setVisibility(View.VISIBLE);
                 PaymentMethodActivity.this.imgNoPaymentMethod.setVisibility(View.GONE);
                 PaymentMethodActivity.this.recyclerView.setAdapter(new PaymentMethodAdapter(PaymentMethodActivity.this, searchPaymentMethodList));
-            
+
             }
 
             @Override
@@ -82,7 +101,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
             }
         });
     }
-    
+
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
@@ -90,7 +109,7 @@ public class PaymentMethodActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, SettingsActivity.class));
