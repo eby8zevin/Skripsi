@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -30,7 +31,7 @@ import es.dmoral.toasty.Toasty;
  */
 
 public class BackupActivity extends AppCompatActivity {
-    
+
     private static final String TAG = "Google Drive Activity";
 
     public static final int REQUEST_CODE_SIGN_IN = 0;
@@ -42,7 +43,7 @@ public class BackupActivity extends AppCompatActivity {
     //True stands for backup, False for restore
     private boolean isBackup = true;
 
-    private MainActivity activity;
+    private BackupActivity activity;
 
     private LocalBackup localBackup;
     private RemoteBackup remoteBackup;
@@ -181,7 +182,7 @@ public class BackupActivity extends AppCompatActivity {
                 });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0) {
             Log.i(TAG, "Sign in request code");
@@ -198,11 +199,12 @@ public class BackupActivity extends AppCompatActivity {
         } else {
             this.remoteBackup.mOpenItemTaskSource.setException(new RuntimeException("Unable to open file"));
         }
-    }
-    
-    https://github.com/prof18/Database-Backup-Restore
+    }*/
+
+    //https://github.com/prof18/Database-Backup-Restore
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data); //Added
         switch (requestCode) {
 
             case REQUEST_CODE_SIGN_IN:
@@ -229,9 +231,8 @@ public class BackupActivity extends AppCompatActivity {
                 } else {
                     remoteBackup.mOpenItemTaskSource.setException(new RuntimeException("Unable to open file"));
                 }
-                
+
         }
     }
-
 
 }
