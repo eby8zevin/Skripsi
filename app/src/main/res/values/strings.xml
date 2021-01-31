@@ -17,8 +17,8 @@
     <string name="error">Error</string>
 
     <string name="AdMob_Application_ID">ca-app-pub-8638037215789792~2722511859</string>
-    <string name="AdMob_Banner_Ads_ID">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="AdMob_Interstitial_Ads_ID">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="AdMob_Banner_Ads_ID">ca-app-pub-8638037215789792/8070771952</string>
+    <string name="AdMob_Interstitial_Ads_ID">ca-app-pub-8638037215789792/1313791916</string>
 
     <string name="backup_completed_successfully">Backup Completed Successfully</string>
     <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>
@@ -145,6 +145,15 @@
     <string name="total_cost">Total Cost</string>
     <string name="quantity">Quantity:</string>
     <string name="weight_order_details">Weight:</string>
+
+    <string name="title_paired_devices">Paired devices</string>
+    <string name="title_other_devices">Other devices</string>
+    <string name="button_scan">Scan devices</string>
+
+    <string name="select_device">Select device</string>
+    <string name="none_found">No device found</string>
+    <string name="none_paired">No device found</string>
+    <string name="scanning">Searching…</string>
     <!--    /Print-->
 
     <!--    Shop-->
@@ -325,4 +334,11 @@
     <string name="update_supplier">Update Supplier</string>
     <string name="edit_suppliers">Edit Suppliers</string>
     <!--    /Suppliers-->
+
+    <!--    pdf_report-->
+    <string name="order_receipt">Order Receipt</string>
+    <string name="open_with_external_pdf_reader">Open with external pdf reader</string>
+    <string name="share">Share</string>
+    <string name="open_pdf">Open PDF</string>
+    <!--    /pdf_report-->
 </resources>

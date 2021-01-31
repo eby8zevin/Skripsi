@@ -22,4 +22,6 @@
     <color name="grey_5">#F2F2F2</color>
     <color name="grey_10">#E6E6E6</color>
     <color name="grey_60">#666666</color>
+
+    <color name="colorTextIcons">#FFFFFF</color>
 </resources>

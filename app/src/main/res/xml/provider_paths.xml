@@ -3,4 +3,5 @@
     <external-path
         name="sdcard"
         path="." />
+    <!--    external_files-->
 </paths>
