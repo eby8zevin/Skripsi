@@ -1,12 +1,16 @@
 package com.ahmadabuhasan.skripsi.print;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,8 +20,14 @@ import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.adapter.OrderDetailsAdapter;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
+import com.ahmadabuhasan.skripsi.pdf_report.BarCodeEncoder;
+import com.ahmadabuhasan.skripsi.pdf_report.TemplatePDF;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -25,12 +35,11 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 24/01/2021
+ * Created by Ahmad Abu Hasan on 31/01/2021
  */
 
 public class OrderDetailsActivity extends AppCompatActivity {
 
-    //DecimalFormat decimalFormat = new DecimalFormat("#0.00");
     private OrderDetailsAdapter orderDetailsAdapter;
     private RecyclerView recyclerView;
     ImageView imgNoProduct;
@@ -46,6 +55,13 @@ public class OrderDetailsActivity extends AppCompatActivity {
     String shop_name, shop_contact, shop_email, shop_address, currency;
     Double total_price, getTax, getDiscount, calculated_total_price;
     String shortText, longText;
+
+    private static final int REQUEST_CONNECT = 100;
+    private String[] header = {"Description", "Price"};
+    private TemplatePDF templatePDF;
+    //private WoosimPrnMng mPrnMng = null;
+    Bitmap bm = null;
+    DecimalFormat decimalFormat;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -112,9 +128,33 @@ public class OrderDetailsActivity extends AppCompatActivity {
         this.shortText = "Customer Name: Mr/Mrs. " + this.customer_name;
         this.longText = "Thanks for purchase. Visit again";
 
+        decimalFormat = new DecimalFormat("#0.00");
+        TemplatePDF templatePDF1 = new TemplatePDF(getApplicationContext());
+        this.templatePDF = templatePDF1;
+        templatePDF1.openDocument();
+        this.templatePDF.addMetaData("Skripsi", "Order Receipt", "Ahmad Abu Hasan");
+        this.templatePDF.addTitle(this.shop_name,
+                this.shop_address +
+                        "\n Email: " + this.shop_email +
+                        "\nContact: " + this.shop_contact +
+                        "\nInvoice ID: " + this.order_id,
+                " " + this.order_time + " " + this.order_date);
+        this.templatePDF.addParagraph(this.shortText);
+
+        try {
+            this.bm = new BarCodeEncoder().encodeAsBitmap(this.order_id, BarcodeFormat.CODE_128, 600, 300);
+        } catch (WriterException e) {
+            Log.d("Data", e.toString());
+        }
+
         this.button_PDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                OrderDetailsActivity.this.templatePDF.createTable(OrderDetailsActivity.this.header, OrderDetailsActivity.this.getOrdersData());
+                OrderDetailsActivity.this.templatePDF.addRightParagraph(OrderDetailsActivity.this.longText);
+                OrderDetailsActivity.this.templatePDF.addImage(OrderDetailsActivity.this.bm);
+                OrderDetailsActivity.this.templatePDF.closeDocument();
+                OrderDetailsActivity.this.templatePDF.viewPDF();
 
             }
         });
@@ -122,9 +162,39 @@ public class OrderDetailsActivity extends AppCompatActivity {
         this.button_Print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*if (Tools.isBlueToothOn(OrderDetailsActivity.this)) {
+                    PrefMng.saveActivePrinter(OrderDetailsActivity.this, 1);
+                    OrderDetailsActivity.this.startActivityForResult(new Intent(OrderDetailsActivity.this, DeviceListActivity.class), 100);
+                }*/
             }
         });
+    }
+
+    private ArrayList<String[]> getOrdersData() {
+        ArrayList<String[]> rows = new ArrayList<>();
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        List<HashMap<String, String>> orderDetailsList = databaseAccess.getOrderDetailsList(this.order_id);
+        for (int i = 0; i < orderDetailsList.size(); i++) {
+            String price = orderDetailsList.get(i).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_PRICE);
+            String qty = orderDetailsList.get(i).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_QTY);
+            double parseInt = (double) Integer.parseInt(qty);
+            double parseDouble = Double.parseDouble(price);
+            Double.isNaN(parseInt);
+            double cost_total = parseInt * parseDouble;
+
+            rows.add(new String[]{orderDetailsList.get(i).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_NAME) +
+                    "\n" + orderDetailsList.get(i).get(DatabaseOpenHelper.ORDER_DETAILS_PRODUCT_WEIGHT) +
+                    "\n(" + qty + " x " + this.currency + "  " + NumberFormat.getInstance(Locale.getDefault()).format(parseDouble) + ")",
+                    this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(cost_total)});
+        }
+        rows.add(new String[]{"..........................................", ".................................."});
+        rows.add(new String[]{"Sub Total: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.total_price)});
+        rows.add(new String[]{"Total Tax: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.getTax)});
+        rows.add(new String[]{"Discount: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.getDiscount)});
+        rows.add(new String[]{"..........................................", ".................................."});
+        rows.add(new String[]{"Total Price: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.calculated_total_price)});
+        return rows;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -135,4 +205,52 @@ public class OrderDetailsActivity extends AppCompatActivity {
         return true;
     }
 
+    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        OrderDetailsActivity orderDetailsActivity;
+        Exception e;
+        if (requestCode == REQUEST_CONNECT && resultCode == RESULT_OK) {
+            try {
+                try {
+                    orderDetailsActivity = this;
+                    try {
+                        orderDetailsActivity.mPrnMng = printerFactory.createPrnMng(orderDetailsActivity, data.getExtras().getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS),
+                                new TestPrinter(this, this.shop_name,
+                                        this.shop_address,
+                                        this.shop_email,
+                                        this.shop_contact,
+                                        this.order_id,
+                                        this.order_date,
+                                        this.order_time,
+                                        this.shortText,
+                                        this.longText,
+                                        this.total_price,
+                                        this.calculated_total_price,
+                                        this.tax,
+                                        this.discount,
+                                        this.currency));
+                    } catch (Exception e2) {
+                        e = e2;
+                    }
+                } catch (Exception e3) {
+                    e = e3;
+                    orderDetailsActivity = this;
+                    Toast.makeText(orderDetailsActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e4) {
+                e = e4;
+                orderDetailsActivity = this;
+                Toast.makeText(orderDetailsActivity, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }*/
+
+    /*public void onDestroy() {
+        WoosimPrnMng woosimPrnMng = this.mPrnMng;
+        if (woosimPrnMng != null) {
+            woosimPrnMng.releaseAllocatoins();
+        }
+        super.onDestroy();
+    }*/
 }
