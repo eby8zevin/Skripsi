@@ -234,6 +234,10 @@
 
     <string name="backup_successfully_loaded">Backup successfully loaded!</string>
     <string name="failed_to_create_new_contents">Failed to create new contents.</string>
+    <string name="no_file_selected">No file selected</string>
+    <string name="unable_to_read_contents">Unable to read contents</string>
+    <string name="error_on_import">Error on import</string>
+    <string name="select_database_file">Select Database File</string>
     <!--    /Backup-->
 
     <!--    Expense-->
