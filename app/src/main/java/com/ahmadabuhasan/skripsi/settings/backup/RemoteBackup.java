@@ -1,10 +1,12 @@
 package com.ahmadabuhasan.skripsi.settings.backup;
 
+import android.app.Activity;
 import android.content.IntentSender;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -23,6 +25,8 @@ import com.google.android.gms.drive.OpenFileActivityOptions;
 import com.google.android.gms.drive.query.Filters;
 import com.google.android.gms.drive.query.SearchableField;
 import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
@@ -32,15 +36,186 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import es.dmoral.toasty.Toasty;
+
 import static com.ahmadabuhasan.skripsi.settings.backup.BackupActivity.REQUEST_CODE_CREATION;
 import static com.ahmadabuhasan.skripsi.settings.backup.BackupActivity.REQUEST_CODE_OPENING;
 import static com.ahmadabuhasan.skripsi.settings.backup.BackupActivity.REQUEST_CODE_SIGN_IN;
 
 /*
- * Created by Ahmad Abu Hasan on 30/01/2021
+ * Created by Ahmad Abu Hasan on 31/01/2021
  */
 
 public class RemoteBackup {
+
+    /*private static final String TAG = "Google Drive Activity";
+    private BackupActivity activity;
+    private DriveClient mDriveClient;
+    private DriveResourceClient mDriveResourceClient;
+    public TaskCompletionSource<DriveId> mOpenItemTaskSource;
+
+    public RemoteBackup(BackupActivity activity1) {
+        this.activity = activity1;
+    }
+
+    public void connectToDrive(boolean backup) {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this.activity);
+        if (account == null) {
+            signIn();
+            return;
+        }
+        this.mDriveClient = Drive.getDriveClient((Activity) this.activity, account);
+        this.mDriveResourceClient = Drive.getDriveResourceClient((Activity) this.activity, account);
+        if (backup) {
+            startDriveBackup();
+        } else {
+            startDriveRestore();
+        }
+    }
+
+    private void signIn() {
+        Log.i(TAG, "Start sign in");
+        this.activity.startActivityForResult(buildGoogleSignInClient().getSignInIntent(), REQUEST_CODE_SIGN_IN);
+    }
+
+    private GoogleSignInClient buildGoogleSignInClient() {
+        return GoogleSignIn.getClient((Activity) this.activity, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestScopes(Drive.SCOPE_FILE, new Scope[0]).build());
+    }
+
+    private void startDriveBackup() {
+        this.mDriveResourceClient.createContents().continueWithTask(new Continuation() {
+            @Override
+            public final Object then(Task task) {
+                return RemoteBackup.this.startDriveBackup0RemoteBackup(task);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public final void onFailure(Exception exc) {
+                RemoteBackup.this.startDriveBackup1RemoteBackup(exc);
+            }
+        });
+    }
+
+    public Task startDriveBackup0RemoteBackup(Task task) {
+        return createFileIntentSender((DriveContents) task.getResult());
+    }
+
+    public void startDriveBackup1RemoteBackup(Exception e) {
+        Log.w(TAG, this.activity.getString(R.string.failed_to_create_new_contents), e);
+    }
+
+    private Task<Void> createFileIntentSender(DriveContents driveContents) {
+        try {
+            FileInputStream fis = new FileInputStream(new File(this.activity.getDatabasePath(DatabaseOpenHelper.DATABASE_NAME).toString()));
+            OutputStream outputStream = driveContents.getOutputStream();
+            byte[] buffer = new byte[1024];
+            while (true) {
+                int length = fis.read(buffer);
+                if (length <= 0) {
+                    break;
+                }
+                outputStream.write(buffer, 0, length);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return this.mDriveClient.newCreateFileActivityIntentSender(new CreateFileActivityOptions.Builder()
+                .setInitialMetadata(new MetadataChangeSet.Builder()
+                        .setTitle("skripsi_backup.db")
+                        .setMimeType("application/db").build())
+                .setInitialDriveContents(driveContents).build()).continueWith(new Continuation() {
+            @Override
+            public final Object then(Task task) throws IntentSender.SendIntentException {
+                activity.startIntentSenderForResult((IntentSender) task.getResult(), REQUEST_CODE_CREATION, null, 0, 0, 0);
+                return null;
+            }
+        });
+    }
+
+    private void startDriveRestore() {
+        pickFile().addOnSuccessListener(this.activity, new OnSuccessListener() {
+            @Override
+            public final void onSuccess(Object obj) {
+                RemoteBackup.this.startDriveRestore3RemoteBackup((DriveId) obj);
+            }
+        }).addOnFailureListener(this.activity, new OnFailureListener() {
+            @Override
+            public final void onFailure(Exception exc) {
+                RemoteBackup.this.startDriveRestore4RemoteBackup(exc);
+            }
+        });
+    }
+
+    public void startDriveRestore3RemoteBackup(DriveId driveId) {
+        retrieveContents(driveId.asDriveFile());
+    }
+
+    public void startDriveRestore4RemoteBackup(Exception e) {
+        Log.e(TAG, this.activity.getString(R.string.no_file_selected), e);
+    }
+
+    private void retrieveContents(DriveFile file) {
+        final String FileName = activity.getDatabasePath(DatabaseOpenHelper.DATABASE_NAME).toString();
+        this.mDriveResourceClient.openFile(file, DriveFile.MODE_READ_ONLY).continueWithTask(new Continuation() {
+            @Override
+            public final Object then(Task task) {
+                return RemoteBackup.this.retrieveContents5RemoteBackup(FileName, task);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public final void onFailure(Exception exc) {
+                RemoteBackup.this.retrieveContents6RemoteBackup(exc);
+            }
+        });
+    }
+
+    public Task retrieveContents5RemoteBackup(String inFileName, Task task) {
+        DriveContents contents = (DriveContents) task.getResult();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(contents.getParcelFileDescriptor().getFileDescriptor());
+            OutputStream output = new FileOutputStream(inFileName);
+            byte[] buffer = new byte[1024];
+            while (true) {
+                int length = fileInputStream.read(buffer);
+                if (length <= 0) {
+                    break;
+                }
+                output.write(buffer, 0, length);
+            }
+            output.flush();
+            output.close();
+            fileInputStream.close();
+            Toasty.success(this.activity, (int) R.string.database_Import_completed, Toasty.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this.activity, (int) R.string.failed, Toast.LENGTH_SHORT).show();
+        }
+        return this.mDriveResourceClient.discardContents(contents);
+    }
+
+    public void retrieveContents6RemoteBackup(Exception e) {
+        Log.e(TAG, this.activity.getString(R.string.unable_to_read_contents), e);
+        Toast.makeText(this.activity, (int) R.string.error_on_import, Toast.LENGTH_SHORT).show();
+    }
+
+    private Task<DriveId> pickItem(OpenFileActivityOptions openOptions) {
+        this.mOpenItemTaskSource = new TaskCompletionSource<>();
+        this.mDriveClient.newOpenFileActivityIntentSender(openOptions).continueWith(new Continuation() {
+            @Override
+            public final Object then(Task task) throws IntentSender.SendIntentException {
+                activity.startIntentSenderForResult((IntentSender) task.getResult(), REQUEST_CODE_OPENING, null, 0, 0, 0);
+                return null;
+            }
+        });
+        return this.mOpenItemTaskSource.getTask();
+    }
+
+    private Task<DriveId> pickFile() {
+        return pickItem(new OpenFileActivityOptions.Builder()
+                .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, "application/db"))
+                .setActivityTitle(this.activity.getString(R.string.select_database_file)).build());
+    }*/
+
 
     //https://github.com/prof18/Database-Backup-Restore
     private static final String TAG = "Google Drive Activity";
@@ -85,7 +260,6 @@ public class RemoteBackup {
                         .build();
         return GoogleSignIn.getClient(activity, signInOptions);
     }
-
 
     private void startDriveBackup() {
         mDriveResourceClient
