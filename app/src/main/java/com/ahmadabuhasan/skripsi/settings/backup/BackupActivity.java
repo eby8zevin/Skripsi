@@ -27,7 +27,7 @@ import java.io.File;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 30/01/2021
+ * Created by Ahmad Abu Hasan on 31/01/2021
  */
 
 public class BackupActivity extends AppCompatActivity {
@@ -232,7 +232,6 @@ public class BackupActivity extends AppCompatActivity {
                 } else {
                     remoteBackup.mOpenItemTaskSource.setException(new RuntimeException("Unable to open file"));
                 }
-
         }
     }
 }
