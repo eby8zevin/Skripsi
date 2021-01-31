@@ -166,6 +166,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                     PrefMng.saveActivePrinter(OrderDetailsActivity.this, 1);
                     OrderDetailsActivity.this.startActivityForResult(new Intent(OrderDetailsActivity.this, DeviceListActivity.class), 100);
                 }*/
+                OrderDetailsActivity.this.startActivityForResult(new Intent(OrderDetailsActivity.this, DeviceListActivity.class), 100);
             }
         });
     }
