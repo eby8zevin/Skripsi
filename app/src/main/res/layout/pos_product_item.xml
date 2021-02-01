@@ -39,11 +39,12 @@
                         android:id="@+id/img_product"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
+                        android:scaleType="fitCenter"
                         app:srcCompat="@drawable/image_placeholder"
                         tools:ignore="ContentDescription" />
 
                 </LinearLayout>
+                <!--android:scaleType="fitXY"-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,7 +104,7 @@
                             android:background="@color/colorPrimary"
                             android:fontFamily="@font/sailec_regular"
                             android:text="@string/add_to_cart"
-                            android:textColor="#FFF"
+                            android:textColor="@color/white"
                             android:textStyle="bold" />
 
                     </com.balysv.materialripple.MaterialRippleLayout>
