@@ -154,6 +154,8 @@
     <string name="none_found">No device found</string>
     <string name="none_paired">No device found</string>
     <string name="scanning">Searching…</string>
+    <string name="print_succ">Print done successfully</string>
+    <string name="print_error">Error in printing</string>
     <!--    /Print-->
 
     <!--    Shop-->
@@ -345,4 +347,14 @@
     <string name="share">Share</string>
     <string name="open_pdf">Open PDF</string>
     <!--    /pdf_report-->
+
+    <!--    utils-->
+    <string name="pic_load_error">Error in loading picture</string>
+    <string name="connect_fail">Printer connection error</string>
+    <string name="connect_lost">Disconnected</string>
+    <string name="bluetooth_not_available">Bluetooth not available</string>
+    <string name="turnon_bluetooth">Turn on Bluetooth</string>
+    <string name="not_connected">Connection is not established</string>
+    <string name="connected">Connect to</string>
+    <!--    /utils-->
 </resources>
