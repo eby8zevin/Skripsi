@@ -22,6 +22,10 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.ahmadabuhasan.skripsi.pdf_report.BarCodeEncoder;
 import com.ahmadabuhasan.skripsi.pdf_report.TemplatePDF;
+import com.ahmadabuhasan.skripsi.utils.PrefMng;
+import com.ahmadabuhasan.skripsi.utils.Tools;
+import com.ahmadabuhasan.skripsi.utils.WoosimPrnMng;
+import com.ahmadabuhasan.skripsi.utils.printerFactory;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 
@@ -35,7 +39,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 31/01/2021
+ * Created by Ahmad Abu Hasan on 01/02/2021
  */
 
 public class OrderDetailsActivity extends AppCompatActivity {
@@ -59,7 +63,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     private static final int REQUEST_CONNECT = 100;
     private String[] header = {"Description", "Price"};
     private TemplatePDF templatePDF;
-    //private WoosimPrnMng mPrnMng = null;
+    private WoosimPrnMng mPrnMng = null;
     Bitmap bm = null;
     DecimalFormat decimalFormat;
 
@@ -122,7 +126,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         this.textView_Tax.setText(getString(R.string.total_tax) + " : " + this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.getTax));
         this.textView_Discount.setText(getString(R.string.discount) + " : " + this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.getDiscount));
         this.calculated_total_price = (this.total_price + this.getTax) - this.getDiscount;
-        this.textView_TotalPrice.setText(getString(R.string.sub_total) + " " + this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.total_price));
+        this.textView_TotalPrice.setText(getString(R.string.sub_total) + ": " + this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.total_price));
         this.textView_TotalCost.setText(getString(R.string.total_price) + " " + this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.calculated_total_price));
 
         this.shortText = "Customer Name: Mr/Mrs. " + this.customer_name;
@@ -162,11 +166,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
         this.button_Print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if (Tools.isBlueToothOn(OrderDetailsActivity.this)) {
-                    PrefMng.saveActivePrinter(OrderDetailsActivity.this, 1);
+                if (Tools.isBlueToothOn(OrderDetailsActivity.this)) {
+                    PrefMng.saveActivePrinter(OrderDetailsActivity.this, PrefMng.PRN_WOOSIM_SELECTED);
                     OrderDetailsActivity.this.startActivityForResult(new Intent(OrderDetailsActivity.this, DeviceListActivity.class), 100);
-                }*/
-                OrderDetailsActivity.this.startActivityForResult(new Intent(OrderDetailsActivity.this, DeviceListActivity.class), 100);
+                }
             }
         });
     }
@@ -206,7 +209,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         return true;
     }
 
-    /*public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         OrderDetailsActivity orderDetailsActivity;
         Exception e;
         if (requestCode == REQUEST_CONNECT && resultCode == RESULT_OK) {
@@ -245,7 +248,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }*/
+    }
 
     /*public void onDestroy() {
         WoosimPrnMng woosimPrnMng = this.mPrnMng;
@@ -254,4 +257,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
         }
         super.onDestroy();
     }*/
+
+    @Override
+    protected void onDestroy() {
+        if (mPrnMng != null) mPrnMng.releaseAllocatoins();
+        super.onDestroy();
+    }
 }
