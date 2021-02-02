@@ -132,8 +132,7 @@ public class ProductActivity extends AppCompatActivity {
             return true;
         }
     }
-    
-    
+
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, DashboardActivity.class));
