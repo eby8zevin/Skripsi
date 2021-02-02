@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 24/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapter.MyViewHolder> {
