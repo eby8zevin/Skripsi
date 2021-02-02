@@ -104,8 +104,7 @@
             android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
             android:exported="true"
             android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-            android:visibleToInstantApps="true"
-            tools:targetApi="o" />
+            android:visibleToInstantApps="true" />
 
         <provider
             android:name="com.google.android.gms.ads.MobileAdsInitProvider"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <external-path
-        name="sdcard"
+        name="external_files"
         path="." />
-    <!--    external_files-->
+    <!--    sdcard-->
 </paths>
