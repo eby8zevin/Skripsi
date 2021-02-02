@@ -34,7 +34,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class ProductActivity extends AppCompatActivity {
@@ -121,24 +121,27 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == android.R.id.home) {
-            Intent intent = new Intent(this, DashboardActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
             return true;
-        } else if (itemId != R.id.menu_export) {
+        } else if (item.getItemId() != R.id.menu_export) {
             return super.onOptionsItemSelected(item);
         } else {
             folderChooser();
             return true;
         }
     }
+    
+    
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, DashboardActivity.class));
+        finish();
+        //super.onBackPressed();
+    }
 
     public void folderChooser() {
         new ChooserDialog((Activity) this).displayPath(true).withFilter(true, false, new String[0]).withChosenListener(new ChooserDialog.Result() {
-
             @Override
             public void onChoosePath(String path, File pathFile) {
                 ProductActivity.this.onExport(path);
@@ -154,7 +157,6 @@ public class ProductActivity extends AppCompatActivity {
             file.mkdirs();
         }
         new SQLiteToExcel(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, directory_path).exportSingleTable("products", "products.xls", new SQLiteToExcel.ExportListener() {
-
             @Override
             public void onStart() {
                 ProductActivity.this.loading = new ProgressDialog(ProductActivity.this);
