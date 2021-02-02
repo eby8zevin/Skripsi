@@ -47,7 +47,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final String category_id = this.categoryData.get(position).get(DatabaseOpenHelper.CATEGORY_ID);
         holder.textView_CategoryName.setText(this.categoryData.get(position).get(DatabaseOpenHelper.CATEGORY_NAME));
-        
+
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
