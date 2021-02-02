@@ -47,7 +47,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.MyViewHold
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final String weight_id = this.weightData.get(position).get(DatabaseOpenHelper.WEIGHT_ID);
         holder.textView_WeightName.setText(this.weightData.get(position).get(DatabaseOpenHelper.WEIGHT_UNIT));
-        
+
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
