@@ -9,10 +9,10 @@ import androidx.core.app.ActivityCompat;
 import static com.ahmadabuhasan.skripsi.settings.backup.BackupActivity.REQUEST_CODE_PERMISSIONS;
 
 /*
- * Created by Ahmad Abu Hasan on 30/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
-//https://github.com/eby8zevin/Database-Backup-Restore
+//https://github.com/prof18/Database-Backup-Restore
 public class Permissions {
 
     // Storage Permissions variables
