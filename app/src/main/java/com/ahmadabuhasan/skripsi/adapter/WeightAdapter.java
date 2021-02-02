@@ -24,7 +24,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.MyViewHolder> {
@@ -47,6 +47,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.MyViewHold
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final String weight_id = this.weightData.get(position).get(DatabaseOpenHelper.WEIGHT_ID);
         holder.textView_WeightName.setText(this.weightData.get(position).get(DatabaseOpenHelper.WEIGHT_UNIT));
+        
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
