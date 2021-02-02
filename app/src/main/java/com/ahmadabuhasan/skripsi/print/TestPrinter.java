@@ -15,14 +15,13 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.woosim.printer.WoosimCmd;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 01/02/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class TestPrinter implements IPrintToPrinter {
