@@ -338,7 +338,7 @@ public class AddProductActivity extends AppCompatActivity {
                 String product_supplier_name = AddProductActivity.this.editText_Supplier.getText().toString();
                 String product_supplier_id = AddProductActivity.this.selectedSupplierID;
 
-/*if (product_name.isEmpty()) {
+                /*if (product_name.isEmpty()) {
                     AddProductActivity.this.editText_Name.setError(AddProductActivity.this.getString(R.string.product_name_cannot_be_empty));
                     AddProductActivity.this.editText_Name.requestFocus();
                     return;
