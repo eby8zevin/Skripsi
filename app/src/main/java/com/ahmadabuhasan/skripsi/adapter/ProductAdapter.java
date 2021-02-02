@@ -28,7 +28,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 19/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
@@ -52,8 +52,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         final DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this.context);
         final String product_id = this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_ID);
 
-//        Locale localeID = new Locale("in", "ID");
-//        NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID); *include Rp
+        //Locale localeID = new Locale("in", "ID");
+        //NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID); *include Rp
 
         Double buy = Double.parseDouble(this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_BUY));
         Double price = Double.parseDouble(this.productData.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE));
