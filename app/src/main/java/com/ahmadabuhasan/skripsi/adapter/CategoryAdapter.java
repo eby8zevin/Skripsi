@@ -24,7 +24,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
@@ -46,8 +46,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final String category_id = this.categoryData.get(position).get(DatabaseOpenHelper.CATEGORY_ID);
-
         holder.textView_CategoryName.setText(this.categoryData.get(position).get(DatabaseOpenHelper.CATEGORY_NAME));
+        
         holder.imageView_Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
