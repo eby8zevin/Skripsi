@@ -30,7 +30,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 25/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.MyViewHolder> {
