@@ -121,10 +121,11 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
             onBackPressed();
             return true;
-        } else if (item.getItemId() != R.id.menu_export) {
+        } else if (itemId != R.id.menu_export) {
             return super.onOptionsItemSelected(item);
         } else {
             folderChooser();
