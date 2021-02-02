@@ -46,7 +46,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 25/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class AddProductActivity extends AppCompatActivity {
@@ -338,7 +338,7 @@ public class AddProductActivity extends AppCompatActivity {
                 String product_supplier_name = AddProductActivity.this.editText_Supplier.getText().toString();
                 String product_supplier_id = AddProductActivity.this.selectedSupplierID;
 
-/*                if (product_name.isEmpty()) {
+/*if (product_name.isEmpty()) {
                     AddProductActivity.this.editText_Name.setError(AddProductActivity.this.getString(R.string.product_name_cannot_be_empty));
                     AddProductActivity.this.editText_Name.requestFocus();
                     return;
@@ -430,9 +430,6 @@ public class AddProductActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
-            Intent intent = new Intent(this, ProductActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
             finish();
             return true;
         } else if (itemId != R.id.menu_import) {
