@@ -422,7 +422,7 @@ public class EditProductActivity extends AppCompatActivity {
                 String product_total_qty = EditProductActivity.this.editText_Total_Qty.getText().toString();
                 String product_disc_qty = EditProductActivity.this.editText_Disc_Qty.getText().toString();
                 String product_weight = EditProductActivity.this.editText_Weight.getText().toString();
-                String product_weight_unit_id = EditProductActivity.this.selectedWeightUnitID; 
+                String product_weight_unit_id = EditProductActivity.this.selectedWeightUnitID;
                 //String product_last_update = EditProductActivity.this.editText_Last_Update.getText().toString();
                 String product_last_update = EditProductActivity.this.datetime;
                 String product_information = EditProductActivity.this.editText_Information.getText().toString();
