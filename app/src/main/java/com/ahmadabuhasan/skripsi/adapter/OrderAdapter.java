@@ -27,7 +27,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
@@ -68,11 +68,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
         if (orderStatus.equals(DatabaseOpenHelper.COMPLETED)) {
             holder.textView_OrderStatus.setBackgroundColor(Color.parseColor("#43A047"));
-            holder.textView_OrderStatus.setTextColor(-1);
+            holder.textView_OrderStatus.setTextColor(Color.WHITE);
             holder.imageView_Status.setVisibility(View.GONE);
         } else if (orderStatus.equals(DatabaseOpenHelper.CANCEL)) {
             holder.textView_OrderStatus.setBackgroundColor(Color.parseColor("#E53935"));
-            holder.textView_OrderStatus.setTextColor(-1);
+            holder.textView_OrderStatus.setTextColor(Color.WHITE);
             holder.imageView_Status.setVisibility(View.GONE);
         }
 
@@ -82,7 +82,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
                 final NiftyDialogBuilder dialogBuilder = NiftyDialogBuilder.getInstance(OrderAdapter.this.context);
                 dialogBuilder.withTitle(OrderAdapter.this.context.getString(R.string.change_order_status))
                         .withMessage(OrderAdapter.this.context.getString(R.string.please_change_order_status_to_complete_or_cancel))
-                        .withEffect(Effectstype.Slidetop).withDialogColor("#01BAEF")
+                        .withEffect(Effectstype.Slidetop)
+                        .withDialogColor("#01BAEF")
                         .withButton1Text(OrderAdapter.this.context.getString(R.string.order_completed))
                         .withButton2Text(OrderAdapter.this.context.getString(R.string.cancel_order))
                         .setButton1Click(new View.OnClickListener() {
