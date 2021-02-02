@@ -37,7 +37,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 25/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class EditProductActivity extends AppCompatActivity {
@@ -422,9 +422,9 @@ public class EditProductActivity extends AppCompatActivity {
                 String product_total_qty = EditProductActivity.this.editText_Total_Qty.getText().toString();
                 String product_disc_qty = EditProductActivity.this.editText_Disc_Qty.getText().toString();
                 String product_weight = EditProductActivity.this.editText_Weight.getText().toString();
-                String product_weight_unit_id = EditProductActivity.this.selectedWeightUnitID;
-                String product_last_update = EditProductActivity.this.datetime;
+                String product_weight_unit_id = EditProductActivity.this.selectedWeightUnitID; 
                 //String product_last_update = EditProductActivity.this.editText_Last_Update.getText().toString();
+                String product_last_update = EditProductActivity.this.datetime;
                 String product_information = EditProductActivity.this.editText_Information.getText().toString();
                 String product_supplier_id = EditProductActivity.this.selectedSupplierID;
 
@@ -463,10 +463,8 @@ public class EditProductActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, ProductActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
             finish();
             return true;
         }
