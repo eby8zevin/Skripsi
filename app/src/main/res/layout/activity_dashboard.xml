@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:text="@string/skripsi"
             android:textColor="@color/black"
-            android:textSize="22sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
@@ -31,7 +32,8 @@
             android:layout_marginTop="6dp"
             android:text="@string/point_of_sale"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="62dp"
@@ -89,7 +91,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/kaca"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -125,7 +128,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/pigura"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -161,7 +165,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/kasir"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -197,7 +202,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/data"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -233,7 +239,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/print"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -269,7 +276,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/settings"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -305,7 +313,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/expense"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -341,7 +350,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/report"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -377,7 +387,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/customers"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -413,7 +424,8 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/suppliers"
                             android:textColor="@color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
