@@ -153,7 +153,7 @@
     <string name="select_device">Select device</string>
     <string name="none_found">No device found</string>
     <string name="none_paired">No device found</string>
-    <string name="scanning">Searching…</string>
+    <string name="scanning">Scanning…</string>
     <string name="print_succ">Print done successfully</string>
     <string name="print_error">Error in printing</string>
     <!--    /Print-->

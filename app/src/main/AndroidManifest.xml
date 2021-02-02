@@ -79,6 +79,13 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity
+            android:name="com.karumi.dexter.DexterActivity"
+            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+        <activity
+            android:name="com.obsez.android.lib.filechooser.permissions.PermissionActivity"
+            android:label=""
+            android:theme="@style/Theme.Transparent" />
+        <activity
             android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
             android:excludeFromRecents="true"
             android:exported="false"

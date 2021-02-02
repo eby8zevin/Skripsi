@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Skripsi" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <!--parent="Theme.MaterialComponents.DayNight.DarkActionBar"-->
+    <style name="Skripsi" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <!-- Android Lint-->
         <item name="android:windowContentOverlay">@null</item>
         <!-- Keyboard Hidden-->
@@ -9,7 +10,10 @@
         <item name="android:datePickerDialogTheme">@style/expenseDatePickerDialogTheme</item>
         <item name="android:timePickerDialogTheme">@style/expenseTimePickerDialogTheme</item>
         <!-- Primary brand color. -->
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimary">@color/cyan_blue</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- Color MaterialDesign-->
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -28,7 +32,7 @@
         <item name="mrl_rippleOverlay">true</item>
     </style>
 
-    <style name="expenseDatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+    <style name="expenseDatePickerDialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
         <!-- button color -->
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:datePickerStyle">@style/expenseDatePickerStyle</item>
@@ -38,7 +42,7 @@
         <item name="android:textColorSecondaryInverse">@color/white</item>
     </style>
 
-    <style name="expenseTimePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+    <style name="expenseTimePickerDialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
         <!-- button color -->
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
@@ -47,5 +51,4 @@
         <!-- header background color -->
         <item name="android:headerBackground">@color/colorPrimary</item>
     </style>
-
 </resources>
