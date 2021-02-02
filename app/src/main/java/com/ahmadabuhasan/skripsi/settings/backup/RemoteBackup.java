@@ -1,18 +1,16 @@
 package com.ahmadabuhasan.skripsi.settings.backup;
 
-import android.app.Activity;
 import android.content.IntentSender;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Scope;
+//import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.drive.CreateFileActivityOptions;
 import com.google.android.gms.drive.Drive;
 import com.google.android.gms.drive.DriveClient;
@@ -25,8 +23,6 @@ import com.google.android.gms.drive.OpenFileActivityOptions;
 import com.google.android.gms.drive.query.Filters;
 import com.google.android.gms.drive.query.SearchableField;
 import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 
@@ -36,14 +32,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import es.dmoral.toasty.Toasty;
-
 import static com.ahmadabuhasan.skripsi.settings.backup.BackupActivity.REQUEST_CODE_CREATION;
 import static com.ahmadabuhasan.skripsi.settings.backup.BackupActivity.REQUEST_CODE_OPENING;
 import static com.ahmadabuhasan.skripsi.settings.backup.BackupActivity.REQUEST_CODE_SIGN_IN;
 
 /*
- * Created by Ahmad Abu Hasan on 31/01/2021
+ * Created by Ahmad Abu Hasan on 02/02/2021
  */
 
 public class RemoteBackup {
@@ -215,7 +209,6 @@ public class RemoteBackup {
                 .setSelectionFilter(Filters.eq(SearchableField.MIME_TYPE, "application/db"))
                 .setActivityTitle(this.activity.getString(R.string.select_database_file)).build());
     }*/
-
 
     //https://github.com/prof18/Database-Backup-Restore
     private static final String TAG = "Google Drive Activity";
