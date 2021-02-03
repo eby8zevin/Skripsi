@@ -15,7 +15,7 @@ import java.io.OutputStream;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 30/01/2021
+ * Created by Ahmad Abu Hasan on 03/02/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -289,7 +289,11 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_EXPENSE);
         db.execSQL(CREATE_ORDER_DETAILS);
         db.execSQL(CREATE_ORDER_LIST);
-        db.execSQL(CREATE_ORDER_TYPE);
+        //db.execSQL(CREATE_ORDER_TYPE);
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_ORDER_TYPE + "(order_type_id INTEGER PRIMARY KEY, order_type_name TEXT)");
+        db.execSQL("INSERT INTO " + TABLE_ORDER_TYPE + "(order_type_id, order_type_name) VALUES (1, '')");
+        db.execSQL("INSERT INTO " + TABLE_ORDER_TYPE + "(order_type_id, order_type_name) VALUES (2, '')");
+        db.execSQL("INSERT INTO " + TABLE_ORDER_TYPE + "(order_type_id, order_type_name) VALUES (3, '')");
         db.execSQL(CREATE_PAYMENT_METHOD);
         db.execSQL(CREATE_PRODUCTS);
         db.execSQL(CREATE_PRODUCT_CART);
