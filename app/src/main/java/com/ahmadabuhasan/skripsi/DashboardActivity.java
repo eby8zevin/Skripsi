@@ -11,7 +11,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,13 +45,14 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 02/02/2021
+ * Created by Ahmad Abu Hasan on 03/02/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
 
     private static long back_pressed;
     private AdView adView;
+    ImageView imageView_Profile;
 
     CardView cardView_kaca;
     CardView cardView_pigura;
@@ -68,6 +71,8 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         getSupportActionBar().hide();
+
+        imageView_Profile = findViewById(R.id.profile);
 
         this.cardView_kaca = findViewById(R.id.card_kaca);
         this.cardView_pigura = findViewById(R.id.card_pigura);
@@ -92,6 +97,19 @@ public class DashboardActivity extends AppCompatActivity {
         });
         this.adView = findViewById(R.id.adView);
         this.adView.loadAd(new AdRequest.Builder().build());
+
+        this.cardView_kaca.setVisibility(View.GONE);
+        this.cardView_pigura.setVisibility(View.GONE);
+
+        this.imageView_Profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setAction(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://github.com/eby8zevin"));
+                startActivity(i);
+            }
+        });
 
         this.cardView_kaca.setOnClickListener(v -> {
             //DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, DashboardActivity.class));
