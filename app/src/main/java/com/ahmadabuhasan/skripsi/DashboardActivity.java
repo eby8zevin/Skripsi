@@ -45,7 +45,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 03/02/2021
+ * Created by Ahmad Abu Hasan on 04/02/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -97,9 +97,6 @@ public class DashboardActivity extends AppCompatActivity {
         });
         this.adView = findViewById(R.id.adView);
         this.adView.loadAd(new AdRequest.Builder().build());
-
-        this.cardView_kaca.setVisibility(View.GONE);
-        this.cardView_pigura.setVisibility(View.GONE);
 
         this.imageView_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
