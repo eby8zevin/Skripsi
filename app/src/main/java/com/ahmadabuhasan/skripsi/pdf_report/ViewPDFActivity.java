@@ -5,6 +5,7 @@ import androidx.core.content.FileProvider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +34,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /*
- * Created by Ahmad Abu Hasan on 31/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class ViewPDFActivity extends AppCompatActivity {
@@ -50,6 +51,7 @@ public class ViewPDFActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.order_receipt);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.pdfView = findViewById(R.id.pdfView);
 
