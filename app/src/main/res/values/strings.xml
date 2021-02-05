@@ -71,7 +71,7 @@
     <string name="buy">Beli</string>
     <string name="stock">Stock</string>
     <string name="price">Harga</string>
-    <string name="weight">Bobot</string>
+    <string name="weight">Berat</string>
     <string name="want_to_delete_product">Ingin Menghapus Barang ?</string>
     <string name="product_deleted">Barang Dihapus</string>
     <string name="failed">Gagal</string>
@@ -92,7 +92,7 @@
     <string name="product_price">Harga</string>
     <string name="product_total_qty">Jumlah QTY</string>
     <string name="product_disc_qty">Disc QTY</string>
-    <string name="product_weight">Bobot</string>
+    <string name="product_weight">Berat</string>
     <string name="product_weight_unit">Satuan</string>
     <string name="product_last_update">Last Update</string>
     <string name="product_information">Keterangan</string>
@@ -124,27 +124,27 @@
     <!--    /Data-->
 
     <!--    Print-->
-    <string name="no_order_found">No Order Found</string>
-    <string name="order_status">Order Status</string>
-    <string name="order_history">Order History</string>
-    <string name="order_id">Order ID:</string>
-    <string name="payment_method">Payment Method:</string>
-    <string name="order_type">Order Type:</string>
-    <string name="date">Date:</string>
-    <string name="change_order_status">Change Order Status</string>
-    <string name="please_change_order_status_to_complete_or_cancel">Please change order status to Complete or Cancel</string>
-    <string name="order_completed">Order Completed</string>
-    <string name="cancel_order">Cancel Order</string>
-    <string name="order_updated">Order Updated</string>
+    <string name="no_order_found">Pesanan Tidak Ditemukan</string>
+    <string name="order_status">Status Pesanan</string>
+    <string name="order_history">Riwayat Pemesanan</string>
+    <string name="order_id">ID Pesanan:</string>
+    <string name="payment_method">Metode Pembayaran:</string>
+    <string name="order_type">Jenis Pesanan:</string>
+    <string name="date">Tanggal:</string>
+    <string name="change_order_status">Ubah Status Pesanan</string>
+    <string name="please_change_order_status_to_complete_or_cancel">Silakan ubah status pesanan menjadi Selesai atau Batal</string>
+    <string name="order_completed">Pesanan Selesai</string>
+    <string name="cancel_order">Batalkan Pesanan</string>
+    <string name="order_updated">Pesanan Diperbarui</string>
 
     <string name="generate_pdf_receipt">PDF Receipt</string>
     <string name="print_thermal">Print Receipt Via Thermal Printer</string>
-    <string name="order_details">Order Details</string>
+    <string name="order_details">Detail Pesanan</string>
 
     <string name="qty">Qty</string>
-    <string name="total_cost">Total Cost</string>
+    <string name="total_cost">Total Biaya</string>
     <string name="quantity">Quantity:</string>
-    <string name="weight_order_details">Weight:</string>
+    <string name="weight_order_details">Berat:</string>
 
     <string name="title_paired_devices">Paired devices</string>
     <string name="title_other_devices">Other devices</string>
