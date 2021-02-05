@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.internal.view.SupportMenu;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +23,7 @@ import java.util.List;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class ShopInformationActivity extends AppCompatActivity {
@@ -45,6 +46,7 @@ public class ShopInformationActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.shop_information);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.editText_ShopName = findViewById(R.id.et_shop_name);
         this.editText_Contact = findViewById(R.id.et_shop_contact);
