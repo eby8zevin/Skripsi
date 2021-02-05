@@ -144,7 +144,7 @@
     <string name="qty">Qty</string>
     <string name="total_cost">Total Biaya</string>
     <string name="quantity">Quantity:</string>
-    <string name="weight_order_details">Berat:</string>
+    <string name="weight_order_details">Panjang/Berat:</string>
 
     <string name="title_paired_devices">Paired devices</string>
     <string name="title_other_devices">Other devices</string>
@@ -211,15 +211,15 @@
     <!--    /Weight-->
 
     <!--    PaymentMethod-->
-    <string name="all_payment_method">All Payment Method</string>
-    <string name="want_to_delete">Want to delete ?</string>
-    <string name="payment_method_deleted">Payment Method Deleted</string>
-    <string name="successfully_added">Successfully Added</string>
-    <string name="enter_payment_method_name">Enter Payment Method Name</string>
-    <string name="payment_method_name">Payment Method Name</string>
-    <string name="add_payment_method">Add Payment Method</string>
-    <string name="update_payment_method">Update Payment Method</string>
-    <string name="successfully_updated">Successfully Updated</string>
+    <string name="all_payment_method">Semua Metode Pembayaran</string>
+    <string name="want_to_delete">Ingin menghapus ?</string>
+    <string name="payment_method_deleted">Metode Pembayaran Dihapus</string>
+    <string name="successfully_added">Berhasil Ditambahkan</string>
+    <string name="enter_payment_method_name">Masukkan Nama Metode Pembayaran</string>
+    <string name="payment_method_name">Nama Metode Pembayaran</string>
+    <string name="add_payment_method">Tambahkan Metode Pembayaran</string>
+    <string name="update_payment_method">Perbarui Metode Pembayaran</string>
+    <string name="successfully_updated">Berhasil Diperbarui</string>
     <!--    /PaymentMethod-->
 
     <!--    Backup-->
@@ -243,53 +243,53 @@
     <!--    /Backup-->
 
     <!--    Expense-->
-    <string name="expense_name">Expense Name</string>
-    <string name="expense_note_if_any">Expense Note (if any)</string>
-    <string name="expense_note">Expense Note</string>
-    <string name="expense_amount">Expense Amount</string>
-    <string name="expense_date">Expense Date</string>
-    <string name="expense_time">Expense Time</string>
-    <string name="add_expense">Add Expense</string>
-    <string name="all_expense">All Expense</string>
+    <string name="expense_name">Nama Biaya</string>
+    <string name="expense_note_if_any">Catatan Biaya (jika ada)</string>
+    <string name="expense_note">Catatan Biaya</string>
+    <string name="expense_amount">Jumlah Biaya</string>
+    <string name="expense_date">Tanggal Biaya</string>
+    <string name="expense_time">Waktu Pengeluaran</string>
+    <string name="add_expense">Tambahkan Biaya</string>
+    <string name="all_expense">Semua Biaya</string>
 
-    <string name="expense_date_time">Date Time</string>
-    <string name="expense_note_space">Note </string>
-    <string name="note">Note:</string>
-    <string name="want_to_delete_expense">Want to Delete Expense ?</string>
-    <string name="expense_deleted">Expense Deleted</string>
+    <string name="expense_date_time">Tanggal Waktu</string>
+    <string name="expense_note_space">Catatan </string>
+    <string name="note">Catatan:</string>
+    <string name="want_to_delete_expense">Ingin Menghapus Biaya ?</string>
+    <string name="expense_deleted">Biaya Dihapus</string>
 
-    <string name="expense_name_cannot_be_empty">Expense name can\'t be empty</string>
-    <string name="expense_amount_cannot_be_empty">Expense amount can\'t be empty</string>
-    <string name="expense_successfully_added">Expense Successfully Added</string>
+    <string name="expense_name_cannot_be_empty">Nama pengeluaran tidak boleh kosong!</string>
+    <string name="expense_amount_cannot_be_empty">Jumlah biaya tidak boleh kosong!</string>
+    <string name="expense_successfully_added">Biaya Berhasil Ditambahkan</string>
 
-    <string name="edit_expense">Edit Expense</string>
+    <string name="edit_expense">Edit Biaya</string>
     <!--    /Expense-->
 
     <!--    Report-->
-    <string name="all_sales_report">All Sales Report</string>
-    <string name="all_expense_report">All Expense Report</string>
-    <string name="monthly_sales_graph">Monthly Sales Graph</string>
-    <string name="monthly_expense_graph">Monthly Expense Graph</string>
+    <string name="all_sales_report">Semua Laporan Penjualan</string>
+    <string name="all_expense_report">Semua Laporan Biaya</string>
+    <string name="monthly_sales_graph">Grafik Penjualan Bulanan</string>
+    <string name="monthly_expense_graph">Grafik Biaya Bulanan</string>
 
-    <string name="sales_date">Date</string>
+    <string name="sales_date">Tanggal</string>
 
-    <string name="all_sales">All Sales</string>
-    <string name="total_sales">Total Sales :</string>
-    <string name="total_discount">Total Discount</string>
-    <string name="net_sales">Net Sales</string>
-    <string name="daily">Daily</string>
-    <string name="monthly">Monthly</string>
-    <string name="yearly">Yearly</string>
-    <string name="export_all_data_to_excel">Export All Data to Excel</string>
+    <string name="all_sales">Semua Penjualan</string>
+    <string name="total_sales">Total Penjualan :</string>
+    <string name="total_discount">Total Diskon</string>
+    <string name="net_sales">Penjualan Bersih</string>
+    <string name="daily">Harian</string>
+    <string name="monthly">Bulanan</string>
+    <string name="yearly">Tahunan</string>
+    <string name="export_all_data_to_excel">Ekspor Semua Data ke Excel</string>
 
-    <string name="total_expense">Total Expense</string>
+    <string name="total_expense">Total Biaya</string>
 
-    <string name="year_2021">Year 2021</string>
-    <string name="year">Year</string>
-    <string name="monthly_sales_report">Monthly Sales Report</string>
+    <string name="year_2021">Tahun 2021</string>
+    <string name="year">Tahun</string>
+    <string name="monthly_sales_report">Laporan Penjualan Bulanan</string>
 
-    <string name="monthly_expense_in_graph">Monthly Expense in Graph</string>
-    <string name="monthly_expense_report">Monthly Expense Report</string>
+    <string name="monthly_expense_in_graph">Pengeluaran Bulanan dalam Grafik</string>
+    <string name="monthly_expense_report">Laporan Biaya Bulanan</string>
     <!--    /Report-->
 
     <!--    Customers-->
