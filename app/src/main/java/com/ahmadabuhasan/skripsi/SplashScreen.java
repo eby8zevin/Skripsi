@@ -3,13 +3,14 @@ package com.ahmadabuhasan.skripsi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.google.android.gms.auth.api.credentials.CredentialsApi;
 
 /*
- * Created by Ahmad Abu Hasan on 17/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class SplashScreen extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         getSupportActionBar().hide();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
