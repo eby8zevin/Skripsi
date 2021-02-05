@@ -10,6 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,7 +27,7 @@ import com.ahmadabuhasan.skripsi.R;
 import java.util.Set;
 
 /*
- * Created by Ahmad Abu Hasan on 02/02/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class DeviceListActivity extends AppCompatActivity {
@@ -102,6 +103,7 @@ public class DeviceListActivity extends AppCompatActivity {
             br.setDisplayHomeAsUpEnabled(true);
             br.setHomeAsUpIndicator(R.drawable.back);
         }
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         // Set result CANCELED in case the user backs out
         setResult(Activity.RESULT_CANCELED);
