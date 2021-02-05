@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -48,7 +49,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class ProductCart extends AppCompatActivity {
@@ -78,6 +79,7 @@ public class ProductCart extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.product_cart);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.decimalFormat = new DecimalFormat("#0.00");
         this.recyclerView = findViewById(R.id.cart_recyclerview);
