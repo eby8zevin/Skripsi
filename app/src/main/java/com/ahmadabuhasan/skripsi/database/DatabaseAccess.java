@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 30/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class DatabaseAccess {
@@ -223,7 +223,7 @@ public class DatabaseAccess {
         JSONArray jsonArray;
 
         String product_id;
-        String pending = "Pending";
+        String pending = "Tertunda";
         int i;
         int updated_stock;
         //double updated_stock;
