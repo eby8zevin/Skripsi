@@ -2,6 +2,7 @@ package com.ahmadabuhasan.skripsi.data;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,7 @@ import es.dmoral.toasty.Toasty;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /*
- * Created by Ahmad Abu Hasan on 13/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class EditProductScannerViewActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -36,6 +37,7 @@ public class EditProductScannerViewActivity extends AppCompatActivity implements
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.qr_barcode_scanner);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         if (this.currentApiVersion >= 23) {
             requestCameraPermission();
