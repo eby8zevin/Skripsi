@@ -1,6 +1,7 @@
 package com.ahmadabuhasan.skripsi.settings;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -20,7 +21,7 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 /*
- * Created by Ahmad Abu Hasan on 02/02/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class SettingsActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.action_settings);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.cardView_ShopInfo = findViewById(R.id.card_shop_info);
         this.cardView_Category = findViewById(R.id.card_category);
