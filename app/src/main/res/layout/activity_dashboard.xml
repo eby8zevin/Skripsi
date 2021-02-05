@@ -37,8 +37,8 @@
 
         <ImageView
             android:id="@+id/profile"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/person"
             tools:ignore="ContentDescription" />
@@ -54,23 +54,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <GridLayout
+            <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alignmentMode="alignMargins"
-                android:columnCount="2"
-                android:columnOrderPreserved="false"
-                android:rowCount="5">
+                app:alignmentMode="alignMargins"
+                app:columnCount="2"
+                app:columnOrderPreserved="false"
+                app:rowCount="5">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_kaca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -81,8 +82,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/baseline_calculate_24"
                             tools:ignore="ContentDescription" />
 
@@ -92,7 +93,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/kaca"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -103,11 +104,12 @@
                     android:id="@+id/card_pigura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -118,8 +120,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/baseline_calculate_24"
                             tools:ignore="ContentDescription" />
 
@@ -129,7 +131,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/pigura"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -140,11 +142,12 @@
                     android:id="@+id/card_kasir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -155,8 +158,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/baseline_shopping_cart_24"
                             tools:ignore="ContentDescription" />
 
@@ -166,7 +169,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/kasir"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -177,11 +180,12 @@
                     android:id="@+id/card_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -192,8 +196,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/baseline_topic_24"
                             tools:ignore="ContentDescription" />
 
@@ -203,7 +207,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/data"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -214,11 +218,12 @@
                     android:id="@+id/card_print"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -229,8 +234,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/baseline_print_24"
                             tools:ignore="ContentDescription" />
 
@@ -240,7 +245,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/print"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -251,11 +256,12 @@
                     android:id="@+id/card_settings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -266,8 +272,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/baseline_settings_24"
                             tools:ignore="ContentDescription" />
 
@@ -277,7 +283,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/settings"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -288,11 +294,12 @@
                     android:id="@+id/card_expense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -303,8 +310,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/expense"
                             tools:ignore="ContentDescription" />
 
@@ -314,7 +321,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/expense"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -325,11 +332,12 @@
                     android:id="@+id/card_report"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -340,8 +348,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/report"
                             tools:ignore="ContentDescription" />
 
@@ -351,7 +359,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/report"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -362,11 +370,12 @@
                     android:id="@+id/card_customers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -377,8 +386,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/customer"
                             tools:ignore="ContentDescription" />
 
@@ -388,7 +397,7 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/customers"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -399,11 +408,12 @@
                     android:id="@+id/card_suppliers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
                     android:layout_margin="12dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="6dp">
+                    app:cardElevation="6dp"
+                    app:layout_columnWeight="1"
+                    app:layout_rowWeight="1">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -414,8 +424,8 @@
                         tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:src="@drawable/supplier"
                             tools:ignore="ContentDescription" />
 
@@ -425,14 +435,14 @@
                             android:layout_marginTop="12dp"
                             android:text="@string/suppliers"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
+                            android:textSize="50sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-            </GridLayout>
+            </androidx.gridlayout.widget.GridLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
