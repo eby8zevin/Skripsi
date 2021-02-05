@@ -160,28 +160,28 @@
 
     <!--    Shop-->
     <string name="action_settings">Settings</string>
-    <string name="shop_information">Shop Information</string>
-    <string name="categories">Categories</string>
-    <string name="payment_methods">Payment Methods</string>
+    <string name="shop_information">Informasi Toko</string>
+    <string name="categories">Kategori</string>
+    <string name="payment_methods">Metode Pembayaran</string>
     <string name="data_backup">Data Backup</string>
 
-    <string name="shop_name">Shop Name</string>
-    <string name="shop_contact_number">Shop Contact Number</string>
-    <string name="shop_email">Shop Email</string>
-    <string name="shop_address">Shop Address</string>
-    <string name="currency_symbol">Currency Symbol</string>
-    <string name="shop_currency">Shop Currency</string>
-    <string name="tax_in_percentage">Tax in percentage (%)</string>
-    <string name="tax">Tax</string>
+    <string name="shop_name">Nama Toko</string>
+    <string name="shop_contact_number">Nomor Kontak Toko</string>
+    <string name="shop_email">Email Toko</string>
+    <string name="shop_address">Alamat Toko</string>
+    <string name="currency_symbol">Simbol Mata Uang</string>
+    <string name="shop_currency">Mata Uang Toko</string>
+    <string name="tax_in_percentage">Pajak dalam persentase (%)</string>
+    <string name="tax">Pajak</string>
     <string name="edit">Edit</string>
-    <string name="update_information">Update Information</string>
+    <string name="update_information">Perbarui Informasi</string>
 
-    <string name="shop_name_cannot_be_empty">Shop name can\'t be empty</string>
-    <string name="shop_contact_cannot_be_empty">Shop contact can\'t be empty</string>
-    <string name="enter_valid_email">Enter Valid Email</string>
-    <string name="shop_address_cannot_be_empty">Shop address can\'t be empty</string>
-    <string name="shop_currency_cannot_be_empty">Shop currency can\'t be empty</string>
-    <string name="shop_information_updated_successfully">Shop Information Updated Successfully</string>
+    <string name="shop_name_cannot_be_empty">Nama toko tidak boleh kosong!</string>
+    <string name="shop_contact_cannot_be_empty">Kontak toko tidak boleh kosong!</string>
+    <string name="enter_valid_email">Masukkan Email yang Valid!</string>
+    <string name="shop_address_cannot_be_empty">Alamat toko tidak boleh kosong!</string>
+    <string name="shop_currency_cannot_be_empty">Mata uang toko tidak boleh kosong!</string>
+    <string name="shop_information_updated_successfully">Informasi Toko Berhasil Diperbarui</string>
     <!--    /Shop-->
 
     <!--    Category-->
