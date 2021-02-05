@@ -2,6 +2,7 @@ package com.ahmadabuhasan.skripsi.print;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +40,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 01/02/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class OrderDetailsActivity extends AppCompatActivity {
@@ -61,7 +62,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     String shortText, longText;
 
     private static final int REQUEST_CONNECT = 100;
-    private String[] header = {"Description", "Price"};
+    private String[] header = {"Deskripsi", "Harga"};
     private TemplatePDF templatePDF;
     private WoosimPrnMng mPrnMng = null;
     Bitmap bm = null;
@@ -76,6 +77,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.order_details);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.imgNoProduct = findViewById(R.id.image_no_product);
         this.textView_NoProducts = findViewById(R.id.tv_no_products);
@@ -129,18 +131,18 @@ public class OrderDetailsActivity extends AppCompatActivity {
         this.textView_TotalPrice.setText(getString(R.string.sub_total) + ": " + this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.total_price));
         this.textView_TotalCost.setText(getString(R.string.total_price) + " " + this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.calculated_total_price));
 
-        this.shortText = "Customer Name: Mr/Mrs. " + this.customer_name;
+        this.shortText = "Nama Pelanggan: Bapak/Ibu. " + this.customer_name;
         this.longText = "Thanks for purchase. Visit again";
 
         decimalFormat = new DecimalFormat("#0.00");
         TemplatePDF templatePDF1 = new TemplatePDF(getApplicationContext());
         this.templatePDF = templatePDF1;
         templatePDF1.openDocument();
-        this.templatePDF.addMetaData("Skripsi", "Order Receipt", "Ahmad Abu Hasan");
+        this.templatePDF.addMetaData("Nota", "Nota", "Samudra Jaya");
         this.templatePDF.addTitle(this.shop_name,
                 this.shop_address +
                         "\n Email: " + this.shop_email +
-                        "\nContact: " + this.shop_contact +
+                        "\nKontak: " + this.shop_contact +
                         "\nInvoice ID: " + this.order_id,
                 " " + this.order_time + " " + this.order_date);
         this.templatePDF.addParagraph(this.shortText);
@@ -194,10 +196,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
         }
         rows.add(new String[]{"..........................................", ".................................."});
         rows.add(new String[]{"Sub Total: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.total_price)});
-        rows.add(new String[]{"Total Tax: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.getTax)});
-        rows.add(new String[]{"Discount: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.getDiscount)});
+        rows.add(new String[]{"Total Pajak: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.getTax)});
+        rows.add(new String[]{"Diskon: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.getDiscount)});
         rows.add(new String[]{"..........................................", ".................................."});
-        rows.add(new String[]{"Total Price: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.calculated_total_price)});
+        rows.add(new String[]{"Total Harga: ", this.currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(this.calculated_total_price)});
         return rows;
     }
 
