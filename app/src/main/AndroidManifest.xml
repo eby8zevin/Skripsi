@@ -32,6 +32,7 @@
         android:supportsRtl="true"
         android:theme="@style/Skripsi"
         android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="stateAlwaysHidden"
         tools:targetApi="p">
         <activity android:name=".pdf_report.ViewPDFActivity" />
         <activity android:name=".suppliers.EditSuppliersActivity" />
