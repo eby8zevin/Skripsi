@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -34,7 +35,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 30/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class ExpenseReportActivity extends AppCompatActivity {
@@ -58,6 +59,7 @@ public class ExpenseReportActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.all_expense);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.textView_TotalPrice = findViewById(R.id.tv_total_price);
         this.textView_NoExpense = findViewById(R.id.tv_no_expense);
