@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Skripsi</string>
 
-    <string name="skripsi">Skripsi</string>
+    <string name="skripsi">Samudra Jaya</string>
     <string name="point_of_sale">Point Of Sale</string>
     <string name="kaca">Kaca</string>
     <string name="pigura">Pigura</string>
@@ -9,118 +9,118 @@
     <string name="data">Data</string>
     <string name="print">Print</string>
     <string name="settings">Settings</string>
-    <string name="expense">Expense</string>
-    <string name="report">Report</string>
-    <string name="customers">Customers</string>
+    <string name="expense">Beban</string>
+    <string name="report">Laporan</string>
+    <string name="customers">Pelanggan</string>
     <string name="suppliers">Suppliers</string>
-    <string name="press_once_again_to_exit">Press once again to exit!</string>
+    <string name="press_once_again_to_exit">Tekan sekali lagi untuk keluar!</string>
     <string name="error">Error</string>
 
     <string name="AdMob_Application_ID">ca-app-pub-8638037215789792~2722511859</string>
     <string name="AdMob_Banner_Ads_ID">ca-app-pub-8638037215789792/8070771952</string>
     <string name="AdMob_Interstitial_Ads_ID">ca-app-pub-8638037215789792/1313791916</string>
 
-    <string name="backup_completed_successfully">Backup Completed Successfully</string>
-    <string name="unable_to_backup_database_retry">Unable to backup database. Retry</string>
-    <string name="database_Import_completed">Database Import Completed</string>
-    <string name="unable_to_import_database_retry">Unable to import database. Retry</string>
+    <string name="backup_completed_successfully">Backup Berhasil</string>
+    <string name="unable_to_backup_database_retry">Tidak dapat membackup database. Coba lagi!</string>
+    <string name="database_Import_completed">Impor Database Selesai</string>
+    <string name="unable_to_import_database_retry">Tidak dapat mengimpor database. Coba lagi!</string>
 
     <!--    Kasir-->
     <string name="reset">Reset</string>
     <string name="ten">10</string>
-    <string name="add_to_cart">Add To Cart</string>
+    <string name="add_to_cart">Tambahkan ke Keranjang</string>
 
-    <string name="stock_is_low_please_update_stock">Stock is low. Please update stock</string>
-    <string name="product_added_to_cart">Product added to cart</string>
-    <string name="product_already_added_to_cart">Product Already Added to Cart</string>
-    <string name="product_added_to_cart_failed_try_again">Product added to cart failed! Try again</string>
+    <string name="stock_is_low_please_update_stock">Stok hampir habis. Harap perbarui stok</string>
+    <string name="product_added_to_cart">Barang ditambahkan ke keranjang</string>
+    <string name="product_already_added_to_cart">Barang Sudah Ditambahkan ke Keranjang</string>
+    <string name="product_added_to_cart_failed_try_again">Barang yang ditambahkan ke keranjang gagal. Coba lagi!</string>
 
-    <string name="total_price">Total Price:</string>
+    <string name="total_price">Total Harga:</string>
     <string name="submit_order">Submit Order</string>
-    <string name="no_product_in_cart">No Product in Cart</string>
+    <string name="no_product_in_cart">Tidak Ada Barang di Keranjang</string>
 
     <string name="cart_weight">1 kg</string>
     <string name="cart_price">$96.00</string>
     <string name="one">1</string>
     <string name="symbol_plus">+</string>
-    <string name="product_removed_from_cart">Product removed from cart</string>
-    <string name="available_stock">Available Stock</string>
+    <string name="product_removed_from_cart">Barang dihapus dari keranjang</string>
+    <string name="available_stock">Stok Tersedia</string>
 
-    <string name="product_cart">Product Cart</string>
-    <string name="payment">Payment</string>
+    <string name="product_cart">Keranjang Barang</string>
+    <string name="payment">Pembayaran</string>
     <string name="submit">Submit</string>
-    <string name="walk_in_customer">Walk In Customer</string>
-    <string name="pick_up">PICK UP</string>
-    <string name="cash">CASH</string>
+    <string name="walk_in_customer">Pelanggan</string>
+    <string name="pick_up">AMBIL SENDIRI</string>
+    <string name="cash">TUNAI</string>
     <string name="sub_total">Sub Total</string>
-    <string name="total_tax">Total Tax</string>
-    <string name="discount">Discount</string>
+    <string name="total_tax">Total Pajak</string>
+    <string name="discount">Diskon</string>
     <string name="zero_zero">00</string>
     <string name="zero_zero_zero">0.00</string>
 
-    <string name="discount_cant_be_greater_than_total_price">Discount can\'t_be greater than total price</string>
-    <string name="select_customer">SELECT CUSTOMER</string>
-    <string name="select_order_type">SELECT ORDER TYPE</string>
-    <string name="select_payment_method">SELECT PAYMENT METHOD</string>
-    <string name="order_done_successful">Order Done Successful</string>
+    <string name="discount_cant_be_greater_than_total_price">Diskon tidak boleh lebih besar dari Total Harga</string>
+    <string name="select_customer">PILIH PELANGGAN</string>
+    <string name="select_order_type">PILIH JENIS PESANAN</string>
+    <string name="select_payment_method">PILIH METODE PEMBAYARAN</string>
+    <string name="order_done_successful">Pesanan Selesai</string>
     <!--    /Kasir-->
 
     <!--    Data-->
-    <string name="search_here">Search Here. . . .</string>
-    <string name="product_name">Product Name</string>
-    <string name="buy">Buy</string>
+    <string name="search_here">Cari Di Sini. . . .</string>
+    <string name="product_name">Nama Barang</string>
+    <string name="buy">Beli</string>
     <string name="stock">Stock</string>
-    <string name="price">Price</string>
-    <string name="weight">Weight</string>
-    <string name="want_to_delete_product">Want to Delete Product ?</string>
-    <string name="product_deleted">Product Deleted</string>
-    <string name="failed">Failed</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="price">Harga</string>
+    <string name="weight">Bobot</string>
+    <string name="want_to_delete_product">Ingin Menghapus Barang ?</string>
+    <string name="product_deleted">Barang Dihapus</string>
+    <string name="failed">Gagal</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
 
-    <string name="all_product">All Product</string>
-    <string name="no_product_found">No Product Found</string>
-    <string name="export_data_to_excel">Export Data to Excel</string>
-    <string name="data_exporting_please_wait">Data Exporting. Please wait. . .</string>
-    <string name="data_successfully_exported">Data Successfully Exported</string>
-    <string name="data_export_fail">Data Export Fail</string>
+    <string name="all_product">Semua Barang</string>
+    <string name="no_product_found">Tidak Ada Barang Ditemukan</string>
+    <string name="export_data_to_excel">Expor Data ke Excel</string>
+    <string name="data_exporting_please_wait">Mengekspor Data. Mohon tunggu. . .</string>
+    <string name="data_successfully_exported">Data Berhasil Diekspor</string>
+    <string name="data_export_fail">Ekspor Data Gagal</string>
 
-    <string name="product_code">Code</string>
-    <string name="product_category">Category</string>
-    <string name="product_buy">Buy</string>
-    <string name="product_stock">Stock</string>
-    <string name="product_price">Price</string>
-    <string name="product_total_qty">Total QTY</string>
+    <string name="product_code">Kode Barang</string>
+    <string name="product_category">Kategori</string>
+    <string name="product_buy">Beli</string>
+    <string name="product_stock">Stok</string>
+    <string name="product_price">Harga</string>
+    <string name="product_total_qty">Jumlah QTY</string>
     <string name="product_disc_qty">Disc QTY</string>
-    <string name="product_weight">Weight</string>
-    <string name="product_weight_unit">Unit</string>
+    <string name="product_weight">Bobot</string>
+    <string name="product_weight_unit">Satuan</string>
     <string name="product_last_update">Last Update</string>
-    <string name="product_information">Information</string>
+    <string name="product_information">Keterangan</string>
     <string name="product_supplier">Supplier</string>
-    <string name="type_something_to_search">Type something to search</string>
-    <string name="cancel">Cancel</string>
-    <string name="product_name_cannot_be_empty">Product name can\'t be empty!</string>
-    <string name="product_buy_cannot_be_empty">Product buy can\'t be empty!</string>
-    <string name="product_stock_cannot_be_empty">Product stock can\'t be empty!</string>
-    <string name="product_price_cannot_be_empty">Product price can\'t be empty!</string>
-    <string name="product_successfully_added">Product Successfully Added</string>
-    <string name="product_category_cannot_be_empty">Product category can\'t be empty!</string>
-    <string name="product_weight_cannot_be_empty">Product weight can\'t be empty!</string>
-    <string name="product_supplier_cannot_be_empty">Product supplier can\'t be empty!</string>
-    <string name="import_from_excel">Import From Excel</string>
-    <string name="no_file_found">No File Found</string>
-    <string name="data_importing_please_wait">Data importing. Please wait. . .</string>
-    <string name="data_successfully_imported">Data Successfully Imported</string>
-    <string name="data_import_fail">Data Import Fail</string>
-    <string name="add_product">Add Product</string>
-    <string name="edit_product">Edit Product</string>
-    <string name="update_product">Update Product</string>
+    <string name="type_something_to_search">Ketik sesuatu untuk mencari</string>
+    <string name="cancel">Batal</string>
+    <string name="product_name_cannot_be_empty">Nama Barang tidak boleh kosong!</string>
+    <string name="product_buy_cannot_be_empty">Beli Barang tidak boleh kosong!</string>
+    <string name="product_stock_cannot_be_empty">Stok Barang tidak boleh kosong!</string>
+    <string name="product_price_cannot_be_empty">Harga Barang tidak boleh kosong!</string>
+    <string name="product_category_cannot_be_empty">Kategori Barang tidak boleh kosong!</string>
+    <string name="product_weight_cannot_be_empty">Bobot Barang tidak boleh kosong!</string>
+    <string name="product_supplier_cannot_be_empty">Supplier tidak boleh kosong!</string>
+    <string name="import_from_excel">Impor Dari Excel</string>
+    <string name="no_file_found">File Tidak Ditemukan</string>
+    <string name="data_importing_please_wait">Mengimpor data. Mohon tunggu. . .</string>
+    <string name="data_successfully_imported">Data Berhasil Diimpor</string>
+    <string name="data_import_fail">Impor Data Gagal</string>
+    <string name="add_product">Tambahkan Barang/string>
+    <string name="product_successfully_added">Barang Berhasil Ditambahkan</string>
+    <string name="edit_product">Edit Barang</string>
+    <string name="update_product">Update Barang</string>
 
-    <string name="product_details">Product Details</string>
-    <string name="update_successfully">Update Successfully</string>
+    <string name="product_details">Detail Barang</string>
+    <string name="update_successfully">Update Berhasil</string>
 
     <string name="qr_barcode_scanner">QR or Barcode Scanner</string>
-    <string name="camera_permission">Camera Permission Required</string>
+    <string name="camera_permission">Izin Kamera Diperlukan</string>
     <!--    /Data-->
 
     <!--    Print-->
