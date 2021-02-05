@@ -3,6 +3,7 @@ package com.ahmadabuhasan.skripsi.report;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 02/02/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class ExpenseGraphActivity extends AppCompatActivity {
@@ -46,6 +47,7 @@ public class ExpenseGraphActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.monthly_expense_in_graph);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.textView_SelectYear = findViewById(R.id.tv_select_year);
         this.barChart = findViewById(R.id.barChart);
