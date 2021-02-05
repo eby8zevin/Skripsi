@@ -71,7 +71,7 @@
     <string name="buy">Beli</string>
     <string name="stock">Stock</string>
     <string name="price">Harga</string>
-    <string name="weight">Berat</string>
+    <string name="weight">Panjang/Berat</string>
     <string name="want_to_delete_product">Ingin Menghapus Barang ?</string>
     <string name="product_deleted">Barang Dihapus</string>
     <string name="failed">Gagal</string>
@@ -92,7 +92,7 @@
     <string name="product_price">Harga</string>
     <string name="product_total_qty">Jumlah QTY</string>
     <string name="product_disc_qty">Disc QTY</string>
-    <string name="product_weight">Berat</string>
+    <string name="product_weight">Panjang/Berat</string>
     <string name="product_weight_unit">Satuan</string>
     <string name="product_last_update">Last Update</string>
     <string name="product_information">Keterangan</string>
@@ -104,7 +104,7 @@
     <string name="product_stock_cannot_be_empty">Stok Barang tidak boleh kosong!</string>
     <string name="product_price_cannot_be_empty">Harga Barang tidak boleh kosong!</string>
     <string name="product_category_cannot_be_empty">Kategori Barang tidak boleh kosong!</string>
-    <string name="product_weight_cannot_be_empty">Berat Barang tidak boleh kosong!</string>
+    <string name="product_weight_cannot_be_empty">Panjang/Berat Barang tidak boleh kosong!</string>
     <string name="product_supplier_cannot_be_empty">Supplier tidak boleh kosong!</string>
     <string name="import_from_excel">Impor Dari Excel</string>
     <string name="no_file_found">File Tidak Ditemukan</string>
@@ -198,16 +198,16 @@
     <!--    /Category-->
 
     <!--    Weight-->
-    <string name="weight_unit">Weight Unit</string>
-    <string name="want_to_delete_weight_unit">Want to delete weight unit ?</string>
-    <string name="weight_deleted">Weight Unit Deleted</string>
-    <string name="weight_unit_name">Weight Unit Name</string>
-    <string name="add_weight_unit">Add Weight Unit</string>
-    <string name="enter_weight_unit_name">Enter Weight Unit Name</string>
-    <string name="weight_unit_updated">Weight Unit Updated</string>
-    <string name="weight_unit_added_successfully">Weight Unit Added Successfully</string>
-    <string name="update_weight_unit">Update Weight Unit</string>
-    <string name="edit_weight_unit">Edit Weight Unit</string>
+    <string name="weight_unit">Satuan Panjang/Berat</string>
+    <string name="want_to_delete_weight_unit">Ingin menghapus satuan panjang/berat ?</string>
+    <string name="weight_deleted">Satuan Panjang/Berat Dihapus</string>
+    <string name="weight_unit_name">Nama Satuan Panjang/Berat</string>
+    <string name="add_weight_unit">Tambahkan Satuan Panjang/Berat</string>
+    <string name="enter_weight_unit_name">Masukkan Nama Satuan Panjang/Berat</string>
+    <string name="weight_unit_updated">Satuan Panjang/Berat Diperbarui</string>
+    <string name="weight_unit_added_successfully">Satuan Panjang/Berat Berhasil Ditambahkan</string>
+    <string name="update_weight_unit">Perbarui Satuan Panjang/Berat</string>
+    <string name="edit_weight_unit">Edit Satuan Panjang/Berat</string>
     <!--    /Weight-->
 
     <!--    PaymentMethod-->
