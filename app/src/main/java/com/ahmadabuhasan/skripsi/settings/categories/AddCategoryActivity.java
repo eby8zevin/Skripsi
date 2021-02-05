@@ -3,6 +3,7 @@ package com.ahmadabuhasan.skripsi.settings.categories;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +17,7 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class AddCategoryActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class AddCategoryActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.add_category);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.editText_Category = findViewById(R.id.et_category_name);
         this.textView_Add = findViewById(R.id.tv_add_category);
