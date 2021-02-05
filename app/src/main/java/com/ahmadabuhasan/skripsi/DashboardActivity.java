@@ -110,6 +110,9 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
+        this.cardView_kaca.setVisibility(View.GONE);
+        this.cardView_pigura.setVisibility(View.GONE);
+
         this.cardView_kaca.setOnClickListener(v -> {
             //DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, DashboardActivity.class));
             Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
