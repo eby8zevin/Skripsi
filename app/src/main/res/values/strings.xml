@@ -104,7 +104,7 @@
     <string name="product_stock_cannot_be_empty">Stok Barang tidak boleh kosong!</string>
     <string name="product_price_cannot_be_empty">Harga Barang tidak boleh kosong!</string>
     <string name="product_category_cannot_be_empty">Kategori Barang tidak boleh kosong!</string>
-    <string name="product_weight_cannot_be_empty">Bobot Barang tidak boleh kosong!</string>
+    <string name="product_weight_cannot_be_empty">Berat Barang tidak boleh kosong!</string>
     <string name="product_supplier_cannot_be_empty">Supplier tidak boleh kosong!</string>
     <string name="import_from_excel">Impor Dari Excel</string>
     <string name="no_file_found">File Tidak Ditemukan</string>
