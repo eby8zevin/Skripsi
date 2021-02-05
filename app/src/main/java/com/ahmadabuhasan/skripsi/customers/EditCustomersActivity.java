@@ -5,6 +5,7 @@ import androidx.core.internal.view.SupportMenu;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,7 @@ import java.util.Calendar;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class EditCustomersActivity extends AppCompatActivity {
@@ -61,6 +62,7 @@ public class EditCustomersActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.edit_customer);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.editText_CustomerName = findViewById(R.id.et_customer_name);
         this.editText_Address = findViewById(R.id.et_customer_address);
