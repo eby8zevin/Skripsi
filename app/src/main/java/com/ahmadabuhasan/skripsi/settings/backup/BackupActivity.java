@@ -3,6 +3,7 @@ package com.ahmadabuhasan.skripsi.settings.backup;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,7 +28,7 @@ import java.io.File;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 31/01/2021
+ * Created by Ahmad Abu Hasan on 05/02/2021
  */
 
 public class BackupActivity extends AppCompatActivity {
@@ -63,6 +64,7 @@ public class BackupActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.data_backup);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         this.cardView_LocalBackUp = findViewById(R.id.card_local_backup);
         this.cardView_LocalImport = findViewById(R.id.card_local_db_import);
@@ -155,7 +157,7 @@ public class BackupActivity extends AppCompatActivity {
             file.mkdirs();
         }
         new SQLiteToExcel(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, directory_path)
-                .exportAllTables("Skripsi_AllData.xls", new SQLiteToExcel.ExportListener() {
+                .exportAllTables("SJ_AllData.xls", new SQLiteToExcel.ExportListener() {
 
                     @Override
                     public void onStart() {
