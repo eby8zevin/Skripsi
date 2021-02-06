@@ -38,7 +38,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/02/2021
+ * Created by Ahmad Abu Hasan on 06/02/2021
  */
 
 public class EditProductActivity extends AppCompatActivity {
@@ -151,6 +151,11 @@ public class EditProductActivity extends AppCompatActivity {
         String product_last_update = productData.get(0).get(DatabaseOpenHelper.PRODUCT_LAST_UPDATE);
         String product_information = productData.get(0).get(DatabaseOpenHelper.PRODUCT_INFORMATION);
         String product_supplier_id = productData.get(0).get(DatabaseOpenHelper.PRODUCT_SUPPLIER);
+        
+        double iBuy = Double.parseDouble(product_buy);
+        double iPrice = Double.parseDouble(product_price);
+        double iPriceBuy = iPrice - iBuy;
+        final double iPercent = ( iPriceBuy - iBuy ) * 100.0d;
 
         this.editText_Name.setText(product_name);
         editText_Code.setText(product_code);
@@ -159,7 +164,7 @@ public class EditProductActivity extends AppCompatActivity {
         //this.editText_Category.setText(product_category_id);
         this.editText_Buy.setText(product_buy);
         this.editText_Stock.setText(product_stock);
-        this.editText_Price.setText(product_price);
+        this.editText_Price.setText(product_price + "     " + iPercent + "%" );
         this.editText_Total_Qty.setText(product_total_qty);
         this.editText_Disc_Qty.setText(product_disc_qty);
         this.editText_Weight.setText(product_weight);
