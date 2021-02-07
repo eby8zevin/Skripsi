@@ -20,6 +20,7 @@ import android.print.PrintManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.ahmadabuhasan.skripsi.R;
@@ -34,7 +35,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /*
- * Created by Ahmad Abu Hasan on 05/02/2021
+ * Created by Ahmad Abu Hasan on 07/02/2021
  */
 
 public class ViewPDFActivity extends AppCompatActivity {
@@ -52,6 +53,7 @@ public class ViewPDFActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.order_receipt);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         this.pdfView = findViewById(R.id.pdfView);
 
