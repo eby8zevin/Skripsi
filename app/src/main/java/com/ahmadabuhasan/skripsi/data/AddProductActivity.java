@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,7 +48,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/02/2021
+ * Created by Ahmad Abu Hasan on 06/02/2021
  */
 
 public class AddProductActivity extends AppCompatActivity {
@@ -95,6 +96,7 @@ public class AddProductActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.add_product);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         this.editText_Name = findViewById(R.id.et_product_name);
         editText_Code = findViewById(R.id.et_product_code);
