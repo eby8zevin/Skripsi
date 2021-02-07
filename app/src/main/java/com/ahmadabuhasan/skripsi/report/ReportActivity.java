@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -11,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import com.ahmadabuhasan.skripsi.R;
 
 /*
- * Created by Ahmad Abu Hasan on 05/02/2021
+ * Created by Ahmad Abu Hasan on 07/02/2021
  */
 
 public class ReportActivity extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class ReportActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle((int) R.string.report);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         this.cardView_SalesReport = findViewById(R.id.card_sales_report);
         this.cardView_ExpenseReport = findViewById(R.id.card_expense_report);
