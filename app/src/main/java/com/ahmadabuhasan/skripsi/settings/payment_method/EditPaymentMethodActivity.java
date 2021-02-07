@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/02/2021
+ * Created by Ahmad Abu Hasan on 07/02/2021
  */
 
 public class EditPaymentMethodActivity extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class EditPaymentMethodActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.update_payment_method);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         this.editText_PaymentMethod = findViewById(R.id.et_payment_method_name);
         this.textView_Edit = findViewById(R.id.tv_edit_payment_method);
