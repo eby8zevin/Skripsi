@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,6 +30,7 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 //import com.itextpdf.text.io.PagedChannelRandomAccessSource;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -79,6 +82,7 @@ public class EditProductActivity extends AppCompatActivity {
     SimpleDateFormat simpleDateFormat;
     private String datetime;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +92,7 @@ public class EditProductActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.product_details);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         this.editText_Name = findViewById(R.id.et_product_name);
         editText_Code = findViewById(R.id.et_product_code);
@@ -151,11 +156,16 @@ public class EditProductActivity extends AppCompatActivity {
         String product_last_update = productData.get(0).get(DatabaseOpenHelper.PRODUCT_LAST_UPDATE);
         String product_information = productData.get(0).get(DatabaseOpenHelper.PRODUCT_INFORMATION);
         String product_supplier_id = productData.get(0).get(DatabaseOpenHelper.PRODUCT_SUPPLIER);
-        
+
         double iBuy = Double.parseDouble(product_buy);
         double iPrice = Double.parseDouble(product_price);
         double iPriceBuy = iPrice - iBuy;
-        final double iPercent = ( iPriceBuy - iBuy ) * 100.0d;
+        final double iPercent = (iPriceBuy / iBuy) * 100;
+
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        TextView textView_Percent = findViewById(R.id.tv_percent);
+        textView_Percent.setTextColor(Color.BLACK);
+        textView_Percent.setText(decimalFormat.format(iPercent) + " %");
 
         this.editText_Name.setText(product_name);
         editText_Code.setText(product_code);
@@ -164,7 +174,7 @@ public class EditProductActivity extends AppCompatActivity {
         //this.editText_Category.setText(product_category_id);
         this.editText_Buy.setText(product_buy);
         this.editText_Stock.setText(product_stock);
-        this.editText_Price.setText(product_price + "     " + iPercent + "%" );
+        this.editText_Price.setText(product_price);
         this.editText_Total_Qty.setText(product_total_qty);
         this.editText_Disc_Qty.setText(product_disc_qty);
         this.editText_Weight.setText(product_weight);
