@@ -177,22 +177,38 @@
                 android:padding="5dp"
                 android:text="@string/product_price" />
 
-            <EditText
-                android:id="@+id/et_product_price"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="35dp"
-                android:background="@drawable/round_border"
-                android:fontFamily="@font/sailec_regular"
-                android:hint="@string/product_price"
-                android:importantForAutofill="no"
-                android:inputType="numberDecimal"
-                android:padding="16dp"
-                android:textColor="@color/cyan_blue"
-                android:textSize="16sp"
-                tools:targetApi="O" />
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/et_product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="35dp"
+                    android:background="@drawable/round_border"
+                    android:fontFamily="@font/sailec_regular"
+                    android:hint="@string/product_price"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:padding="16dp"
+                    android:textColor="@color/cyan_blue"
+                    android:textSize="16sp"
+                    tools:targetApi="O" />
+
+                <TextView
+                    android:id="@+id/tv_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/et_product_price"
+                    android:layout_alignParentEnd="true"
+                    android:paddingEnd="100dp"
+                    android:text="@string/percent"
+                    tools:ignore="RelativeOverlap,RtlSymmetry" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
