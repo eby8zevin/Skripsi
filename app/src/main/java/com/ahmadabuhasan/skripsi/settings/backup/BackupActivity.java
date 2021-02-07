@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +29,7 @@ import java.io.File;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 05/02/2021
+ * Created by Ahmad Abu Hasan on 07/02/2021
  */
 
 public class BackupActivity extends AppCompatActivity {
@@ -65,6 +66,7 @@ public class BackupActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.data_backup);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         this.cardView_LocalBackUp = findViewById(R.id.card_local_backup);
         this.cardView_LocalImport = findViewById(R.id.card_local_db_import);
@@ -80,6 +82,9 @@ public class BackupActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
             Permissions.verifyStoragePermissions(this);
         }
+
+        this.cardView_BackupToDrive.setVisibility(View.GONE);
+        this.cardView_ImportFromDrive.setVisibility(View.GONE);
 
         this.cardView_LocalBackUp.setOnClickListener(new View.OnClickListener() {
             @Override
