@@ -1,13 +1,15 @@
 package com.ahmadabuhasan.skripsi.kasir;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
-import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ahmadabuhasan.skripsi.R;
 import com.google.zxing.Result;
@@ -21,7 +23,7 @@ import es.dmoral.toasty.Toasty;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 /*
- * Created by Ahmad Abu Hasan on 05/02/2021
+ * Created by Ahmad Abu Hasan on 07/02/2021
  */
 
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -37,7 +39,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.qr_barcode_scanner);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         if (this.currentApiVersion >= 23) {
             requestCameraPermission();
@@ -96,11 +98,23 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                 }).check();
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() != android.R.id.home) {
-            return super.onOptionsItemSelected(item);
-        }
-        finish();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.refresh_camera, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else if (item.getItemId() == R.id.refresh) {
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
