@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,7 +28,7 @@ import com.ahmadabuhasan.skripsi.R;
 import java.util.Set;
 
 /*
- * Created by Ahmad Abu Hasan on 05/02/2021
+ * Created by Ahmad Abu Hasan on 07/02/2021
  */
 
 public class DeviceListActivity extends AppCompatActivity {
@@ -104,6 +105,7 @@ public class DeviceListActivity extends AppCompatActivity {
             br.setHomeAsUpIndicator(R.drawable.back);
         }
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // Set result CANCELED in case the user backs out
         setResult(Activity.RESULT_CANCELED);
