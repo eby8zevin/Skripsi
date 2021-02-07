@@ -15,6 +15,7 @@
     <string name="suppliers">Suppliers</string>
     <string name="press_once_again_to_exit">Tekan sekali lagi untuk keluar!</string>
     <string name="error">Error</string>
+    <string name="refresh">Refresh</string>
 
     <string name="AdMob_Application_ID">ca-app-pub-8638037215789792~2722511859</string>
     <string name="AdMob_Banner_Ads_ID">ca-app-pub-8638037215789792/8070771952</string>
@@ -90,6 +91,7 @@
     <string name="product_buy">Beli</string>
     <string name="product_stock">Stok</string>
     <string name="product_price">Harga</string>
+    <string name="percent">100 %</string>
     <string name="product_total_qty">Jumlah QTY</string>
     <string name="product_disc_qty">Disc QTY</string>
     <string name="product_weight">Panjang/Berat</string>
