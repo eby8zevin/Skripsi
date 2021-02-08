@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 06/02/2021
+ * Created by Ahmad Abu Hasan on 08/02/2021
  */
 
 public class DatabaseAccess {
@@ -85,7 +85,7 @@ public class DatabaseAccess {
     // ProductCategoryAdapter
     public ArrayList<HashMap<String, String>> getTabProducts(String category_id) {
         ArrayList<HashMap<String, String>> product = new ArrayList<>();
-        SQLiteDatabase sqLiteDatabase = this.database;
+        SQLiteDatabase sqLiteDatabase = this.openHelper.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM products WHERE product_category = '" + category_id + "' ORDER BY product_id DESC", null);
         if (cursor.moveToFirst()) {
             do {
