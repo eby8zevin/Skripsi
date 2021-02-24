@@ -30,7 +30,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 02/02/2021
+ * Created by Ahmad Abu Hasan on 24/02/2021
  */
 
 public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.MyViewHolder> {
@@ -55,8 +55,8 @@ public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.My
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final int getStock;
-        //final double getStock;
+        //final int getStock;
+        final double getStock;
         final DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this.context);
 
         databaseAccess.open();
@@ -72,8 +72,8 @@ public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.My
         databaseAccess.open();
         String weight_unit_name = databaseAccess.getWeightUnitName(weight_unit_id);
 
-        int getStock1 = Integer.parseInt(product_stock);
-        //double getStock1 = Double.parseDouble(product_stock);
+        //int getStock1 = Integer.parseInt(product_stock);
+        double getStock1 = Double.parseDouble(product_stock);
         if (getStock1 > 5) {
             TextView textView = holder.textView_Stock;
             getStock = getStock1;
