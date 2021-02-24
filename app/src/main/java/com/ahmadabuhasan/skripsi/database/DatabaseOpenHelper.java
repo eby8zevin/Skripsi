@@ -11,7 +11,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 /*
- * Created by Ahmad Abu Hasan on 03/02/2021
+ * Created by Ahmad Abu Hasan on 24/02/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -217,17 +217,17 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             "(" + PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + PRODUCT_NAME + " TEXT,"
             + PRODUCT_CODE + " TEXT,"
-            + PRODUCT_CATEGORY + " TEXT,"
-            + PRODUCT_BUY + " TEXT,"
-            + PRODUCT_STOCK + " TEXT,"
-            + PRODUCT_PRICE + " TEXT,"
-            + PRODUCT_TOTAL_QTY + " TEXT,"
-            + PRODUCT_DISC_QTY + " TEXT,"
-            + PRODUCT_WEIGHT + " TEXT,"
-            + PRODUCT_WEIGHT_UNIT_ID + " TEXT,"
+            + PRODUCT_CATEGORY + " INTEGER,"
+            + PRODUCT_BUY + " INTEGER,"
+            + PRODUCT_STOCK + " DOUBLE,"
+            + PRODUCT_PRICE + " INTEGER,"
+            + PRODUCT_TOTAL_QTY + " INTEGER,"
+            + PRODUCT_DISC_QTY + " INTEGER,"
+            + PRODUCT_WEIGHT + " DOUBLE,"
+            + PRODUCT_WEIGHT_UNIT_ID + " INTEGER,"
             + PRODUCT_LAST_UPDATE + " TEXT,"
             + PRODUCT_INFORMATION + " TEXT,"
-            + PRODUCT_SUPPLIER + " TEXT"
+            + PRODUCT_SUPPLIER + " INTEGER"
             + ")";
 
     // product_cart
@@ -285,8 +285,8 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_EXPENSE);
         db.execSQL(CREATE_ORDER_DETAILS);
         db.execSQL(CREATE_ORDER_LIST);
-        //db.execSQL(CREATE_ORDER_TYPE);
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_ORDER_TYPE + "(order_type_id INTEGER PRIMARY KEY, order_type_name TEXT)");
+        db.execSQL(CREATE_ORDER_TYPE);
+        //db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_ORDER_TYPE + "(order_type_id INTEGER PRIMARY KEY, order_type_name TEXT)");
         db.execSQL("INSERT INTO " + TABLE_ORDER_TYPE + "(order_type_id, order_type_name) VALUES (1, 'PICK UP')");
         db.execSQL("INSERT INTO " + TABLE_ORDER_TYPE + "(order_type_id, order_type_name) VALUES (2, 'HOME DELIVERY')");
         db.execSQL("INSERT INTO " + TABLE_ORDER_TYPE + "(order_type_id, order_type_name) VALUES (3, 'COURIER')");
@@ -295,8 +295,8 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_PRODUCT_CART);
         db.execSQL(CREATE_CATEGORY);
         db.execSQL(CREATE_WEIGHT);
-        //db.execSQL(CREATE_SHOP);
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SHOP + "(shop_id INTEGER PRIMARY KEY, shop_name TEXT, shop_contact TEXT, shop_email TEXT, shop_address TEXT, shop_currency TEXT, tax TEXT)");
+        db.execSQL(CREATE_SHOP);
+        //db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SHOP + "(shop_id INTEGER PRIMARY KEY, shop_name TEXT, shop_contact TEXT, shop_email TEXT, shop_address TEXT, shop_currency TEXT, tax TEXT)");
         db.execSQL("INSERT INTO " + TABLE_SHOP + "(shop_id, shop_name, shop_contact, shop_email, shop_address, shop_currency, tax) VALUES (1, 'Skripsi', '0123456789', 'skripsi@ahmadabuhasan.com', 'Pasuruan City', 'Rp', '0')");
         db.execSQL(CREATE_SUPPLIERS);
     }
