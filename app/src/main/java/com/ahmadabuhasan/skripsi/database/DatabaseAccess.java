@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 30/01/2021
+ * Created by Ahmad Abu Hasan on 24/02/2021
  */
 
 public class DatabaseAccess {
@@ -225,8 +225,8 @@ public class DatabaseAccess {
         String product_id;
         String pending = "Pending";
         int i;
-        int updated_stock;
-        //double updated_stock;
+        //int updated_stock;
+        double updated_stock;
 
         ContentValues contentValues;
         ContentValues values = new ContentValues();
@@ -284,7 +284,8 @@ public class DatabaseAccess {
                 String product_order_date = jo.getString(DatabaseOpenHelper.ORDER_DETAILS_ORDER_DATE);
                 try {
                     product_id = jo.getString(DatabaseOpenHelper.PRODUCT_ID);
-                    updated_stock = Integer.parseInt(jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK)) - Integer.parseInt(product_qty);
+                    //updated_stock = Integer.parseInt(jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK)) - Integer.parseInt(product_qty);
+                    updated_stock = Double.parseDouble(jo.getString(DatabaseOpenHelper.CART_PRODUCT_STOCK)) - Double.parseDouble(product_qty);
                 } catch (JSONException e2) {
                     jsonException = e2;
                     jsonException.printStackTrace();
@@ -299,7 +300,6 @@ public class DatabaseAccess {
                 values1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, pending);
 
                 values2.put(DatabaseOpenHelper.PRODUCT_STOCK, updated_stock);
-                //values2.put(DatabaseOpenHelper.PRODUCT_STOCK, Double.valueOf(updated_stock));
 
                 this.database.insert("order_details", null, values1);
                 this.database.update("products", values2, "product_id=?", new String[]{product_id});
