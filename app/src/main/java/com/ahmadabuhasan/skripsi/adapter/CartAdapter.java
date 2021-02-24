@@ -26,7 +26,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 02/02/2021
+ * Created by Ahmad Abu Hasan on 24/02/2021
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -69,8 +69,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         String weight_unit_id = this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_WEIGHT_UNIT);
         final String price = this.cart_product.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE);
         String qty = this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_QTY);
-        final int getStock = Integer.parseInt(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
-        //final double getStock = Double.parseDouble(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
+        //final int getStock = Integer.parseInt(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
+        final double getStock = Double.parseDouble(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
 
         databaseAccess.open();
         String weight_unit_name = databaseAccess.getWeightUnitName(weight_unit_id);
