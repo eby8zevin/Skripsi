@@ -3,9 +3,7 @@ package com.ahmadabuhasan.skripsi.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +29,7 @@ import java.util.Objects;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 27/02/2021
+ * Created by Ahmad Abu Hasan on 28/02/2021
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -108,60 +106,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         EditText qtyNumber = holder.QtyNumber;
         qtyNumber.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
-        qtyNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String sQty = s.toString();
-                if (!sQty.isEmpty()) {
-                    final double get_qty = Double.parseDouble(sQty);
-                    if (get_qty > getStock) {
-                        Context context = CartAdapter.this.context;
-                        Toasty.error(context, CartAdapter.this.context.getString(R.string.available_stock) + " " + getStock, Toasty.LENGTH_SHORT).show();
-                    } else if (get_qty >= a) {
-                        double c = parseDouble - b;
-                        final double cc = c * get_qty;
-                        TextView tvPrice = holder.textView_Price;
-                        tvPrice.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(cc));
-
-                        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
-                        databaseAccess.open();
-                        databaseAccess.updateProductQty(cart_id, "" + get_qty);
-
-                        databaseAccess.open();
-                        CartAdapter.total_price = cc;
-
-                        TextView tvTotalPrice = CartAdapter.this.textView_total_price;
-                        tvTotalPrice.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
-                    } else {
-                        final double dd = parseDouble * get_qty;
-                        TextView tvPrice1 = holder.textView_Price;
-                        tvPrice1.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(dd));
-
-                        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
-                        databaseAccess.open();
-                        databaseAccess.updateProductQty(cart_id, "" + get_qty);
-
-                        databaseAccess.open();
-                        CartAdapter.total_price = dd;
-
-                        TextView tvTotalPrice1 = CartAdapter.this.textView_total_price;
-                        tvTotalPrice1.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
-
-                    }
-                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         holder.QtyNumber.setText(qty);
 
