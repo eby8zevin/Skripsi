@@ -20,14 +20,14 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 24/02/2021
+ * Created by Ahmad Abu Hasan on 28/02/2021
  */
 
 public class DatabaseAccess {
 
     private static DatabaseAccess instance;
     private SQLiteDatabase database;
-    private SQLiteOpenHelper openHelper;
+    private final SQLiteOpenHelper openHelper;
 
     private DatabaseAccess(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
@@ -127,6 +127,34 @@ public class DatabaseAccess {
         return product_name;
     }
 
+    public String getTotalQty(String product_id) {
+        String total_qty = "n/a";
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                total_qty = cursor.getString(7);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return total_qty;
+    }
+
+    public String getDiscQty(String product_id) {
+        String disc_qty = "n/a";
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                disc_qty = cursor.getString(8);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return disc_qty;
+    }
+
     // CartAdapter
     public double getTotalPrice() {
         double total_price = Utils.DOUBLE_EPSILON;
@@ -134,7 +162,7 @@ public class DatabaseAccess {
         if (cursor.moveToFirst()) {
             do {
                 double price = Double.parseDouble(cursor.getString(4));
-                double parseInt = (double) Integer.parseInt(cursor.getString(5));
+                double parseInt = Double.parseDouble(cursor.getString(5));
                 Double.isNaN(parseInt);
                 total_price += parseInt * price;
             } while (cursor.moveToNext());
