@@ -1,5 +1,9 @@
 package com.ahmadabuhasan.skripsi.kasir;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -10,6 +14,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,10 +24,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.adapter.CartAdapter;
@@ -35,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,16 +44,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 27/02/2021
+ * Created by Ahmad Abu Hasan on 28/01/2021
  */
 
 public class ProductCart extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
     CartAdapter productCartAdapter;
     LinearLayout linearLayout;
 
@@ -62,6 +64,7 @@ public class ProductCart extends AppCompatActivity {
     ArrayAdapter<String> paymentMethodAdapter;
     List<String> paymentMethodNames;
 
+    DecimalFormat decimalFormat;
     ImageView imgNoProduct;
     TextView textView_no_product;
     TextView textView_total_price;
@@ -72,19 +75,20 @@ public class ProductCart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_cart);
 
-        Objects.requireNonNull(Objects.requireNonNull(getSupportActionBar())).setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.product_cart);
 
-        RecyclerView recyclerView = findViewById(R.id.cart_recyclerview);
+        this.decimalFormat = new DecimalFormat("#0.00");
+        this.recyclerView = findViewById(R.id.cart_recyclerview);
         this.imgNoProduct = findViewById(R.id.image_no_product);
         this.textView_no_product = findViewById(R.id.tv_no_product);
         this.textView_total_price = findViewById(R.id.tv_total_price);
         this.button_SubmitOrder = findViewById(R.id.btn_submit_order);
         this.linearLayout = findViewById(R.id.linear_layout);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setHasFixedSize(true);
+        this.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        this.recyclerView.setHasFixedSize(true);
 
         this.textView_no_product.setVisibility(View.GONE);
 
@@ -96,14 +100,14 @@ public class ProductCart extends AppCompatActivity {
             this.imgNoProduct.setVisibility(View.VISIBLE);
             this.textView_no_product.setVisibility(View.VISIBLE);
             this.button_SubmitOrder.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.GONE);
+            this.recyclerView.setVisibility(View.GONE);
             this.linearLayout.setVisibility(View.GONE);
             this.textView_total_price.setVisibility(View.GONE);
         } else {
             this.imgNoProduct.setVisibility(View.GONE);
             CartAdapter cartAdapter = new CartAdapter(this, cartProductList, this.textView_total_price, this.button_SubmitOrder, this.imgNoProduct, this.textView_no_product);
             this.productCartAdapter = cartAdapter;
-            recyclerView.setAdapter(cartAdapter);
+            this.recyclerView.setAdapter(cartAdapter);
         }
 
         this.button_SubmitOrder.setOnClickListener(new View.OnClickListener() {
@@ -121,10 +125,10 @@ public class ProductCart extends AppCompatActivity {
         List<HashMap<String, String>> shopData = databaseAccess.getShopInformation();
         final String shop_currency = shopData.get(0).get(DatabaseOpenHelper.SHOP_CURRENCY);
         String tax = shopData.get(0).get(DatabaseOpenHelper.SHOP_TAX);
-        double getTax = Double.parseDouble(Objects.requireNonNull(tax));
+        double getTax = Double.parseDouble(tax);
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        View dialogView = getLayoutInflater().inflate(R.layout.dialog_payment, null);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_payment, (ViewGroup) null);
         dialog.setView(dialogView);
         dialog.setCancelable(false);
 
@@ -144,11 +148,12 @@ public class ProductCart extends AppCompatActivity {
         final TextView dialog_text_total_cost = dialogView.findViewById(R.id.dialog_text_total_cost);
 
         ((TextView) dialogView.findViewById(R.id.dialog_level_tax)).setText(getString(R.string.total_tax) + " (" + tax + "%) : ");
-        final double total_cost = CartAdapter.total_price;
-        String sb = shop_currency +
-                " " +
-                NumberFormat.getInstance(Locale.getDefault()).format(total_cost);
-        dialog_text_sub_total.setText(sb);
+        final double total_cost = CartAdapter.total_price.doubleValue();
+        StringBuilder sb = new StringBuilder();
+        sb.append(shop_currency);
+        sb.append(" ");
+        sb.append(NumberFormat.getInstance(Locale.getDefault()).format(total_cost));
+        dialog_text_sub_total.setText(sb.toString());
 
         final double calculated_tax = (total_cost * getTax) / 100.0d;
         dialog_text_total_tax.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_tax));
@@ -175,16 +180,36 @@ public class ProductCart extends AppCompatActivity {
                         return;
                     }
                     dialog_btn_submit.setVisibility(View.VISIBLE);
-                    dialog_text_total_cost.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format((total_cost + calculated_tax) - discount));
+                    TextView textView = dialog_text_total_cost;
+                    textView.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format((total_cost + calculated_tax) - discount));
                     return;
                 }
                 double calculated_total_cost = (total_cost + calculated_tax) - Utils.DOUBLE_EPSILON;
-                dialog_text_total_cost.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_total_cost));
+                TextView textView2 = dialog_text_total_cost;
+                textView2.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_total_cost));
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                /*dialog_et_discount.removeTextChangedListener(this);
+                https://gist.github.com/Manit123001/7d8aac48e4e7e46e5697555cbccc7138
+                try {
+                    String originalString = s.toString();
+                    Long longval;
+                    if (originalString.contains(",")) {
+                        originalString = originalString.replaceAll(",", "");
+                    }
+                    longval = Long.parseLong(originalString);
+                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+                    formatter.applyPattern("#,###,###,###");
+                    String formattedString = formatter.format(longval);
+                    //setting text after format to EditText
+                    dialog_et_discount.setText(formattedString);
+                    dialog_et_discount.setSelection(dialog_et_discount.getText().length());
+                } catch (NumberFormatException nfe) {
+                    nfe.printStackTrace();
+                }
+                dialog_et_discount.addTextChangedListener(this);*/
             }
         });
 
@@ -201,7 +226,7 @@ public class ProductCart extends AppCompatActivity {
                 ProductCart.this.customerAdapter = new ArrayAdapter<>(ProductCart.this, android.R.layout.simple_list_item_1);
                 ProductCart.this.customerAdapter.addAll(ProductCart.this.customerNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ProductCart.this);
-                View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
+                View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
                 ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
@@ -225,7 +250,7 @@ public class ProductCart extends AppCompatActivity {
                     }
                 });
                 final AlertDialog alertDialog = dialog.create();
-                dialogView.findViewById(R.id.dialog_button).setOnClickListener(new View.OnClickListener() {
+                ((Button) dialogView.findViewById(R.id.dialog_button)).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();
@@ -255,7 +280,7 @@ public class ProductCart extends AppCompatActivity {
                 ProductCart.this.orderTypeAdapter = new ArrayAdapter<>(ProductCart.this, android.R.layout.simple_list_item_1);
                 ProductCart.this.orderTypeAdapter.addAll(ProductCart.this.orderTypeNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ProductCart.this);
-                View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
+                View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
                 ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
@@ -309,7 +334,7 @@ public class ProductCart extends AppCompatActivity {
                 ProductCart.this.paymentMethodAdapter = new ArrayAdapter<>(ProductCart.this, android.R.layout.simple_list_item_1);
                 ProductCart.this.paymentMethodAdapter.addAll(ProductCart.this.paymentMethodNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ProductCart.this);
-                View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
+                View dialogView = ProductCart.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
                 ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
@@ -330,7 +355,7 @@ public class ProductCart extends AppCompatActivity {
                     }
                 });
                 final AlertDialog alertDialog = dialog.create();
-                dialogView.findViewById(R.id.dialog_button).setOnClickListener(new View.OnClickListener() {
+                ((Button) dialogView.findViewById(R.id.dialog_button)).setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         alertDialog.dismiss();
                     }
@@ -384,10 +409,13 @@ public class ProductCart extends AppCompatActivity {
             databaseAccess.open();
             List<HashMap<String, String>> lines = databaseAccess.getCartProduct();
             if (lines.isEmpty()) {
-                Toasty.error(this, R.string.no_product_found, Toasty.LENGTH_SHORT).show();
+                Toasty.error(this, (int) R.string.no_product_found, Toasty.LENGTH_SHORT).show();
                 return;
             }
             String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+            /*String currentTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date());
+            String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();*/
+            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
             String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(new Date());
             String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date()); // NoInvoice
             Log.d("Time", timeStamp);
@@ -451,15 +479,16 @@ public class ProductCart extends AppCompatActivity {
             saveOrderInOfflineDb(obj);
             return;
         }
-        Toasty.error(this, R.string.no_product_in_cart, Toasty.LENGTH_SHORT).show();
+        Toasty.error(this, (int) R.string.no_product_in_cart, Toasty.LENGTH_SHORT).show();
     }
 
     private void saveOrderInOfflineDb(JSONObject obj) {
+        //String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();
         String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date());
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         databaseAccess.insertOrder(timeStamp, obj);
-        Toasty.success(this, R.string.order_done_successful, Toasty.LENGTH_SHORT).show();
+        Toasty.success(this, (int) R.string.order_done_successful, Toasty.LENGTH_SHORT).show();
         startActivity(new Intent(this, OrdersActivity.class));
         finish();
     }
