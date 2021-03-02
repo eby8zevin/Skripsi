@@ -113,21 +113,45 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/tv_number"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_minus"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:importantForAutofill="no"
-                        android:inputType="numberDecimal"
+                        android:layout_weight="1"
                         android:paddingLeft="10dp"
                         android:paddingTop="5dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="5dp"
-                        android:textAlignment="center"
-                        android:textSize="17sp"
+                        android:textSize="18sp"
                         android:textStyle="bold"
-                        tools:ignore="LabelFor" />
+                        app:drawableLeftCompat="@drawable/icon_minus" />
+
+                    <TextView
+                        android:id="@+id/tv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/one"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/symbol_plus"
+                        android:textColor="#D84315"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
