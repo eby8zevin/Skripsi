@@ -20,14 +20,14 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 30/01/2021
+ * Created by Ahmad Abu Hasan on 04/03/2021
  */
 
 public class DatabaseAccess {
 
     private static DatabaseAccess instance;
     private SQLiteDatabase database;
-    private SQLiteOpenHelper openHelper;
+    private final SQLiteOpenHelper openHelper;
 
     private DatabaseAccess(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
