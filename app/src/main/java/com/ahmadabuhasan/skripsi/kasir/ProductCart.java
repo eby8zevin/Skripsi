@@ -36,7 +36,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,12 +47,11 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 04/03/2021
  */
 
 public class ProductCart extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
     CartAdapter productCartAdapter;
     LinearLayout linearLayout;
 
@@ -64,7 +62,6 @@ public class ProductCart extends AppCompatActivity {
     ArrayAdapter<String> paymentMethodAdapter;
     List<String> paymentMethodNames;
 
-    DecimalFormat decimalFormat;
     ImageView imgNoProduct;
     TextView textView_no_product;
     TextView textView_total_price;
@@ -79,16 +76,15 @@ public class ProductCart extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.product_cart);
 
-        this.decimalFormat = new DecimalFormat("#0.00");
-        this.recyclerView = findViewById(R.id.cart_recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.cart_recyclerview);
         this.imgNoProduct = findViewById(R.id.image_no_product);
         this.textView_no_product = findViewById(R.id.tv_no_product);
         this.textView_total_price = findViewById(R.id.tv_total_price);
         this.button_SubmitOrder = findViewById(R.id.btn_submit_order);
         this.linearLayout = findViewById(R.id.linear_layout);
 
-        this.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        this.recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerView.setHasFixedSize(true);
 
         this.textView_no_product.setVisibility(View.GONE);
 
@@ -100,14 +96,14 @@ public class ProductCart extends AppCompatActivity {
             this.imgNoProduct.setVisibility(View.VISIBLE);
             this.textView_no_product.setVisibility(View.VISIBLE);
             this.button_SubmitOrder.setVisibility(View.GONE);
-            this.recyclerView.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.GONE);
             this.linearLayout.setVisibility(View.GONE);
             this.textView_total_price.setVisibility(View.GONE);
         } else {
             this.imgNoProduct.setVisibility(View.GONE);
             CartAdapter cartAdapter = new CartAdapter(this, cartProductList, this.textView_total_price, this.button_SubmitOrder, this.imgNoProduct, this.textView_no_product);
             this.productCartAdapter = cartAdapter;
-            this.recyclerView.setAdapter(cartAdapter);
+            recyclerView.setAdapter(cartAdapter);
         }
 
         this.button_SubmitOrder.setOnClickListener(new View.OnClickListener() {
@@ -148,12 +144,11 @@ public class ProductCart extends AppCompatActivity {
         final TextView dialog_text_total_cost = dialogView.findViewById(R.id.dialog_text_total_cost);
 
         ((TextView) dialogView.findViewById(R.id.dialog_level_tax)).setText(getString(R.string.total_tax) + " (" + tax + "%) : ");
-        final double total_cost = CartAdapter.total_price.doubleValue();
-        StringBuilder sb = new StringBuilder();
-        sb.append(shop_currency);
-        sb.append(" ");
-        sb.append(NumberFormat.getInstance(Locale.getDefault()).format(total_cost));
-        dialog_text_sub_total.setText(sb.toString());
+        final double total_cost = CartAdapter.total_price;
+        String sb = shop_currency +
+                " " +
+                NumberFormat.getInstance(Locale.getDefault()).format(total_cost);
+        dialog_text_sub_total.setText(sb);
 
         final double calculated_tax = (total_cost * getTax) / 100.0d;
         dialog_text_total_tax.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_tax));
@@ -180,36 +175,16 @@ public class ProductCart extends AppCompatActivity {
                         return;
                     }
                     dialog_btn_submit.setVisibility(View.VISIBLE);
-                    TextView textView = dialog_text_total_cost;
-                    textView.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format((total_cost + calculated_tax) - discount));
+                    dialog_text_total_cost.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format((total_cost + calculated_tax) - discount));
                     return;
                 }
                 double calculated_total_cost = (total_cost + calculated_tax) - Utils.DOUBLE_EPSILON;
-                TextView textView2 = dialog_text_total_cost;
-                textView2.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_total_cost));
+                dialog_text_total_cost.setText(shop_currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(calculated_total_cost));
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                /*dialog_et_discount.removeTextChangedListener(this);
-                https://gist.github.com/Manit123001/7d8aac48e4e7e46e5697555cbccc7138
-                try {
-                    String originalString = s.toString();
-                    Long longval;
-                    if (originalString.contains(",")) {
-                        originalString = originalString.replaceAll(",", "");
-                    }
-                    longval = Long.parseLong(originalString);
-                    DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
-                    formatter.applyPattern("#,###,###,###");
-                    String formattedString = formatter.format(longval);
-                    //setting text after format to EditText
-                    dialog_et_discount.setText(formattedString);
-                    dialog_et_discount.setSelection(dialog_et_discount.getText().length());
-                } catch (NumberFormatException nfe) {
-                    nfe.printStackTrace();
-                }
-                dialog_et_discount.addTextChangedListener(this);*/
+
             }
         });
 
@@ -413,9 +388,6 @@ public class ProductCart extends AppCompatActivity {
                 return;
             }
             String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-            /*String currentTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(new Date());
-            String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();*/
-            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
             String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(new Date());
             String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date()); // NoInvoice
             Log.d("Time", timeStamp);
@@ -483,7 +455,6 @@ public class ProductCart extends AppCompatActivity {
     }
 
     private void saveOrderInOfflineDb(JSONObject obj) {
-        //String timeStamp = Long.valueOf(System.currentTimeMillis() / 1000).toString();
         String timeStamp = new SimpleDateFormat("yyMMdd-HHmmss", Locale.getDefault()).format(new Date());
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
