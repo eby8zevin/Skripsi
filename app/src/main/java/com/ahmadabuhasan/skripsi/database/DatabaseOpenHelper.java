@@ -11,7 +11,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 /*
- * Created by Ahmad Abu Hasan on 24/02/2021
+ * Created by Ahmad Abu Hasan on 04/03/2021
  */
 
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
@@ -219,11 +219,11 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
             + PRODUCT_CODE + " TEXT,"
             + PRODUCT_CATEGORY + " INTEGER,"
             + PRODUCT_BUY + " INTEGER,"
-            + PRODUCT_STOCK + " DOUBLE,"
+            + PRODUCT_STOCK + " INTEGER,"
             + PRODUCT_PRICE + " INTEGER,"
             + PRODUCT_TOTAL_QTY + " INTEGER,"
             + PRODUCT_DISC_QTY + " INTEGER,"
-            + PRODUCT_WEIGHT + " DOUBLE,"
+            + PRODUCT_WEIGHT + " INTEGER,"
             + PRODUCT_WEIGHT_UNIT_ID + " INTEGER,"
             + PRODUCT_LAST_UPDATE + " TEXT,"
             + PRODUCT_INFORMATION + " TEXT,"
