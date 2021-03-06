@@ -69,6 +69,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         final String price = this.cart_product.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE);
         String qty = this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_QTY);
         final int getStock = Integer.parseInt(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
+        
+        databaseAccess.open();
+        String totalQty = databaseAccess.getTotalQty(product_id);
+        int a = Integer.parseInt(totalQty);
+        databaseAccess.open();
+        String discQty = databaseAccess.getDiscQty(product_id);
+        int b = Integer.parseInt(discQty);
 
         databaseAccess.open();
         String weight_unit_name = databaseAccess.getWeightUnitName(weight_unit_id);
@@ -154,11 +161,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     return;
                 }
                 
-                if (get_qty >= total_qty){
-                    a = harga - disc
-                    a * get_qty
+                if (get_qty >= a){
+                    c = parseDouble - b
+                    c * get_qty
+                int get_qty1 = get_qty + 1;
+                TextView textViewDisc = holder.textView_Price;
+                textViewDisc.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(cost));
+                TextView textViewDisc1 = holder.textView_QtyNumber;
+                textViewDisc1.setText("" + get_qty1);
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
+                    
+                databaseAccess.open();
+                databaseAccess.updateProductQty(cart_id, "" + get_qty1);
+                CartAdapter.total_price = CartAdapter.total_price + Double.parseDouble(price);
+                    
+                TextView textViewDisc2 = CartAdapter.this.textView_total_price;
+                textViewDisc2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
+            
                 } else {
-                harga * get_qty
+                parseDouble * get_qty
                 }
                 
                 int get_qty1 = get_qty + 1;
