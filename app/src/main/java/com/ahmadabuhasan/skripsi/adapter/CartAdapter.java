@@ -26,7 +26,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 04/03/2021
+ * Created by Ahmad Abu Hasan on 06/03/2021
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -164,17 +164,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 if (get_qty >= a){
                     c = parseDouble - b
                     c * get_qty
+                        
                 int get_qty1 = get_qty + 1;
+                    
                 TextView textViewDisc = holder.textView_Price;
-                textViewDisc.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(cost));
+                textViewDisc.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(c));
+                    
                 TextView textViewDisc1 = holder.textView_QtyNumber;
                 textViewDisc1.setText("" + get_qty1);
-                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
                     
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
                 databaseAccess.open();
                 databaseAccess.updateProductQty(cart_id, "" + get_qty1);
-                CartAdapter.total_price = CartAdapter.total_price + Double.parseDouble(price);
                     
+                CartAdapter.total_price = CartAdapter.total_price + Double.parseDouble(price);
                 TextView textViewDisc2 = CartAdapter.this.textView_total_price;
                 textViewDisc2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
             
