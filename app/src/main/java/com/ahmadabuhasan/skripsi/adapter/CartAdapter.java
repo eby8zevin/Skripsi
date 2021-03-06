@@ -153,6 +153,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     Toasty.error(context, CartAdapter.this.context.getString(R.string.available_stock) + " " + getStock, Toasty.LENGTH_SHORT).show();
                     return;
                 }
+                
+                if (get_qty >= total_qty){
+                    a = harga - disc
+                    a * get_qty
+                } else {
+                harga * get_qty
+                }
+                
                 int get_qty1 = get_qty + 1;
                 double parseDouble = Double.parseDouble(price);
                 Double.isNaN((double) get_qty1);
