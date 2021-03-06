@@ -159,6 +159,34 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.CART_PRODUCT_QTY, qty);
         long update = (long) this.database.update("product_cart", values, "cart_id=?", new String[]{id});
     }
+    
+    public String getTotalQty(String product_id) {
+        String total_qty = "n/a";
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                total_qty = cursor.getString(7);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return total_qty;
+    }
+
+    public String getDiscQty(String product_id) {
+        String disc_qty = "n/a";
+        SQLiteDatabase sqLiteDatabase = this.database;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM products WHERE product_id='" + product_id + "'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                disc_qty = cursor.getString(8);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        this.database.close();
+        return disc_qty;
+    }
 
     // ProductCart
     public ArrayList<HashMap<String, String>> getCartProduct() {
