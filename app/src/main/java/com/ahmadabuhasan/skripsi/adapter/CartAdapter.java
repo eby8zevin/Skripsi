@@ -26,7 +26,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 12/03/2021
+ * Created by Ahmad Abu Hasan on 14/03/2021
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -179,7 +179,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         databaseAccess1.open();
                         databaseAccess1.updateProductQty(cart_id, "" + get_qty1);
 
-                        CartAdapter.total_price = cost1;
+                        CartAdapter.total_price = CartAdapter.total_price - Double.parseDouble(price);
                         TextView textView2 = CartAdapter.this.textView_total_price;
                         textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
                     } else {
@@ -196,7 +196,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         databaseAccess2.open();
                         databaseAccess2.updateProductQty(cart_id, "" + get_qty1);
 
-                        CartAdapter.total_price = cost1;
+                        CartAdapter.total_price = CartAdapter.total_price - Double.parseDouble(price);
                         TextView textView2 = CartAdapter.this.textView_total_price;
                         textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
                     }
@@ -235,7 +235,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     databaseAccess.open();
                     databaseAccess.updateProductQty(cart_id, "" + get_qty1);
 
-                    CartAdapter.total_price = cost ;
+                    CartAdapter.total_price = CartAdapter.total_price + Double.parseDouble(price);
                     TextView textView2 = CartAdapter.this.textView_total_price;
                     textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
                 } else {
