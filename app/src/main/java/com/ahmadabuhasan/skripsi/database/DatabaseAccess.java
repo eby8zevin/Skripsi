@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 12/03/2021
+ * Created by Ahmad Abu Hasan on 15/03/2021
  */
 
 public class DatabaseAccess {
@@ -130,11 +130,11 @@ public class DatabaseAccess {
     // CartAdapter
     public double getTotalPrice() {
         double total_price = Utils.DOUBLE_EPSILON;
-        Cursor cursor = this.database.rawQuery("SELECT * FROM product_cart", (String[]) null);
+        Cursor cursor = this.database.rawQuery("SELECT * FROM product_cart", null);
         if (cursor.moveToFirst()) {
             do {
                 double price = Double.parseDouble(cursor.getString(4));
-                double parseInt = (double) Integer.parseInt(cursor.getString(5));
+                double parseInt = Integer.parseInt(cursor.getString(5));
                 Double.isNaN(parseInt);
                 total_price += parseInt * price;
             } while (cursor.moveToNext());
