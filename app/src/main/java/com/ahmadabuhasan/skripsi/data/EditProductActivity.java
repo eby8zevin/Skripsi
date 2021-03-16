@@ -37,7 +37,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 02/02/2021
+ * Created by Ahmad Abu Hasan on 16/03/2021
  */
 
 public class EditProductActivity extends AppCompatActivity {
@@ -154,7 +154,6 @@ public class EditProductActivity extends AppCompatActivity {
         editText_Code.setText(product_code);
         databaseAccess.open();
         this.editText_Category.setText(databaseAccess.getCategoryName(product_category_id));
-        //this.editText_Category.setText(product_category_id);
         this.editText_Buy.setText(product_buy);
         this.editText_Stock.setText(product_stock);
         this.editText_Price.setText(product_price);
@@ -163,12 +162,10 @@ public class EditProductActivity extends AppCompatActivity {
         this.editText_Weight.setText(product_weight);
         databaseAccess.open();
         this.editText_Weight_Unit.setText(databaseAccess.getWeightUnitName(product_weight_unit_id));
-        //this.editText_Weight_Unit.setText(product_weight_unit_id);
         this.editText_Last_Update.setText(product_last_update);
         this.editText_Information.setText(product_information);
         databaseAccess.open();
         this.editText_Supplier.setText(databaseAccess.getSupplierName(product_supplier_id));
-        //this.editText_Supplier.setText(product_supplier_id);
 
         this.selectedCategoryID = product_category_id;
         this.selectedWeightUnitID = product_weight_unit_id;
@@ -407,10 +404,8 @@ public class EditProductActivity extends AppCompatActivity {
             @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View v) {
-                Locale locale = new Locale("id", "ID");
                 calendar = Calendar.getInstance();
-                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                //simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy     HH:mm", locale);
+                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
                 datetime = simpleDateFormat.format(calendar.getTime());
 
                 String product_name = EditProductActivity.this.editText_Name.getText().toString();
@@ -423,7 +418,6 @@ public class EditProductActivity extends AppCompatActivity {
                 String product_disc_qty = EditProductActivity.this.editText_Disc_Qty.getText().toString();
                 String product_weight = EditProductActivity.this.editText_Weight.getText().toString();
                 String product_weight_unit_id = EditProductActivity.this.selectedWeightUnitID;
-                //String product_last_update = EditProductActivity.this.editText_Last_Update.getText().toString();
                 String product_last_update = EditProductActivity.this.datetime;
                 String product_information = EditProductActivity.this.editText_Information.getText().toString();
                 String product_supplier_id = EditProductActivity.this.selectedSupplierID;
