@@ -1,9 +1,6 @@
 package com.ahmadabuhasan.skripsi.data;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -16,16 +13,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
@@ -33,7 +30,6 @@ import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.ajts.androidmads.library.ExcelToSQLite;
 import com.obsez.android.lib.filechooser.ChooserDialog;
-//import com.itextpdf.text.io.PagedChannelRandomAccessSource;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -41,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -90,7 +86,7 @@ public class AddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.add_product);
 
@@ -148,13 +144,13 @@ public class AddProductActivity extends AppCompatActivity {
                 AddProductActivity.this.categoryAdapter = new ArrayAdapter<>(AddProductActivity.this, android.R.layout.simple_list_item_1);
                 AddProductActivity.this.categoryAdapter.addAll(AddProductActivity.this.categoryNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(AddProductActivity.this);
-                View dialogView = AddProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
+                View dialogView = AddProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.product_category);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) AddProductActivity.this.categoryAdapter);
+                dialog_list.setAdapter(AddProductActivity.this.categoryAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -172,7 +168,7 @@ public class AddProductActivity extends AppCompatActivity {
                     }
                 });
                 final AlertDialog alertDialog = dialog.create();
-                ((Button) dialogView.findViewById(R.id.dialog_button)).setOnClickListener(new View.OnClickListener() {
+                dialogView.findViewById(R.id.dialog_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();
@@ -204,13 +200,13 @@ public class AddProductActivity extends AppCompatActivity {
                 AddProductActivity.this.weightUnitAdapter = new ArrayAdapter<>(AddProductActivity.this, android.R.layout.simple_list_item_1);
                 AddProductActivity.this.weightUnitAdapter.addAll(AddProductActivity.this.weightUnitNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(AddProductActivity.this);
-                View dialogView = AddProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
+                View dialogView = AddProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.product_weight_unit);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) AddProductActivity.this.weightUnitAdapter);
+                dialog_list.setAdapter(AddProductActivity.this.weightUnitAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -261,13 +257,13 @@ public class AddProductActivity extends AppCompatActivity {
                 AddProductActivity.this.supplierAdapter = new ArrayAdapter<>(AddProductActivity.this, android.R.layout.simple_list_item_1);
                 AddProductActivity.this.supplierAdapter.addAll(AddProductActivity.this.supplierNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(AddProductActivity.this);
-                View dialogView = AddProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
+                View dialogView = AddProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.suppliers);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) AddProductActivity.this.supplierAdapter);
+                dialog_list.setAdapter(AddProductActivity.this.supplierAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -285,7 +281,7 @@ public class AddProductActivity extends AppCompatActivity {
                     }
                 });
                 final AlertDialog alertDialog = dialog.create();
-                ((Button) dialogView.findViewById(R.id.dialog_button)).setOnClickListener(new View.OnClickListener() {
+                dialogView.findViewById(R.id.dialog_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();
@@ -360,13 +356,12 @@ public class AddProductActivity extends AppCompatActivity {
                     DatabaseAccess databaseAccess = DatabaseAccess.getInstance(AddProductActivity.this);
                     databaseAccess.open();
                     if (databaseAccess.addProduct(product_name, product_code, product_category_id, product_buy, product_stock, product_price, product_total_qty, product_disc_qty, product_weight, product_weight_unit_id, product_last_update, product_information, product_supplier_id)) {
-                        Toasty.success(AddProductActivity.this, (int) R.string.product_successfully_added, Toasty.LENGTH_SHORT).show();
+                        Toasty.success(AddProductActivity.this, R.string.product_successfully_added, Toasty.LENGTH_SHORT).show();
                         Intent intent = new Intent(AddProductActivity.this, ProductActivity.class);
-                        //intent.addFlags(PagedChannelRandomAccessSource.DEFAULT_TOTAL_BUFSIZE);
                         AddProductActivity.this.startActivity(intent);
                         return;
                     }
-                    Toasty.error(AddProductActivity.this, (int) R.string.failed, Toasty.LENGTH_SHORT).show();
+                    Toasty.error(AddProductActivity.this, R.string.failed, Toasty.LENGTH_SHORT).show();
                 }
             }
         });
@@ -391,7 +386,7 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     public void fileChooser() {
-        new ChooserDialog((Activity) this).displayPath(true).withFilter(false, false, "xls").withChosenListener(new ChooserDialog.Result() {
+        new ChooserDialog(this).displayPath(true).withFilter(false, false, "xls").withChosenListener(new ChooserDialog.Result() {
             @Override
             public void onChoosePath(String path, File pathFile) {
                 AddProductActivity.this.onImport(path);
@@ -407,7 +402,7 @@ public class AddProductActivity extends AppCompatActivity {
     public void onImport(String path) {
         DatabaseAccess.getInstance(this).open();
         if (!new File(path).exists()) {
-            Toast.makeText(this, (int) R.string.no_file_found, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_file_found, Toast.LENGTH_SHORT).show();
         } else {
             new ExcelToSQLite(getApplicationContext(), DatabaseOpenHelper.DATABASE_NAME, false).importFromFile(path, new ExcelToSQLite.ImportListener() {
                 @Override
@@ -423,7 +418,7 @@ public class AddProductActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         public void run() {
                             AddProductActivity.this.loading.dismiss();
-                            Toasty.success(AddProductActivity.this, (int) R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
+                            Toasty.success(AddProductActivity.this, R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
                             AddProductActivity.this.startActivity(new Intent(AddProductActivity.this, DashboardActivity.class));
                             AddProductActivity.this.finish();
                         }
@@ -434,7 +429,7 @@ public class AddProductActivity extends AppCompatActivity {
                 public void onError(Exception e) {
                     AddProductActivity.this.loading.dismiss();
                     Log.d("Error : ", "" + e.getMessage());
-                    Toasty.error(AddProductActivity.this, (int) R.string.data_import_fail, Toasty.LENGTH_SHORT).show();
+                    Toasty.error(AddProductActivity.this, R.string.data_import_fail, Toasty.LENGTH_SHORT).show();
                 }
             });
         }
