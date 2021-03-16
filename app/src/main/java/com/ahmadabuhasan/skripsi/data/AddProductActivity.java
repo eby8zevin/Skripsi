@@ -46,7 +46,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 02/02/2021
+ * Created by Ahmad Abu Hasan on 16/03/2021
  */
 
 public class AddProductActivity extends AppCompatActivity {
@@ -314,10 +314,8 @@ public class AddProductActivity extends AppCompatActivity {
             @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View v) {
-                Locale locale = new Locale("id", "ID");
                 calendar = Calendar.getInstance();
-                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                //simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy     HH:mm", locale);
+                simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
                 datetime = simpleDateFormat.format(calendar.getTime());
 
                 String product_name = AddProductActivity.this.editText_Name.getText().toString();
@@ -333,57 +331,9 @@ public class AddProductActivity extends AppCompatActivity {
                 String product_weight_unit_name = AddProductActivity.this.editText_Weight_Unit.getText().toString();
                 String product_weight_unit_id = AddProductActivity.this.selectedWeightUnitID;
                 String product_last_update = AddProductActivity.this.datetime;
-                //String product_last_update = AddProductActivity.this.editText_Last_Update.getText().toString();
                 String product_information = AddProductActivity.this.editText_Information.getText().toString();
                 String product_supplier_name = AddProductActivity.this.editText_Supplier.getText().toString();
                 String product_supplier_id = AddProductActivity.this.selectedSupplierID;
-
-                /*if (product_name.isEmpty()) {
-                    AddProductActivity.this.editText_Name.setError(AddProductActivity.this.getString(R.string.product_name_cannot_be_empty));
-                    AddProductActivity.this.editText_Name.requestFocus();
-                    return;
-                }
-                if (!product_category_name.isEmpty()) {
-                    if (!product_category_id.isEmpty()) {
-                        if (product_stock.isEmpty()) {
-                            AddProductActivity.this.editText_Stock.setError(AddProductActivity.this.getString(R.string.product_stock_cannot_be_empty));
-                            AddProductActivity.this.editText_Stock.requestFocus();
-                            return;
-                        }
-                        if (!product_weight_unit_name.isEmpty()) {
-                            if (!product_weight.isEmpty()) {
-                                if (product_price.isEmpty()) {
-                                    AddProductActivity.this.editText_Price.setError(AddProductActivity.this.getString(R.string.product_price_cannot_be_empty));
-                                    AddProductActivity.this.editText_Price.requestFocus();
-                                    return;
-                                }
-                                if (!product_supplier_name.isEmpty()) {
-                                    if (!product_supplier_id.isEmpty()) {
-                                        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(AddProductActivity.this);
-                                        databaseAccess.open();
-                                        if (databaseAccess.addProduct(product_name, product_code, product_category_id, product_buy, product_stock, product_price, product_total_qty, product_disc_qty, product_weight, product_weight_unit_id, product_last_update, product_information, product_supplier_id)) {
-                                            Toasty.success(AddProductActivity.this, (int) R.string.product_successfully_added, Toasty.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(AddProductActivity.this, ProductActivity.class);
-                                            //intent.addFlags(PagedChannelRandomAccessSource.DEFAULT_TOTAL_BUFSIZE);
-                                            AddProductActivity.this.startActivity(intent);
-                                            return;
-                                        }
-                                        Toasty.error(AddProductActivity.this, (int) R.string.failed, Toasty.LENGTH_SHORT).show();
-                                        return;
-                                    }
-                                }
-                                AddProductActivity.this.editText_Supplier.setError(AddProductActivity.this.getString(R.string.product_supplier_cannot_be_empty));
-                                AddProductActivity.this.editText_Supplier.requestFocus();
-                                return;
-                            }
-                        }
-                        AddProductActivity.this.editText_Weight.setError(AddProductActivity.this.getString(R.string.product_weight_cannot_be_empty));
-                        AddProductActivity.this.editText_Weight.requestFocus();
-                        return;
-                    }
-                }
-                AddProductActivity.this.editText_Category.setError(AddProductActivity.this.getString(R.string.product_category_cannot_be_empty));
-                AddProductActivity.this.editText_Category.requestFocus();*/
 
                 if (product_name.isEmpty()) {
                     AddProductActivity.this.editText_Name.setError(AddProductActivity.this.getString(R.string.product_name_cannot_be_empty));
