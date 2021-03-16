@@ -1,8 +1,5 @@
 package com.ahmadabuhasan.skripsi.data;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.internal.view.SupportMenu;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -12,27 +9,27 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.internal.view.SupportMenu;
 
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
-//import com.itextpdf.text.io.PagedChannelRandomAccessSource;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -83,7 +80,7 @@ public class EditProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.product_details);
 
@@ -199,13 +196,13 @@ public class EditProductActivity extends AppCompatActivity {
                 EditProductActivity.this.categoryAdapter = new ArrayAdapter<>(EditProductActivity.this, android.R.layout.simple_list_item_1);
                 EditProductActivity.this.categoryAdapter.addAll(EditProductActivity.this.categoryNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(EditProductActivity.this);
-                View dialogView = EditProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
+                View dialogView = EditProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.product_category);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) EditProductActivity.this.categoryAdapter);
+                dialog_list.setAdapter(EditProductActivity.this.categoryAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -223,7 +220,7 @@ public class EditProductActivity extends AppCompatActivity {
                     }
                 });
                 final AlertDialog alertDialog = dialog.create();
-                ((Button) dialogView.findViewById(R.id.dialog_button)).setOnClickListener(new View.OnClickListener() {
+                dialogView.findViewById(R.id.dialog_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();
@@ -255,13 +252,13 @@ public class EditProductActivity extends AppCompatActivity {
                 EditProductActivity.this.weightUnitAdapter = new ArrayAdapter<>(EditProductActivity.this, android.R.layout.simple_list_item_1);
                 EditProductActivity.this.weightUnitAdapter.addAll(EditProductActivity.this.weightUnitNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(EditProductActivity.this);
-                View dialogView = EditProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
+                View dialogView = EditProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.product_weight_unit);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) EditProductActivity.this.weightUnitAdapter);
+                dialog_list.setAdapter(EditProductActivity.this.weightUnitAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -280,7 +277,7 @@ public class EditProductActivity extends AppCompatActivity {
                     }
                 });
                 final AlertDialog alertDialog = dialog.create();
-                ((Button) dialogView.findViewById(R.id.dialog_button)).setOnClickListener(new View.OnClickListener() {
+                dialogView.findViewById(R.id.dialog_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();
@@ -312,13 +309,13 @@ public class EditProductActivity extends AppCompatActivity {
                 EditProductActivity.this.supplierAdapter = new ArrayAdapter<>(EditProductActivity.this, android.R.layout.simple_list_item_1);
                 EditProductActivity.this.supplierAdapter.addAll(EditProductActivity.this.supplierNames);
                 AlertDialog.Builder dialog = new AlertDialog.Builder(EditProductActivity.this);
-                View dialogView = EditProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, (ViewGroup) null);
+                View dialogView = EditProductActivity.this.getLayoutInflater().inflate(R.layout.dialog_list_search, null);
                 dialog.setView(dialogView);
                 dialog.setCancelable(false);
-                ListView dialog_list = (ListView) dialogView.findViewById(R.id.dialog_list);
+                ListView dialog_list = dialogView.findViewById(R.id.dialog_list);
                 ((TextView) dialogView.findViewById(R.id.dialog_title)).setText(R.string.suppliers);
                 dialog_list.setVerticalScrollBarEnabled(true);
-                dialog_list.setAdapter((ListAdapter) EditProductActivity.this.supplierAdapter);
+                dialog_list.setAdapter(EditProductActivity.this.supplierAdapter);
                 ((EditText) dialogView.findViewById(R.id.dialog_input)).addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -444,13 +441,12 @@ public class EditProductActivity extends AppCompatActivity {
                     DatabaseAccess databaseAccess = DatabaseAccess.getInstance(EditProductActivity.this);
                     databaseAccess.open();
                     if (databaseAccess.updateProduct(product_name, product_code, product_category_id, product_buy, product_stock, product_price, product_total_qty, product_disc_qty, product_weight, product_weight_unit_id, product_last_update, product_information, product_supplier_id, EditProductActivity.this.productID)) {
-                        Toasty.success(EditProductActivity.this, (int) R.string.update_successfully, Toasty.LENGTH_SHORT).show();
+                        Toasty.success(EditProductActivity.this, R.string.update_successfully, Toasty.LENGTH_SHORT).show();
                         Intent intent = new Intent(EditProductActivity.this, ProductActivity.class);
-                        //intent.addFlags(PagedChannelRandomAccessSource.DEFAULT_TOTAL_BUFSIZE);
                         EditProductActivity.this.startActivity(intent);
                         return;
                     }
-                    Toasty.error(EditProductActivity.this, (int) R.string.failed, Toasty.LENGTH_SHORT).show();
+                    Toasty.error(EditProductActivity.this, R.string.failed, Toasty.LENGTH_SHORT).show();
                 }
             }
         });
