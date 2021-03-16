@@ -130,25 +130,32 @@ public class DatabaseAccess {
     // CartAdapter
     public double getTotalPrice() {
         double total_price = Utils.DOUBLE_EPSILON;
+        Cursor c = this.database.rawQuery("SELECT * FROM products", null);
         Cursor cursor = this.database.rawQuery("SELECT * FROM product_cart", null);
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToFirst() && c.moveToFirst()) {
             do {
                 double price = Double.parseDouble(cursor.getString(4));
                 double qty = Integer.parseInt(cursor.getString(5));
                 Double.isNaN(qty);
-                total_price += qty * price;
-                
-                if (qty >= totalqty) {
-                    double disc_price = price - discqty;
+                //total_price += qty * price;
+
+                double totalQty = Integer.parseInt(c.getString(7));
+                Double.isNaN(totalQty);
+                double discQty = Integer.parseInt(c.getString(8));
+                Double.isNaN(discQty);
+
+                if (qty >= totalQty) {
+                    double disc_price = price - discQty;
                     total_price += disc_price * qty;
                 } else {
                     total_price += qty * price;
                 }
-                
-            } while (cursor.moveToNext());
+
+            } while (cursor.moveToNext() && c.moveToNext());
         } else {
             total_price = Utils.DOUBLE_EPSILON;
         }
+        c.close();
         cursor.close();
         this.database.close();
         return total_price;
@@ -167,7 +174,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.CART_PRODUCT_QTY, qty);
         long update = (long) this.database.update("product_cart", values, "cart_id=?", new String[]{id});
     }
-    
+
     public String getTotalQty(String product_id) {
         String total_qty = "n/a";
         SQLiteDatabase sqLiteDatabase = this.database;
