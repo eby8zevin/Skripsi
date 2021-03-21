@@ -42,7 +42,7 @@ import java.util.Objects;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 16/03/2021
+ * Created by Ahmad Abu Hasan on 21/03/2021
  */
 
 public class AddProductActivity extends AppCompatActivity {
@@ -346,6 +346,10 @@ public class AddProductActivity extends AppCompatActivity {
                 } else if (product_price.isEmpty()) {
                     AddProductActivity.this.editText_Price.setError(AddProductActivity.this.getString(R.string.product_price_cannot_be_empty));
                     AddProductActivity.this.editText_Price.requestFocus();
+                } else if (product_total_qty.isEmpty()) {
+                    AddProductActivity.this.editText_Total_Qty.setText("0");
+                } else if (product_disc_qty.isEmpty()) {
+                    AddProductActivity.this.editText_Disc_Qty.setText("0");
                 } else if (product_weight_unit_name.isEmpty() || product_weight_unit_id.isEmpty()) {
                     AddProductActivity.this.editText_Weight_Unit.setError(AddProductActivity.this.getString(R.string.product_weight_cannot_be_empty));
                     AddProductActivity.this.editText_Weight_Unit.requestFocus();
