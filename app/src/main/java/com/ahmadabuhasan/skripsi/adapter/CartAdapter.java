@@ -152,7 +152,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             @Override
             public void onClick(View v) {
                 int get_qty = Integer.parseInt(holder.textView_QtyNumber.getText().toString());
-                int total_qty = parseTotalQty;
+                int total_qty = parseTotalQty + 1;
                 if (get_qty >= 2) {
                     int get_qty1 = get_qty - 1;
 
@@ -189,9 +189,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                         databaseAccess2.open();
                         databaseAccess2.updateProductQty(cart_id, "" + get_qty1);
 
-                        double cost2 = cost1 - parsePrice;
+                        databaseAccess.open();
+                        total_price = databaseAccess.getTotalPrice();
 
-                        CartAdapter.total_price = cost2 - Double.parseDouble(price);
+                        double min = total_price + parsePrice;
+
+                        CartAdapter.total_price = min - Double.parseDouble(price);
                         TextView textView2 = CartAdapter.this.textView_total_price;
                         textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
                     }
@@ -229,9 +232,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     databaseAccess.open();
                     databaseAccess.updateProductQty(cart_id, "" + get_qty1);
 
-                    double cost1 = cost - priceDisc;
+                    databaseAccess.open();
+                    total_price = databaseAccess.getTotalPrice();
 
-                    CartAdapter.total_price = CartAdapter.total_price + priceDisc;
+                    double plus = total_price - priceDisc;
+
+                    CartAdapter.total_price = plus + priceDisc;
                     TextView textView2 = CartAdapter.this.textView_total_price;
                     textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
                 } else {
