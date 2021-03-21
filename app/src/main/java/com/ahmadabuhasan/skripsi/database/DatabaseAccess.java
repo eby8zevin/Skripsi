@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /*
- * Created by Ahmad Abu Hasan on 16/03/2021
+ * Created by Ahmad Abu Hasan on 21/03/2021
  */
 
 public class DatabaseAccess {
@@ -137,7 +137,6 @@ public class DatabaseAccess {
                 double price = Double.parseDouble(cursor.getString(4));
                 double qty = Integer.parseInt(cursor.getString(5));
                 Double.isNaN(qty);
-                //total_price += qty * price;
 
                 double totalQty = Integer.parseInt(c.getString(7));
                 Double.isNaN(totalQty);
