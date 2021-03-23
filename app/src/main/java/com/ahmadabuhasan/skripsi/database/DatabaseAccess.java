@@ -1,5 +1,6 @@
 package com.ahmadabuhasan.skripsi.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -53,6 +54,7 @@ public class DatabaseAccess {
 
     /*KASIR*/
     // PosProductAdapter
+    @SuppressLint("Recycle")
     public int addToCart(String product_id, String weight, String weight_unit, String price, int qty, String stock) {
         SQLiteDatabase sqLiteDatabase = this.database;
         if (sqLiteDatabase.rawQuery("SELECT * FROM product_cart WHERE product_id='" + product_id + "'", null).getCount() >= 1) {
@@ -130,17 +132,29 @@ public class DatabaseAccess {
     // CartAdapter
     public double getTotalPrice() {
         double total_price = Utils.DOUBLE_EPSILON;
+        Cursor c = this.database.rawQuery("SELECT * FROM products", (String[]) null);
         Cursor cursor = this.database.rawQuery("SELECT * FROM product_cart", (String[]) null);
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToFirst() && c.moveToFirst()) {
             do {
                 double price = Double.parseDouble(cursor.getString(4));
-                double parseInt = (double) Integer.parseInt(cursor.getString(5));
-                Double.isNaN(parseInt);
-                total_price += parseInt * price;
-            } while (cursor.moveToNext());
+                double qty = (double) Integer.parseInt(cursor.getString(5));
+                Double.isNaN(qty);
+
+                double totalQty = Integer.parseInt(c.getString(7));
+                double discQty = Integer.parseInt(c.getString(8));
+
+                if (qty >= totalQty ){
+                    double a = discQty * qty;
+                    total_price += price * qty - a;
+                } else {
+                    total_price += price * qty;
+                }
+
+            } while (cursor.moveToNext() && c.moveToNext());
         } else {
             total_price = Utils.DOUBLE_EPSILON;
         }
+        c.close();
         cursor.close();
         this.database.close();
         return total_price;
@@ -158,6 +172,7 @@ public class DatabaseAccess {
         ContentValues values = new ContentValues();
         values.put(DatabaseOpenHelper.CART_PRODUCT_QTY, qty);
         long update = (long) this.database.update("product_cart", values, "cart_id=?", new String[]{id});
+        close();
     }
 
     public String getTotalQty(String product_id) {
@@ -254,7 +269,6 @@ public class DatabaseAccess {
         String pending = "Pending";
         int i;
         int updated_stock;
-        //double updated_stock;
 
         ContentValues contentValues;
         ContentValues values = new ContentValues();
@@ -327,7 +341,6 @@ public class DatabaseAccess {
                 values1.put(DatabaseOpenHelper.ORDER_DETAILS_ORDER_STATUS, pending);
 
                 values2.put(DatabaseOpenHelper.PRODUCT_STOCK, updated_stock);
-                //values2.put(DatabaseOpenHelper.PRODUCT_STOCK, Double.valueOf(updated_stock));
 
                 this.database.insert("order_details", null, values1);
                 this.database.update("products", values2, "product_id=?", new String[]{product_id});
@@ -494,10 +507,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.PRODUCT_SUPPLIER, product_supplier);
         long check = this.database.insert("products", null, values);
         this.database.close();
-        if (check == -1) {
-            return false;
-        }
-        return true;
+        return check != -1;
     }
 
     // EditProductActivity
@@ -594,10 +604,7 @@ public class DatabaseAccess {
         SQLiteDatabase sQLiteDatabase = this.database;
         String[] strArr = {product_id};
         this.database.isOpen();
-        if (((long) sQLiteDatabase.update("products", values, "product_id=?", strArr)) == -1) {
-            return false;
-        }
-        return true;
+        return ((long) sQLiteDatabase.update("products", values, "product_id=?", strArr)) != -1;
     }
     /*/DATA*/
 
@@ -781,10 +788,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.CATEGORY_NAME, category_name);
         long check = this.database.insert(DatabaseOpenHelper.TABLE_CATEGORY, null, values);
         this.database.close();
-        if (check == -1) {
-            return false;
-        }
-        return true;
+        return check != -1;
     }
     /*/CATEGORIES*/
 
@@ -820,10 +824,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.WEIGHT_UNIT, unit_name);
         long check = this.database.insert(DatabaseOpenHelper.TABLE_WEIGHT, null, values);
         this.database.close();
-        if (check == -1) {
-            return false;
-        }
-        return true;
+        return check != -1;
     }
 
     // EditWeightActivity
@@ -868,10 +869,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.PAYMENT_METHOD_NAME, payment_method_name);
         long check = this.database.insert("payment_method", null, values);
         this.database.close();
-        if (check == -1) {
-            return false;
-        }
-        return true;
+        return check != -1;
     }
 
     // EditPaymentMethodActivity
@@ -945,10 +943,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.EXPENSE_TIME, time);
         long check = this.database.insert("expense", null, values);
         this.database.close();
-        if (check == -1) {
-            return false;
-        }
-        return true;
+        return check != -1;
     }
 
     // EditExpenseActivity
@@ -990,19 +985,23 @@ public class DatabaseAccess {
     public double getTotalOrderPrice(String type) {
         Cursor cursor;
         double total_price = Utils.DOUBLE_EPSILON;
-        if (type.equals(DatabaseOpenHelper.DAILY)) {
-            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
-            SQLiteDatabase sqLiteDatabase = this.database;
-            cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND product_order_date='" + currentDate + "' ORDER BY order_details_id DESC", null);
-        } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
-            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%m', product_order_date) = '" + currentMonth + "' ", null);
-        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
-            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%Y', product_order_date) = '" + currentYear + "' ", null);
-        } else {
-            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' ", null);
+        switch (type) {
+            case DatabaseOpenHelper.DAILY:
+                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+                SQLiteDatabase sqLiteDatabase = this.database;
+                cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND product_order_date='" + currentDate + "' ORDER BY order_details_id DESC", null);
+                break;
+            case DatabaseOpenHelper.MONTHLY:
+                String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%m', product_order_date) = '" + currentMonth + "' ", null);
+                break;
+            case DatabaseOpenHelper.YEARLY:
+                String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%Y', product_order_date) = '" + currentYear + "' ", null);
+                break;
+            default:
+                cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' ", null);
+                break;
         }
         if (cursor.moveToFirst()) {
             do {
@@ -1023,19 +1022,23 @@ public class DatabaseAccess {
     public double getTotalTax(String type) {
         Cursor cursor;
         double total_tax = Utils.DOUBLE_EPSILON;
-        if (type.equals(DatabaseOpenHelper.DAILY)) {
-            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
-            SQLiteDatabase sqLiteDatabase = this.database;
-            cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND order_date='" + currentDate + "' ORDER BY order_id DESC", null);
-        } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
-            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%m', order_date) = '" + currentMonth + "' ", null);
-        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
-            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%Y', order_date) = '" + currentYear + "' ", null);
-        } else {
-            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' ", null);
+        switch (type) {
+            case DatabaseOpenHelper.DAILY:
+                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+                SQLiteDatabase sqLiteDatabase = this.database;
+                cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND order_date='" + currentDate + "' ORDER BY order_id DESC", null);
+                break;
+            case DatabaseOpenHelper.MONTHLY:
+                String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%m', order_date) = '" + currentMonth + "' ", null);
+                break;
+            case DatabaseOpenHelper.YEARLY:
+                String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%Y', order_date) = '" + currentYear + "' ", null);
+                break;
+            default:
+                cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' ", null);
+                break;
         }
         if (cursor.moveToFirst()) {
             do {
@@ -1053,19 +1056,23 @@ public class DatabaseAccess {
     public double getTotalDiscount(String type) {
         Cursor cursor;
         double total_discount = Utils.DOUBLE_EPSILON;
-        if (type.equals(DatabaseOpenHelper.DAILY)) {
-            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
-            SQLiteDatabase sqLiteDatabase = this.database;
-            cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND order_date='" + currentDate + "' ORDER BY order_id DESC", null);
-        } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
-            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%m', order_date) = '" + currentMonth + "' ", null);
-        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
-            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%Y', order_date) = '" + currentYear + "' ", null);
-        } else {
-            cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed'", null);
+        switch (type) {
+            case DatabaseOpenHelper.DAILY:
+                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+                SQLiteDatabase sqLiteDatabase = this.database;
+                cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND order_date='" + currentDate + "' ORDER BY order_id DESC", null);
+                break;
+            case DatabaseOpenHelper.MONTHLY:
+                String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%m', order_date) = '" + currentMonth + "' ", null);
+                break;
+            case DatabaseOpenHelper.YEARLY:
+                String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed' AND strftime('%Y', order_date) = '" + currentYear + "' ", null);
+                break;
+            default:
+                cursor = this.database.rawQuery("SELECT * FROM order_list WHERE order_status='Completed'", null);
+                break;
         }
         if (cursor.moveToFirst()) {
             do {
@@ -1083,22 +1090,23 @@ public class DatabaseAccess {
     public ArrayList<HashMap<String, String>> getSalesReport(String type) {
         ArrayList<HashMap<String, String>> orderDetailsList = new ArrayList<>();
         Cursor cursor = null;
-        if (type.equals("all")) {
-            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' ORDER BY order_details_id DESC", null);
-        } else if (type.equals(DatabaseOpenHelper.DAILY)) {
-            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
-            SQLiteDatabase sqLiteDatabase = this.database;
-            Log.d("DAILY", currentDate);
-            cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND product_order_date='" + currentDate + "' ORDER BY order_Details_id DESC", null);
-        } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
-            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
-            Log.d("MONTHLY", currentMonth);
-            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%m', product_order_date) = '" + currentMonth + "' ", null);
-        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
-            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
-            Log.d("YEAR", currentYear);
-            cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%Y', product_order_date) = '" + currentYear + "' ", null);
+        switch (type) {
+            case "all":
+                cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' ORDER BY order_details_id DESC", null);
+                break;
+            case DatabaseOpenHelper.DAILY:
+                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+                SQLiteDatabase sqLiteDatabase = this.database;
+                cursor = sqLiteDatabase.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND product_order_date='" + currentDate + "' ORDER BY order_Details_id DESC", null);
+                break;
+            case DatabaseOpenHelper.MONTHLY:
+                String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%m', product_order_date) = '" + currentMonth + "' ", null);
+                break;
+            case DatabaseOpenHelper.YEARLY:
+                String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM order_details WHERE order_status='Completed' AND strftime('%Y', product_order_date) = '" + currentYear + "' ", null);
+                break;
         }
         if (cursor.moveToFirst()) {
             do {
@@ -1120,19 +1128,23 @@ public class DatabaseAccess {
     public double getTotalExpense(String type) {
         Cursor cursor;
         double total_cost = Utils.DOUBLE_EPSILON;
-        if (type.equals(DatabaseOpenHelper.DAILY)) {
-            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
-            SQLiteDatabase sqLiteDatabase = this.database;
-            cursor = sqLiteDatabase.rawQuery("SELECT * FROM expense WHERE expense_date='" + currentDate + "' ORDER BY expense_id DESC", null);
-        } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
-            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%m', expense_date) = '" + currentMonth + "' ", null);
-        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
-            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
-            cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%Y', expense_date) = '" + currentYear + "' ", null);
-        } else {
-            cursor = this.database.rawQuery("SELECT * FROM expense", null);
+        switch (type) {
+            case DatabaseOpenHelper.DAILY:
+                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+                SQLiteDatabase sqLiteDatabase = this.database;
+                cursor = sqLiteDatabase.rawQuery("SELECT * FROM expense WHERE expense_date='" + currentDate + "' ORDER BY expense_id DESC", null);
+                break;
+            case DatabaseOpenHelper.MONTHLY:
+                String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%m', expense_date) = '" + currentMonth + "' ", null);
+                break;
+            case DatabaseOpenHelper.YEARLY:
+                String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+                cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%Y', expense_date) = '" + currentYear + "' ", null);
+                break;
+            default:
+                cursor = this.database.rawQuery("SELECT * FROM expense", null);
+                break;
         }
         if (cursor.moveToFirst()) {
             do {
@@ -1150,22 +1162,26 @@ public class DatabaseAccess {
     public ArrayList<HashMap<String, String>> getExpenseReport(String type) {
         ArrayList<HashMap<String, String>> orderDetailsList = new ArrayList<>();
         Cursor cursor = null;
-        if (type.equals("all")) {
-            cursor = this.database.rawQuery("SELECT * FROM expense ORDER BY expense_id DESC", null);
-        } else if (type.equals(DatabaseOpenHelper.DAILY)) {
-            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
-            //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(new Date());
-            SQLiteDatabase sqLiteDatabase = this.database;
-            Log.d("DAILY", currentDate);
-            cursor = sqLiteDatabase.rawQuery("SELECT * FROM expense WHERE expense_date='" + currentDate + "' ORDER BY expense_id DESC", null);
-        } else if (type.equals(DatabaseOpenHelper.MONTHLY)) {
-            String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
-            Log.d("MONTHLY", currentMonth);
-            cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%m', expense_date) = '" + currentMonth + "' ", null);
-        } else if (type.equals(DatabaseOpenHelper.YEARLY)) {
-            String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
-            Log.d("YEARLY", currentYear);
-            cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%Y', expense_date) = '" + currentYear + "' ", null);
+        switch (type) {
+            case "all":
+                cursor = this.database.rawQuery("SELECT * FROM expense ORDER BY expense_id DESC", null);
+                break;
+            case DatabaseOpenHelper.DAILY:
+                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new Date());
+                SQLiteDatabase sqLiteDatabase = this.database;
+                Log.d("DAILY", currentDate);
+                cursor = sqLiteDatabase.rawQuery("SELECT * FROM expense WHERE expense_date='" + currentDate + "' ORDER BY expense_id DESC", null);
+                break;
+            case DatabaseOpenHelper.MONTHLY:
+                String currentMonth = new SimpleDateFormat("MM", Locale.ENGLISH).format(new Date());
+                Log.d("MONTHLY", currentMonth);
+                cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%m', expense_date) = '" + currentMonth + "' ", null);
+                break;
+            case DatabaseOpenHelper.YEARLY:
+                String currentYear = new SimpleDateFormat("yyyy", Locale.ENGLISH).format(new Date());
+                Log.d("YEARLY", currentYear);
+                cursor = this.database.rawQuery("SELECT * FROM expense WHERE strftime('%Y', expense_date) = '" + currentYear + "' ", null);
+                break;
         }
         if (cursor.moveToFirst()) {
             do {
@@ -1286,10 +1302,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.CUSTOMER_LAST_UPDATE, customer_last_update);
         long check = this.database.insert("customers", null, values);
         this.database.close();
-        if (check == -1) {
-            return false;
-        }
-        return true;
+        return check != -1;
     }
 
     // EditCustomersActivity
@@ -1329,6 +1342,7 @@ public class DatabaseAccess {
                 supplier.add(map);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         this.database.close();
         return supplier;
     }
@@ -1380,10 +1394,7 @@ public class DatabaseAccess {
         values.put(DatabaseOpenHelper.SUPPLIER_LAST_UPDATE, suppliers_last_update);
         long check = this.database.insert("suppliers", null, values);
         this.database.close();
-        if (check == -1) {
-            return false;
-        }
-        return true;
+        return check != -1;
     }
 
     // EditSuppliersActivity
