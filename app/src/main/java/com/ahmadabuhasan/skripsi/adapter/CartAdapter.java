@@ -89,6 +89,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         total_price = databaseAccess.getTotalPrice();
         
         //code
+        double parsePrice = Double.parseDouble(price);
+        double parseQty = (double) Integer.parseInt(qty);
+        Double.isNaN(parseQty);
+        
+        if (parseQty >= parseTotalQty){
+            double getDisc = parseDiscQty * parseQty;
+            double getPrice = parsePrice * parseQty - getDisc;
+        }else{
+            double getPrice = parsePrice * parseQty;
+        }
+        
+        holder.textView_Name.setText(product_name);
+        
+        TextView textView = holder.textView_Weight;
+        textView.setText(weight + " " + weight_unit_name);
+        
+        TextView textView1 = holder.textView_Price;
+        textView1.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(getPrice));
+
+        holder.textView_QtyNumber.setText(qty);
+        
+        TextView textView2 = this.textView_total_price;
+        textView2.setText(this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(total_price));
 
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
