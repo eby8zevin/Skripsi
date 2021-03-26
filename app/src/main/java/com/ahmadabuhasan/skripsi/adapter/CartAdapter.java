@@ -184,7 +184,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 double cost;
                 double disc;
 
-                if (get_qty >= (parseTotalQty-1)) {
+                if (get_qty >= (parseTotalQty - 1)) {
                     disc = parseDiscQty * get_qty1;
                     cost = parsePrice2 * get_qty1 - disc;
 
