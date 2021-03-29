@@ -27,7 +27,7 @@ import java.util.Objects;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 23/03/2021
+ * Created by Ahmad Abu Hasan on 30/03/2021
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -172,42 +172,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             @Override
             public void onClick(View v) {
                 int get_qty = Integer.parseInt(holder.textView_QtyNumber.getText().toString());
-
                 if (get_qty >= getStock) {
                     Context context = CartAdapter.this.context;
                     Toasty.error(context, CartAdapter.this.context.getString(R.string.available_stock) + " " + getStock, Toasty.LENGTH_SHORT).show();
                     return;
                 }
                 int get_qty1 = get_qty + 1;
-
-                double parsePrice2 = Double.parseDouble(price);
-                double cost;
-                double disc;
-
-                if (get_qty >= (parseTotalQty - 1)) {
-                    disc = parseDiscQty * get_qty1;
-                    cost = parsePrice2 * get_qty1 - disc;
-
-                    CartAdapter.total_price = cost;
-                    TextView textView2 = CartAdapter.this.textView_total_price;
-                    textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
-                } else {
-                    cost = parsePrice2 * get_qty1;
-
-                    CartAdapter.total_price = CartAdapter.total_price + parsePrice2;
-                    TextView textView2 = CartAdapter.this.textView_total_price;
-                    textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
-                }
-
-                TextView textView = holder.textView_Price;
-                textView.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(cost));
-
-                TextView textView1 = holder.textView_QtyNumber;
-                textView1.setText("" + get_qty1);
-
-                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
-                databaseAccess.open();
-                databaseAccess.updateProductQty(cart_id, "" + get_qty1);
             }
         });
     }
