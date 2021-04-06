@@ -22,12 +22,11 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 30/03/2021
+ * Created by Ahmad Abu Hasan on 07/04/2021
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
@@ -48,7 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         this.button_SubmitOrder = button_SubmitOrder1;
         this.imgNoProduct = imgNoProduct1;
         this.textView_no_product = textView_no_product1;
-        this.mediaPlayer = MediaPlayer.create(context1, R.raw.delete_sound);
+        this.mediaPlayer = MediaPlayer.create(context1, (int) R.raw.delete_sound);
     }
 
     @NonNull
@@ -69,15 +68,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         String weight_unit_id = this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_WEIGHT_UNIT);
         final String price = this.cart_product.get(position).get(DatabaseOpenHelper.PRODUCT_PRICE);
         String qty = this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_QTY);
-        final int getStock = Integer.parseInt(Objects.requireNonNull(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK)));
-
-        databaseAccess.open();
-        String getTotalQty = databaseAccess.getTotalQty(product_id);
-        int parseTotalQty = Integer.parseInt(getTotalQty);
-
-        databaseAccess.open();
-        String getDiscQty = databaseAccess.getDiscQty(product_id);
-        int parseDiscQty = Integer.parseInt(getDiscQty);
+        final int getStock = Integer.parseInt(this.cart_product.get(position).get(DatabaseOpenHelper.CART_PRODUCT_STOCK));
 
         databaseAccess.open();
         String weight_unit_name = databaseAccess.getWeightUnitName(weight_unit_id);
@@ -88,31 +79,21 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         databaseAccess.open();
         total_price = databaseAccess.getTotalPrice();
 
-        double parsePrice = Double.parseDouble(price);
-        double parseQty = (double) Integer.parseInt(qty);
-        Double.isNaN(parseQty);
+        TextView textView = this.textView_total_price;
+        textView.setText(this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(total_price));
 
-        double getPrice;
+        double parseDouble = Double.parseDouble(price);
+        double parseInt = (double) Integer.parseInt(qty);
+        Double.isNaN(parseInt);
+        double getPrice = parseInt * parseDouble;
 
-        if (parseQty >= parseTotalQty) {
-            double getDisc = parseDiscQty * parseQty;
-            getPrice = parsePrice * parseQty - getDisc;
-        } else {
-            getPrice = parsePrice * parseQty;
-        }
-
-        holder.textView_Name.setText(product_name);
-
-        TextView textView = holder.textView_Weight;
-        textView.setText(weight + " " + weight_unit_name);
-
-        TextView textView1 = holder.textView_Price;
-        textView1.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(getPrice));
+        holder.textView_ItemName.setText(product_name);
+        TextView textView1 = holder.textView_Weight;
+        textView1.setText(weight + " " + weight_unit_name);
+        TextView textView2 = holder.textView_Price;
+        textView2.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(getPrice));
 
         holder.textView_QtyNumber.setText(qty);
-
-        TextView textView2 = this.textView_total_price;
-        textView2.setText(this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(total_price));
 
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,20 +102,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 databaseAccess.open();
                 if (databaseAccess.deleteProductFromCart(cart_id)) {
                     Toasty.success(CartAdapter.this.context, CartAdapter.this.context.getString(R.string.product_removed_from_cart), Toasty.LENGTH_SHORT).show();
-
                     CartAdapter.this.mediaPlayer.start();
                     CartAdapter.this.cart_product.remove(holder.getAdapterPosition());
                     CartAdapter.this.notifyItemRemoved(holder.getAdapterPosition());
-
                     databaseAccess.open();
                     CartAdapter.total_price = databaseAccess.getTotalPrice();
-
                     TextView textView = CartAdapter.this.textView_total_price;
                     textView.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
                 } else {
                     Toasty.error(CartAdapter.this.context, CartAdapter.this.context.getString(R.string.failed), Toasty.LENGTH_SHORT).show();
                 }
-
                 databaseAccess.open();
                 int itemCount = databaseAccess.getCartItemCount();
                 Log.d("itemCount", "" + itemCount);
@@ -157,11 +134,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     double d = (double) get_qty1;
                     Double.isNaN(d);
                     double cost = parseDouble * d;
+
                     holder.textView_Price.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(cost));
                     holder.textView_QtyNumber.setText("" + get_qty1);
+
                     DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
                     databaseAccess.open();
                     databaseAccess.updateProductQty(cart_id, "" + get_qty1);
+
                     CartAdapter.total_price = CartAdapter.total_price - Double.parseDouble(price);
                     CartAdapter.this.textView_total_price.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
                 }
@@ -178,6 +158,23 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     return;
                 }
                 int get_qty1 = get_qty + 1;
+                double parseDouble = Double.parseDouble(price);
+                double d = (double) get_qty1;
+                Double.isNaN(d);
+                double cost = parseDouble * d;
+
+                TextView textView = holder.textView_Price;
+                textView.setText(currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(cost));
+                TextView textView1 = holder.textView_QtyNumber;
+                textView1.setText("" + get_qty1);
+
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(CartAdapter.this.context);
+                databaseAccess.open();
+                databaseAccess.updateProductQty(cart_id, "" + get_qty1);
+
+                CartAdapter.total_price = CartAdapter.total_price + Double.parseDouble(price);
+                TextView textView2 = CartAdapter.this.textView_total_price;
+                textView2.setText(CartAdapter.this.context.getString(R.string.total_price) + " " + currency + " " + NumberFormat.getInstance(Locale.getDefault()).format(CartAdapter.total_price));
             }
         });
     }
@@ -189,7 +186,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imgProduct;
-        TextView textView_Name;
+        TextView textView_ItemName;
         TextView textView_Weight;
         TextView textView_Price;
         ImageView imgDelete;
@@ -200,7 +197,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         public MyViewHolder(View itemView) {
             super(itemView);
             this.imgProduct = itemView.findViewById(R.id.cart_product_image);
-            this.textView_Name = itemView.findViewById(R.id.tv_item_name);
+            this.textView_ItemName = itemView.findViewById(R.id.tv_item_name);
             this.textView_Weight = itemView.findViewById(R.id.tv_weight);
             this.textView_Price = itemView.findViewById(R.id.tv_price);
             this.imgDelete = itemView.findViewById(R.id.img_delete);
