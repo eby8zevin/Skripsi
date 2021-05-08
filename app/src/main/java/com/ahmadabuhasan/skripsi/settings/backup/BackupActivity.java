@@ -27,7 +27,7 @@ import java.io.File;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 31/01/2021
+ * Created by Ahmad Abu Hasan on 08/05/2021
  */
 
 public class BackupActivity extends AppCompatActivity {
@@ -69,6 +69,9 @@ public class BackupActivity extends AppCompatActivity {
         this.cardView_ExportToExcel = findViewById(R.id.card_export_to_excel);
         this.cardView_BackupToDrive = findViewById(R.id.card_backup_to_drive);
         this.cardView_ImportFromDrive = findViewById(R.id.card_import_from_drive);
+
+        this.cardView_BackupToDrive.setVisibility(View.GONE);
+        this.cardView_ImportFromDrive.setVisibility(View.GONE);
 
         this.activity = this;
         this.localBackup = new LocalBackup(this);
