@@ -41,11 +41,12 @@ import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.List;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 08/05/2021
+ * Created by Ahmad Abu Hasan on 14/05/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -70,7 +71,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         imageView_Profile = findViewById(R.id.profile);
 
