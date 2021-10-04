@@ -26,6 +26,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/PointOfSale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/dashboard"
@@ -34,6 +35,28 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/PointOfSale"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="6dp"
+            android:text="Welcome"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/baseline_logout_24"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/profile"
@@ -44,6 +67,18 @@
             tools:ignore="ContentDescription" />
 
     </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:indeterminateDuration="10"
+        android:indeterminateTint="@color/white"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="invisible" />
 
     <ScrollView
         android:layout_width="match_parent"
