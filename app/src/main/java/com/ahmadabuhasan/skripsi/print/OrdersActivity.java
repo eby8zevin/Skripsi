@@ -24,6 +24,9 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
+import static com.ahmadabuhasan.skripsi.LoginActivity.USER_TYPE;
+import static com.ahmadabuhasan.skripsi.LoginActivity.item;
+
 /*
  * Created by Ahmad Abu Hasan on 24/01/2021
  */
@@ -101,18 +104,20 @@ public class OrdersActivity extends AppCompatActivity {
         });
     }
 
-    public void onBackPressed() {
-        startActivity(new Intent(this, DashboardActivity.class));
-        finish();
-        super.onBackPressed();
-    }
-
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() != android.R.id.home) {
             return super.onOptionsItemSelected(item);
         }
-        startActivity(new Intent(this, DashboardActivity.class));
-        finish();
+        onBackPressed();
         return true;
+    }
+
+    public void onBackPressed() {
+        Intent i = new Intent(this, DashboardActivity.class);
+        i.putExtra(USER_TYPE, item);
+        startActivity(i);
+
+        //finish();
+        //super.onBackPressed();
     }
 }
