@@ -357,4 +357,10 @@
     <string name="not_connected">Connection is not established</string>
     <string name="connected">Connect to</string>
     <!--    /utils-->
+
+    <string-array name="userType">
+        <item>Admin</item>
+        <item>Cashier</item>
+        <item>Warehouse</item>
+    </string-array>
 </resources>
