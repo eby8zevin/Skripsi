@@ -10,7 +10,6 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -72,6 +71,7 @@
         <activity android:name=".kasir.ScannerActivity" />
         <activity android:name=".kasir.PosActivity" />
         <activity android:name=".DashboardActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
