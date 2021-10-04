@@ -19,6 +19,9 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import static com.ahmadabuhasan.skripsi.LoginActivity.USER_TYPE;
+import static com.ahmadabuhasan.skripsi.LoginActivity.item;
+
 /*
  * Created by Ahmad Abu Hasan on 02/02/2021
  */
@@ -71,8 +74,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, DashboardActivity.class));
-        finish();
+        Intent i = new Intent(this, DashboardActivity.class);
+        i.putExtra(USER_TYPE, item);
+        startActivity(i);
+
+        //finish();
         //super.onBackPressed();
     }
 }
