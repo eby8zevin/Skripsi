@@ -29,8 +29,11 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
+import static com.ahmadabuhasan.skripsi.LoginActivity.USER_TYPE;
+import static com.ahmadabuhasan.skripsi.LoginActivity.item;
+
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 04/10/2021
  */
 
 public class PosActivity extends AppCompatActivity {
@@ -96,8 +99,7 @@ public class PosActivity extends AppCompatActivity {
 
         this.imgBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                PosActivity.this.startActivity(new Intent(PosActivity.this, DashboardActivity.class));
-                PosActivity.this.finish();
+                onBackPressed();
             }
         });
 
@@ -210,7 +212,7 @@ public class PosActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            finish();
+            onBackPressed();
             return true;
         } else if (item.getItemId() != R.id.menu_cart_button) {
             return super.onOptionsItemSelected(item);
@@ -218,5 +220,15 @@ public class PosActivity extends AppCompatActivity {
             startActivity(new Intent(this, ProductCart.class));
             return true;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, DashboardActivity.class);
+        i.putExtra(USER_TYPE, item);
+        startActivity(i);
+
+        //finish();
+        //super.onBackPressed();
     }
 }
