@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ahmadabuhasan.skripsi.CashierDashboard;
 import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.adapter.OrderAdapter;
@@ -24,11 +25,10 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-import static com.ahmadabuhasan.skripsi.LoginActivity.USER_TYPE;
 import static com.ahmadabuhasan.skripsi.LoginActivity.item;
 
 /*
- * Created by Ahmad Abu Hasan on 24/01/2021
+ * Created by Ahmad Abu Hasan on 07/10/2021
  */
 
 public class OrdersActivity extends AppCompatActivity {
@@ -113,11 +113,13 @@ public class OrdersActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent i = new Intent(this, DashboardActivity.class);
-        i.putExtra(USER_TYPE, item);
-        startActivity(i);
+        if (item.equals("Cashier")) {
+            startActivity(new Intent(this, CashierDashboard.class));
+        } else {
+            startActivity(new Intent(this, DashboardActivity.class));
+        }
+        finish();
 
-        //finish();
         //super.onBackPressed();
     }
 }
