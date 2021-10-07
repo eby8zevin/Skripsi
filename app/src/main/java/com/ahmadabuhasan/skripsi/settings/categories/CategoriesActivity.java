@@ -1,9 +1,5 @@
 package com.ahmadabuhasan.skripsi.settings.categories;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,10 +10,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.adapter.CategoryAdapter;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.settings.SettingsActivity;
+import com.ahmadabuhasan.skripsi.settings.SettingsWarehouse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
@@ -25,8 +26,10 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
+import static com.ahmadabuhasan.skripsi.LoginActivity.item;
+
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 07/10/2021
  */
 
 public class CategoriesActivity extends AppCompatActivity {
@@ -111,8 +114,13 @@ public class CategoriesActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, SettingsActivity.class));
+        if (item.equals("Warehouse")) {
+            startActivity(new Intent(this, SettingsWarehouse.class));
+        } else {
+            startActivity(new Intent(this, SettingsActivity.class));
+        }
         finish();
+
         //super.onBackPressed();
     }
 }
