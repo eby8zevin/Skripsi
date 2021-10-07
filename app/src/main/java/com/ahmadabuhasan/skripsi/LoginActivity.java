@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 04/10/2021
+ * Created by Ahmad Abu Hasan on 07/10/2021
  */
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,13 +27,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private static long backPressed;
     public static String item;
-    public static final String USER_TYPE = "user_type";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        setTitle("Login Skripsi");
+        setTitle("Login POS");
 
         etUsername = findViewById(R.id.username);
         etUsername.setText("Admin");
@@ -50,15 +49,12 @@ public class LoginActivity extends AppCompatActivity {
                 item = spinner.getSelectedItem().toString();
                 if (etUsername.getText().toString().equals("Admin") && etPassword.getText().toString().equals("123456") && item.equals("Admin")) {
                     Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
-                    i.putExtra(USER_TYPE, item);
                     startActivity(i);
                 } else if (etUsername.getText().toString().equals("Kasir") && etPassword.getText().toString().equals("123456") && item.equals("Cashier")) {
-                    Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
-                    i.putExtra(USER_TYPE, item);
+                    Intent i = new Intent(LoginActivity.this, CashierDashboard.class);
                     startActivity(i);
                 } else if (etUsername.getText().toString().equals("Gudang") && etPassword.getText().toString().equals("123456") && item.equals("Warehouse")) {
-                    Intent i = new Intent(LoginActivity.this, DashboardActivity.class);
-                    i.putExtra(USER_TYPE, item);
+                    Intent i = new Intent(LoginActivity.this, WarehouseDashboard.class);
                     startActivity(i);
                 } else {
                     Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
