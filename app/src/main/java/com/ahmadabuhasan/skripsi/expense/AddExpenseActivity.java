@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -26,7 +27,7 @@ import java.util.Locale;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 07/10/2021
  */
 
 public class AddExpenseActivity extends AppCompatActivity {
@@ -121,7 +122,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                 int month = monthOfYear + 1;
                 String fm = "" + month;
                 String fd = "" + dayOfMonth;
-                if (monthOfYear < 10) {
+                if (month < 10) {
                     fm = "0" + month;
                 }
                 if (dayOfMonth < 10) {
