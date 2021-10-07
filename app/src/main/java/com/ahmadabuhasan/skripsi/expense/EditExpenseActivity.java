@@ -25,7 +25,7 @@ import java.util.Calendar;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 07/10/2021
  */
 
 public class EditExpenseActivity extends AppCompatActivity {
@@ -155,7 +155,7 @@ public class EditExpenseActivity extends AppCompatActivity {
                 int month = monthOfYear + 1;
                 String fm = "" + month;
                 String fd = "" + dayOfMonth;
-                if (monthOfYear < 10) {
+                if (month < 10) {
                     fm = "0" + month;
                 }
                 if (dayOfMonth < 10) {
