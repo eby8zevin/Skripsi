@@ -29,8 +29,10 @@ import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
+import static com.ahmadabuhasan.skripsi.LoginActivity.item;
+
 /*
- * Created by Ahmad Abu Hasan on 04/03/2021
+ * Created by Ahmad Abu Hasan on 07/10/2021
  */
 
 public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.MyViewHolder> {
@@ -95,7 +97,12 @@ public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.My
             @Override
             public void onClick(View v) {
                 PosProductAdapter.this.player.start();
-                Intent intent = new Intent(PosProductAdapter.this.context, EditProductActivity.class);
+                Intent intent;
+                if (item.equals("Cashier")) {
+                    intent = new Intent(PosProductAdapter.this.context, com.ahmadabuhasan.skripsi.cashier.EditProductActivity.class);
+                } else {
+                    intent = new Intent(PosProductAdapter.this.context, EditProductActivity.class);
+                }
                 intent.putExtra(DatabaseOpenHelper.PRODUCT_ID, product_id);
                 PosProductAdapter.this.context.startActivity(intent);
             }
