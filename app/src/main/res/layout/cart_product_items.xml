@@ -38,6 +38,7 @@
                     android:layout_weight="1"
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/image_placeholder"
                     tools:ignore="InefficientWeight" />
 
