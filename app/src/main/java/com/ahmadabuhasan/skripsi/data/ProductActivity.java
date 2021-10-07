@@ -1,9 +1,5 @@
 package com.ahmadabuhasan.skripsi.data;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,8 +14,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
+import com.ahmadabuhasan.skripsi.WarehouseDashboard;
 import com.ahmadabuhasan.skripsi.adapter.ProductAdapter;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
@@ -33,11 +34,10 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
-import static com.ahmadabuhasan.skripsi.LoginActivity.USER_TYPE;
 import static com.ahmadabuhasan.skripsi.LoginActivity.item;
 
 /*
- * Created by Ahmad Abu Hasan on 04/10/2021
+ * Created by Ahmad Abu Hasan on 07/10/2021
  */
 
 public class ProductActivity extends AppCompatActivity {
@@ -138,11 +138,13 @@ public class ProductActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i = new Intent(this, DashboardActivity.class);
-        i.putExtra(USER_TYPE, item);
-        startActivity(i);
+        if (item.equals("Warehouse")) {
+            startActivity(new Intent(this, WarehouseDashboard.class));
+        } else {
+            startActivity(new Intent(this, DashboardActivity.class));
+        }
+        finish();
 
-        //finish();
         //super.onBackPressed();
     }
 
