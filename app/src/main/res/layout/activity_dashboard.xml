@@ -43,7 +43,7 @@
             android:layout_below="@id/PointOfSale"
             android:layout_marginStart="30dp"
             android:layout_marginTop="6dp"
-            android:text="Welcome"
+            android:text="@string/welcome"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
