@@ -17,6 +17,7 @@ import androidx.core.internal.view.SupportMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ahmadabuhasan.skripsi.R;
+import com.ahmadabuhasan.skripsi.cashier.DetailsProduct;
 import com.ahmadabuhasan.skripsi.data.EditProductActivity;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
@@ -99,7 +100,7 @@ public class PosProductAdapter extends RecyclerView.Adapter<PosProductAdapter.My
                 PosProductAdapter.this.player.start();
                 Intent intent;
                 if (item.equals("Cashier")) {
-                    intent = new Intent(PosProductAdapter.this.context, com.ahmadabuhasan.skripsi.cashier.EditProductActivity.class);
+                    intent = new Intent(PosProductAdapter.this.context, DetailsProduct.class);
                 } else {
                     intent = new Intent(PosProductAdapter.this.context, EditProductActivity.class);
                 }
