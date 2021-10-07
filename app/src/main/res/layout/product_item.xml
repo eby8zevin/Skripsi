@@ -36,6 +36,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:scaleType="centerCrop"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/image_placeholder"
                     tools:ignore="ContentDescription" />
 
