@@ -60,6 +60,7 @@ public class WeightActivity extends AppCompatActivity {
         databaseAccess.open();
         List<HashMap<String, String>> weightData = databaseAccess.getWeightUnit();
         Log.d("data", "" + weightData.size());
+
         if (weightData.size() <= 0) {
             Toasty.info(this, (int) R.string.no_data_found, Toasty.LENGTH_SHORT).show();
             this.imgNoProduct.setImageResource(R.drawable.no_data);
