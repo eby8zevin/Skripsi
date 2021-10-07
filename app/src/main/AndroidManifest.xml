@@ -32,6 +32,13 @@
         android:theme="@style/Skripsi"
         android:usesCleartextTraffic="true"
         tools:targetApi="p">
+        <activity android:name=".settings.SettingsWarehouse" />
+        <activity android:name=".WarehouseDashboard" />
+        <activity android:name=".cashier.DetailsProduct" />
+        <activity android:name=".cashier.ScannerActivity" />
+        <activity android:name=".cashier.ProductCart" />
+        <activity android:name=".cashier.PosActivity" />
+        <activity android:name=".CashierDashboard" />
         <activity android:name=".pdf_report.ViewPDFActivity" />
         <activity android:name=".suppliers.EditSuppliersActivity" />
         <activity android:name=".suppliers.AddSuppliersActivity" />

@@ -363,4 +363,6 @@
         <item>Cashier</item>
         <item>Warehouse</item>
     </string-array>
+
+    <string name="welcome">Welcome</string>
 </resources>
