@@ -1,6 +1,7 @@
 package com.ahmadabuhasan.skripsi;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -48,7 +49,7 @@ import java.util.Objects;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 04/10/2021
+ * Created by Ahmad Abu Hasan on 07/10/2021
  */
 
 public class DashboardActivity extends AppCompatActivity {
@@ -70,8 +71,6 @@ public class DashboardActivity extends AppCompatActivity {
 
     TextView tvUserType;
     ImageView imgLogout;
-    private String item;
-    private String USER_TYPE = "user_type";
     ProgressBar progressBar;
 
     @Override
@@ -121,64 +120,29 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-        Bundle extras = getIntent().getExtras();
-        item = extras.getString(USER_TYPE);
-        tvUserType.setText("Welcome " + item);
+        tvUserType.setText(getResources().getString(R.string.welcome) + " Admin");
 
-        if (item.equals("Cashier")) {
-            this.cardView_kaca.setVisibility(View.GONE);
-            this.cardView_pigura.setVisibility(View.GONE);
-            this.cardView_data.setVisibility(View.INVISIBLE);
-            this.cardView_settings.setVisibility(View.INVISIBLE);
-            this.cardView_report.setVisibility(View.INVISIBLE);
-            this.cardView_suppliers.setVisibility(View.INVISIBLE);
+        this.progressBar.setVisibility(View.GONE);
 
-            this.progressBar.setVisibility(View.GONE);
+        this.cardView_kaca.setVisibility(View.GONE);
+        this.cardView_pigura.setVisibility(View.GONE);
 
-            this.cardView_kasir.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, PosActivity.class)));
-            this.cardView_print.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, OrdersActivity.class)));
-            this.cardView_customers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, CustomersActivity.class)));
-
-        } else if (item.equals("Warehouse")) {
-            this.cardView_kaca.setVisibility(View.GONE);
-            this.cardView_pigura.setVisibility(View.GONE);
-            this.cardView_kasir.setVisibility(View.INVISIBLE);
-            this.cardView_print.setVisibility(View.INVISIBLE);
-            this.cardView_expense.setVisibility(View.INVISIBLE);
-            this.cardView_report.setVisibility(View.INVISIBLE);
-            this.cardView_customers.setVisibility(View.INVISIBLE);
-
-            this.progressBar.setVisibility(View.GONE);
-
-            this.cardView_data.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ProductActivity.class)));
-            this.cardView_settings.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
-            this.cardView_expense.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ExpenseActivity.class)));
-            this.cardView_suppliers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SuppliersActivity.class)));
-
-        } else {
-            this.progressBar.setVisibility(View.GONE);
-
-            this.cardView_kaca.setVisibility(View.GONE);
-            this.cardView_pigura.setVisibility(View.GONE);
-
-            this.cardView_kaca.setOnClickListener(v -> {
-                //DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, DashboardActivity.class));
-                Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
-            });
-            this.cardView_pigura.setOnClickListener(v -> {
-                //DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, DashboardActivity.class));
-                Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
-            });
-            this.cardView_kasir.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, PosActivity.class)));
-            this.cardView_data.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ProductActivity.class)));
-            this.cardView_print.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, OrdersActivity.class)));
-            this.cardView_settings.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
-            this.cardView_expense.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ExpenseActivity.class)));
-            this.cardView_report.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ReportActivity.class)));
-            this.cardView_customers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, CustomersActivity.class)));
-            this.cardView_suppliers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SuppliersActivity.class)));
-
-        }
+        this.cardView_kaca.setOnClickListener(v -> {
+            //DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, DashboardActivity.class));
+            Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+        });
+        this.cardView_pigura.setOnClickListener(v -> {
+            //DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, DashboardActivity.class));
+            Toast.makeText(getApplicationContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+        });
+        this.cardView_kasir.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, PosActivity.class)));
+        this.cardView_data.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ProductActivity.class)));
+        this.cardView_print.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, OrdersActivity.class)));
+        this.cardView_settings.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SettingsActivity.class)));
+        this.cardView_expense.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ExpenseActivity.class)));
+        this.cardView_report.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, ReportActivity.class)));
+        this.cardView_customers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, CustomersActivity.class)));
+        this.cardView_suppliers.setOnClickListener(v -> DashboardActivity.this.startActivity(new Intent(DashboardActivity.this, SuppliersActivity.class)));
 
         logout();
     }
@@ -188,7 +152,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DashboardActivity.this, LoginActivity.class));
-                Toast.makeText(getApplicationContext(), item + " Logout", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Admin Logout", Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.VISIBLE);
                 progressBar.setIndeterminate(true);
                 finish();
