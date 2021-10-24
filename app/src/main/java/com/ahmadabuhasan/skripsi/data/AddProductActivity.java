@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
+import com.ahmadabuhasan.skripsi.WarehouseDashboard;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.ajts.androidmads.library.ExcelToSQLite;
@@ -41,8 +42,10 @@ import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
+import static com.ahmadabuhasan.skripsi.LoginActivity.item;
+
 /*
- * Created by Ahmad Abu Hasan on 21/03/2021
+ * Created by Ahmad Abu Hasan on 24/10/2021
  */
 
 public class AddProductActivity extends AppCompatActivity {
@@ -423,7 +426,11 @@ public class AddProductActivity extends AppCompatActivity {
                         public void run() {
                             AddProductActivity.this.loading.dismiss();
                             Toasty.success(AddProductActivity.this, R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
-                            AddProductActivity.this.startActivity(new Intent(AddProductActivity.this, DashboardActivity.class));
+                            if (item.equals("Warehouse")) {
+                                AddProductActivity.this.startActivity(new Intent(AddProductActivity.this, WarehouseDashboard.class));
+                            } else {
+                                AddProductActivity.this.startActivity(new Intent(AddProductActivity.this, DashboardActivity.class));
+                            }
                             AddProductActivity.this.finish();
                         }
                     }, 5000);
