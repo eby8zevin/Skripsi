@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ahmadabuhasan.skripsi.CashierDashboard;
 import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
@@ -32,8 +33,10 @@ import java.util.Calendar;
 
 import es.dmoral.toasty.Toasty;
 
+import static com.ahmadabuhasan.skripsi.LoginActivity.item;
+
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 24/10/2021
  */
 
 public class AddCustomersActivity extends AppCompatActivity {
@@ -189,7 +192,11 @@ public class AddCustomersActivity extends AppCompatActivity {
                                 public void run() {
                                     AddCustomersActivity.this.loading.dismiss();
                                     Toasty.success(AddCustomersActivity.this, (int) R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
-                                    AddCustomersActivity.this.startActivity(new Intent(AddCustomersActivity.this, DashboardActivity.class));
+                                    if (item.equals("Cashier")) {
+                                        AddCustomersActivity.this.startActivity(new Intent(AddCustomersActivity.this, CashierDashboard.class));
+                                    } else {
+                                        AddCustomersActivity.this.startActivity(new Intent(AddCustomersActivity.this, DashboardActivity.class));
+                                    }
                                     AddCustomersActivity.this.finish();
                                 }
                             }, 5000);
