@@ -1,7 +1,5 @@
 package com.ahmadabuhasan.skripsi.suppliers;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -17,13 +15,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ahmadabuhasan.skripsi.DashboardActivity;
 import com.ahmadabuhasan.skripsi.R;
+import com.ahmadabuhasan.skripsi.WarehouseDashboard;
 import com.ahmadabuhasan.skripsi.database.DatabaseAccess;
 import com.ahmadabuhasan.skripsi.database.DatabaseOpenHelper;
 import com.ajts.androidmads.library.ExcelToSQLite;
 import com.obsez.android.lib.filechooser.ChooserDialog;
-//import com.itextpdf.text.io.PagedChannelRandomAccessSource;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -31,8 +31,12 @@ import java.util.Calendar;
 
 import es.dmoral.toasty.Toasty;
 
+import static com.ahmadabuhasan.skripsi.LoginActivity.item;
+
+//import com.itextpdf.text.io.PagedChannelRandomAccessSource;
+
 /*
- * Created by Ahmad Abu Hasan on 28/01/2021
+ * Created by Ahmad Abu Hasan on 24/10/2021
  */
 
 public class AddSuppliersActivity extends AppCompatActivity {
@@ -188,7 +192,11 @@ public class AddSuppliersActivity extends AppCompatActivity {
                                 public void run() {
                                     AddSuppliersActivity.this.loading.dismiss();
                                     Toasty.success(AddSuppliersActivity.this, (int) R.string.data_successfully_imported, Toasty.LENGTH_SHORT).show();
-                                    AddSuppliersActivity.this.startActivity(new Intent(AddSuppliersActivity.this, DashboardActivity.class));
+                                    if (item.equals("Warehouse")) {
+                                        AddSuppliersActivity.this.startActivity(new Intent(AddSuppliersActivity.this, WarehouseDashboard.class));
+                                    } else {
+                                        AddSuppliersActivity.this.startActivity(new Intent(AddSuppliersActivity.this, DashboardActivity.class));
+                                    }
                                     AddSuppliersActivity.this.finish();
                                 }
                             }, 5000);
