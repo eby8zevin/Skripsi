@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import es.dmoral.toasty.Toasty;
 
 /*
- * Created by Ahmad Abu Hasan on 07/10/2021
+ * Created by Ahmad Abu Hasan on 24/10/2021
  */
 
 public class LoginActivity extends AppCompatActivity {
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent i = new Intent(LoginActivity.this, WarehouseDashboard.class);
                     startActivity(i);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
